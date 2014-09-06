@@ -10,4 +10,4 @@
 
 set -o pipefail
 
-/usr/bin/make -C "." "$@" |& awk -f "$0.awk"
+/usr/bin/make -C "." "$@" 2>&1 | awk -f "$0.awk"
