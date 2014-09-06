@@ -1,0 +1,13 @@
+#!/bin/bash -
+
+# From the BASH manual:
+
+#    The exit status of a pipeline is the exit status of the last
+#    command in the pipeline, unless the pipefail option is
+#    enabled. If pipefail is enabled, the pipeline’s return status is
+#    the value of the last (rightmost) command to exit with a non-zero
+#    status, or zero if all commands exit successfully.
+
+set -o pipefail
+
+/usr/bin/make -C "." "$@" |& awk -f "$0.awk"
