@@ -40,3 +40,10 @@ fairly small scaffolding that makes use of library code. The intention
 is to assure that a program is not forced to use a specific framework
 if it wants to gain access to a useful service.
 
+Tools Required
+--------------
+
+Less common tools that a complete build of the Toolkit needs:
+
+  * markdown
+  * doxyen
