@@ -1,0 +1,171 @@
+# -*- makefile-gmake -*-
+
+# -- ================================================================ --
+#    Stock Variables
+
+Q               := @
+I               := -
+C               := $Q $I
+P		:= printf
+R               := /bin/rm -fr
+S		:= md5sum
+
+ifeq ($(DEBUG),)
+OPT		:= -O3
+DBG		:= 
+PROF		:= 
+else
+OPT		:= -O0
+DBG		:= -g
+PROF		:= -fprofile-arcs -ftest-coverage
+endif
+
+CSTD		:= --std=c99
+XSTD		:= --std=c++98
+ERR		:= -W -Wall -Wextra -pedantic -Werror
+
+IPATH		:= $(IDIRS:%=-I%)
+LPATH		:= $(LDIRS:%=-L%)
+LDLIBS		:= $(LLIBS:%=-l%)
+
+CFLAGS		:= $(CSTD) $(OPT) $(PROF) $(ERR) $(IPATH)
+CPPFLAGS	:= $(XSTD) $(OPT) $(PROF) $(ERR) $(IPATH)
+LDFLAGS		:= $(LPATH) $(PROF) $(LDLIBS)
+
+HERE		:= ${shell env PWD= /bin/pwd}
+
+# -- ================================================================ --
+#    Stock Targets
+
+# building without a target
+default::
+	$C ${MAKE} cycle
+
+# clean: remove build products.
+clean::
+	$C true
+
+# undox: remove documentation products.
+undox::
+	$C true
+
+# build: create build products.
+build::
+	$C true
+
+# dox: create documentation products.
+dox::
+	$C true
+
+# test: run package tests.
+test::
+	$C true
+
+# install: install build products
+install::
+	$C true
+
+# cycle: run the build/test/install cycle.
+cycle::
+	$Q ${MAKE} build
+	$Q ${MAKE} test
+	$Q ${MAKE} install
+
+# world: 
+world::
+	$Q ${MAKE} clean
+	$Q ${MAKE} cycle
+
+# ================
+# Markdown Support
+
+MDSRC           := ${wildcard *.md}
+
+ifneq ($(MDSRC),)
+
+MDOUT           := ${MDSRC:%.md=%.html}
+
+dox::		${MDOUT}
+
+undox::
+	$C $R ${MDOUT}
+
+${MDOUT}:       %.html:         %.md
+	$Q $P '[md] %s\n' '$*'
+	$Q markdown $< > $@
+
+endif
+
+# ================
+# Doxygen Support
+
+DOXY            := ${wildcard Doxyfile}
+
+ifneq ($(DOXY),)
+
+undox::
+	$C $R html latex
+
+dox::
+	$C $R html latex
+	$C $P 'doxygen\n'
+	$Q doxygen > doxygen.log 2>&1
+
+endif
+
+# -- ================================================================ --
+#    Recursive Build support
+
+SUBDIRS		:= ${dir ${wildcard */GNUmakefile}}
+
+ifneq ($(SUBDIRS),)
+
+# Recursive Targets:
+#   clean       clean all subdirectories
+#   cycle       build/test/install in each subdirectory
+#   dox         build dox in each subdirectory
+#
+# Note that build, test, and install are not themselves recursive
+# because each must be built, tested, and installed in turn before
+# moving on to the next so that later directories may import from
+# earlier ones.
+#
+# Note also that "world" is not recursive: a world build consists of
+# doing a complete recursive clean, followed by a complete recursive
+# cycle, for maximum assurance that stale products are never used.
+
+
+SCLEAN          := $(SUBDIRS:%/=clean-%)
+
+clean::         $(SCLEAN)
+
+$(SCLEAN):      clean-%:        .FORCE
+	$Q ${MAKE} -C '$*' clean
+
+SCYCLE          := $(SUBDIRS:%/=cycle-%)
+
+cycle::         $(SCYCLE)
+
+$(SCYCLE):      cycle-%:        .FORCE
+	$Q ${MAKE} -C '$*' cycle
+
+SDOX            := $(SUBDIRS:%/=dox-%)
+
+dox::           $(SDOX)
+
+$(SDOX):        dox-%:          .FORCE
+	$Q ${MAKE} -C '$*' dox
+
+SUNDOX          := $(SUBDIRS:%/=undox-%)
+
+undox::         $(SUNDOX)
+
+$(SUNDOX):      undox-%:        .FORCE
+	$Q ${MAKE} -C '$*' undox
+
+endif
+
+clean::
+	$C $R ut_*_log.xml *.gcda *.gcno *.gcov gmon.out
+
+.FORCE:
