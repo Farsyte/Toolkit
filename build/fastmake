@@ -1,0 +1,2 @@
+#!/bin/bash -
+exec $(dirname "$0")/quietmake --no-print-directory -j 8 "$@"
