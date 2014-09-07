@@ -155,3 +155,5 @@ build clean::
 	@ $P '%-14s  := "%s"\n' 'TEST_EXE' '$(TEST_EXE)'
 	@ $P '%-14s  := "%s"\n' 'TEST_OUT' '$(TEST_OUT)'
 endif
+
+.PHONY: build clean

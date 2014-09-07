@@ -141,6 +141,7 @@ clean::         $(SCLEAN)
 
 $(SCLEAN):      clean-%:        .FORCE
 	$Q ${MAKE} -C '$*' clean
+.PHONY: $(SCLEAN)
 
 SCYCLE          := $(SUBDIRS:%/=cycle-%)
 
@@ -148,6 +149,7 @@ cycle::         $(SCYCLE)
 
 $(SCYCLE):      cycle-%:        .FORCE
 	$Q ${MAKE} -C '$*' cycle
+.PHONY: $(SCYCLE)
 
 SDOX            := $(SUBDIRS:%/=dox-%)
 
@@ -155,6 +157,7 @@ dox::           $(SDOX)
 
 $(SDOX):        dox-%:          .FORCE
 	$Q ${MAKE} -C '$*' dox
+.PHONY: $(SDOX)
 
 SUNDOX          := $(SUBDIRS:%/=undox-%)
 
@@ -162,6 +165,7 @@ undox::         $(SUNDOX)
 
 $(SUNDOX):      undox-%:        .FORCE
 	$Q ${MAKE} -C '$*' undox
+.PHONY: $(SUNDOX)
 
 endif
 
@@ -169,3 +173,6 @@ clean::
 	$C $R ut_*_log.xml *.gcda *.gcno *.gcov gmon.out
 
 .FORCE:
+
+.PHONY: default clean undox build dox test install cycle world
+
