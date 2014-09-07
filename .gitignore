@@ -4,4 +4,7 @@
 [#]*[#]
 *.html
 test_*_log.xml
-
+*.gcda
+*.gcno
+*.gcov
+gmon.out

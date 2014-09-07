@@ -1,4 +1,4 @@
 # -*- makefile-gmake -*-
-IDIRS		:= ../inc
+IDIRS           := ../inc
 LIBNAME         := testing
 include ../../GNUmakefile.sub
