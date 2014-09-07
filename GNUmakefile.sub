@@ -84,8 +84,6 @@ build::         ${BIN_EXE}
 clean::
 	$C $R ${BIN_EXE}
 
-
-
 TEST_SRC	:= ${wildcard ${SRCD}test_*.cc}
 ifneq ($(TEST_SRC),)
 TEST_EXE	:= ${TEST_SRC:${SRCD}%.cc=${BIND}%.exe}
@@ -111,49 +109,21 @@ endif
 clean::
 	$C $R ${DEPD}*.d
 
-ifneq ($(MAKE_TRACE),)
-build clean::
-	@ $P '%-14s  := "%s"\n' 'Q' '$(Q)'
-	@ $P '%-14s  := "%s"\n' 'I' '$(I)'
-	@ $P '%-14s  := "%s"\n' 'C' '$(C)'
-	@ $P '%-14s  := "%s"\n' 'R' '$(R)'
-	@ $P '%-14s  := "%s"\n' 'S' '$(S)'
-	@ $P '%-14s  := "%s"\n' 'OPT' '$(OPT)'
-	@ $P '%-14s  := "%s"\n' 'DBG' '$(DBG)'
-	@ $P '%-14s  := "%s"\n' 'PROF' '$(PROF)'
-	@ $P '%-14s  := "%s"\n' 'CSTD' '$(CSTD)'
-	@ $P '%-14s  := "%s"\n' 'XSTD' '$(XSTD)'
-	@ $P '%-14s  := "%s"\n' 'ERR' '$(ERR)'
-	@ $P '%-14s  := "%s"\n' 'IPATH' '$(IPATH)'
-	@ $P '%-14s  := "%s"\n' 'LPATH' '$(LPATH)'
-	@ $P '%-14s  := "%s"\n' 'LDLIBS' '$(LDLIBS)'
-	@ $P '%-14s  := "%s"\n' 'CFLAGS' '$(CFLAGS)'
-	@ $P '%-14s  := "%s"\n' 'CPPFLAGS' '$(CPPFLAGS)'
-	@ $P '%-14s  := "%s"\n' 'LDFLAGS' '$(LDFLAGS)'
-	@ $P '%-14s  := "%s"\n' 'HERE' '$(HERE)'
-	@ $P '%-14s  := "%s"\n' 'MDSRC' '$(MDSRC)'
-	@ $P '%-14s  := "%s"\n' 'MDOUT' '$(MDOUT)'
-	@ $P '%-14s  := "%s"\n' 'DOXY' '$(DOXY)'
-	@ $P '%-14s  := "%s"\n' 'SUBDIRS' '$(SUBDIRS)'
-	@ $P '%-14s  := "%s"\n' 'SCLEAN' '$(SCLEAN)'
-	@ $P '%-14s  := "%s"\n' 'SCYCLE' '$(SCYCLE)'
-	@ $P '%-14s  := "%s"\n' 'SDOX' '$(SDOX)'
-	@ $P '%-14s  := "%s"\n' 'SUNDOX' '$(SUNDOX)'
-	@ $P '%-14s  := "%s"\n' 'SELF' '$(SELF)'
-	@ $P '%-14s  := "%s"\n' 'BASE' '$(BASE)'
-	@ $P '%-14s  := "%s"\n' 'SRCD' '$(SRCD)'
-	@ $P '%-14s  := "%s"\n' 'OBJD' '$(OBJD)'
-	@ $P '%-14s  := "%s"\n' 'LIBD' '$(LIBD)'
-	@ $P '%-14s  := "%s"\n' 'DEPD' '$(DEPD)'
-	@ $P '%-14s  := "%s"\n' 'BIND' '$(BIND)'
-	@ $P '%-14s  := "%s"\n' 'LOGD' '$(LOGD)'
-	@ $P '%-14s  := "%s"\n' 'ALL_SRC' '$(ALL_SRC)'
-	@ $P '%-14s  := "%s"\n' 'ALL_OBJ' '$(ALL_OBJ)'
-	@ $P '%-14s  := "%s"\n' 'LIBA' '$(LIBA)'
-	@ $P '%-14s  := "%s"\n' 'BIN_EXE' '$(BIN_EXE)'
-	@ $P '%-14s  := "%s"\n' 'TEST_SRC' '$(TEST_SRC)'
-	@ $P '%-14s  := "%s"\n' 'TEST_EXE' '$(TEST_EXE)'
-	@ $P '%-14s  := "%s"\n' 'TEST_OUT' '$(TEST_OUT)'
-endif
+debug::
+	@ printf '%-14s  := "%s"\n' 'BASE' '$(BASE)'
+	@ printf '%-14s  := "%s"\n' 'SRCD' '$(SRCD)'
+	@ printf '%-14s  := "%s"\n' 'OBJD' '$(OBJD)'
+	@ printf '%-14s  := "%s"\n' 'LIBD' '$(LIBD)'
+	@ printf '%-14s  := "%s"\n' 'DEPD' '$(DEPD)'
+	@ printf '%-14s  := "%s"\n' 'BIND' '$(BIND)'
+	@ printf '%-14s  := "%s"\n' 'LOGD' '$(LOGD)'
+	@ printf '%-14s  := "%s"\n' 'ALL_SRC' '$(ALL_SRC)'
+	@ printf '%-14s  := "%s"\n' 'ALL_OBJ' '$(ALL_OBJ)'
+	@ printf '%-14s  := "%s"\n' 'LIBA' '$(LIBA)'
+	@ printf '%-14s  := "%s"\n' 'BIN_EXE' '$(BIN_EXE)'
+	@ printf '%-14s  := "%s"\n' 'TEST_SRC' '$(TEST_SRC)'
+	@ printf '%-14s  := "%s"\n' 'TEST_EXE' '$(TEST_EXE)'
+	@ printf '%-14s  := "%s"\n' 'TEST_OUT' '$(TEST_OUT)'
 
-.PHONY: build clean
+.PHONY: build clean debug
+
