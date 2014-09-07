@@ -1,3 +1,4 @@
 # -*- makefile-gmake -*-
 include ../GNUmakefile.sub
-cycle-test: cycle-lib
+test/cycle: lib/cycle
+cov/cycle: test/cycle

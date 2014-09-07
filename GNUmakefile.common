@@ -1,38 +1,42 @@
 # -*- makefile-gmake -*-
 
+top.com         := ${lastword ${MAKEFILE_LIST}}
+top.abs         := ${shell cd '${dir ${top.com}}' ; env PWD= /bin/pwd}/
+dir.abs         := ${shell env PWD= /bin/pwd}/
+dir.rel         := ${dir.abs:${top.abs}%=%}
+dir.last        := ${notdir ${dir.abs:%/=%}}
+
 # -- ================================================================ --
 #    Stock Variables
 
 Q               := @
 I               := -
 C               := $Q $I
-P		:= printf
+P               := printf
 R               := /bin/rm -fr
-S		:= md5sum
+S               := md5sum
 
 ifeq ($(DEBUG),)
-OPT		:= -O3
-DBG		:= 
-PROF		:= 
+OPT             := -O3
+DBG             := 
+PROF            := 
 else
-OPT		:= -O0
-DBG		:= -g
-PROF		:= -fprofile-arcs -ftest-coverage
+OPT             := -O0
+DBG             := -g
+PROF            := -fprofile-arcs -ftest-coverage
 endif
 
-CSTD		:= --std=c99
-XSTD		:= --std=c++98
-ERR		:= -W -Wall -Wextra -pedantic -Werror
+CSTD            := --std=c99
+XSTD            := --std=c++98
+ERR             := -W -Wall -Wextra -pedantic -Werror
 
-IPATH		:= $(IDIRS:%=-I%)
-LPATH		:= $(LDIRS:%=-L%)
-LDLIBS		:= $(LLIBS:%=-l%)
+IPATH           := $(IDIRS:%=-I%)
+LPATH           := $(LDIRS:%=-L%)
+LDLIBS          := $(LLIBS:%=-l%)
 
-CFLAGS		:= $(CSTD) $(OPT) $(PROF) $(ERR) $(IPATH)
-CPPFLAGS	:= $(XSTD) $(OPT) $(PROF) $(ERR) $(IPATH)
-LDFLAGS		:= $(LPATH) $(PROF) $(LDLIBS)
-
-HERE		:= ${shell env PWD= /bin/pwd}
+CFLAGS          := $(CSTD) $(OPT) $(PROF) $(ERR) $(IPATH)
+CPPFLAGS        := $(XSTD) $(OPT) $(PROF) $(ERR) $(IPATH)
+LDFLAGS         := $(LPATH) $(PROF) $(LDLIBS)
 
 # -- ================================================================ --
 #    Stock Targets
@@ -85,13 +89,13 @@ ifneq ($(MDSRC),)
 
 MDOUT           := ${MDSRC:%.md=%.html}
 
-dox::		${MDOUT}
+dox::           ${MDOUT}
 
 undox::
 	$C $R ${MDOUT}
 
 ${MDOUT}:       %.html:         %.md
-	$Q $P '[md] %s\n' '$*'
+	$Q $P '[md] %s%s\n' '${dir.rel}' '$*'
 	$Q markdown $< > $@
 
 endif
@@ -108,7 +112,7 @@ undox::
 
 dox::
 	$C $R html latex
-	$C $P 'doxygen\n'
+	$C $P '[dx] %s%s\n' '${dir.rel}' 'Doxyfile'
 	$Q doxygen > doxygen.log 2>&1
 
 endif
@@ -116,7 +120,7 @@ endif
 # -- ================================================================ --
 #    Recursive Build support
 
-SUBDIRS		:= ${dir ${wildcard */GNUmakefile}}
+SUBDIRS         := ${dir ${wildcard */GNUmakefile}}
 
 ifneq ($(SUBDIRS),)
 
@@ -124,6 +128,7 @@ ifneq ($(SUBDIRS),)
 #   clean       clean all subdirectories
 #   cycle       build/test/install in each subdirectory
 #   dox         build dox in each subdirectory
+#   undox       remove prepared documentation
 #
 # Note that build, test, and install are not themselves recursive
 # because each must be built, tested, and installed in turn before
@@ -134,38 +139,56 @@ ifneq ($(SUBDIRS),)
 # doing a complete recursive clean, followed by a complete recursive
 # cycle, for maximum assurance that stale products are never used.
 
+SUBRULES        += clean
+SUBRULES        += cycle
+SUBRULES        += dox
+SUBRULES        += undox
 
-SCLEAN          := $(SUBDIRS:%/=clean-%)
+DslashR         = ${foreach R,${SUBRULES},${foreach D,${SUBDIRS},$D$R}}
 
-clean::         $(SCLEAN)
+$(DslashR):
+	$Q $(MAKE) -C ${dir $@} ${notdir $@}
 
-$(SCLEAN):      clean-%:        .FORCE
-	$Q ${MAKE} -C '$*' clean
+$(SUBRULES)::   %:      ${foreach D,${SUBDIRS},$D%}
 
-SCYCLE          := $(SUBDIRS:%/=cycle-%)
-
-cycle::         $(SCYCLE)
-
-$(SCYCLE):      cycle-%:        .FORCE
-	$Q ${MAKE} -C '$*' cycle
-
-SDOX            := $(SUBDIRS:%/=dox-%)
-
-dox::           $(SDOX)
-
-$(SDOX):        dox-%:          .FORCE
-	$Q ${MAKE} -C '$*' dox
-
-SUNDOX          := $(SUBDIRS:%/=undox-%)
-
-undox::         $(SUNDOX)
-
-$(SUNDOX):      undox-%:        .FORCE
-	$Q ${MAKE} -C '$*' undox
+.PHONY: $(SUBRULES) $(DdlashR)
 
 endif
 
 clean::
 	$C $R ut_*_log.xml *.gcda *.gcno *.gcov gmon.out
 
+debug::
+	@ printf '%-22s  => "%s"\n' 'top.com' '$(top.com)'
+	@ printf '%-22s  => "%s"\n' 'top.abs' '$(top.abs)'
+	@ printf '%-22s  => "%s"\n' 'dir.abs' '$(dir.abs)'
+	@ printf '%-22s  => "%s"\n' 'dir.rel' '$(dir.rel)'
+	@ printf '%-22s  => "%s"\n' 'dir.last' '$(dir.last)'
+	@ printf '%-22s  => "%s"\n' 'Q' '$(Q)'
+	@ printf '%-22s  => "%s"\n' 'I' '$(I)'
+	@ printf '%-22s  => "%s"\n' 'C' '$(C)'
+	@ printf '%-22s  => "%s"\n' 'P' '$(P)'
+	@ printf '%-22s  => "%s"\n' 'R' '$(R)'
+	@ printf '%-22s  => "%s"\n' 'S' '$(S)'
+	@ printf '%-22s  => "%s"\n' 'OPT' '$(OPT)'
+	@ printf '%-22s  => "%s"\n' 'DBG' '$(DBG)'
+	@ printf '%-22s  => "%s"\n' 'PROF' '$(PROF)'
+	@ printf '%-22s  => "%s"\n' 'CSTD' '$(CSTD)'
+	@ printf '%-22s  => "%s"\n' 'XSTD' '$(XSTD)'
+	@ printf '%-22s  => "%s"\n' 'ERR' '$(ERR)'
+	@ printf '%-22s  => "%s"\n' 'IPATH' '$(IPATH)'
+	@ printf '%-22s  => "%s"\n' 'LPATH' '$(LPATH)'
+	@ printf '%-22s  => "%s"\n' 'LDLIBS' '$(LDLIBS)'
+	@ printf '%-22s  => "%s"\n' 'CFLAGS' '$(CFLAGS)'
+	@ printf '%-22s  => "%s"\n' 'CPPFLAGS' '$(CPPFLAGS)'
+	@ printf '%-22s  => "%s"\n' 'LDFLAGS' '$(LDFLAGS)'
+	@ printf '%-22s  => "%s"\n' 'MDSRC' '$(MDSRC)'
+	@ printf '%-22s  => "%s"\n' 'MDOUT' '$(MDOUT)'
+	@ printf '%-22s  => "%s"\n' 'DOXY' '$(DOXY)'
+	@ printf '%-22s  => "%s"\n' 'SUBDIRS' '$(SUBDIRS)'
+	@ printf '%-22s  => "%s"\n' 'SUBRULES' '$(SUBRULES)'
+	@ printf '%-22s  => "%s"\n' 'DslashR' '$(DslashR)'
+
 .FORCE:
+
+.PHONY: default clean undox build dox test install cycle world debug
