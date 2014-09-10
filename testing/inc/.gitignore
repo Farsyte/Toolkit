@@ -1,3 +1,4 @@
-*.log
+Doxyfile.log
+Doxyfile.err
 html
 latex

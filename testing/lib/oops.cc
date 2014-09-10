@@ -34,7 +34,7 @@ void Oops::cancel() const {
 
 Oops::~Oops() {
     if (pend)
-        print(cerr);
+        print(cerr) << endl;
 }
 
 ostream& operator<<(ostream&s, Oops const &f) {

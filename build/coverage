@@ -1,0 +1,26 @@
+#!/bin/bash -
+here=
+cd $(dirname "$0")
+cd ..
+top=$(pwd)
+
+shopt -s globstar
+
+gcov -p **/*.gcda               2>/dev/null        |
+sed 'N;s/\n/ /'                                    |
+sed "s|File '|gcov: |"                             |
+sed "s|gcov: $top/|gcov: |"                        |
+grep "^gcov: "                                     |
+grep -v "^gcov: /"                                 |
+sed "s|' Lines executed:| |"                       |
+column -t                                          |
+sort -u
+
+rm -f '#'*.gcov
+
+for gcov in *.gcov
+do
+    dest=$(echo "$gcov" | tr '#' '/')
+    rm -f "$dest"
+    ln "$gcov" "$dest"
+done

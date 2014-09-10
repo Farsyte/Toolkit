@@ -6,14 +6,6 @@ using std::string;
 #include <sstream>
 using std::ostringstream;
 
-/** Quote a character for XML.
- * \todo move this to an XML utility library somewhere?
- *
- * Given a character, return the XML entity that
- * will cause that character to be displayed.
- * Return the empty string if there is no suitable
- * content to be written to the XML file.
- */
 std::string Farsyte::Testing::cq(char ch, char qc) {
 
     switch (ch) {
@@ -31,14 +23,6 @@ std::string Farsyte::Testing::cq(char ch, char qc) {
     }
 }
 
-/** Quote a string for XML.
- * \todo move this to an XML utility library somewhere?
- *
- * Given a string, return a string of XML entities that
- * will cause that string to be displayed.
- * Return the empty string if there is no suitable
- * content to be written to the XML file.
- */
 string Farsyte::Testing::hq(string const &str, char qc) {
     ostringstream  oss;
     if (qc) oss << qc;
@@ -48,9 +32,6 @@ string Farsyte::Testing::hq(string const &str, char qc) {
     return oss.str();
 }
 
-/** Quote a string value, generating a quoted string.
- * \todo move this to an XML utility library somewhere?
- */
 string Farsyte::Testing::sq(string const &str) {
     return hq(str, '"');
 }

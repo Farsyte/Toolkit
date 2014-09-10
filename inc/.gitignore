@@ -1,2 +1,4 @@
-*.h
-*.hh
+Doxyfile.log
+Doxyfile.err
+html
+latex

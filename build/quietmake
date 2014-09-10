@@ -1,4 +1,6 @@
 #!/bin/bash -
+here=$(dirname "$0")
+top=$(cd "$here/.."; env PWD= /bin/pwd)
 
 # From the BASH manual:
 
@@ -10,4 +12,4 @@
 
 set -o pipefail
 
-/usr/bin/make -w -C "." "$@" 2>&1 | awk -f "$0.awk"
+/usr/bin/make -w -C "$top" "$@" 2>&1 | awk -f "$0.awk"

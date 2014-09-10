@@ -13,6 +13,7 @@ using std::vector;
 
 #include <iostream>
 using std::ostream;
+using std::cout;
 using std::endl;
 
 #include <fstream>
@@ -790,8 +791,7 @@ int test_testing(Log &log) {
 
 int main(void) {
 
-    ofstream            xml("test_testing_log.xml");
-    Log                 log(xml, "Testing Library");
+    Log                 log(cout, "Testing Library");
 
     int ec = test_testing(log);
 
