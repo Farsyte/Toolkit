@@ -47,3 +47,4 @@ Less common tools that a complete build of the Toolkit needs:
 
   * markdown
   * doxyen
+  * dot
