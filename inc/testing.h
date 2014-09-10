@@ -237,10 +237,10 @@ namespace Farsyte {
          */
         class Oops {
           public:
-            std::string         file;
-            int                 line;
-            std::string         cond;
-            mutable bool        pend;
+            std::string         file; /**< source file name. */
+            int                 line; /**< source line number. */
+            std::string         cond; /**< one-line failed condition text */
+            mutable bool        pend; /**< true if not yet dealt with */
 
             /** Create a new Oops object.
              * \param f - source file name.
@@ -280,6 +280,8 @@ namespace Farsyte {
     }
 }
 
+/** Dump information from an Oops onto an output stream.
+ */
 extern std::ostream& operator<< (std::ostream&s, Farsyte::Testing::Oops const &f);
 
 #endif//_testing_h
