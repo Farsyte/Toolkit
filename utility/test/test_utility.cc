@@ -6,7 +6,6 @@ using Farsyte::Testing::Suite;
 using Farsyte::Testing::Test;
 using Farsyte::Testing::Oops;
 
-using Farsyte::Utility::quote_for_lit;
 using Farsyte::Utility::literal;
 
 
@@ -30,111 +29,60 @@ using std::ostringstream;
 
 #include <iomanip>
 
-/** Quote a character to go into a string in the test text.
- */
-string quote(char ch) {
-
-    switch (ch) {
-    case '\t': return "\\t";
-    case '\n': return "\\n";
-    case '"': return "\\\"";
-    case '\'': return "\\\'";
-    }
-
-    if (ch < 32)
-        return "";
-
-    if (ch > 126)
-        return "";
-
-    return string(1, ch);
-}
-
-/** Quote a string to go into a string in the test text.
- */
-string quote(string const & s) {
-    ostringstream       oss;
-    oss << '"';
-    for (size_t i = 0; i < s.length(); ++i)
-        oss << quote(s[i]);
-    oss << '"';
-    return oss.str();
-}
-
 static int case_compare(
     Test &t, string const &title,
     string const &exp,
     string const &act)
 {
+    char	const	qc = '"';
     t << title << endl
-      << "  expected: " << quote(exp) << endl
-      << "  observed: " << quote(act) << endl;
+      << "  expected: " << qc << exp << qc << endl
+      << "  observed: " << qc << act << qc << endl;
     if (act == exp)
         return 0;
     t.fail(title + " failed");
     return 1;
 }
 
-int test_utility_quote_char(Suite &s) {
+int test_utility_literal_char(Suite &s) {
     char	const	sq = '\'';
     char	const	dq = '"';
     char	const	bs = '\\';
     
-    Test t(s, "quote_for_lit(char,char)");
+    Test t(s, "literal(char)");
 
     return 0
-        + case_compare(t, "Encoding a blank for a char literal", " ", quote_for_lit(' ', sq))
-        + case_compare(t, "Encoding a letter for a char literal", "m", quote_for_lit('m', sq))
-        + case_compare(t, "Encoding a digit for a char literal", "5", quote_for_lit('5', sq))
-        + case_compare(t, "Encoding a star for a char literal", "*", quote_for_lit('*', sq))
-        + case_compare(t, "Encoding a backslash for a char literal", "\\\\", quote_for_lit(bs, sq))
-        + case_compare(t, "Encoding a single quote for a char literal", "\\'", quote_for_lit(sq, sq))
-        + case_compare(t, "Encoding a double quote for a char literal", "\"", quote_for_lit(dq, sq))
-        + case_compare(t, "Encoding a blank for a string literal", " ", quote_for_lit(' ', dq))
-        + case_compare(t, "Encoding a letter for a string literal", "m", quote_for_lit('m', dq))
-        + case_compare(t, "Encoding a digit for a string literal", "5", quote_for_lit('5', dq))
-        + case_compare(t, "Encoding a star for a string literal", "*", quote_for_lit('*', dq))
-        + case_compare(t, "Encoding a backslash for a string literal", "\\\\", quote_for_lit(bs, dq))
-        + case_compare(t, "Encoding a single quote for a string literal", "'", quote_for_lit(sq, dq))
-        + case_compare(t, "Encoding a double quote for a string literal", "\\\"", quote_for_lit(dq, dq))
+        + case_compare(t, "Encoding a blank char for a literal", " ", literal(' '))
+        + case_compare(t, "Encoding a letter char for a literal", "m", literal('m'))
+        + case_compare(t, "Encoding a digit char for a literal", "5", literal('5'))
+        + case_compare(t, "Encoding a star char for a literal", "*", literal('*'))
+        + case_compare(t, "Encoding a backslash char for a literal", "\\\\", literal(bs))
+        + case_compare(t, "Encoding a single quote char for a literal", "\\'", literal(sq))
+        + case_compare(t, "Encoding a double quote char for a literal", "\\\"", literal(dq))
         ;
 }
 
-int test_utility_quote_str(Suite &s) {
-
-    Test t(s, "quote_for_lit(string)");
-
-    return 0
-        + case_compare(t, "Encoding the empty string", "", quote_for_lit(""))
-        + case_compare(t, "Encoding a single blank", " ", quote_for_lit(" "))
-        + case_compare(t, "Encoding some text", "thx-1152", quote_for_lit("thx-1152"))
-        + case_compare(t, "Encoding some nasty text",
-                       "'.', \\\".\\\", and \\\\ ...", 
-                       quote_for_lit("\t'.', \".\", and \\ ...\n"))
-        ;
-}
-
-int test_utility_quote_lit(Suite &s) {
+int test_utility_literal_str(Suite &s) {
 
     Test t(s, "literal(string)");
 
     return 0
-        + case_compare(t, "Encoding the empty string", "\"\"", literal(""))
-        + case_compare(t, "Encoding a single blank", "\" \"", literal(" "))
-        + case_compare(t, "Encoding some text", "\"thx-1152\"", literal("thx-1152"))
+        + case_compare(t, "Encoding the empty string", "", literal(""))
+        + case_compare(t, "Encoding a single blank", " ", literal(" "))
+        + case_compare(t, "Encoding some text", "thx-1152", literal("thx-1152"))
         + case_compare(t, "Encoding some nasty text",
-                       "\"'.', \\\".\\\", and \\\\ ...\"", 
+                       "\\t\\'.\\', \\\".\\\", and \\\\ ...\\n", 
                        literal("\t'.', \".\", and \\ ...\n"))
         ;
 }
 
-int test_utility_quote(Log &log) {
+int test_utility_literal(Log &log) {
 
     /*
-    ** There is no Quote class, but there are some
-    ** functions that Quote things.
+    ** There is no Literal class, but there are some
+    ** functions that work with Literals.
     */
-    Suite               s(log, "Farsyte::Utility::Quote");
+    Suite               s(log, "Farsyte::Utility::Literal");
 
     /*
     ** return convention: 0 is success, nonzero is failure.
@@ -144,9 +92,8 @@ int test_utility_quote(Log &log) {
     */
 
     return 0
-        + test_utility_quote_char(s)
-        + test_utility_quote_str(s)
-        + test_utility_quote_lit(s)
+        + test_utility_literal_char(s)
+        + test_utility_literal_str(s)
         ;
 
 }
@@ -159,7 +106,7 @@ int test_utility(Log &log) {
     ** and return fail if any failed, after running all.
     */
     return 0
-        + test_utility_quote(log)
+        + test_utility_literal(log)
         ;
 }
 

@@ -22,5 +22,5 @@ for gcov in *.gcov
 do
     dest=$(echo "$gcov" | tr '#' '/')
     rm -f "$dest"
-    ln "$gcov" "$dest"
+    mv "$gcov" "$dest"
 done
