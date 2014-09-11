@@ -58,7 +58,7 @@ int test_utility_literal_char(Suite &s) {
         + case_compare(t, "Encoding a star char for a literal", "*", literal('*'))
         + case_compare(t, "Encoding a backslash char for a literal", "\\\\", literal(bs))
         + case_compare(t, "Encoding a single quote char for a literal", "\\'", literal(sq))
-        + case_compare(t, "Encoding a double quote char for a literal", "\"", literal(dq))
+        + case_compare(t, "Encoding a double quote char for a literal", "\\\"", literal(dq))
         ;
 }
 
@@ -71,7 +71,7 @@ int test_utility_literal_str(Suite &s) {
         + case_compare(t, "Encoding a single blank", " ", literal(" "))
         + case_compare(t, "Encoding some text", "thx-1152", literal("thx-1152"))
         + case_compare(t, "Encoding some nasty text",
-                       "'.', \\\".\\\", and \\\\ ...", 
+                       "\\t\\'.\\', \\\".\\\", and \\\\ ...\\n", 
                        literal("\t'.', \".\", and \\ ...\n"))
         ;
 }
