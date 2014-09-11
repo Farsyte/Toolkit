@@ -38,10 +38,8 @@ static int case_compare(
     t << title << endl
       << "  expected: " << qc << exp << qc << endl
       << "  observed: " << qc << act << qc << endl;
-#if 0
     if (act == exp)
         return 0;
-#endif
     t.fail(title + " failed");
     return 1;
 }
