@@ -13,38 +13,23 @@
 namespace Farsyte {
     namespace Utility {
 
-        /** Quote a character to be included in a C literal.
+        /** Convert a character into its literal representation.
          * \param ch -- character to be quoted
-         * \param qc -- quote character used for literal
          *
          * This function returns a string to use to represent
-         * the "ch" character in a C literal, where "qc" is the
-         * quote character for the literal.
-         *
-         * \note Currently returns a zero-length string for
-         * characters that are not printable ASCII.
+         * the "ch" character in a C literal within either a
+         * character or string literal. Oddball characters will
+         * use the representation of the DELETE character.
          */
-        std::string quote_for_lit(char ch, char qc);
+        std::string literal(char ch);
 
-        /** Quote a string to be included in a C literal.
+        /** Convert a character into its literal representation.
          * \param str -- string to be quoted
          *
-         * This function returns a string to use to represent
-         * the "str" string in a C literal (in double-quotes).
-         *
-         * \note Currently discards all contained characters that are
-         * not printable ASCII.
-         */
-        std::string quote_for_lit(std::string const &str);
-
-        /** Return a C literal representing the given string.
-         * \param str -- string to be quoted
-         *
-         * This function returns a string to use to represent
-         * the "str" string as C literal (with double-quotes).
-         *
-         * \note Currently discards all contained characters that are
-         * not printable ASCII.
+         * This function returns a string to be used within a C string
+         * literal to represent the value. Sufficiently oddball
+         * characters will be replaced by the representation of the
+         * DELETE character.
          */
         std::string literal(std::string const &str);
 

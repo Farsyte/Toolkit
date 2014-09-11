@@ -6,27 +6,30 @@ using std::string;
 #include <sstream>
 using std::ostringstream;
 
-string Farsyte::Utility::quote_for_lit(char ch, char qc) {
-    if ((32 <= ch) && (ch < 127)) {
-        if ((ch == qc) || (ch == '\\'))
-            return "\\" + string(1, ch);
-        return string(1, ch);
+string Farsyte::Utility::literal(char ch) {
+    switch (ch) {
+    case '\'': return "\\\'";
+    case '\"': return "\\\"";
+    case '\0': return "\\0";
+    case '\?': return "\\?";
+    case '\a': return "\\a";
+    case '\b': return "\\b";
+    case '\f': return "\\f";
+    case '\n': return "\\n";
+    case '\r': return "\\r";
+    case '\t': return "\\t";
+    case '\v': return "\\v";
     }
-    return "";
-}
 
-string Farsyte::Utility::quote_for_lit(string const &str) {
-    ostringstream	oss;
-    for (size_t i = 0; i < str.size(); ++i)
-        oss << quote_for_lit(str[i], '"');
-    return oss.str();
+    if ((32 <= ch) && (ch < 127))
+        return string(1, ch);
+
+    return "\\0";
 }
 
 string Farsyte::Utility::literal(string const &str) {
     ostringstream	oss;
-    oss << '"';
     for (size_t i = 0; i < str.size(); ++i)
-        oss << quote_for_lit(str[i], '"');
-    oss << '"';
+        oss << literal(str[i]);
     return oss.str();
 }
