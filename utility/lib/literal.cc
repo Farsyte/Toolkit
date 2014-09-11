@@ -11,6 +11,7 @@ string Farsyte::Utility::literal(char ch) {
     case '\'': return "\\\'";
     case '\"': return "\\\"";
     case '\0': return "\\0";
+    case '\\': return "\\\\";
     case '\?': return "\\?";
     case '\a': return "\\a";
     case '\b': return "\\b";
@@ -24,7 +25,7 @@ string Farsyte::Utility::literal(char ch) {
     if ((32 <= ch) && (ch < 127))
         return string(1, ch);
 
-    return "\\0";
+    return "\\?";
 }
 
 string Farsyte::Utility::literal(string const &str) {
