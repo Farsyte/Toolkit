@@ -54,6 +54,8 @@ int test_matrix_position_ctor(Suite &s) {
   Position X {1,0,0};
   Position Y {0,1,0};
   Position Z {0,0,1};
+  Position M {4,5,6};
+  Position C (M);
 
   ec += case_compare(t, "X initialized", 0, D(1));
   ec += case_compare(t, "Y initialized", 0, D(2));
@@ -70,6 +72,14 @@ int test_matrix_position_ctor(Suite &s) {
   ec += case_compare(t, "Z.x initialized", 0, Z(1));
   ec += case_compare(t, "Z.y initialized", 0, Z(2));
   ec += case_compare(t, "Z.z initialized", 1, Z(3));
+
+  ec += case_compare(t, "M.x initialized", 4, M(1));
+  ec += case_compare(t, "M.y initialized", 5, M(2));
+  ec += case_compare(t, "M.z initialized", 6, M(3));
+
+  ec += case_compare(t, "C.x initialized", 4, C(1));
+  ec += case_compare(t, "C.y initialized", 5, C(2));
+  ec += case_compare(t, "C.z initialized", 6, C(3));
 
   return ec;
 }

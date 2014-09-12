@@ -27,6 +27,8 @@ namespace Farsyte {
       public:
       Position()                             : data{0,0,0} { }
       Position(double x, double y, double z) : data{x,y,z} { }
+      Position(Position const &p)
+        : data{p.data[0], p.data[1], p.data[2]} { }
       double const & operator()(int i) const { return data[i-1]; }
       double       & operator()(int i)       { return data[i-1]; }
     };
