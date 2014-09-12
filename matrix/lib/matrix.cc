@@ -1,9 +1,9 @@
 #include "matrix.h"
 
 namespace Farsyte {
-    namespace Matrix {
+  namespace Matrix {
 
-        void dummy(void) { }
+    void dummy(void) { }
 
-    }
+  }
 }

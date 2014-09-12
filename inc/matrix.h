@@ -20,19 +20,18 @@ using std::setw;
 using std::setprecision;
 
 namespace Farsyte {
-    namespace Matrix {
+  namespace Matrix {
 
-        class Position
-        {
-            double data[3];
-          public:
-            Position() : data{0,0,0} { }
-            Position(double x, double y, double z) : data{x,y,z} { }
-            double const & operator()(int i) const { return data[i-1]; }
-            double       & operator()(int i)       { return data[i-1]; }
-        };
+    class Position {
+      double data[3];
+      public:
+      Position()                             : data{0,0,0} { }
+      Position(double x, double y, double z) : data{x,y,z} { }
+      double const & operator()(int i) const { return data[i-1]; }
+      double       & operator()(int i)       { return data[i-1]; }
+    };
 
-    }
+  }
 }
 
 #endif//_matrix_h
