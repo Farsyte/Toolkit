@@ -44,9 +44,9 @@ static int case_compare(
     return 1;
 }
 
-int test_matrix_colvec_ctor(Suite &s) {
+int test_matrix_position_ctor(Suite &s) {
 
-    Test t(s, "ColVec and operator(i,j)");
+    Test t(s, "Position and operator(i,j)");
 
     int ec = 0;
 
@@ -74,12 +74,12 @@ int test_matrix_colvec_ctor(Suite &s) {
     return ec;
 }
 
-int test_matrix_colvec(Log &log) {
+int test_matrix_position(Log &log) {
 
     /*
-    ** Tests specific to the ColVec Class
+    ** Tests specific to the Position Class
     */
-    Suite               s(log, "Farsyte::Utility::ColVec");
+    Suite               s(log, "Farsyte::Matrix::Position");
 
     /*
     ** return convention: 0 is success, nonzero is failure.
@@ -89,7 +89,7 @@ int test_matrix_colvec(Log &log) {
     */
 
     return 0
-        + test_matrix_colvec_ctor(s)
+        + test_matrix_position_ctor(s)
         ;
 
 }
@@ -102,7 +102,7 @@ int test_matrix(Log &log) {
     ** and return fail if any failed, after running all.
     */
     return 0
-        + test_matrix_colvec(log)
+        + test_matrix_position(log)
         ;
 }
 

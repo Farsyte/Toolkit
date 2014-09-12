@@ -1,8 +1,8 @@
 # -*- makefile-gmake -*-
 
 matrix.lib.cc	:= ${wildcard matrix/lib/*.cc}
-matrix.obj.o	:= ${matrix.lib.cc:matrix/lib/%.cc=matrix/obj/%.o}
-matrix.lib.a	:= lib/matrix.a
+matrix.obj.o	= ${matrix.lib.cc:matrix/lib/%.cc=matrix/obj/%.o}
+matrix.lib.a	= lib/matrix.a
 
 ${matrix.obj.o}:        matrix/obj/%.o:         matrix/lib/%.cc
 	$P '[cc] %s%s\n' 'matrix/lib/' '$*'
@@ -10,7 +10,7 @@ ${matrix.obj.o}:        matrix/obj/%.o:         matrix/lib/%.cc
 
 objs::            ${matrix.obj.o}
 
-matrix.lib.a    := lib/libmatrix.a
+matrix.lib.a    = lib/libmatrix.a
 
 ${matrix.lib.a}:	${matrix.obj.o}
 	$P '[ar] %s\n' 'matrix'
@@ -19,10 +19,11 @@ ${matrix.lib.a}:	${matrix.obj.o}
 
 libs::            ${matrix.lib.a}
 
-matrix.test.cc		:= ${wildcard matrix/test/test_*.cc}
-matrix.test.bin	:= ${matrix.test.cc:matrix/test/%.cc=matrix/bin/%.exe}
-matrix.test.out	:= ${matrix.test.bin:matrix/bin/%.exe=matrix/log/%_log.xml}
+matrix.test.cc		= ${wildcard matrix/test/test_*.cc}
+matrix.test.bin		= ${matrix.test.cc:matrix/test/%.cc=matrix/bin/%.exe}
+matrix.test.out		= ${matrix.test.bin:matrix/bin/%.exe=matrix/log/%_log.xml}
 
+${matrix.test.bin}:	${testing.lib.a}
 ${matrix.test.bin}:	${matrix.lib.a}
 
 ${matrix.test.bin}:     matrix/bin/%.exe:       matrix/test/%.cc

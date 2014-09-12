@@ -1,8 +1,8 @@
 # -*- makefile-gmake -*-
 
 utility.lib.cc	:= ${wildcard utility/lib/*.cc}
-utility.obj.o	:= ${utility.lib.cc:utility/lib/%.cc=utility/obj/%.o}
-utility.lib.a	:= lib/utility.a
+utility.obj.o	= ${utility.lib.cc:utility/lib/%.cc=utility/obj/%.o}
+utility.lib.a	= lib/utility.a
 
 ${utility.obj.o}:       utility/obj/%.o:        utility/lib/%.cc
 	$P '[cc] %s%s\n' 'utility/lib/' '$*'
@@ -10,7 +10,7 @@ ${utility.obj.o}:       utility/obj/%.o:        utility/lib/%.cc
 
 objs::            ${utility.obj.o}
 
-utility.lib.a   := lib/libutility.a
+utility.lib.a   = lib/libutility.a
 
 ${utility.lib.a}:	${utility.obj.o}
 	$P '[ar] %s\n' 'utility'
@@ -19,10 +19,11 @@ ${utility.lib.a}:	${utility.obj.o}
 
 libs::            ${utility.lib.a}
 
-utility.test.cc		:= ${wildcard utility/test/test_*.cc}
-utility.test.bin	:= ${utility.test.cc:utility/test/%.cc=utility/bin/%.exe}
-utility.test.out	:= ${utility.test.bin:utility/bin/%.exe=utility/log/%_log.xml}
+utility.test.cc		= ${wildcard utility/test/test_*.cc}
+utility.test.bin	= ${utility.test.cc:utility/test/%.cc=utility/bin/%.exe}
+utility.test.out	= ${utility.test.bin:utility/bin/%.exe=utility/log/%_log.xml}
 
+${utility.test.bin}:	${testing.lib.a}
 ${utility.test.bin}:	${utility.lib.a}
 
 ${utility.test.bin}:    utility/bin/%.exe:      utility/test/%.cc
