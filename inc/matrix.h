@@ -61,6 +61,8 @@ namespace Farsyte {
       static size_t size() { return rows() * cols(); }
 
     protected:
+      
+      typedef Matrix<Nc,Nr,T>	Root;
 
       /** Typedef for array containing one column of the data.
        */
@@ -211,6 +213,22 @@ namespace Farsyte {
         return *this;
       }
 
+      Matrix negate() const {
+        Matrix R;
+        for (int ci = 1; ci <= Nc; ++ci)
+          for (int ri = 1; ri <= Nr; ++ri)
+            R(ri,ci) = -sub(ri,ci);
+        return R;
+      }
+
+      Matrix transpose() const {
+        Matrix<Nr,Nc,T> R;
+        for (int ci = 1; ci <= Nc; ++ci)
+          for (int ri = 1; ri <= Nr; ++ri)
+            R(ci,ri) = sub(ri,ci);
+        return R;
+      }
+
     protected:
       /** Storage for Matrix State. */
       A                         data;
@@ -257,6 +275,24 @@ namespace Farsyte {
       return L -= R;
     }
 
+    /** Negation Operator for Matrix-based Classes.
+     * \param R  operand for Negation.
+     * \returns Matrix whose elements are the negative of the corresponding input elements.
+     */
+    template<int Nc, int Nr, typename T>
+    inline Matrix<Nc,Nr,T> operator-(Matrix<Nc,Nr,T> R) {
+      return R.negate();
+    }
+
+    /** Transpose Operator for Matrix-based Classes.
+     * \param R  operand for Transposition
+     * \returns Matrix whose elements are the 
+     */
+    template<int Nc, int Nr, typename T>
+    inline Matrix<Nr,Nc,T> operator~(Matrix<Nc,Nr,T> R) {
+      return R.transpose();
+    }
+
     /** Column Vector Template.
      * \param Nr    Number of rows in the vector.
      * \param T     Data type for each vector element.
@@ -269,10 +305,10 @@ namespace Farsyte {
     class ColVec
       : public Matrix<1,Nr,T>
     {
-    private:
-      typedef Matrix<1,Nr,T>	Base;
 
     protected:
+      typedef Matrix<1,Nr,T>		Base;
+      typedef typename Base::Root	Root;
 
       /** Typedef for array containing the data.
        */
@@ -334,8 +370,9 @@ namespace Farsyte {
       /** Duplicate an existing Column Vector.
        * \param c  A column vector to duplicate.
        * Initialize this column vector to be a duplicate of the one provided.
+       * \note Can be called with any appropriately dimensioned matrix.
        */
-      ColVec(ColVec const &c)
+      ColVec(Root const &c)
         : Base(c)
         {
         }
@@ -374,8 +411,9 @@ namespace Farsyte {
     class Position
       : public ColVec<3,double>
     {
-    private:
+    protected:
       typedef ColVec<3,double>	Base;
+      typedef Base::Root	Root;
       typedef Base::C		C;
 
 
@@ -400,10 +438,10 @@ namespace Farsyte {
 
       /** Duplicate Constructor for Position.
        * \param p  Position to duplicate.
-       * Initializes this position to contain a duplicate of
-       * the provided position.
+       * Initializes this position to contain a duplicate of the provided position.
+       * \note Can be called with any appropriately dimensioned matrix.
        */
-      Position(Position const &p)
+      Position(Root const &p)
         : Base(p)
         {
         }
