@@ -29,12 +29,14 @@ using std::istringstream;
 using std::ostringstream;
 
 #include <iomanip>
+using std::setw;
 
 int case_compare(
   Test &t, string const &title,
   double x, double y, double z,
   Position const &r)
 {
+
   t << title << endl
     << "  expected: "
     << setw(16) << x
@@ -54,80 +56,19 @@ int case_compare(
 
 int test_matrix_position_ctor(Suite &s) {
 
-  Test t(s, "Constructor (and access)");
+  Test t(s, "Constructors and Access");
 
   Position D;
   Position X {1,0,0};
   Position Y {0,1,0};
   Position Z {0,0,1};
-  Position M {4,5,6};
 
   return 0
-    + case_compare(t, "D initialized", 0, 0, 0, D)
-    + case_compare(t, "X initialized", 1, 0, 0, X)
-    + case_compare(t, "Y initialized", 0, 1, 0, Y)
-    + case_compare(t, "Z initialized", 0, 0, 1, Z)
-    + case_compare(t, "M initialized", 4, 5, 6, M)
+    + case_compare(t, "Default initialized to Zero", 0, 0, 0, D)
+    + case_compare(t, "X Axis Initialization", 1, 0, 0, X)
+    + case_compare(t, "Y Axis Initialization", 0, 1, 0, Y)
+    + case_compare(t, "Z Axis Initialization", 0, 0, 1, Z)
     ;
-}
-
-int test_matrix_position_copy(Suite &s) {
-
-  Test t(s, "Copy Constructor");
-
-  Position A {5,3,7};
-  Position M {4,5,6};
-  Position C (M);
-
-  M = A;
-
-  return 0
-    + case_compare(t, "C copied from M", 4, 5, 6, C)
-    + case_compare(t, "M copied from A", 5, 3, 7, M)
-    ;
-
-}
-
-int test_matrix_position_add(Suite &s) {
-
-  Test t(s, "Position Addition");
-
-  Position A {3,2,1};
-  Position B {3,5,7};
-
-  Position S, R;
-
-  S = (A +  B);
-  R = (A += B);
-
-  return 0
-    + case_compare(t, "S gets Sum", 6, 7, 8, S)
-    + case_compare(t, "A incremented by B", 6, 7, 8, A)
-    + case_compare(t, "B not modified", 3, 5, 7, B)
-    + case_compare(t, "R also gets A", 6, 7, 8, R)
-    ;
-
-}
-
-int test_matrix_position_sub(Suite &s) {
-
-  Test t(s, "Position Difference");
-
-  Position A {4,6,8};
-  Position B {3,2,1};
-
-  Position D, R;
-
-  D = (A -  B);
-  R = (A -= B);
-
-  return 0
-    + case_compare(t, "D gets Difference", 1, 4, 7, D)
-    + case_compare(t, "A incremented by B", 1, 4, 7, A)
-    + case_compare(t, "B not modified", 3, 2, 1, B)
-    + case_compare(t, "R also gets A", 1, 4, 7, R)
-    ;
-
 }
 
 int test_matrix_position(Log &log) {
@@ -146,9 +87,6 @@ int test_matrix_position(Log &log) {
 
   return 0
     + test_matrix_position_ctor(s)
-    + test_matrix_position_copy(s)
-    + test_matrix_position_add(s)
-    + test_matrix_position_sub(s)
     ;
 
 }
