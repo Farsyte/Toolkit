@@ -34,6 +34,31 @@ namespace Farsyte {
      */
     template<int Nc, int Nr, typename T>
     class Matrix {
+    public:
+
+      /** Typedef for type of matrix elements. */
+      typedef T               value_type;
+
+      /** Reference to a matrix element. */
+      typedef T       &       reference;
+
+      /** Const reference to a matrix element. */
+      typedef T const & const_reference;
+
+      /** Pointer to a matrix element. */
+      typedef T       *       pointer;
+
+      /** Const pointer to a matrix element. */
+      typedef T const * const_pointer;
+
+      /** Number of rows in the matrix. */
+      static size_t rows() { return Nr; }
+
+      /** Number of columns in the matrix.*/
+      static size_t cols() { return Nc; }
+
+      /** Number of elements in the matrix. */
+      static size_t size() { return rows() * cols(); }
 
     protected:
 
@@ -68,6 +93,10 @@ namespace Farsyte {
        */
       T const & sub(int ri, int ci) const
         {
+#ifdef RANGE_CHECKER
+          RANGE_CHECKER(1,ci,Nc);
+          RANGE_CHECKER(1,ri,Nr);
+#endif
           return data[ci-1][ri-1];
         }
 
@@ -80,14 +109,32 @@ namespace Farsyte {
        */
       T       & sub(int ri, int ci)
         {
+#ifdef RANGE_CHECKER
+          RANGE_CHECKER(1,ci,Nc);
+          RANGE_CHECKER(1,ri,Nr);
+#endif
           return data[ci-1][ri-1];
         }
 
     public:
 
+      /** Matrix Default Constructor.
+       * Matrix objects that are default-constructed are assured
+       * of having each element appropriately initialized.
+       */
       Matrix()
         : data()
         {
+        }
+
+      /** Matrix Diagonal Constructor.
+       * \param d   Value to copy into each diagonal element.
+       */
+      Matrix(T const &d)
+        : data()
+        {
+          for (size_t i = 1; (i <= Nr) && (i <= Nc); ++i)
+            sub(i,i) = d;
         }
 
       /** Duplicate Matrix Construction.
@@ -226,9 +273,14 @@ namespace Farsyte {
       typedef Matrix<1,Nr,T>	Base;
 
     protected:
+
       /** Typedef for array containing the data.
        */
       typedef typename Base::A	A;
+
+      /** Typedef for array containing one column of data.
+       */
+      typedef typename Base::C	C;
 
       /** ColVec Subscripting Implementation.
        * \param ri  Row Index, in the range 1 to N inclusive.
@@ -259,13 +311,23 @@ namespace Farsyte {
         {
         }
 
-      /** Construct a Column Vector from an Array.
+      /** Construct a Column Vector from a 2-D Array.
        * \param a  An appropriately shaped object of the C++ array template type.
        * This initializes the Column Vector data to contain values from
        * the corresponding elements of the array provided.
        */
       ColVec(A const &a)
         : Base(a)
+        {
+        }
+
+      /** Construct a Column Vector from a 1-D Array.
+       * \param a  An appropriately shaped object of the C++ array template type.
+       * This initializes the Column Vector data to contain values from
+       * the corresponding elements of the array provided.
+       */
+      ColVec(C const &a)
+        : Base(A{{a}})
         {
         }
 
@@ -314,6 +376,7 @@ namespace Farsyte {
     {
     private:
       typedef ColVec<3,double>	Base;
+      typedef Base::C		C;
 
 
     public:
@@ -331,7 +394,7 @@ namespace Farsyte {
        * coefficients for location along each of the three axes.
        */
       Position(double x, double y, double z)
-        : Base(A{{{{x,y,z}}}})
+        : Base(C{{x,y,z}})
         {
         }
 
