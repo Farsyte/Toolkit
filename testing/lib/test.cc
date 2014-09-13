@@ -16,17 +16,17 @@ using std::endl;
  * recently constructed Suite for its associated Log.
  */
 Test::Test(Suite &r, string const &n)
-    : ref       (r)
-    , fails     (0)
-    , skips     (0)
-    , errors    (0)
+  : ref       (r)
+  , fails     (0)
+  , skips     (0)
+  , errors    (0)
 {
-    CHECK_OOPS(NULL == ref.curr, "Test ctor: Suite has an open Test.");
-    ref.curr = this;
-    ref.tests ++;
-    ref.ref.tests ++;
-    ostream   & out(ref.ref.out);
-    out << "    <testcase name=" << sq(n) << ">" << endl;
+  CHECK_OOPS(NULL == ref.curr, "Test ctor: Suite has an open Test.");
+  ref.curr = this;
+  ref.tests ++;
+  ref.ref.tests ++;
+  ostream   & out(ref.ref.out);
+  out << "    <testcase name=" << sq(n) << ">" << endl;
 }
 
 /** Indicate that a Test Condition has Failed.
@@ -48,28 +48,28 @@ Test::Test(Suite &r, string const &n)
  */
 void Test::fail(string const &c) {
 
-    fails ++;
-    if (fails == 1)
-        ref.failed_tests ++;
-    ref.total_fails ++;
-    if (fails == 1)
-        ref.ref.failed_tests ++;
-    ref.ref.total_fails ++;
+  fails ++;
+  if (fails == 1)
+    ref.failed_tests ++;
+  ref.total_fails ++;
+  if (fails == 1)
+    ref.ref.failed_tests ++;
+  ref.ref.total_fails ++;
 
-    ostream   & out(ref.ref.out);
+  ostream   & out(ref.ref.out);
 
-    out << "      <failure message=" << sq(c) << ">" << endl;
+  out << "      <failure message=" << sq(c) << ">" << endl;
 
-    string	const & s ( str() );
-    if (s.length() > 0) {
-        string	const & q ( hq(s) );
-        out << q;
-        if (q[q.length() - 1] != '\n')
-            out << endl;
-        this->str("");
-    }
+  string	const & s ( str() );
+  if (s.length() > 0) {
+    string	const & q ( hq(s) );
+    out << q;
+    if (q[q.length() - 1] != '\n')
+      out << endl;
+    this->str("");
+  }
 
-    out << "      </failure>" << endl;
+  out << "      </failure>" << endl;
 }
 
 /** Indicate that a Test has encountered an Error.
@@ -88,28 +88,28 @@ void Test::fail(string const &c) {
  */
 void Test::error(string const &c) {
 
-    errors ++;
-    if (errors == 1)
-        ref.errored_tests ++;
-    ref.total_errors ++;
-    if (errors == 1)
-        ref.ref.errored_tests ++;
-    ref.ref.total_errors ++;
+  errors ++;
+  if (errors == 1)
+    ref.errored_tests ++;
+  ref.total_errors ++;
+  if (errors == 1)
+    ref.ref.errored_tests ++;
+  ref.ref.total_errors ++;
 
-    ostream   & out(ref.ref.out);
+  ostream   & out(ref.ref.out);
 
-    out << "      <error message=" << sq(c) << ">" << endl;
+  out << "      <error message=" << sq(c) << ">" << endl;
 
-    string	const & s ( str() );
-    if (s.length() > 0) {
-        string	const & q ( hq(s) );
-        out << q;
-        if (q[q.length() - 1] != '\n')
-            out << endl;
-        this->str("");
-    }
+  string	const & s ( str() );
+  if (s.length() > 0) {
+    string	const & q ( hq(s) );
+    out << q;
+    if (q[q.length() - 1] != '\n')
+      out << endl;
+    this->str("");
+  }
 
-    out << "      </error>" << endl;
+  out << "      </error>" << endl;
 }
 
 /** Indicate that a Test Condition has been Skiped.
@@ -131,28 +131,28 @@ void Test::error(string const &c) {
  */
 void Test::skip(string const &c) {
 
-    skips ++;
-    if (skips == 1)
-        ref.skipped_tests ++;
-    ref.total_skips ++;
-    if (skips == 1)
-        ref.ref.skipped_tests ++;
-    ref.ref.total_skips ++;
+  skips ++;
+  if (skips == 1)
+    ref.skipped_tests ++;
+  ref.total_skips ++;
+  if (skips == 1)
+    ref.ref.skipped_tests ++;
+  ref.ref.total_skips ++;
 
-    ostream   & out(ref.ref.out);
+  ostream   & out(ref.ref.out);
 
-    out << "      <skipped message=" << sq(c) << ">" << endl;
+  out << "      <skipped message=" << sq(c) << ">" << endl;
 
-    string	const & s ( str() );
-    if (s.length() > 0) {
-        string	const & q ( hq(s) );
-        out << q;
-        if (q[q.length() - 1] != '\n')
-            out << endl;
-        this->str("");
-    }
+  string	const & s ( str() );
+  if (s.length() > 0) {
+    string	const & q ( hq(s) );
+    out << q;
+    if (q[q.length() - 1] != '\n')
+      out << endl;
+    this->str("");
+  }
 
-    out << "      </skipped>" << endl;
+  out << "      </skipped>" << endl;
 }
 
 /** Finish a Test.
@@ -162,18 +162,18 @@ void Test::skip(string const &c) {
  * It then leaves the `testcase` entity.
  */
 Test::~Test() {
-    CHECK_OOPS(this == ref.curr, "Test dtor: I am not the current Test.");
-    ref.curr = 0;
+  CHECK_OOPS(this == ref.curr, "Test dtor: I am not the current Test.");
+  ref.curr = 0;
 
-    ostream   & out(ref.ref.out);
+  ostream   & out(ref.ref.out);
 
-    string	const & s ( str() );
-    if (s.length() > 0) {
-        string	const & q ( hq(s) );
-        out << q;
-        if (q[q.length() - 1] != '\n')
-            out << endl;
-    }
+  string	const & s ( str() );
+  if (s.length() > 0) {
+    string	const & q ( hq(s) );
+    out << q;
+    if (q[q.length() - 1] != '\n')
+      out << endl;
+  }
 
-    out << "    </testcase>" << endl;
+  out << "    </testcase>" << endl;
 }

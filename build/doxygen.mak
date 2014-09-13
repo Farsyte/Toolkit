@@ -1,10 +1,10 @@
 # -*- makefile-gmake -*-
 
 all.doxy        := ${shell find . -name Doxyfile -print}
-doxy.log        := ${all.doxy:%=%.log}
-doxy.err        := ${all.doxy:%=%.err}
-doxy.html	:= ${all.doxy:%/Doxyfile=%/html}
-doxy.latex	:= ${all.doxy:%/Doxyfile=%/latex}
+doxy.log        = ${all.doxy:%=%.log}
+doxy.err        = ${all.doxy:%=%.err}
+doxy.html	= ${all.doxy:%/Doxyfile=%/html}
+doxy.latex	= ${all.doxy:%/Doxyfile=%/latex}
 
 # By default, we only run doxygen if the logput log file has been
 # removed. The alternative, here, is to add ${doxy.log} to the

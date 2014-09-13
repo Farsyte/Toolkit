@@ -1,7 +1,7 @@
 # -*- makefile-gmake -*-
 
 all.md          := ${shell find . -name \*.md -print}
-md.html		:= ${all.md:%.md=%.html}
+md.html		= ${all.md:%.md=%.html}
 
 ${md.html}:     %.html:         %.md
 	$P '[md] %s\n' '$*'

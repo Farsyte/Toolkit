@@ -1,8 +1,8 @@
 # -*- makefile-gmake -*-
 
 testing.lib.cc	:= ${wildcard testing/lib/*.cc}
-testing.obj.o	:= ${testing.lib.cc:testing/lib/%.cc=testing/obj/%.o}
-testing.lib.a	:= lib/testing.a
+testing.obj.o	= ${testing.lib.cc:testing/lib/%.cc=testing/obj/%.o}
+testing.lib.a	= lib/testing.a
 
 ${testing.obj.o}:       testing/obj/%.o:        testing/lib/%.cc
 	$P '[cc] %s%s\n' 'testing/lib/' '$*'
@@ -10,7 +10,7 @@ ${testing.obj.o}:       testing/obj/%.o:        testing/lib/%.cc
 
 objs::            ${testing.obj.o}
 
-testing.lib.a   := lib/libtesting.a
+testing.lib.a   = lib/libtesting.a
 
 ${testing.lib.a}:	${testing.obj.o}
 	$P '[ar] %s\n' 'testing'
@@ -20,8 +20,8 @@ ${testing.lib.a}:	${testing.obj.o}
 libs::            ${testing.lib.a}
 
 testing.test.cc		:= ${wildcard testing/test/test_*.cc}
-testing.test.bin	:= ${testing.test.cc:testing/test/%.cc=testing/bin/%.exe}
-testing.test.out	:= ${testing.test.bin:testing/bin/%.exe=testing/log/%_log.xml}
+testing.test.bin	= ${testing.test.cc:testing/test/%.cc=testing/bin/%.exe}
+testing.test.out	= ${testing.test.bin:testing/bin/%.exe=testing/log/%_log.xml}
 
 ${testing.test.bin}:	${testing.lib.a}
 
