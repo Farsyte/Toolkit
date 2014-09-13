@@ -36,14 +36,48 @@ namespace Farsyte {
     class Matrix {
 
     protected:
+
+      /** Typedef for array containing one column of the data.
+       */
       typedef std::array<T,Nr> C;
+
+      /** Typedef for array containing the data.
+       */
       typedef std::array<C,Nc> A;
 
+      /** Matrix Construction from Array.
+       * \param a  Array to duplicate.
+       * This method is used by subclasses to provide value
+       * construction of Matrices using Arrays of Arrays of the
+       * appropriate dimensions.
+       * \note Nort a public interface: only classes within the class
+       * heirarchy below Matrix should be aware of the data
+       * organization within the Matrix object.
+       */
+      Matrix(A const &a)
+        : data(a)
+        {
+        }
+
+      /** Matrix Subscripting Implementation.
+       * \param ri  Row Index, ranging from 1 to Nr inclusive.
+       * \param ci  Column Index, ranging from 1 to Nc inclusive.
+       * This method locates and returns a read-only reference
+       * to the element indicated by the subscript.
+       * \note Fortran conventions for array subscripting.
+       */
       T const & sub(int ri, int ci) const
         {
           return data[ci-1][ri-1];
         }
 
+      /** Matrix Subscripting Implementation.
+       * \param ri  Row Index, ranging from 1 to Nr inclusive.
+       * \param ci  Column Index, ranging from 1 to Nc inclusive.
+       * This method locates and returns a read-only reference
+       * to the element indicated by the subscript.
+       * \note Fortran conventions for array subscripting.
+       */
       T       & sub(int ri, int ci)
         {
           return data[ci-1][ri-1];
@@ -56,26 +90,46 @@ namespace Farsyte {
         {
         }
 
-      Matrix(Matrix const &c)
-        : data(c.data)
+      /** Duplicate Matrix Construction.
+       * \param m  Matrix to duplicate.
+       * Initialize this matrix to duplicate the data contained
+       * in the provided matrix.
+       */
+      Matrix(Matrix const &m)
+        : data(m.data)
         {
         }
 
-      Matrix(A const &a)
-        : data(a)
-        {
-        }
-
+      /** Matrix Subscripting Operator.
+       * \param ri  Row Index, in the range 1 to Nr inclusive.
+       * \param ci  Column Index, in the range 1 to Nc inclusive.
+       * This function returns a read-only reference to the matrix
+       * element located at the specified row and column index.
+       * \note Fortran conventions for array subscripting.
+       */
       T const & operator()(int ri, int ci) const
         {
           return sub(ri, ci);
         }
 
+      /** Matrix Subscripting Operator.
+       * \param ri  Row Index, in the range 1 to Nr inclusive.
+       * \param ci  Column Index, in the range 1 to Nc inclusive.
+       * This function returns a modifiable reference to the matrix
+       * element located at the specified row and column index.
+       * \note Fortran conventions for array subscripting.
+       */
       T       & operator()(int ri, int ci)
         {
           return sub(ri, ci);
         }
 
+      /** Matrix Equality Test.
+       * \param p  Matrix to compare.
+       * This function returns true if each element of this
+       * matrix compares equal to the corresponding member
+       * of the specified matrix.
+       */
       bool equals(Matrix const &p) const {
         for (int ci = 1; ci <= Nc; ++ci)
           for (int ri = 1; ri <= Nr; ++ri)
@@ -84,6 +138,12 @@ namespace Farsyte {
         return true;
       }
 
+      /** Matrix Increment operation.
+       * \param p  Matrix of increment values.
+       * Each element of this matrix is incremented by
+       * the value of the corresponding element of the
+       * provided matrix.
+       */
       Matrix & operator+=(Matrix const &p) {
         for (int ci = 1; ci <= Nc; ++ci)
           for (int ri = 1; ri <= Nr; ++ri)
@@ -91,6 +151,12 @@ namespace Farsyte {
         return *this;
       }
 
+      /** Matrix Decrement operation.
+       * \param p  Matrix of decrement values.
+       * Each element of this matrix is decremented by
+       * the value of the corresponding element of the
+       * provided matrix.
+       */
       Matrix & operator-=(Matrix const &p) {
         for (int ci = 1; ci <= Nc; ++ci)
           for (int ri = 1; ri <= Nr; ++ri)
@@ -99,25 +165,46 @@ namespace Farsyte {
       }
 
     protected:
+      /** Storage for Matrix State. */
       A                         data;
     };
 
 
+    /** Equality Operator for Matrix-based Classes.
+     * \param L   First operand for equality comparison.
+     * \param R   Second operand for equality comparison.
+     * \returns true if all elements compare equal, else false.
+     */
     template<int Nc, int Nr, typename T>
     inline bool operator==(Matrix<Nc,Nr,T> const &L, Matrix<Nc,Nr,T> const &R) {
       return L.equals(R);
     }
 
+    /** Inequality Operator for Matrix-based Classes.
+     * \param L   First operand for equality comparison.
+     * \param R   Second operand for equality comparison.
+     * \returns true if any element does not compare equal, else false.
+     */
     template<int Nc, int Nr, typename T>
     inline bool operator!=(Matrix<Nc,Nr,T> const &L, Matrix<Nc,Nr,T> const &R) {
       return !(L == R);
     }
 
+    /** Addition Operator for Matrix-based Classes.
+     * \param L  First operand for addition.
+     * \param R  Second operand for addition.
+     * \returns Matrix whose elements are the sum of corresponding input elements.
+     */
     template<int Nc, int Nr, typename T>
     inline Matrix<Nc,Nr,T> operator+(Matrix<Nc,Nr,T> L, Matrix<Nc,Nr,T> const &R) {
       return L += R;
     }
 
+    /** Addition Operator for Matrix-based Classes.
+     * \param L  First operand for addition.
+     * \param R  Second operand for addition.
+     * \returns Matrix whose elements are the difference between corresponding input elements.
+     */
     template<int Nc, int Nr, typename T>
     inline Matrix<Nc,Nr,T> operator-(Matrix<Nc,Nr,T> L, Matrix<Nc,Nr,T> const &R) {
       return L -= R;
@@ -139,13 +226,27 @@ namespace Farsyte {
       typedef Matrix<1,Nr,T>	Base;
 
     protected:
+      /** Typedef for array containing the data.
+       */
       typedef typename Base::A	A;
 
+      /** ColVec Subscripting Implementation.
+       * \param ri  Row Index, in the range 1 to N inclusive.
+       * This function returns a read-only reference to the matrix
+       * element located at the specified row and column index.
+       * \note Fortran conventions for array subscripting.
+       */
       T const & sub(int ri) const
         {
           return Base::sub(ri, 1);
         }
 
+      /** ColVec Subscripting Implementation.
+       * \param ri  Row Index, in the range 1 to N inclusive.
+       * This function returns a modifiable reference to the matrix
+       * element located at the specified row and column index.
+       * \note Fortran conventions for array subscripting.
+       */
       T       & sub(int ri)
         {
           return Base::sub(ri, 1);
@@ -158,21 +259,42 @@ namespace Farsyte {
         {
         }
 
+      /** Construct a Column Vector from an Array.
+       * \param a  An appropriately shaped object of the C++ array template type.
+       * This initializes the Column Vector data to contain values from
+       * the corresponding elements of the array provided.
+       */
       ColVec(A const &a)
         : Base(a)
         {
         }
 
+      /** Duplicate an existing Column Vector.
+       * \param c  A column vector to duplicate.
+       * Initialize this column vector to be a duplicate of the one provided.
+       */
       ColVec(ColVec const &c)
         : Base(c)
         {
         }
 
+      /** ColVec Subscripting Operator.
+       * \param ri  Row Index, in the range 1 to N inclusive.
+       * This function returns a read-only reference to the matrix
+       * element located at the specified row and column index.
+       * \note Fortran conventions for array subscripting.
+       */
       T const & operator()(int ri) const
         {
           return sub(ri);
         }
 
+      /** ColVec Subscripting Operator.
+       * \param ri  Row Index, in the range 1 to N inclusive.
+       * This function returns a modifiable reference to the matrix
+       * element located at the specified row and column index.
+       * \note Fortran conventions for array subscripting.
+       */
       T       & operator()(int ri)
         {
           return sub(ri);
@@ -201,11 +323,23 @@ namespace Farsyte {
         {
         }
 
+      /** Position Constructor for Given Coefficients.
+       * \param x  X coefficient for position.
+       * \param y  Y coefficient for position.
+       * \param z  Z coefficient for position.
+       * Initializes this position to contain the specified
+       * coefficients for location along each of the three axes.
+       */
       Position(double x, double y, double z)
         : Base(A{{{{x,y,z}}}})
         {
         }
 
+      /** Duplicate Constructor for Position.
+       * \param p  Position to duplicate.
+       * Initializes this position to contain a duplicate of
+       * the provided position.
+       */
       Position(Position const &p)
         : Base(p)
         {
