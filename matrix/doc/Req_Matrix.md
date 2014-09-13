@@ -32,3 +32,8 @@ The Matrix Template shall provide:
 	* operation is UNDEFINED if the index is out of range
   * comparison:
     * equality comparison that returns true if corresponding elements compare equal.
+  * Operators:
+	* Sum of two matrices of the same shape.
+	* Difference between two matrices of the same shape.
+	* Negative of a matrix.
+	* Transpose of a matrix.
