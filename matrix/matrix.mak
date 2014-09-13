@@ -23,7 +23,7 @@ matrix.test.cc		= ${wildcard matrix/test/test_*.cc}
 matrix.test.bin		= ${matrix.test.cc:matrix/test/%.cc=matrix/bin/%.exe}
 matrix.test.out		= ${matrix.test.bin:matrix/bin/%.exe=matrix/log/%_log.xml}
 
-${matrix.test.bin}:	${testing.lib.a}
+${matrix.test.bin}:	$${testing.lib.a}
 ${matrix.test.bin}:	${matrix.lib.a}
 
 ${matrix.test.bin}:     matrix/bin/%.exe:       matrix/test/%.cc
@@ -33,7 +33,8 @@ ${matrix.test.bin}:     matrix/bin/%.exe:       matrix/test/%.cc
 tests::                 ${matrix.test.bin}
 
 ${matrix.test.out}:     matrix/log/%_log.xml:   matrix/bin/%.exe
-	$< > $@
+	$Q $P '[rt] %s%s\n' 'matrix/bin' '$*'
+	$Q $< > $@
 
 runtests::              ${matrix.test.out}
 

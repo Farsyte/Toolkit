@@ -23,7 +23,7 @@ utility.test.cc		= ${wildcard utility/test/test_*.cc}
 utility.test.bin	= ${utility.test.cc:utility/test/%.cc=utility/bin/%.exe}
 utility.test.out	= ${utility.test.bin:utility/bin/%.exe=utility/log/%_log.xml}
 
-${utility.test.bin}:	${testing.lib.a}
+${utility.test.bin}:	$${testing.lib.a}
 ${utility.test.bin}:	${utility.lib.a}
 
 ${utility.test.bin}:    utility/bin/%.exe:      utility/test/%.cc
@@ -33,7 +33,8 @@ ${utility.test.bin}:    utility/bin/%.exe:      utility/test/%.cc
 tests::                 ${utility.test.bin}
 
 ${utility.test.out}:    utility/log/%_log.xml:  utility/bin/%.exe
-	$< > $@
+	$Q $P '[rt] %s%s\n' 'utility/bin' '$*'
+	$Q $< > $@
 
 runtests::              ${utility.test.out}
 
