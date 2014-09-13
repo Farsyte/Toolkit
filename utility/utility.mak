@@ -33,7 +33,8 @@ ${utility.test.bin}:    utility/bin/%.exe:      utility/test/%.cc
 tests::                 ${utility.test.bin}
 
 ${utility.test.out}:    utility/log/%_log.xml:  utility/bin/%.exe
-	$< > $@
+	$Q $P '[rt] %s%s\n' 'utility/bin' '$*'
+	$Q $< > $@
 
 runtests::              ${utility.test.out}
 
