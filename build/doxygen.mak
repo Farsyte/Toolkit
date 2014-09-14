@@ -5,6 +5,7 @@ doxy.log        = ${all.doxy:%=%.log}
 doxy.err        = ${all.doxy:%=%.err}
 doxy.html	= ${all.doxy:%/Doxyfile=%/html}
 doxy.latex	= ${all.doxy:%/Doxyfile=%/latex}
+doxy.man	= ${all.doxy:%/Doxyfile=%/man}
 
 # By default, we only run doxygen if the logput log file has been
 # removed. The alternative, here, is to add ${doxy.log} to the
@@ -24,6 +25,6 @@ ${doxy.log}:    %.log:          %
 dox doxygenate::	${doxy.log}
 
 undox::
-	$C $R ${doxy.log} ${doxy.err} ${doxy.html} ${doxy.latex}
+	$C $R ${doxy.log} ${doxy.err} ${doxy.html} ${doxy.latex} ${doxy.man}
 
 .PHONY:         dox undox doxygenate

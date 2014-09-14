@@ -3,7 +3,20 @@
 namespace Farsyte {
   namespace Matrix {
 
-    void dummy(void) { }
+    ThreeVec::ThreeVec()
+      : ColMe()
+    {
+    }
+
+    ThreeVec::ThreeVec(double x, double y, double z)
+      : ColMe(C{{x,y,z}})
+    {
+    }
+
+    ThreeVec::ThreeVec(MatMe const &p)
+      : ColMe(p)
+    {
+    }
 
   }
 }

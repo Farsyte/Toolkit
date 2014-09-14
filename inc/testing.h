@@ -253,7 +253,8 @@ namespace Farsyte {
         std::string     c);
 
       /** Print exception details to output stream.
-       *
+       * \param s what stream gets the output text.
+       * \returns the stream after sending the text.
        * This method produces all available details
        * from this exception object onto the specified
        * output stream (and marks the object as having

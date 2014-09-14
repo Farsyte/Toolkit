@@ -7,7 +7,7 @@ using Farsyte::Testing::Suite;
 using Farsyte::Testing::Test;
 using Farsyte::Testing::Oops;
 
-using Farsyte::Matrix::Position;
+using Farsyte::Matrix::ThreeVec;
 
 
 #include <string>
@@ -34,7 +34,7 @@ using std::setw;
 int case_compare(
   Test &t, string const &title,
   double x, double y, double z,
-  Position const &r)
+  ThreeVec const &r)
 {
 
   t << title << endl
@@ -54,14 +54,14 @@ int case_compare(
   return 1;
 }
 
-int test_matrix_position_ctor(Suite &s) {
+int test_matrix_threevec_ctor(Suite &s) {
 
   Test t(s, "Constructors and Access");
 
-  Position D;
-  Position X {1,0,0};
-  Position Y {0,1,0};
-  Position Z {0,0,1};
+  ThreeVec D;
+  ThreeVec X {1,0,0};
+  ThreeVec Y {0,1,0};
+  ThreeVec Z {0,0,1};
 
   return 0
     + case_compare(t, "Default initialized to Zero", 0, 0, 0, D)
@@ -71,12 +71,12 @@ int test_matrix_position_ctor(Suite &s) {
     ;
 }
 
-int test_matrix_position(Log &log) {
+int test_matrix_threevec(Log &log) {
 
   /*
-  ** Tests specific to the Position Class
+  ** Tests specific to the ThreeVec Class
   */
-  Suite               s(log, "Farsyte::Matrix::Position");
+  Suite               s(log, "Farsyte::Matrix::ThreeVec");
 
   /*
   ** return convention: 0 is success, nonzero is failure.
@@ -86,7 +86,7 @@ int test_matrix_position(Log &log) {
   */
 
   return 0
-    + test_matrix_position_ctor(s)
+    + test_matrix_threevec_ctor(s)
     ;
 
 }
@@ -99,7 +99,7 @@ int test_matrix(Log &log) {
   ** and return fail if any failed, after running all.
   */
   return 0
-    + test_matrix_position(log)
+    + test_matrix_threevec(log)
     ;
 }
 
