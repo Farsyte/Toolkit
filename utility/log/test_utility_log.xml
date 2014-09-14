@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Utility Library">
+  <testsuite name="Farsyte::Utility::Literal">
+    <testcase name="literal(char)">
+    </testcase>
+    <testcase name="literal(string)">
+    </testcase>
+  </testsuite>
+</testsuites>

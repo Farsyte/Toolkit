@@ -1,0 +1,81 @@
+<h1>XML Expected by the JUnit Parser</h1>
+
+<p>Bamboo expects to see a collection of test results, each of which has
+the following data attached:</p>
+
+<ul>
+<li>Test Class and Case Names</li>
+<li>Elapsed Time</li>
+<li>PASS or FAIL indication</li>
+<li>Supporting text for FAIL cases</li>
+</ul>
+
+<p>The Bamboo JUnit Parser recognizes the following XML elements:</p>
+
+<h2>Element: testsuites</h2>
+
+<p>Recognized but no data is retained.</p>
+
+<h2>Element: testsuite</h2>
+
+<p>Copy the <code>name</code> attribute into <code>suiteClassName</code> on entry.</p>
+
+<p>Typical usage by this package:</p>
+
+<pre><code>    &lt;testsuite name="TestClassName"&gt;
+        ...
+    &lt;/testsuite&gt;
+</code></pre>
+
+<h2>Element: properties</h2>
+
+<p>Recognized but no data is retained.</p>
+
+<h2>Element: property</h2>
+
+<p>Recognized but no data is retained.</p>
+
+<h2>Element: testcase</h2>
+
+<p>This element (and the elements it contains) represents the results of
+a single test. If the <code>classname</code> attribute is provided and does not
+contain a <code>$</code> character, it is used to represent the Class Name of the
+test; otherwise, the <code>suiteClassName</code> currently in effect is used.
+The <code>name</code> attribute gives the actual name of the test case.  The
+<code>time</code> attribute indictes the duration of the test.</p>
+
+<p>At the <em>close</em> of the element, the test case is added to the "failed"
+test list if any subelement marked the test case as having failures;
+otherwise, it is added to the "passed" test list.</p>
+
+<h2>Element: error</h2>
+
+<p>This element records that an error occurred while running the
+currently open test case, attaching the content of the element as
+supporting text.</p>
+
+<h2>Element: failure</h2>
+
+<p>This element records that a condition has failed in the currently open
+test case. The content of the <code>message</code> property, concatinated with a
+line separator and the content of the element, are attached to the
+failure as supporting text.</p>
+
+<h2>Element: system-out</h2>
+
+<p>If a test case is currently open, the content of this element is
+attached to the test case as its system output. If there is no test
+case currently open, the content of the element is stashed as a global
+system output. Note that the output stash is replaced, not accumulated.</p>
+
+<h2>Element: system-err</h2>
+
+<p>The content of this element is captured as a global error output,
+replacing any prior global error output.</p>
+
+<h2>Element: skipped</h2>
+
+<p>Recognized but no data is retained.</p>
+
+<p>In particular note that <code>skipped</code> elements do not cause the enclosing
+test case to be marked as failed.</p>

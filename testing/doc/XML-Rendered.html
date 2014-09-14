@@ -1,0 +1,61 @@
+<h1>Bamboo Rendering of XML Data</h1>
+
+<p>Example Test File:</p>
+
+<pre><code>    &lt;?xml version="1.0" encoding="UTF-8"?&gt;
+    &lt;testsuites name="ut_demo_log.xml"&gt;
+      &lt;testsuite name="suite1"&gt;
+        &lt;testcase name="test1"&gt;
+        &lt;/testcase&gt;
+        &lt;testcase name="test2"&gt;
+          &lt;failure message="justfail"&gt;
+          &lt;/failure&gt;
+          &lt;failure message="cond2"&gt;
+    cond2 supporting text line 1
+    cond2 supporting text line 2
+          &lt;/failure&gt;
+        &lt;/testcase&gt;
+        &lt;testcase name="test3"&gt;
+          &lt;failure message="cond1"&gt;
+    cond1 supporting text line 1
+    cond1 supporting text line 2 with no EOL
+          &lt;/failure&gt;
+        &lt;/testcase&gt;
+      &lt;/testsuite&gt;
+    &lt;/testsuites&gt;
+</code></pre>
+
+<p>The build summary presents three or four counts:</p>
+
+<ul>
+<li>New failures in this run</li>
+<li>Existing failures common with prior run</li>
+<li>Failures fixed in this run</li>
+<li>Failures in Quarantine (only if nonzero)</li>
+</ul>
+
+<p>Below that, results are presented in detail, grouped
+into new failures, existing failures, and tests fixed.
+Each result is in an expandable and collapsable row
+of the table.</p>
+
+<p>When collapsed, the row provides:</p>
+
+<ul>
+<li>Suite name, from <code>name</code> attribute of <code>testsuite</code> element</li>
+<li>Test name, from <code>name</code> element of <code>testcase</code> eleemnt</li>
+<li>Failing since (hotlink)</li>
+<li>Containing Job (hotlink)</li>
+<li>Duration, from <code>time</code> attribute of <code>testcase</code> element</li>
+<li>Tool Menu</li>
+</ul>
+
+<p>If the row is expanded, a text box appears containing the <code>message</code>
+attribute of each <code>failure</code> message, followed a blank line and all of
+the supporting text attached to that failure.  Note that there may be
+multiple <code>failure</code> elements associated with each <code>testcase</code> element,
+and the data from them are presented sequentially, separated by a
+blank line.</p>
+
+<p>Information about Quarantined tests is not presented on the Build
+Summary page but appears if you click on the Quarantine count.</p>
