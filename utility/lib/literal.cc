@@ -29,7 +29,7 @@ string Farsyte::Utility::literal(char ch) {
 }
 
 string Farsyte::Utility::literal(string const &str) {
-  ostringstream	oss;
+  ostringstream oss;
   for (size_t i = 0; i < str.size(); ++i)
     oss << literal(str[i]);
   return oss.str();

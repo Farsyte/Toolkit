@@ -19,9 +19,10 @@ using std::fixed;
 using std::setw;
 using std::setprecision;
 
-namespace Farsyte {
-  namespace Matrix {
-
+namespace Farsyte
+{
+  namespace Matrix
+  {
 
     /** Matrix Template.
      * \param Nc    Number of columns in the matrix.
@@ -33,7 +34,8 @@ namespace Farsyte {
      * elements of compile-time determined type.
      */
     template<int Nc, int Nr, typename T>
-    class Matrix {
+    class Matrix
+    {
     public:
 
       /** Typedef for type of matrix elements. */
@@ -51,18 +53,31 @@ namespace Farsyte {
       /** Const pointer to a matrix element. */
       typedef T const * const_pointer;
 
-      /** Number of rows in the matrix. */
-      static size_t rows() { return Nr; }
+      /** Matrix rows.
+       * \returns number of rows `Nr` in tha matrix.
+       */
+      static size_t rows()
+        {
+          return Nr;
+        }
 
-      /** Number of columns in the matrix.*/
-      static size_t cols() { return Nc; }
+      /** Matrix columns.
+       * \returns number of columns `Nc` in tha matrix.
+       */
+      static size_t cols()
+        {
+          return Nc;
+        }
 
-      /** Number of elements in the matrix. */
-      static size_t size() { return rows() * cols(); }
+      /** Matrix elements.
+       * \returns number of elements `Nr*Nc` in the matrix.
+       */
+      static size_t size()
+        {
+          return rows() * cols();
+        }
 
     protected:
-      
-      typedef Matrix<Nc,Nr,T>	Root;
 
       /** Typedef for array containing one column of the data.
        */
@@ -77,7 +92,7 @@ namespace Farsyte {
        * This method is used by subclasses to provide value
        * construction of Matrices using Arrays of Arrays of the
        * appropriate dimensions.
-       * \note Nort a public interface: only classes within the class
+       * \note Not a public interface: only classes within the class
        * heirarchy below Matrix should be aware of the data
        * organization within the Matrix object.
        */
@@ -89,8 +104,7 @@ namespace Farsyte {
       /** Matrix Subscripting Implementation.
        * \param ri  Row Index, ranging from 1 to Nr inclusive.
        * \param ci  Column Index, ranging from 1 to Nc inclusive.
-       * This method locates and returns a read-only reference
-       * to the element indicated by the subscript.
+       * \returns a read-only reference to the selected element.
        * \note Fortran conventions for array subscripting.
        */
       T const & sub(int ri, int ci) const
@@ -105,8 +119,7 @@ namespace Farsyte {
       /** Matrix Subscripting Implementation.
        * \param ri  Row Index, ranging from 1 to Nr inclusive.
        * \param ci  Column Index, ranging from 1 to Nc inclusive.
-       * This method locates and returns a read-only reference
-       * to the element indicated by the subscript.
+       * \returns a writable reference to the selected element.
        * \note Fortran conventions for array subscripting.
        */
       T       & sub(int ri, int ci)
@@ -152,8 +165,7 @@ namespace Farsyte {
       /** Matrix Subscripting Operator.
        * \param ri  Row Index, in the range 1 to Nr inclusive.
        * \param ci  Column Index, in the range 1 to Nc inclusive.
-       * This function returns a read-only reference to the matrix
-       * element located at the specified row and column index.
+       * \returns read-only reference to the selected element.
        * \note Fortran conventions for array subscripting.
        */
       T const & operator()(int ri, int ci) const
@@ -164,8 +176,7 @@ namespace Farsyte {
       /** Matrix Subscripting Operator.
        * \param ri  Row Index, in the range 1 to Nr inclusive.
        * \param ci  Column Index, in the range 1 to Nc inclusive.
-       * This function returns a modifiable reference to the matrix
-       * element located at the specified row and column index.
+       * \returns modifiable reference to the selected element.
        * \note Fortran conventions for array subscripting.
        */
       T       & operator()(int ri, int ci)
@@ -175,65 +186,98 @@ namespace Farsyte {
 
       /** Matrix Equality Test.
        * \param p  Matrix to compare.
-       * This function returns true if each element of this
-       * matrix compares equal to the corresponding member
-       * of the specified matrix.
+       * \returns true if all elements compare equal, else false.
        */
-      bool equals(Matrix const &p) const {
-        for (int ci = 1; ci <= Nc; ++ci)
-          for (int ri = 1; ri <= Nr; ++ri)
-            if (sub(ri,ci) != p.sub(ri,ci))
-              return false;
-        return true;
-      }
+      bool equals(Matrix const &p) const
+        {
+          for (int ci = 1; ci <= Nc; ++ci)
+            for (int ri = 1; ri <= Nr; ++ri)
+              if (sub(ri,ci) != p.sub(ri,ci))
+                return false;
+          return true;
+        }
 
       /** Matrix Increment operation.
        * \param p  Matrix of increment values.
+       * \returns this matrix, after incrementing.
        * Each element of this matrix is incremented by
        * the value of the corresponding element of the
        * provided matrix.
        */
-      Matrix & operator+=(Matrix const &p) {
-        for (int ci = 1; ci <= Nc; ++ci)
-          for (int ri = 1; ri <= Nr; ++ri)
-            sub(ri,ci) += p.sub(ri,ci);
-        return *this;
-      }
+      Matrix & increment_by(Matrix const &p)
+        {
+          for (int ci = 1; ci <= Nc; ++ci)
+            for (int ri = 1; ri <= Nr; ++ri)
+              sub(ri,ci) += p.sub(ri,ci);
+          return *this;
+        }
+
+      /** Matrix Increment operator.
+       * \param p  Matrix of increment values.
+       * \returns this matrix, after incrementing.
+       * Each element of this matrix is incremented by
+       * the value of the corresponding element of the
+       * provided matrix.
+       */
+      Matrix & operator+=(Matrix const &p)
+        {
+          return increment_by(p);
+        }
 
       /** Matrix Decrement operation.
        * \param p  Matrix of decrement values.
+       * \returns this matrix, after decrementing.
        * Each element of this matrix is decremented by
        * the value of the corresponding element of the
        * provided matrix.
        */
-      Matrix & operator-=(Matrix const &p) {
-        for (int ci = 1; ci <= Nc; ++ci)
-          for (int ri = 1; ri <= Nr; ++ri)
-            sub(ri,ci) -= p.sub(ri,ci);
-        return *this;
-      }
+      Matrix & decrement_by(Matrix const &p)
+        {
+          for (int ci = 1; ci <= Nc; ++ci)
+            for (int ri = 1; ri <= Nr; ++ri)
+              sub(ri,ci) -= p.sub(ri,ci);
+          return *this;
+        }
 
-      Matrix negate() const {
-        Matrix R;
-        for (int ci = 1; ci <= Nc; ++ci)
-          for (int ri = 1; ri <= Nr; ++ri)
-            R(ri,ci) = -sub(ri,ci);
-        return R;
-      }
+      /** Matrix Decrement operator.
+       * \param p  Matrix of decrement values.
+       * \returns this matrix, after decrementing.
+       * Each element of this matrix is decremented by
+       * the value of the corresponding element of the
+       * provided matrix.
+       */
+      Matrix & operator-=(Matrix const &p)
+        {
+          return decrement_by(p);
+        }
 
-      Matrix transpose() const {
-        Matrix<Nr,Nc,T> R;
-        for (int ci = 1; ci <= Nc; ++ci)
-          for (int ri = 1; ri <= Nr; ++ri)
-            R(ci,ri) = sub(ri,ci);
-        return R;
-      }
+      /** Matrix Negate operation.
+       * \returns self after negating elements.
+       */
+      Matrix negate()
+        {
+          for (int ci = 1; ci <= Nc; ++ci)
+            for (int ri = 1; ri <= Nr; ++ri)
+              sub(ri,ci) = -sub(ri,ci);
+          return *this;
+        }
+
+      /** Matrix Transpose operation.
+       * \returns transposed matrix.
+       */
+      Matrix transpose() const
+        {
+          Matrix<Nr,Nc,T> R;
+          for (int ci = 1; ci <= Nc; ++ci)
+            for (int ri = 1; ri <= Nr; ++ri)
+              R(ci,ri) = sub(ri,ci);
+          return R;
+        }
 
     protected:
       /** Storage for Matrix State. */
       A                         data;
     };
-
 
     /** Equality Operator for Matrix-based Classes.
      * \param L   First operand for equality comparison.
@@ -241,7 +285,10 @@ namespace Farsyte {
      * \returns true if all elements compare equal, else false.
      */
     template<int Nc, int Nr, typename T>
-    inline bool operator==(Matrix<Nc,Nr,T> const &L, Matrix<Nc,Nr,T> const &R) {
+    inline bool operator==(
+      Matrix<Nc,Nr,T> const &L,
+      Matrix<Nc,Nr,T> const &R)
+    {
       return L.equals(R);
     }
 
@@ -251,7 +298,10 @@ namespace Farsyte {
      * \returns true if any element does not compare equal, else false.
      */
     template<int Nc, int Nr, typename T>
-    inline bool operator!=(Matrix<Nc,Nr,T> const &L, Matrix<Nc,Nr,T> const &R) {
+    inline bool operator!=(
+      Matrix<Nc,Nr,T> const &L,
+      Matrix<Nc,Nr,T> const &R)
+    {
       return !(L == R);
     }
 
@@ -261,7 +311,10 @@ namespace Farsyte {
      * \returns Matrix whose elements are the sum of corresponding input elements.
      */
     template<int Nc, int Nr, typename T>
-    inline Matrix<Nc,Nr,T> operator+(Matrix<Nc,Nr,T> L, Matrix<Nc,Nr,T> const &R) {
+    inline Matrix<Nc,Nr,T> operator+(
+      Matrix<Nc,Nr,T> L,
+      Matrix<Nc,Nr,T> const &R)
+    {
       return L += R;
     }
 
@@ -271,7 +324,10 @@ namespace Farsyte {
      * \returns Matrix whose elements are the difference between corresponding input elements.
      */
     template<int Nc, int Nr, typename T>
-    inline Matrix<Nc,Nr,T> operator-(Matrix<Nc,Nr,T> L, Matrix<Nc,Nr,T> const &R) {
+    inline Matrix<Nc,Nr,T> operator-(
+      Matrix<Nc,Nr,T> L,
+      Matrix<Nc,Nr,T> const &R)
+    {
       return L -= R;
     }
 
@@ -280,16 +336,20 @@ namespace Farsyte {
      * \returns Matrix whose elements are the negative of the corresponding input elements.
      */
     template<int Nc, int Nr, typename T>
-    inline Matrix<Nc,Nr,T> operator-(Matrix<Nc,Nr,T> R) {
+    inline Matrix<Nc,Nr,T> operator-(
+      Matrix<Nc,Nr,T> R)
+    {
       return R.negate();
     }
 
     /** Transpose Operator for Matrix-based Classes.
      * \param R  operand for Transposition
-     * \returns Matrix whose elements are the 
+     * \returns Matrix whose elements are the
      */
     template<int Nc, int Nr, typename T>
-    inline Matrix<Nr,Nc,T> operator~(Matrix<Nc,Nr,T> R) {
+    inline Matrix<Nr,Nc,T> operator~(
+      Matrix<Nc,Nr,T> const &R)
+    {
       return R.transpose();
     }
 
@@ -307,43 +367,41 @@ namespace Farsyte {
     {
 
     protected:
-      typedef Matrix<1,Nr,T>		Base;
-      typedef typename Base::Root	Root;
+      /** Typedef for matrix generalization. */
+      typedef Matrix<1,Nr,T>            MatMe;
 
       /** Typedef for array containing the data.
        */
-      typedef typename Base::A	A;
+      typedef typename MatMe::A A;
 
       /** Typedef for array containing one column of data.
        */
-      typedef typename Base::C	C;
+      typedef typename MatMe::C C;
 
       /** ColVec Subscripting Implementation.
        * \param ri  Row Index, in the range 1 to N inclusive.
-       * This function returns a read-only reference to the matrix
-       * element located at the specified row and column index.
+       * \returns read-only reference to the selected element.
        * \note Fortran conventions for array subscripting.
        */
       T const & sub(int ri) const
         {
-          return Base::sub(ri, 1);
+          return MatMe::sub(ri, 1);
         }
 
       /** ColVec Subscripting Implementation.
        * \param ri  Row Index, in the range 1 to N inclusive.
-       * This function returns a modifiable reference to the matrix
-       * element located at the specified row and column index.
+       * \returns modifiable reference to the selected element.
        * \note Fortran conventions for array subscripting.
        */
       T       & sub(int ri)
         {
-          return Base::sub(ri, 1);
+          return MatMe::sub(ri, 1);
         }
 
     public:
 
       ColVec()
-        : Base()
+        : MatMe()
         {
         }
 
@@ -353,7 +411,7 @@ namespace Farsyte {
        * the corresponding elements of the array provided.
        */
       ColVec(A const &a)
-        : Base(a)
+        : MatMe(a)
         {
         }
 
@@ -363,7 +421,7 @@ namespace Farsyte {
        * the corresponding elements of the array provided.
        */
       ColVec(C const &a)
-        : Base(A{{a}})
+        : MatMe(A{{a}})
         {
         }
 
@@ -372,15 +430,14 @@ namespace Farsyte {
        * Initialize this column vector to be a duplicate of the one provided.
        * \note Can be called with any appropriately dimensioned matrix.
        */
-      ColVec(Root const &c)
-        : Base(c)
+      ColVec(MatMe const &c)
+        : MatMe(c)
         {
         }
 
       /** ColVec Subscripting Operator.
        * \param ri  Row Index, in the range 1 to N inclusive.
-       * This function returns a read-only reference to the matrix
-       * element located at the specified row and column index.
+       * \returns read-only reference to the selected element.
        * \note Fortran conventions for array subscripting.
        */
       T const & operator()(int ri) const
@@ -390,8 +447,7 @@ namespace Farsyte {
 
       /** ColVec Subscripting Operator.
        * \param ri  Row Index, in the range 1 to N inclusive.
-       * This function returns a modifiable reference to the matrix
-       * element located at the specified row and column index.
+       * \returns modifiable reference to the selected element.
        * \note Fortran conventions for array subscripting.
        */
       T       & operator()(int ri)
@@ -401,52 +457,62 @@ namespace Farsyte {
 
     };
 
-    /** Position Class.
+    /** ThreeVec Class.
      *
      * This class implements a representation of
-     * a Position (more precisely a change in
+     * a ThreeVec (more precisely a change in
      * position), expressed as a column vector
      * of three double precision components.
      */
-    class Position
+    class ThreeVec
       : public ColVec<3,double>
     {
     protected:
-      typedef ColVec<3,double>	Base;
-      typedef Base::Root	Root;
-      typedef Base::C		C;
+      /** Typedef for ColVec generalization */
+      typedef ColVec<3,double>  ColMe;
 
+      /** Typedef for Matrix generalization. */
+      typedef ColMe::MatMe      MatMe;
+
+      /** Typedef for 1-D array containing the data.
+       */
+      typedef typename ColMe::C C;
 
     public:
 
-      Position()
-        : Base()
-        {
-        }
+      /** ThreeVec Default Constructor.
+       * This class assures that all ThreeVec objects are initialized
+       * to zero when they are constructed, if no initial value is
+       * specified via a different constructor.
+       */
+      ThreeVec();
 
-      /** Position Constructor for Given Coefficients.
+      /** ThreeVec Constructor for Given Coefficients.
        * \param x  X coefficient for position.
        * \param y  Y coefficient for position.
        * \param z  Z coefficient for position.
        * Initializes this position to contain the specified
        * coefficients for location along each of the three axes.
        */
-      Position(double x, double y, double z)
-        : Base(C{{x,y,z}})
-        {
-        }
+      ThreeVec(double x, double y, double z);
 
-      /** Duplicate Constructor for Position.
-       * \param p  Position to duplicate.
+      /** Duplicate Constructor for ThreeVec.
+       * \param p  ThreeVec to duplicate.
        * Initializes this position to contain a duplicate of the provided position.
        * \note Can be called with any appropriately dimensioned matrix.
        */
-      Position(Root const &p)
-        : Base(p)
-        {
-        }
+      ThreeVec(MatMe const &p);
 
     };
+
+    /** Cross-Product operation.
+     * \param L  First operand for product.
+     * \param R  Second operand for product.
+     * \returns the cross product of the two vectors.
+     */
+    extern ThreeVec cross(
+      ThreeVec const &L,
+      ThreeVec const &R);
 
   }
 }

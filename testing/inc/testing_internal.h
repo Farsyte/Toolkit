@@ -52,7 +52,6 @@ namespace Farsyte {
     throw Oops(__FILE__, __LINE__, str);        \
   } while (0)
 
-
 using namespace Farsyte::Testing;
 
 #endif//_testing_internal_h

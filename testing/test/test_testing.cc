@@ -92,10 +92,13 @@ int test_compare(
   Test t(s, title);
   t << "expected: " << exp << endl;
   t << "observed: " << obs << endl;
-  if (exp == obs)
+  if (exp == obs) {
+    t.pass(title);
     return 0;
-  t.fail(message);
-  return 1;
+  } else {
+    t.fail(message);
+    return 1;
+  }
 }
 
 /** Verify the next entry in a string list is as expected.
@@ -107,8 +110,9 @@ int test_testing_log_line(
   unsigned &off,
   string const &exp)
 {
+  string const sqe(sq(exp));
   Test t(s, title);
-  t << "expected: " << sq(exp) << endl;
+  t << "expected: " << sqe << endl;
 
   /*
   ** return convention: 0 is success, nonzero is failure.
@@ -116,8 +120,8 @@ int test_testing_log_line(
   */
 
   if (vos.size() <= off) {
-    t << "observed text: (end of file)" << endl;
-    t.fail("content not generated");
+    t << "observed: (end of file)" << endl;
+    t.fail("XML text: "+sqe);
     return 1;
   }
 
@@ -125,12 +129,13 @@ int test_testing_log_line(
 
   t << "observed: " << sq(obs) << endl;
   if (exp != obs) {
-    t.fail("incorrect content generated");
+    t.fail("XML text: "+sqe);
     return 1;
   }
 
   off ++;
 
+  t.pass("XML text: "+sqe);
   return 0;
 }
 
@@ -153,14 +158,16 @@ int test_testing_log_eof(
   */
 
   if (obs > off) {
-    t.fail("unexpected text at end of output");
+    t.fail("XML end of file");
     return 1;
   }
 
   if (obs < off) {
-    t.fail("output is too short");
+    t.fail("XML end of file");
     return 1;
   }
+
+  t.pass("XML end of file");
 
   return 0;
 }
@@ -554,7 +561,6 @@ int test_testing_test_fail(Suite &s) {
                    "Suite skips modified by failure")
     + test_compare(s, "suite errors (by fail)", 0u, ts.total_errors,
                    "Suite errors modified by failure")
-
 
     + test_compare(s, "log failed tests inc", 1u, tl.failed_tests,
                    "Log fails not incremented correctly by failure")
