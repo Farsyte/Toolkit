@@ -78,7 +78,7 @@ namespace Farsyte
         }
 
     protected:
-      
+
       /** Typedef for array containing one column of the data.
        */
       typedef std::array<T,Nr> C;
@@ -204,12 +204,24 @@ namespace Farsyte
        * the value of the corresponding element of the
        * provided matrix.
        */
-      Matrix & operator+=(Matrix const &p)
+      Matrix & increment_by(Matrix const &p)
         {
           for (int ci = 1; ci <= Nc; ++ci)
             for (int ri = 1; ri <= Nr; ++ri)
               sub(ri,ci) += p.sub(ri,ci);
           return *this;
+        }
+
+      /** Matrix Increment operator.
+       * \param p  Matrix of increment values.
+       * \returns this matrix, after incrementing.
+       * Each element of this matrix is incremented by
+       * the value of the corresponding element of the
+       * provided matrix.
+       */
+      Matrix & operator+=(Matrix const &p)
+        {
+          return increment_by(p);
         }
 
       /** Matrix Decrement operation.
@@ -219,7 +231,7 @@ namespace Farsyte
        * the value of the corresponding element of the
        * provided matrix.
        */
-      Matrix & operator-=(Matrix const &p)
+      Matrix & decrement_by(Matrix const &p)
         {
           for (int ci = 1; ci <= Nc; ++ci)
             for (int ri = 1; ri <= Nr; ++ri)
@@ -227,16 +239,27 @@ namespace Farsyte
           return *this;
         }
 
-      /** Matrix Negate operation.
-       * \returns matrix with negated elements.
+      /** Matrix Decrement operator.
+       * \param p  Matrix of decrement values.
+       * \returns this matrix, after decrementing.
+       * Each element of this matrix is decremented by
+       * the value of the corresponding element of the
+       * provided matrix.
        */
-      Matrix negate() const
+      Matrix & operator-=(Matrix const &p)
         {
-          Matrix R;
+          return decrement_by(p);
+        }
+
+      /** Matrix Negate operation.
+       * \returns self after negating elements.
+       */
+      Matrix negate()
+        {
           for (int ci = 1; ci <= Nc; ++ci)
             for (int ri = 1; ri <= Nr; ++ri)
-              R(ri,ci) = -sub(ri,ci);
-          return R;
+              sub(ri,ci) = -sub(ri,ci);
+          return *this;
         }
 
       /** Matrix Transpose operation.
@@ -255,7 +278,6 @@ namespace Farsyte
       /** Storage for Matrix State. */
       A                         data;
     };
-
 
     /** Equality Operator for Matrix-based Classes.
      * \param L   First operand for equality comparison.
@@ -322,11 +344,11 @@ namespace Farsyte
 
     /** Transpose Operator for Matrix-based Classes.
      * \param R  operand for Transposition
-     * \returns Matrix whose elements are the 
+     * \returns Matrix whose elements are the
      */
     template<int Nc, int Nr, typename T>
     inline Matrix<Nr,Nc,T> operator~(
-      Matrix<Nc,Nr,T> R)
+      Matrix<Nc,Nr,T> const &R)
     {
       return R.transpose();
     }
@@ -482,6 +504,15 @@ namespace Farsyte
       ThreeVec(MatMe const &p);
 
     };
+
+    /** Cross-Product operation.
+     * \param L  First operand for product.
+     * \param R  Second operand for product.
+     * \returns the cross product of the two vectors.
+     */
+    extern ThreeVec cross(
+      ThreeVec const &L,
+      ThreeVec const &R);
 
   }
 }

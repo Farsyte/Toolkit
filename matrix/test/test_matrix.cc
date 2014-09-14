@@ -9,7 +9,6 @@ using Farsyte::Testing::Oops;
 
 using Farsyte::Matrix::ThreeVec;
 
-
 #include <string>
 using std::string;
 
@@ -172,18 +171,72 @@ int test_matrix_threevec_ctor_eq_ne(Suite &s) {
 
 int test_matrix_threevec_access(Suite &s) {
 
-  Test t(s, "Member Access");
+  Test t(s, "Member Access and Update");
 
-  ThreeVec D;
-  ThreeVec X {1,0,0};
-  ThreeVec Y {0,1,0};
-  ThreeVec Z {0,0,1};
+  ThreeVec V {3,5,7};
+
+  V(2) = 4;
+  V(3) = V(1);
 
   return 0
-    + case_equals(t, "Default initialized to Zero", 0, 0, 0, D)
-    + case_equals(t, "X Axis Initialization", 1, 0, 0, X)
-    + case_equals(t, "Y Axis Initialization", 0, 1, 0, Y)
-    + case_equals(t, "Z Axis Initialization", 0, 0, 1, Z)
+    + case_equals(t, "Vector after access and update", 3,4,3, V)
+    ;
+}
+
+int test_matrix_threevec_add(Suite &s) {
+
+  Test t(s, "Addition");
+
+  ThreeVec S;
+  ThreeVec A {7,4,1};
+  ThreeVec I {1,2,3};
+  A += I;
+
+  return 0
+    + case_equals(t, "I unchanged", 1, 2, 3, I)
+    + case_equals(t, "A incremented once", 8, 6, 4, A)
+    + case_equals(t, "Second Sum", 9, 8, 7, A+I)
+    + case_equals(t, "Add Negative", 7, 4, 1, A+(-I))
+    ;
+}
+
+int test_matrix_threevec_sub(Suite &s) {
+
+  Test t(s, "Addition");
+
+  ThreeVec D;
+  ThreeVec A {9,8,7};
+  ThreeVec I {1,2,3};
+  A -= I;
+
+  return 0
+    + case_equals(t, "I unchanged", 1, 2, 3, I)
+    + case_equals(t, "A decremented once", 8, 6, 4, A)
+    + case_equals(t, "second difference", 7, 4, 1, A-I)
+    + case_equals(t, "Sub Negative", 9, 8, 7, A-(-I))
+    ;
+}
+
+int test_matrix_threevec_cross(Suite &s) {
+
+  Test t(s, "Construct and Compare");
+
+  ThreeVec X {1,0,0};
+  ThreeVec Y {0,2,0};
+  ThreeVec Z {0,0,3};
+
+  return 0
+    + case_equals(t, "cross(X,X)", 0, 0, 0, cross(X,X))
+    + case_equals(t, "cross(Y,Y)", 0, 0, 0, cross(Y,Y))
+    + case_equals(t, "cross(Z,Z)", 0, 0, 0, cross(Z,Z))
+
+    + case_equals(t, "cross(X,Y)", 0, 0, 2, cross(X,Y))
+    + case_equals(t, "cross(Y,Z)", 6, 0, 0, cross(Y,Z))
+    + case_equals(t, "cross(Z,X)", 0, 3, 0, cross(Z,X))
+
+    + case_equals(t, "cross(X,Z)", 0,-3, 0, cross(X,Z))
+    + case_equals(t, "cross(Y,X)", 0, 0,-2, cross(Y,X))
+    + case_equals(t, "cross(Z,Y)",-6, 0, 0, cross(Z,Y))
     ;
 }
 
@@ -205,10 +258,9 @@ int test_matrix_threevec(Log &log) {
     + test_matrix_threevec_meta(s)
     + test_matrix_threevec_ctor_eq_ne(s)
     + test_matrix_threevec_access(s)
-#if 0
     + test_matrix_threevec_add(s)
     + test_matrix_threevec_sub(s)
-#endif
+    + test_matrix_threevec_cross(s)
     ;
 
 }

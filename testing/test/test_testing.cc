@@ -562,7 +562,6 @@ int test_testing_test_fail(Suite &s) {
     + test_compare(s, "suite errors (by fail)", 0u, ts.total_errors,
                    "Suite errors modified by failure")
 
-
     + test_compare(s, "log failed tests inc", 1u, tl.failed_tests,
                    "Log fails not incremented correctly by failure")
     + test_compare(s, "log skipped tests (by fail)", 0u, tl.skipped_tests,

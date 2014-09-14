@@ -7,7 +7,6 @@ using std::string;
 using std::ostream;
 using std::endl;
 
-
 /** Create a new Test within a Suite.
  *
  * Can immediately enter the `testcase` entity.
@@ -17,6 +16,7 @@ using std::endl;
  */
 Test::Test(Suite &r, string const &n)
   : ref       (r)
+  , name      (n)
   , fails     (0)
   , skips     (0)
   , errors    (0)
@@ -48,6 +48,13 @@ Test::Test(Suite &r, string const &n)
  */
 void Test::fail(string const &c) {
 
+#ifdef  TEST_RESULTS_ALSO_TO
+  TEST_RESULTS_ALSO_TO << ref.ref.name << "|"
+                       << ref.name << "|"
+                       << name << "|"
+                       << "FAIL: " << c << endl;
+#endif/*TEST_RESULTS_ALSO_TO*/
+
   fails ++;
   if (fails == 1)
     ref.failed_tests ++;
@@ -60,9 +67,9 @@ void Test::fail(string const &c) {
 
   out << "      <failure message=" << sq(c) << ">" << endl;
 
-  string	const & s ( str() );
+  string        const & s ( str() );
   if (s.length() > 0) {
-    string	const & q ( hq(s) );
+    string      const & q ( hq(s) );
     out << q;
     if (q[q.length() - 1] != '\n')
       out << endl;
@@ -88,6 +95,13 @@ void Test::fail(string const &c) {
  */
 void Test::error(string const &c) {
 
+#ifdef  TEST_RESULTS_ALSO_TO
+  TEST_RESULTS_ALSO_TO << ref.ref.name << "|"
+                       << ref.name << "|"
+                       << name << "|"
+                       << "ERROR: " << c << endl;
+#endif/*TEST_RESULTS_ALSO_TO*/
+
   errors ++;
   if (errors == 1)
     ref.errored_tests ++;
@@ -108,9 +122,9 @@ void Test::error(string const &c) {
   ** bad effects on the testing. Anything we can do to help
   ** diagnose this is a good thing.
   */
-  string	const & s ( str() );
+  string        const & s ( str() );
   if (s.length() > 0) {
-    string	const & q ( hq(s) );
+    string      const & q ( hq(s) );
     out << q;
     if (q[q.length() - 1] != '\n')
       out << endl;
@@ -139,6 +153,13 @@ void Test::error(string const &c) {
  */
 void Test::skip(string const &c) {
 
+#ifdef  TEST_RESULTS_ALSO_TO
+  TEST_RESULTS_ALSO_TO << ref.ref.name << "|"
+                       << ref.name << "|"
+                       << name << "|"
+                       << "skip: " << c << endl;
+#endif/*TEST_RESULTS_ALSO_TO*/
+
   skips ++;
   if (skips == 1)
     ref.skipped_tests ++;
@@ -151,9 +172,9 @@ void Test::skip(string const &c) {
 
   out << "      <skipped message=" << sq(c) << ">" << endl;
 
-  string	const & s ( str() );
+  string        const & s ( str() );
   if (s.length() > 0) {
-    string	const & q ( hq(s) );
+    string      const & q ( hq(s) );
     out << q;
     if (q[q.length() - 1] != '\n')
       out << endl;
@@ -182,7 +203,16 @@ void Test::skip(string const &c) {
  * included in a subsequent fail, skip, or error block.
  */
 void Test::pass(string const &c) {
-  (void) c;                     // not currently used.
+
+#ifdef  TEST_RESULTS_ALSO_TO
+  TEST_RESULTS_ALSO_TO << ref.ref.name << "|"
+                       << ref.name << "|"
+                       << name << "|"
+                       << "pass: " << c << endl;
+#else /*TEST_RESULTS_ALSO_TO*/
+  (void)c;                      // not used
+#endif/*TEST_RESULTS_ALSO_TO*/
+
   this->str("");
 }
 
@@ -204,9 +234,9 @@ Test::~Test() {
   ** text for a test not associated with a fail or skip
   ** object, then this could be turned on.
   */
-  string	const & s ( str() );
+  string        const & s ( str() );
   if (s.length() > 0) {
-    string	const & q ( hq(s) );
+    string      const & q ( hq(s) );
     out << q;
     if (q[q.length() - 1] != '\n')
       out << endl;
