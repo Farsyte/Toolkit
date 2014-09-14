@@ -3,7 +3,7 @@
 namespace Farsyte {
   namespace Matrix {
 
-    void dummy(void) { };
+    void dummy(void) { }
 
   }
 }
