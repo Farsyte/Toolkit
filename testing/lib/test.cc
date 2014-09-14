@@ -100,6 +100,14 @@ void Test::error(string const &c) {
 
   out << "      <error message=" << sq(c) << ">" << endl;
 
+  /*
+  ** Include the supporting text whether Bamboo is willing
+  ** to display it or not: this represents a logic error in
+  ** the testing library or in the test code itself, or an
+  ** error in the code under test with unanticipated and very
+  ** bad effects on the testing. Anything we can do to help
+  ** diagnose this is a good thing.
+  */
   string	const & s ( str() );
   if (s.length() > 0) {
     string	const & q ( hq(s) );
@@ -155,6 +163,29 @@ void Test::skip(string const &c) {
   out << "      </skipped>" << endl;
 }
 
+/** Indicate that a Test Condition has Passed.
+ *
+ * Currently, the XML representation of test results as pared
+ * by the Bamboo `JUnit` oriented parser does not make provision
+ * for explicitly noting a passing condition corresponding to
+ * a fail or skip notation; and there is no provision for
+ * presentation of text associated with passing conditions or
+ * with passing tests.
+ *
+ * This method exists in the hope that at some time in the
+ * future we will have a useful way to log and display the
+ * conditions that pass together with their supporting log
+ * information.
+ *
+ * For now, this *IMPLEMENTATION* will consume the text assocaited
+ * with the passing condition, so that it is not erroneously
+ * included in a subsequent fail, skip, or error block.
+ */
+void Test::pass(string const &c) {
+  (void) c;                     // not currently used.
+  this->str("");
+}
+
 /** Finish a Test.
  *
  * If there is any supporting text remaining in the test,
@@ -167,6 +198,12 @@ Test::~Test() {
 
   ostream   & out(ref.ref.out);
 
+#if 0
+  /*
+  ** If Bamboo provided us with a way to view supporting
+  ** text for a test not associated with a fail or skip
+  ** object, then this could be turned on.
+  */
   string	const & s ( str() );
   if (s.length() > 0) {
     string	const & q ( hq(s) );
@@ -174,6 +211,7 @@ Test::~Test() {
     if (q[q.length() - 1] != '\n')
       out << endl;
   }
+#endif
 
   out << "    </testcase>" << endl;
 }

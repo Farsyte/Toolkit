@@ -213,6 +213,17 @@ namespace Farsyte {
        */
       void error(std::string const &cond);
 
+      /** Register a Test PASS.
+       * \param cond -- one-line description of passed condition.
+       *
+       * Mark that a test condition has PASSED. There is no XML output
+       * for Bamboo in this case. The purpose of this call is to
+       * correctly assocaite any supporting text sent to the Test
+       * object with this PASSING condition rather than including it
+       * in a subsequent fail, skip, or error.
+       */
+      void pass(std::string const &cond);
+
       /** Suite Destructor.
        * Generates an appropriate trailer to the XML text output
        * stream to close the Test.

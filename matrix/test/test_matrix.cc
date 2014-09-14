@@ -31,7 +31,56 @@ using std::ostringstream;
 #include <iomanip>
 using std::setw;
 
-int case_compare(
+template<typename T>
+int case_equals(
+  Test &t, string const &title,
+  T const & exp,
+  T const & act)
+{
+
+  t << title << endl
+    << "  expected: "
+    << exp << endl
+    << "  observed: "
+    << act << endl;
+  if (exp == act) {
+    t.pass(title);
+    return 0;
+  } else {
+    t.fail(title + " failed");
+    return 1;
+  }
+}
+
+int case_T(
+  Test &t, string const &title,
+  bool cond)
+{
+  t << title << endl;
+  if (cond) {
+    t.pass(title);
+    return 0;
+  } else {
+    t.fail(title + " failed");
+    return 1;
+  }
+}
+
+int case_F(
+  Test &t, string const &title,
+  bool cond)
+{
+  t << title << endl;
+  if (!cond) {
+    t.pass(title);
+    return 0;
+  } else {
+    t.fail(title + " failed");
+    return 1;
+  }
+}
+
+int case_equals(
   Test &t, string const &title,
   double x, double y, double z,
   ThreeVec const &r)
@@ -48,15 +97,29 @@ int case_compare(
     << setw(16) << r(2)
     << setw(16) << r(3)
     << endl;
-  if ((x == r(1)) && (y == r(2)) && (z == r(3)))
+  if ((x == r(1)) && (y == r(2)) && (z == r(3))) {
+    t.pass(title);
     return 0;
-  t.fail(title + " failed");
-  return 1;
+  } else {
+    t.fail(title + " failed");
+    return 1;
+  }
 }
 
-int test_matrix_threevec_ctor(Suite &s) {
+int test_matrix_threevec_meta(Suite &s) {
 
-  Test t(s, "Constructors and Access");
+  Test t(s, "Class Parameter Methods");
+
+  return 0
+    + case_equals(t, "ThreeVec Rows", 3ul, ThreeVec::rows())
+    + case_equals(t, "ThreeVec Cols", 1ul, ThreeVec::cols())
+    + case_equals(t, "ThreeVec Size", 3ul, ThreeVec::size())
+    ;
+}
+
+int test_matrix_threevec_ctor_eq_ne(Suite &s) {
+
+  Test t(s, "Construct and Compare");
 
   ThreeVec D;
   ThreeVec X {1,0,0};
@@ -64,10 +127,63 @@ int test_matrix_threevec_ctor(Suite &s) {
   ThreeVec Z {0,0,1};
 
   return 0
-    + case_compare(t, "Default initialized to Zero", 0, 0, 0, D)
-    + case_compare(t, "X Axis Initialization", 1, 0, 0, X)
-    + case_compare(t, "Y Axis Initialization", 0, 1, 0, Y)
-    + case_compare(t, "Z Axis Initialization", 0, 0, 1, Z)
+    + case_equals(t, "Default initialized to Zero", 0, 0, 0, D)
+    + case_equals(t, "X Axis Initialization", 1, 0, 0, X)
+    + case_equals(t, "Y Axis Initialization", 0, 1, 0, Y)
+    + case_equals(t, "Z Axis Initialization", 0, 0, 1, Z)
+
+    + case_T(t, "(D == D) is True", (D == D))
+    + case_T(t, "(X == X) is True", (X == X))
+    + case_T(t, "(Y == Y) is True", (Y == Y))
+    + case_T(t, "(Z == Z) is True", (Z == Z))
+
+    + case_T(t, "(D != X) is True", (D != X))
+    + case_T(t, "(D != Y) is True", (D != Y))
+    + case_T(t, "(D != Z) is True", (D != Z))
+    + case_T(t, "(X != D) is True", (X != D))
+    + case_T(t, "(X != Y) is True", (X != Y))
+    + case_T(t, "(X != Z) is True", (X != Z))
+    + case_T(t, "(Y != D) is True", (Y != D))
+    + case_T(t, "(Y != X) is True", (Y != X))
+    + case_T(t, "(Y != Z) is True", (Y != Z))
+    + case_T(t, "(Z != D) is True", (Z != D))
+    + case_T(t, "(Z != X) is True", (Z != X))
+    + case_T(t, "(Z != Y) is True", (Z != Y))
+
+    + case_F(t, "(D != D) is False", (D != D))
+    + case_F(t, "(X != X) is False", (X != X))
+    + case_F(t, "(Y != Y) is False", (Y != Y))
+    + case_F(t, "(Z != Z) is False", (Z != Z))
+
+    + case_F(t, "(D == X) is False", (D == X))
+    + case_F(t, "(D == Y) is False", (D == Y))
+    + case_F(t, "(D == Z) is False", (D == Z))
+    + case_F(t, "(X == D) is False", (X == D))
+    + case_F(t, "(X == Y) is False", (X == Y))
+    + case_F(t, "(X == Z) is False", (X == Z))
+    + case_F(t, "(Y == D) is False", (Y == D))
+    + case_F(t, "(Y == X) is False", (Y == X))
+    + case_F(t, "(Y == Z) is False", (Y == Z))
+    + case_F(t, "(Z == D) is False", (Z == D))
+    + case_F(t, "(Z == X) is False", (Z == X))
+    + case_F(t, "(Z == Y) is False", (Z == Y))
+    ;
+}
+
+int test_matrix_threevec_access(Suite &s) {
+
+  Test t(s, "Member Access");
+
+  ThreeVec D;
+  ThreeVec X {1,0,0};
+  ThreeVec Y {0,1,0};
+  ThreeVec Z {0,0,1};
+
+  return 0
+    + case_equals(t, "Default initialized to Zero", 0, 0, 0, D)
+    + case_equals(t, "X Axis Initialization", 1, 0, 0, X)
+    + case_equals(t, "Y Axis Initialization", 0, 1, 0, Y)
+    + case_equals(t, "Z Axis Initialization", 0, 0, 1, Z)
     ;
 }
 
@@ -86,7 +202,13 @@ int test_matrix_threevec(Log &log) {
   */
 
   return 0
-    + test_matrix_threevec_ctor(s)
+    + test_matrix_threevec_meta(s)
+    + test_matrix_threevec_ctor_eq_ne(s)
+    + test_matrix_threevec_access(s)
+#if 0
+    + test_matrix_threevec_add(s)
+    + test_matrix_threevec_sub(s)
+#endif
     ;
 
 }

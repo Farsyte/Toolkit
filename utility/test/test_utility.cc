@@ -38,10 +38,13 @@ static int case_compare(
   t << title << endl
     << "  expected: " << qc << exp << qc << endl
     << "  observed: " << qc << act << qc << endl;
-  if (act == exp)
+  if (act == exp) {
+    t.pass(title);
     return 0;
-  t.fail(title + " failed");
-  return 1;
+  } else {
+    t.fail(title + " failed");
+    return 1;
+  }
 }
 
 int test_utility_literal_char(Suite &s) {
