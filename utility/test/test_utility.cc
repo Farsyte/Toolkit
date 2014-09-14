@@ -8,7 +8,6 @@ using Farsyte::Testing::Oops;
 
 using Farsyte::Utility::literal;
 
-
 #include <string>
 using std::string;
 
@@ -34,21 +33,24 @@ static int case_compare(
   string const &exp,
   string const &act)
 {
-  char	const	qc = '"';
+  char  const   qc = '"';
   t << title << endl
     << "  expected: " << qc << exp << qc << endl
     << "  observed: " << qc << act << qc << endl;
-  if (act == exp)
+  if (act == exp) {
+    t.pass(title);
     return 0;
-  t.fail(title + " failed");
-  return 1;
+  } else {
+    t.fail(title + " failed");
+    return 1;
+  }
 }
 
 int test_utility_literal_char(Suite &s) {
-  char	const	sq = '\'';
-  char	const	dq = '"';
-  char	const	bs = '\\';
-    
+  char  const   sq = '\'';
+  char  const   dq = '"';
+  char  const   bs = '\\';
+
   Test t(s, "literal(char)");
 
   return 0
@@ -71,7 +73,7 @@ int test_utility_literal_str(Suite &s) {
     + case_compare(t, "Encoding a single blank", " ", literal(" "))
     + case_compare(t, "Encoding some text", "thx-1152", literal("thx-1152"))
     + case_compare(t, "Encoding some nasty text",
-                   "\\t\\'.\\', \\\".\\\", and \\\\ ...\\n", 
+                   "\\t\\'.\\', \\\".\\\", and \\\\ ...\\n",
                    literal("\t'.', \".\", and \\ ...\n"))
     ;
 }

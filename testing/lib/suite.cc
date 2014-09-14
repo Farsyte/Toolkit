@@ -21,6 +21,7 @@ using std::endl;
  */
 Suite::Suite(Log &r, string const &n)
   : ref       (r)
+  , name      (n)
   , curr      (0)
   , tests     (0)
   , failed_tests      (0)

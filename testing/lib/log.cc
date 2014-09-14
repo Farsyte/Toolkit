@@ -13,6 +13,7 @@ using std::endl;
  */
 Log::Log(ostream &s, string const &n)
   : out       (s)
+  , name      (n)
   , curr      (0)
   , suites    (0)
   , tests     (0)

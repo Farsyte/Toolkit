@@ -31,10 +31,13 @@ namespace Farsyte {
      * at the same time.
      */
     class Log {
-      public:
+    public:
 
       /** Current output stream. */
       std::ostream & out;
+
+      /** Name of the test log */
+      std::string const name;
 
       /** Currently active Suite, or NULL if none. */
       Suite *curr;
@@ -69,7 +72,7 @@ namespace Farsyte {
        * Writes XML header text to the output stream.
        */
       Log(std::ostream &out, std::string const &name);
-             
+
       /** Log Destructor.
        * Writes XML trailer text to the output stream.
        */
@@ -87,10 +90,13 @@ namespace Farsyte {
      * before the next one is constructed.
      */
     class Suite {
-      public:
+    public:
 
       /** Test Log associated with this Suite. */
       Log &ref;
+
+      /** Name of the test suite */
+      std::string const name;
 
       /** Currently active Test, or NULL if none. */
       Test *curr;
@@ -154,12 +160,15 @@ namespace Farsyte {
      * formatted appropriately and displayed by Bamboo as
      * supporting text in appropriate reporting conditions.
      */
-    class Test 
+    class Test
       : public std::ostringstream
     {
-      public:
+    public:
       /** Test Suite associated with this Test. */
       Suite &ref;
+
+      /** Name of the test case */
+      std::string const name;
 
       /** number of FAIL reports for this test. */
       size_t fails;
@@ -213,6 +222,17 @@ namespace Farsyte {
        */
       void error(std::string const &cond);
 
+      /** Register a Test PASS.
+       * \param cond -- one-line description of passed condition.
+       *
+       * Mark that a test condition has PASSED. There is no XML output
+       * for Bamboo in this case. The purpose of this call is to
+       * correctly assocaite any supporting text sent to the Test
+       * object with this PASSING condition rather than including it
+       * in a subsequent fail, skip, or error.
+       */
+      void pass(std::string const &cond);
+
       /** Suite Destructor.
        * Generates an appropriate trailer to the XML text output
        * stream to close the Test.
@@ -236,7 +256,7 @@ namespace Farsyte {
      * a class derived from Oops.
      */
     class Oops {
-      public:
+    public:
       std::string         file; /**< source file name. */
       int                 line; /**< source line number. */
       std::string         cond; /**< one-line failed condition text */
@@ -253,7 +273,8 @@ namespace Farsyte {
         std::string     c);
 
       /** Print exception details to output stream.
-       *
+       * \param s what stream gets the output text.
+       * \returns the stream after sending the text.
        * This method produces all available details
        * from this exception object onto the specified
        * output stream (and marks the object as having

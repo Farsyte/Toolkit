@@ -1,5 +1,15 @@
 # -*- makefile-gmake -*-
 
+# Test Output Monitor Option.
+#
+# If this macro is defined, test results will be reflected to the
+# specified stream as they are logged to the XML files.
+#
+# This may not play well with parallel builds.
+#
+# CXXFLAGS        += -DTEST_RESULTS_ALSO_TO='std::cerr'
+
+
 testing.lib.cc	:= ${wildcard testing/lib/*.cc}
 testing.obj.o	= ${testing.lib.cc:testing/lib/%.cc=testing/obj/%.o}
 testing.lib.a	= lib/testing.a
