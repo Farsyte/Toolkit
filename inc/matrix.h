@@ -62,8 +62,6 @@ namespace Farsyte {
 
     protected:
       
-      typedef Matrix<Nc,Nr,T>	Root;
-
       /** Typedef for array containing one column of the data.
        */
       typedef std::array<T,Nr> C;
@@ -213,6 +211,11 @@ namespace Farsyte {
         return *this;
       }
 
+      /** Matrix Negate operation.
+       * Create and return a matrix of the same size as
+       * this one, whose elements are the negtive of the
+       * corresponding elements in this matrix.
+       */
       Matrix negate() const {
         Matrix R;
         for (int ci = 1; ci <= Nc; ++ci)
@@ -221,6 +224,10 @@ namespace Farsyte {
         return R;
       }
 
+      /** Matrix Transpose operation.
+       * Create and return a matrix that is the transpose
+       * of this matrix.
+       */
       Matrix transpose() const {
         Matrix<Nr,Nc,T> R;
         for (int ci = 1; ci <= Nc; ++ci)
@@ -307,16 +314,16 @@ namespace Farsyte {
     {
 
     protected:
-      typedef Matrix<1,Nr,T>		Base;
-      typedef typename Base::Root	Root;
+      /** Typedef for matrix generalization. */
+      typedef Matrix<1,Nr,T>		MatMe;
 
       /** Typedef for array containing the data.
        */
-      typedef typename Base::A	A;
+      typedef typename MatMe::A	A;
 
       /** Typedef for array containing one column of data.
        */
-      typedef typename Base::C	C;
+      typedef typename MatMe::C	C;
 
       /** ColVec Subscripting Implementation.
        * \param ri  Row Index, in the range 1 to N inclusive.
@@ -326,7 +333,7 @@ namespace Farsyte {
        */
       T const & sub(int ri) const
         {
-          return Base::sub(ri, 1);
+          return MatMe::sub(ri, 1);
         }
 
       /** ColVec Subscripting Implementation.
@@ -337,13 +344,13 @@ namespace Farsyte {
        */
       T       & sub(int ri)
         {
-          return Base::sub(ri, 1);
+          return MatMe::sub(ri, 1);
         }
 
     public:
 
       ColVec()
-        : Base()
+        : MatMe()
         {
         }
 
@@ -353,7 +360,7 @@ namespace Farsyte {
        * the corresponding elements of the array provided.
        */
       ColVec(A const &a)
-        : Base(a)
+        : MatMe(a)
         {
         }
 
@@ -363,7 +370,7 @@ namespace Farsyte {
        * the corresponding elements of the array provided.
        */
       ColVec(C const &a)
-        : Base(A{{a}})
+        : MatMe(A{{a}})
         {
         }
 
@@ -372,8 +379,8 @@ namespace Farsyte {
        * Initialize this column vector to be a duplicate of the one provided.
        * \note Can be called with any appropriately dimensioned matrix.
        */
-      ColVec(Root const &c)
-        : Base(c)
+      ColVec(MatMe const &c)
+        : MatMe(c)
         {
         }
 
@@ -412,15 +419,20 @@ namespace Farsyte {
       : public ColVec<3,double>
     {
     protected:
-      typedef ColVec<3,double>	Base;
-      typedef Base::Root	Root;
-      typedef Base::C		C;
+      /** Typedef for ColVec generalization */
+      typedef ColVec<3,double>	ColMe;
 
+      /** Typedef for Matrix generalization. */
+      typedef ColMe::MatMe	MatMe;
+
+      /** Typedef for 1-D array containing the data.
+       */
+      typedef typename ColMe::C	C;
 
     public:
 
       Position()
-        : Base()
+        : ColMe()
         {
         }
 
@@ -432,7 +444,7 @@ namespace Farsyte {
        * coefficients for location along each of the three axes.
        */
       Position(double x, double y, double z)
-        : Base(C{{x,y,z}})
+        : ColMe(C{{x,y,z}})
         {
         }
 
@@ -441,8 +453,8 @@ namespace Farsyte {
        * Initializes this position to contain a duplicate of the provided position.
        * \note Can be called with any appropriately dimensioned matrix.
        */
-      Position(Root const &p)
-        : Base(p)
+      Position(MatMe const &p)
+        : ColMe(p)
         {
         }
 
