@@ -53,6 +53,14 @@ namespace Farsyte
       /** Const pointer to a matrix element. */
       typedef T const * const_pointer;
 
+      /** Typedef for array containing one column of the data.
+       */
+      typedef std::array<T,Nr> C;
+
+      /** Typedef for array containing the data.
+       */
+      typedef std::array<C,Nc> A;
+
       /** Matrix rows.
        * \returns number of rows `Nr` in tha matrix.
        */
@@ -78,28 +86,6 @@ namespace Farsyte
         }
 
     protected:
-
-      /** Typedef for array containing one column of the data.
-       */
-      typedef std::array<T,Nr> C;
-
-      /** Typedef for array containing the data.
-       */
-      typedef std::array<C,Nc> A;
-
-      /** Matrix Construction from Array.
-       * \param a  Array to duplicate.
-       * This method is used by subclasses to provide value
-       * construction of Matrices using Arrays of Arrays of the
-       * appropriate dimensions.
-       * \note Not a public interface: only classes within the class
-       * heirarchy below Matrix should be aware of the data
-       * organization within the Matrix object.
-       */
-      Matrix(A const &a)
-        : data(a)
-        {
-        }
 
       /** Matrix Subscripting Implementation.
        * \param ri  Row Index, ranging from 1 to Nr inclusive.
@@ -150,6 +136,20 @@ namespace Farsyte
         {
           for (size_t i = 1; (i <= Nr) && (i <= Nc); ++i)
             sub(i,i) = d;
+        }
+
+      /** Matrix Construction from Array of Arrays.
+       * \param a  Array to duplicate.
+       * This method is used by subclasses to provide value
+       * construction of Matrices using Arrays of Arrays of the
+       * appropriate dimensions.
+       * \note Not a public interface: only classes within the class
+       * heirarchy below Matrix should be aware of the data
+       * organization within the Matrix object.
+       */
+      Matrix(A const &a)
+        : data(a)
+        {
         }
 
       /** Duplicate Matrix Construction.
@@ -265,7 +265,8 @@ namespace Farsyte
       /** Matrix Transpose operation.
        * \returns transposed matrix.
        */
-      Matrix transpose() const
+      Matrix<Nr,Nc,T>
+      transpose() const
         {
           Matrix<Nr,Nc,T> R;
           for (int ci = 1; ci <= Nc; ++ci)
@@ -353,6 +354,30 @@ namespace Farsyte
       return R.transpose();
     }
 
+    /** Matrix Multiply.
+     * \param L  left operand for multiply.
+     * \param R  right operand for multiply.
+     * \returns the product of the matrices.
+     */
+    template<int Nc, int Ni, int Nr, typename T>
+    inline Matrix<Nc,Nr,T>
+    operator*(
+      Matrix<Ni,Nr,T> const & L,
+      Matrix<Nc,Ni,T> const & R)
+    {
+      Matrix<Nc,Nr,T> X;
+      for (int ri=1; ri<=Nr; ++ri) {
+        for (int ci=1; ci<=Nc; ++ci) {
+          T &acc(X(ri,ci));
+          acc = L(ri,1)*R(1,ci);
+          for (int ii=2; ii<=Ni; ++ii) {
+            acc += L(ri,ii)*R(ii,ci);
+          }
+        }
+      }
+      return X;
+    }
+
     /** Column Vector Template.
      * \param Nr    Number of rows in the vector.
      * \param T     Data type for each vector element.
@@ -366,7 +391,8 @@ namespace Farsyte
       : public Matrix<1,Nr,T>
     {
 
-    protected:
+    public:
+
       /** Typedef for matrix generalization. */
       typedef Matrix<1,Nr,T>            MatMe;
 
@@ -377,6 +403,8 @@ namespace Farsyte
       /** Typedef for array containing one column of data.
        */
       typedef typename MatMe::C C;
+
+    protected:
 
       /** ColVec Subscripting Implementation.
        * \param ri  Row Index, in the range 1 to N inclusive.
