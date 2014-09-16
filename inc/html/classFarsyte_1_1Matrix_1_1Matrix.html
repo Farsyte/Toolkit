@@ -112,7 +112,6 @@ $(document).ready(function(){initNavTree('classFarsyte_1_1Matrix_1_1Matrix.html'
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
-<a href="#pro-types">Protected Types</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classFarsyte_1_1Matrix_1_1Matrix-members.html">List of all members</a>  </div>
@@ -143,6 +142,14 @@ Public Types</h2></td></tr>
 <tr class="memitem:ac02848c590a31d575faa5f17fba5ef38"><td class="memItemLeft" align="right" valign="top">typedef T const *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html#ac02848c590a31d575faa5f17fba5ef38">const_pointer</a></td></tr>
 <tr class="memdesc:ac02848c590a31d575faa5f17fba5ef38"><td class="mdescLeft">&#160;</td><td class="mdescRight">Const pointer to a matrix element.  <a href="#ac02848c590a31d575faa5f17fba5ef38">More...</a><br /></td></tr>
 <tr class="separator:ac02848c590a31d575faa5f17fba5ef38"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55ee16860c80b5c21742409b690b772d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a55ee16860c80b5c21742409b690b772d"></a>
+typedef std::array&lt; T, Nr &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html#a55ee16860c80b5c21742409b690b772d">C</a></td></tr>
+<tr class="memdesc:a55ee16860c80b5c21742409b690b772d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Typedef for array containing one column of the data. <br /></td></tr>
+<tr class="separator:a55ee16860c80b5c21742409b690b772d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8b5b6434e29fc287151f1c685983465"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa8b5b6434e29fc287151f1c685983465"></a>
+typedef std::array&lt; <a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html#a55ee16860c80b5c21742409b690b772d">C</a>, Nc &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html#aa8b5b6434e29fc287151f1c685983465">A</a></td></tr>
+<tr class="memdesc:aa8b5b6434e29fc287151f1c685983465"><td class="mdescLeft">&#160;</td><td class="mdescRight">Typedef for array containing the data. <br /></td></tr>
+<tr class="separator:aa8b5b6434e29fc287151f1c685983465"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -152,6 +159,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a54d7caa0fa5feb028cf94f00eaaa26df"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html#a54d7caa0fa5feb028cf94f00eaaa26df">Matrix</a> (T const &amp;d)</td></tr>
 <tr class="memdesc:a54d7caa0fa5feb028cf94f00eaaa26df"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html" title="Matrix Template. ">Matrix</a> Diagonal Constructor.  <a href="#a54d7caa0fa5feb028cf94f00eaaa26df">More...</a><br /></td></tr>
 <tr class="separator:a54d7caa0fa5feb028cf94f00eaaa26df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55d21e1ee6de3c4d8e7c957da87d150e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html#a55d21e1ee6de3c4d8e7c957da87d150e">Matrix</a> (<a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html#aa8b5b6434e29fc287151f1c685983465">A</a> const &amp;a)</td></tr>
+<tr class="memdesc:a55d21e1ee6de3c4d8e7c957da87d150e"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html" title="Matrix Template. ">Matrix</a> Construction from Array of Arrays.  <a href="#a55d21e1ee6de3c4d8e7c957da87d150e">More...</a><br /></td></tr>
+<tr class="separator:a55d21e1ee6de3c4d8e7c957da87d150e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8acc875b389620d3ae68e893cfb9d084"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html#a8acc875b389620d3ae68e893cfb9d084">Matrix</a> (<a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html">Matrix</a> const &amp;m)</td></tr>
 <tr class="memdesc:a8acc875b389620d3ae68e893cfb9d084"><td class="mdescLeft">&#160;</td><td class="mdescRight">Duplicate <a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html" title="Matrix Template. ">Matrix</a> Construction.  <a href="#a8acc875b389620d3ae68e893cfb9d084">More...</a><br /></td></tr>
 <tr class="separator:a8acc875b389620d3ae68e893cfb9d084"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -179,9 +189,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aaa03092a83ca5092706a056ddd738e0c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html">Matrix</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html#aaa03092a83ca5092706a056ddd738e0c">negate</a> ()</td></tr>
 <tr class="memdesc:aaa03092a83ca5092706a056ddd738e0c"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html" title="Matrix Template. ">Matrix</a> Negate operation.  <a href="#aaa03092a83ca5092706a056ddd738e0c">More...</a><br /></td></tr>
 <tr class="separator:aaa03092a83ca5092706a056ddd738e0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab0038c16a258ea418587f15afedc3bea"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html">Matrix</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html#ab0038c16a258ea418587f15afedc3bea">transpose</a> () const </td></tr>
-<tr class="memdesc:ab0038c16a258ea418587f15afedc3bea"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html" title="Matrix Template. ">Matrix</a> Transpose operation.  <a href="#ab0038c16a258ea418587f15afedc3bea">More...</a><br /></td></tr>
-<tr class="separator:ab0038c16a258ea418587f15afedc3bea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acbf437c1b33bb34d239b0647192f6793"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html">Matrix</a>&lt; Nr, Nc, T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html#acbf437c1b33bb34d239b0647192f6793">transpose</a> () const </td></tr>
+<tr class="memdesc:acbf437c1b33bb34d239b0647192f6793"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html" title="Matrix Template. ">Matrix</a> Transpose operation.  <a href="#acbf437c1b33bb34d239b0647192f6793">More...</a><br /></td></tr>
+<tr class="separator:acbf437c1b33bb34d239b0647192f6793"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -195,22 +205,8 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memdesc:a8b5191350dc4db8b71039836c51d7a1b"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html" title="Matrix Template. ">Matrix</a> elements.  <a href="#a8b5191350dc4db8b71039836c51d7a1b">More...</a><br /></td></tr>
 <tr class="separator:a8b5191350dc4db8b71039836c51d7a1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-types"></a>
-Protected Types</h2></td></tr>
-<tr class="memitem:a55ee16860c80b5c21742409b690b772d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a55ee16860c80b5c21742409b690b772d"></a>
-typedef std::array&lt; T, Nr &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html#a55ee16860c80b5c21742409b690b772d">C</a></td></tr>
-<tr class="memdesc:a55ee16860c80b5c21742409b690b772d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Typedef for array containing one column of the data. <br /></td></tr>
-<tr class="separator:a55ee16860c80b5c21742409b690b772d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa8b5b6434e29fc287151f1c685983465"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa8b5b6434e29fc287151f1c685983465"></a>
-typedef std::array&lt; <a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html#a55ee16860c80b5c21742409b690b772d">C</a>, Nc &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html#aa8b5b6434e29fc287151f1c685983465">A</a></td></tr>
-<tr class="memdesc:aa8b5b6434e29fc287151f1c685983465"><td class="mdescLeft">&#160;</td><td class="mdescRight">Typedef for array containing the data. <br /></td></tr>
-<tr class="separator:aa8b5b6434e29fc287151f1c685983465"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:a55d21e1ee6de3c4d8e7c957da87d150e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html#a55d21e1ee6de3c4d8e7c957da87d150e">Matrix</a> (<a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html#aa8b5b6434e29fc287151f1c685983465">A</a> const &amp;a)</td></tr>
-<tr class="memdesc:a55d21e1ee6de3c4d8e7c957da87d150e"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html" title="Matrix Template. ">Matrix</a> Construction from Array.  <a href="#a55d21e1ee6de3c4d8e7c957da87d150e">More...</a><br /></td></tr>
-<tr class="separator:a55d21e1ee6de3c4d8e7c957da87d150e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a363946a3156161962911c95cdd5edf06"><td class="memItemLeft" align="right" valign="top">T const &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html#a363946a3156161962911c95cdd5edf06">sub</a> (int ri, int ci) const </td></tr>
 <tr class="memdesc:a363946a3156161962911c95cdd5edf06"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html" title="Matrix Template. ">Matrix</a> Subscripting Implementation.  <a href="#a363946a3156161962911c95cdd5edf06">More...</a><br /></td></tr>
 <tr class="separator:a363946a3156161962911c95cdd5edf06"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -332,47 +328,6 @@ template&lt;int Nc, int Nr, typename T&gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a55d21e1ee6de3c4d8e7c957da87d150e"></a>
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;int Nc, int Nr, typename T&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html">Farsyte::Matrix::Matrix</a>&lt; Nc, Nr, T &gt;::<a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html">Matrix</a> </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html#aa8b5b6434e29fc287151f1c685983465">A</a> const &amp;&#160;</td>
-          <td class="paramname"><em>a</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html" title="Matrix Template. ">Matrix</a> Construction from Array. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">a</td><td>Array to duplicate. This method is used by subclasses to provide value construction of Matrices using Arrays of Arrays of the appropriate dimensions. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section note"><dt>Note</dt><dd>Not a public interface: only classes within the class heirarchy below <a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html" title="Matrix Template. ">Matrix</a> should be aware of the data organization within the <a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html" title="Matrix Template. ">Matrix</a> object. </dd></dl>
-
-<p>Definition at line <a class="el" href="matrix_8h_source.html#l00099">99</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        : <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#a389fad807acc81a37c4905c6959a19f4">data</a>(a)</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        {</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        }</div>
-<div class="ttc" id="classFarsyte_1_1Matrix_1_1Matrix_html_a389fad807acc81a37c4905c6959a19f4"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1Matrix.html#a389fad807acc81a37c4905c6959a19f4">Farsyte::Matrix::Matrix::data</a></div><div class="ttdeci">A data</div><div class="ttdoc">Storage for Matrix State. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00279">matrix.h:279</a></div></div>
-</div><!-- fragment -->
-</div>
-</div>
 <a class="anchor" id="afeb93837ea7a2961135197fc2816f842"></a>
 <div class="memitem">
 <div class="memproto">
@@ -399,11 +354,11 @@ template&lt;int Nc, int Nr, typename T&gt; </div>
 <p><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html" title="Matrix Template. ">Matrix</a> Default Constructor. </p>
 <p><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html" title="Matrix Template. ">Matrix</a> objects that are default-constructed are assured of having each element appropriately initialized. </p>
 
-<p>Definition at line <a class="el" href="matrix_8h_source.html#l00140">140</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;        : <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#a389fad807acc81a37c4905c6959a19f4">data</a>()</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;        {</div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;        }</div>
-<div class="ttc" id="classFarsyte_1_1Matrix_1_1Matrix_html_a389fad807acc81a37c4905c6959a19f4"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1Matrix.html#a389fad807acc81a37c4905c6959a19f4">Farsyte::Matrix::Matrix::data</a></div><div class="ttdeci">A data</div><div class="ttdoc">Storage for Matrix State. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00279">matrix.h:279</a></div></div>
+<p>Definition at line <a class="el" href="matrix_8h_source.html#l00126">126</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;        : <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#a389fad807acc81a37c4905c6959a19f4">data</a>()</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;        {</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;        }</div>
+<div class="ttc" id="classFarsyte_1_1Matrix_1_1Matrix_html_a389fad807acc81a37c4905c6959a19f4"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1Matrix.html#a389fad807acc81a37c4905c6959a19f4">Farsyte::Matrix::Matrix::data</a></div><div class="ttdeci">A data</div><div class="ttdoc">Storage for Matrix State. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00280">matrix.h:280</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -439,14 +394,55 @@ template&lt;int Nc, int Nr, typename T&gt; </div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="matrix_8h_source.html#l00148">148</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;        : <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#a389fad807acc81a37c4905c6959a19f4">data</a>()</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;        {</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;          <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 1; (i &lt;= Nr) &amp;&amp; (i &lt;= Nc); ++i)</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;            <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#a363946a3156161962911c95cdd5edf06">sub</a>(i,i) = d;</div>
+<p>Definition at line <a class="el" href="matrix_8h_source.html#l00134">134</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        : <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#a389fad807acc81a37c4905c6959a19f4">data</a>()</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;        {</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;          <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 1; (i &lt;= Nr) &amp;&amp; (i &lt;= Nc); ++i)</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;            <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#a363946a3156161962911c95cdd5edf06">sub</a>(i,i) = d;</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;        }</div>
+<div class="ttc" id="classFarsyte_1_1Matrix_1_1Matrix_html_a363946a3156161962911c95cdd5edf06"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1Matrix.html#a363946a3156161962911c95cdd5edf06">Farsyte::Matrix::Matrix::sub</a></div><div class="ttdeci">T const &amp; sub(int ri, int ci) const </div><div class="ttdoc">Matrix Subscripting Implementation. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00096">matrix.h:96</a></div></div>
+<div class="ttc" id="classFarsyte_1_1Matrix_1_1Matrix_html_a389fad807acc81a37c4905c6959a19f4"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1Matrix.html#a389fad807acc81a37c4905c6959a19f4">Farsyte::Matrix::Matrix::data</a></div><div class="ttdeci">A data</div><div class="ttdoc">Storage for Matrix State. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00280">matrix.h:280</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a55d21e1ee6de3c4d8e7c957da87d150e"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int Nc, int Nr, typename T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html">Farsyte::Matrix::Matrix</a>&lt; Nc, Nr, T &gt;::<a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html">Matrix</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html#aa8b5b6434e29fc287151f1c685983465">A</a> const &amp;&#160;</td>
+          <td class="paramname"><em>a</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html" title="Matrix Template. ">Matrix</a> Construction from Array of Arrays. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td>Array to duplicate. This method is used by subclasses to provide value construction of Matrices using Arrays of Arrays of the appropriate dimensions. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>Not a public interface: only classes within the class heirarchy below <a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html" title="Matrix Template. ">Matrix</a> should be aware of the data organization within the <a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html" title="Matrix Template. ">Matrix</a> object. </dd></dl>
+
+<p>Definition at line <a class="el" href="matrix_8h_source.html#l00150">150</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;        : <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#a389fad807acc81a37c4905c6959a19f4">data</a>(a)</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;        {</div>
 <div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;        }</div>
-<div class="ttc" id="classFarsyte_1_1Matrix_1_1Matrix_html_a363946a3156161962911c95cdd5edf06"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1Matrix.html#a363946a3156161962911c95cdd5edf06">Farsyte::Matrix::Matrix::sub</a></div><div class="ttdeci">T const &amp; sub(int ri, int ci) const </div><div class="ttdoc">Matrix Subscripting Implementation. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00110">matrix.h:110</a></div></div>
-<div class="ttc" id="classFarsyte_1_1Matrix_1_1Matrix_html_a389fad807acc81a37c4905c6959a19f4"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1Matrix.html#a389fad807acc81a37c4905c6959a19f4">Farsyte::Matrix::Matrix::data</a></div><div class="ttdeci">A data</div><div class="ttdoc">Storage for Matrix State. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00279">matrix.h:279</a></div></div>
+<div class="ttc" id="classFarsyte_1_1Matrix_1_1Matrix_html_a389fad807acc81a37c4905c6959a19f4"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1Matrix.html#a389fad807acc81a37c4905c6959a19f4">Farsyte::Matrix::Matrix::data</a></div><div class="ttdeci">A data</div><div class="ttdoc">Storage for Matrix State. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00280">matrix.h:280</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -486,7 +482,7 @@ template&lt;int Nc, int Nr, typename T&gt; </div>
 <div class="fragment"><div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;        : <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#a389fad807acc81a37c4905c6959a19f4">data</a>(m.data)</div>
 <div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;        {</div>
 <div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;        }</div>
-<div class="ttc" id="classFarsyte_1_1Matrix_1_1Matrix_html_a389fad807acc81a37c4905c6959a19f4"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1Matrix.html#a389fad807acc81a37c4905c6959a19f4">Farsyte::Matrix::Matrix::data</a></div><div class="ttdeci">A data</div><div class="ttdoc">Storage for Matrix State. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00279">matrix.h:279</a></div></div>
+<div class="ttc" id="classFarsyte_1_1Matrix_1_1Matrix_html_a389fad807acc81a37c4905c6959a19f4"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1Matrix.html#a389fad807acc81a37c4905c6959a19f4">Farsyte::Matrix::Matrix::data</a></div><div class="ttdeci">A data</div><div class="ttdoc">Storage for Matrix State. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00280">matrix.h:280</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -517,19 +513,19 @@ template&lt;int Nc, int Nr, typename T&gt; </div>
 <p><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html" title="Matrix Template. ">Matrix</a> columns. </p>
 <dl class="section return"><dt>Returns</dt><dd>number of columns <code>Nc</code> in tha matrix. </dd></dl>
 
-<p>Definition at line <a class="el" href="matrix_8h_source.html#l00067">67</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
+<p>Definition at line <a class="el" href="matrix_8h_source.html#l00075">75</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
 
-<p>Referenced by <a class="el" href="matrix_8h_source.html#l00075">Farsyte::Matrix::Matrix&lt; 1, Nr, double &gt;::size()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        {</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;          <span class="keywordflow">return</span> Nc;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        }</div>
+<p>Referenced by <a class="el" href="matrix_8h_source.html#l00083">Farsyte::Matrix::Matrix&lt; 1, Nr, double &gt;::size()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        {</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;          <span class="keywordflow">return</span> Nc;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        }</div>
 </div><!-- fragment -->
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classFarsyte_1_1Matrix_1_1Matrix_aa544710adacdf29ae9ebb6f19a4d7e89_icgraph.png" border="0" usemap="#classFarsyte_1_1Matrix_1_1Matrix_aa544710adacdf29ae9ebb6f19a4d7e89_icgraph" alt=""/></div>
 <map name="classFarsyte_1_1Matrix_1_1Matrix_aa544710adacdf29ae9ebb6f19a4d7e89_icgraph" id="classFarsyte_1_1Matrix_1_1Matrix_aa544710adacdf29ae9ebb6f19a4d7e89_icgraph">
-<area shape="rect" id="node2" href="classFarsyte_1_1Matrix_1_1Matrix.html#a8b5191350dc4db8b71039836c51d7a1b" title="Matrix elements. " alt="" coords="207,5,360,44"/></map>
+<area shape="rect" id="node2" href="classFarsyte_1_1Matrix_1_1Matrix.html#a8b5191350dc4db8b71039836c51d7a1b" title="Matrix elements. " alt="" coords="208,5,363,47"/></map>
 </div>
 </p>
 
@@ -577,14 +573,14 @@ template&lt;int Nc, int Nr, typename T&gt; </div>
 <div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;              <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#a363946a3156161962911c95cdd5edf06">sub</a>(ri,ci) -= p.sub(ri,ci);</div>
 <div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;          <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
 <div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;        }</div>
-<div class="ttc" id="classFarsyte_1_1Matrix_1_1Matrix_html_a363946a3156161962911c95cdd5edf06"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1Matrix.html#a363946a3156161962911c95cdd5edf06">Farsyte::Matrix::Matrix::sub</a></div><div class="ttdeci">T const &amp; sub(int ri, int ci) const </div><div class="ttdoc">Matrix Subscripting Implementation. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00110">matrix.h:110</a></div></div>
+<div class="ttc" id="classFarsyte_1_1Matrix_1_1Matrix_html_a363946a3156161962911c95cdd5edf06"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1Matrix.html#a363946a3156161962911c95cdd5edf06">Farsyte::Matrix::Matrix::sub</a></div><div class="ttdeci">T const &amp; sub(int ri, int ci) const </div><div class="ttdoc">Matrix Subscripting Implementation. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00096">matrix.h:96</a></div></div>
 </div><!-- fragment -->
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classFarsyte_1_1Matrix_1_1Matrix_acd4898041f9b2d4c141cfa8d1c525cf9_icgraph.png" border="0" usemap="#classFarsyte_1_1Matrix_1_1Matrix_acd4898041f9b2d4c141cfa8d1c525cf9_icgraph" alt=""/></div>
 <map name="classFarsyte_1_1Matrix_1_1Matrix_acd4898041f9b2d4c141cfa8d1c525cf9_icgraph" id="classFarsyte_1_1Matrix_1_1Matrix_acd4898041f9b2d4c141cfa8d1c525cf9_icgraph">
-<area shape="rect" id="node2" href="classFarsyte_1_1Matrix_1_1Matrix.html#aadf57dc35f17ed9652af5711bf8c14f5" title="Matrix Decrement operator. " alt="" coords="207,5,396,44"/></map>
+<area shape="rect" id="node2" href="classFarsyte_1_1Matrix_1_1Matrix.html#aadf57dc35f17ed9652af5711bf8c14f5" title="Matrix Decrement operator. " alt="" coords="208,5,396,47"/></map>
 </div>
 </p>
 
@@ -631,7 +627,7 @@ template&lt;int Nc, int Nr, typename T&gt; </div>
 <div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
 <div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;          <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
 <div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;        }</div>
-<div class="ttc" id="classFarsyte_1_1Matrix_1_1Matrix_html_a363946a3156161962911c95cdd5edf06"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1Matrix.html#a363946a3156161962911c95cdd5edf06">Farsyte::Matrix::Matrix::sub</a></div><div class="ttdeci">T const &amp; sub(int ri, int ci) const </div><div class="ttdoc">Matrix Subscripting Implementation. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00110">matrix.h:110</a></div></div>
+<div class="ttc" id="classFarsyte_1_1Matrix_1_1Matrix_html_a363946a3156161962911c95cdd5edf06"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1Matrix.html#a363946a3156161962911c95cdd5edf06">Farsyte::Matrix::Matrix::sub</a></div><div class="ttdeci">T const &amp; sub(int ri, int ci) const </div><div class="ttdoc">Matrix Subscripting Implementation. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00096">matrix.h:96</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -677,14 +673,14 @@ template&lt;int Nc, int Nr, typename T&gt; </div>
 <div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;              <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#a363946a3156161962911c95cdd5edf06">sub</a>(ri,ci) += p.sub(ri,ci);</div>
 <div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;          <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
 <div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;        }</div>
-<div class="ttc" id="classFarsyte_1_1Matrix_1_1Matrix_html_a363946a3156161962911c95cdd5edf06"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1Matrix.html#a363946a3156161962911c95cdd5edf06">Farsyte::Matrix::Matrix::sub</a></div><div class="ttdeci">T const &amp; sub(int ri, int ci) const </div><div class="ttdoc">Matrix Subscripting Implementation. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00110">matrix.h:110</a></div></div>
+<div class="ttc" id="classFarsyte_1_1Matrix_1_1Matrix_html_a363946a3156161962911c95cdd5edf06"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1Matrix.html#a363946a3156161962911c95cdd5edf06">Farsyte::Matrix::Matrix::sub</a></div><div class="ttdeci">T const &amp; sub(int ri, int ci) const </div><div class="ttdoc">Matrix Subscripting Implementation. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00096">matrix.h:96</a></div></div>
 </div><!-- fragment -->
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classFarsyte_1_1Matrix_1_1Matrix_a92ef16f3a98345b908ed6c8e5b1c652d_icgraph.png" border="0" usemap="#classFarsyte_1_1Matrix_1_1Matrix_a92ef16f3a98345b908ed6c8e5b1c652d_icgraph" alt=""/></div>
 <map name="classFarsyte_1_1Matrix_1_1Matrix_a92ef16f3a98345b908ed6c8e5b1c652d_icgraph" id="classFarsyte_1_1Matrix_1_1Matrix_a92ef16f3a98345b908ed6c8e5b1c652d_icgraph">
-<area shape="rect" id="node2" href="classFarsyte_1_1Matrix_1_1Matrix.html#a0bbe0dc4b406b1d1668829ebd884b146" title="Matrix Increment operator. " alt="" coords="207,5,399,44"/></map>
+<area shape="rect" id="node2" href="classFarsyte_1_1Matrix_1_1Matrix.html#a0bbe0dc4b406b1d1668829ebd884b146" title="Matrix Increment operator. " alt="" coords="208,5,400,47"/></map>
 </div>
 </p>
 
@@ -723,7 +719,7 @@ template&lt;int Nc, int Nr, typename T&gt; </div>
 <div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;              <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#a363946a3156161962911c95cdd5edf06">sub</a>(ri,ci) = -<a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#a363946a3156161962911c95cdd5edf06">sub</a>(ri,ci);</div>
 <div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;          <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
 <div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;        }</div>
-<div class="ttc" id="classFarsyte_1_1Matrix_1_1Matrix_html_a363946a3156161962911c95cdd5edf06"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1Matrix.html#a363946a3156161962911c95cdd5edf06">Farsyte::Matrix::Matrix::sub</a></div><div class="ttdeci">T const &amp; sub(int ri, int ci) const </div><div class="ttdoc">Matrix Subscripting Implementation. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00110">matrix.h:110</a></div></div>
+<div class="ttc" id="classFarsyte_1_1Matrix_1_1Matrix_html_a363946a3156161962911c95cdd5edf06"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1Matrix.html#a363946a3156161962911c95cdd5edf06">Farsyte::Matrix::Matrix::sub</a></div><div class="ttdeci">T const &amp; sub(int ri, int ci) const </div><div class="ttdoc">Matrix Subscripting Implementation. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00096">matrix.h:96</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -776,7 +772,7 @@ template&lt;int Nc, int Nr, typename T&gt; </div>
 <div class="fragment"><div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;        {</div>
 <div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;          <span class="keywordflow">return</span> <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#a363946a3156161962911c95cdd5edf06">sub</a>(ri, ci);</div>
 <div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;        }</div>
-<div class="ttc" id="classFarsyte_1_1Matrix_1_1Matrix_html_a363946a3156161962911c95cdd5edf06"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1Matrix.html#a363946a3156161962911c95cdd5edf06">Farsyte::Matrix::Matrix::sub</a></div><div class="ttdeci">T const &amp; sub(int ri, int ci) const </div><div class="ttdoc">Matrix Subscripting Implementation. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00110">matrix.h:110</a></div></div>
+<div class="ttc" id="classFarsyte_1_1Matrix_1_1Matrix_html_a363946a3156161962911c95cdd5edf06"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1Matrix.html#a363946a3156161962911c95cdd5edf06">Farsyte::Matrix::Matrix::sub</a></div><div class="ttdeci">T const &amp; sub(int ri, int ci) const </div><div class="ttdoc">Matrix Subscripting Implementation. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00096">matrix.h:96</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -829,7 +825,7 @@ template&lt;int Nc, int Nr, typename T&gt; </div>
 <div class="fragment"><div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;        {</div>
 <div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;          <span class="keywordflow">return</span> <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#a363946a3156161962911c95cdd5edf06">sub</a>(ri, ci);</div>
 <div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;        }</div>
-<div class="ttc" id="classFarsyte_1_1Matrix_1_1Matrix_html_a363946a3156161962911c95cdd5edf06"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1Matrix.html#a363946a3156161962911c95cdd5edf06">Farsyte::Matrix::Matrix::sub</a></div><div class="ttdeci">T const &amp; sub(int ri, int ci) const </div><div class="ttdoc">Matrix Subscripting Implementation. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00110">matrix.h:110</a></div></div>
+<div class="ttc" id="classFarsyte_1_1Matrix_1_1Matrix_html_a363946a3156161962911c95cdd5edf06"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1Matrix.html#a363946a3156161962911c95cdd5edf06">Farsyte::Matrix::Matrix::sub</a></div><div class="ttdeci">T const &amp; sub(int ri, int ci) const </div><div class="ttdoc">Matrix Subscripting Implementation. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00096">matrix.h:96</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -941,19 +937,19 @@ template&lt;int Nc, int Nr, typename T&gt; </div>
 <p><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html" title="Matrix Template. ">Matrix</a> rows. </p>
 <dl class="section return"><dt>Returns</dt><dd>number of rows <code>Nr</code> in tha matrix. </dd></dl>
 
-<p>Definition at line <a class="el" href="matrix_8h_source.html#l00059">59</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
+<p>Definition at line <a class="el" href="matrix_8h_source.html#l00067">67</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
 
-<p>Referenced by <a class="el" href="matrix_8h_source.html#l00075">Farsyte::Matrix::Matrix&lt; 1, Nr, double &gt;::size()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        {</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;          <span class="keywordflow">return</span> Nr;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        }</div>
+<p>Referenced by <a class="el" href="matrix_8h_source.html#l00083">Farsyte::Matrix::Matrix&lt; 1, Nr, double &gt;::size()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        {</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;          <span class="keywordflow">return</span> Nr;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        }</div>
 </div><!-- fragment -->
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classFarsyte_1_1Matrix_1_1Matrix_a48df0f93a310d496a0cd3c0dad4ce268_icgraph.png" border="0" usemap="#classFarsyte_1_1Matrix_1_1Matrix_a48df0f93a310d496a0cd3c0dad4ce268_icgraph" alt=""/></div>
 <map name="classFarsyte_1_1Matrix_1_1Matrix_a48df0f93a310d496a0cd3c0dad4ce268_icgraph" id="classFarsyte_1_1Matrix_1_1Matrix_a48df0f93a310d496a0cd3c0dad4ce268_icgraph">
-<area shape="rect" id="node2" href="classFarsyte_1_1Matrix_1_1Matrix.html#a8b5191350dc4db8b71039836c51d7a1b" title="Matrix elements. " alt="" coords="207,5,360,44"/></map>
+<area shape="rect" id="node2" href="classFarsyte_1_1Matrix_1_1Matrix.html#a8b5191350dc4db8b71039836c51d7a1b" title="Matrix elements. " alt="" coords="208,5,363,47"/></map>
 </div>
 </p>
 
@@ -985,12 +981,12 @@ template&lt;int Nc, int Nr, typename T&gt; </div>
 <p><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html" title="Matrix Template. ">Matrix</a> elements. </p>
 <dl class="section return"><dt>Returns</dt><dd>number of elements <code>Nr*Nc</code> in the matrix. </dd></dl>
 
-<p>Definition at line <a class="el" href="matrix_8h_source.html#l00075">75</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        {</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;          <span class="keywordflow">return</span> <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#a48df0f93a310d496a0cd3c0dad4ce268">rows</a>() * <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#aa544710adacdf29ae9ebb6f19a4d7e89">cols</a>();</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        }</div>
-<div class="ttc" id="classFarsyte_1_1Matrix_1_1Matrix_html_a48df0f93a310d496a0cd3c0dad4ce268"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1Matrix.html#a48df0f93a310d496a0cd3c0dad4ce268">Farsyte::Matrix::Matrix::rows</a></div><div class="ttdeci">static size_t rows()</div><div class="ttdoc">Matrix rows. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00059">matrix.h:59</a></div></div>
-<div class="ttc" id="classFarsyte_1_1Matrix_1_1Matrix_html_aa544710adacdf29ae9ebb6f19a4d7e89"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1Matrix.html#aa544710adacdf29ae9ebb6f19a4d7e89">Farsyte::Matrix::Matrix::cols</a></div><div class="ttdeci">static size_t cols()</div><div class="ttdoc">Matrix columns. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00067">matrix.h:67</a></div></div>
+<p>Definition at line <a class="el" href="matrix_8h_source.html#l00083">83</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        {</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;          <span class="keywordflow">return</span> <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#a48df0f93a310d496a0cd3c0dad4ce268">rows</a>() * <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#aa544710adacdf29ae9ebb6f19a4d7e89">cols</a>();</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        }</div>
+<div class="ttc" id="classFarsyte_1_1Matrix_1_1Matrix_html_a48df0f93a310d496a0cd3c0dad4ce268"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1Matrix.html#a48df0f93a310d496a0cd3c0dad4ce268">Farsyte::Matrix::Matrix::rows</a></div><div class="ttdeci">static size_t rows()</div><div class="ttdoc">Matrix rows. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00067">matrix.h:67</a></div></div>
+<div class="ttc" id="classFarsyte_1_1Matrix_1_1Matrix_html_aa544710adacdf29ae9ebb6f19a4d7e89"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1Matrix.html#aa544710adacdf29ae9ebb6f19a4d7e89">Farsyte::Matrix::Matrix::cols</a></div><div class="ttdeci">static size_t cols()</div><div class="ttdoc">Matrix columns. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00075">matrix.h:75</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1039,24 +1035,24 @@ template&lt;int Nc, int Nr, typename T&gt; </div>
 <dl class="section return"><dt>Returns</dt><dd>a read-only reference to the selected element. </dd></dl>
 <dl class="section note"><dt>Note</dt><dd>Fortran conventions for array subscripting. </dd></dl>
 
-<p>Definition at line <a class="el" href="matrix_8h_source.html#l00110">110</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
+<p>Definition at line <a class="el" href="matrix_8h_source.html#l00096">96</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
 
-<p>Referenced by <a class="el" href="matrix_8h_source.html#l00234">Farsyte::Matrix::Matrix&lt; 1, Nr, double &gt;::decrement_by()</a>, <a class="el" href="matrix_8h_source.html#l00191">Farsyte::Matrix::Matrix&lt; 1, Nr, double &gt;::equals()</a>, <a class="el" href="matrix_8h_source.html#l00207">Farsyte::Matrix::Matrix&lt; 1, Nr, double &gt;::increment_by()</a>, <a class="el" href="matrix_8h_source.html#l00148">Farsyte::Matrix::Matrix&lt; 1, Nr, double &gt;::Matrix()</a>, <a class="el" href="matrix_8h_source.html#l00257">Farsyte::Matrix::Matrix&lt; 1, Nr, double &gt;::negate()</a>, <a class="el" href="matrix_8h_source.html#l00171">Farsyte::Matrix::Matrix&lt; 1, Nr, double &gt;::operator()()</a>, and <a class="el" href="matrix_8h_source.html#l00268">Farsyte::Matrix::Matrix&lt; 1, Nr, double &gt;::transpose()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        {</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="preprocessor">#ifdef RANGE_CHECKER</span></div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;          RANGE_CHECKER(1,ci,Nc);</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;          RANGE_CHECKER(1,ri,Nr);</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;          <span class="keywordflow">return</span> <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#a389fad807acc81a37c4905c6959a19f4">data</a>[ci-1][ri-1];</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        }</div>
-<div class="ttc" id="classFarsyte_1_1Matrix_1_1Matrix_html_a389fad807acc81a37c4905c6959a19f4"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1Matrix.html#a389fad807acc81a37c4905c6959a19f4">Farsyte::Matrix::Matrix::data</a></div><div class="ttdeci">A data</div><div class="ttdoc">Storage for Matrix State. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00279">matrix.h:279</a></div></div>
+<p>Referenced by <a class="el" href="matrix_8h_source.html#l00234">Farsyte::Matrix::Matrix&lt; 1, Nr, double &gt;::decrement_by()</a>, <a class="el" href="matrix_8h_source.html#l00191">Farsyte::Matrix::Matrix&lt; 1, Nr, double &gt;::equals()</a>, <a class="el" href="matrix_8h_source.html#l00207">Farsyte::Matrix::Matrix&lt; 1, Nr, double &gt;::increment_by()</a>, <a class="el" href="matrix_8h_source.html#l00134">Farsyte::Matrix::Matrix&lt; 1, Nr, double &gt;::Matrix()</a>, <a class="el" href="matrix_8h_source.html#l00257">Farsyte::Matrix::Matrix&lt; 1, Nr, double &gt;::negate()</a>, <a class="el" href="matrix_8h_source.html#l00171">Farsyte::Matrix::Matrix&lt; 1, Nr, double &gt;::operator()()</a>, and <a class="el" href="matrix_8h_source.html#l00269">Farsyte::Matrix::Matrix&lt; 1, Nr, double &gt;::transpose()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        {</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="preprocessor">#ifdef RANGE_CHECKER</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;          RANGE_CHECKER(1,ci,Nc);</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;          RANGE_CHECKER(1,ri,Nr);</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;          <span class="keywordflow">return</span> <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#a389fad807acc81a37c4905c6959a19f4">data</a>[ci-1][ri-1];</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        }</div>
+<div class="ttc" id="classFarsyte_1_1Matrix_1_1Matrix_html_a389fad807acc81a37c4905c6959a19f4"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1Matrix.html#a389fad807acc81a37c4905c6959a19f4">Farsyte::Matrix::Matrix::data</a></div><div class="ttdeci">A data</div><div class="ttdoc">Storage for Matrix State. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00280">matrix.h:280</a></div></div>
 </div><!-- fragment -->
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classFarsyte_1_1Matrix_1_1Matrix_a363946a3156161962911c95cdd5edf06_icgraph.png" border="0" usemap="#classFarsyte_1_1Matrix_1_1Matrix_a363946a3156161962911c95cdd5edf06_icgraph" alt=""/></div>
 <map name="classFarsyte_1_1Matrix_1_1Matrix_a363946a3156161962911c95cdd5edf06_icgraph" id="classFarsyte_1_1Matrix_1_1Matrix_a363946a3156161962911c95cdd5edf06_icgraph">
-<area shape="rect" id="node2" href="classFarsyte_1_1Matrix_1_1Matrix.html#acd4898041f9b2d4c141cfa8d1c525cf9" title="Matrix Decrement operation. " alt="" coords="235,5,447,44"/><area shape="rect" id="node3" href="classFarsyte_1_1Matrix_1_1Matrix.html#adf5659ea0fe0f228b4e219605cce3ba8" title="Matrix Equality Test. " alt="" coords="258,68,425,107"/><area shape="rect" id="node4" href="classFarsyte_1_1Matrix_1_1Matrix.html#a92ef16f3a98345b908ed6c8e5b1c652d" title="Matrix Increment operation. " alt="" coords="238,131,445,169"/><area shape="rect" id="node5" href="classFarsyte_1_1Matrix_1_1Matrix.html#a54d7caa0fa5feb028cf94f00eaaa26df" title="Matrix Diagonal Constructor. " alt="" coords="260,193,423,232"/><area shape="rect" id="node6" href="classFarsyte_1_1Matrix_1_1Matrix.html#aaa03092a83ca5092706a056ddd738e0c" title="Matrix Negate operation. " alt="" coords="257,256,425,295"/><area shape="rect" id="node7" href="classFarsyte_1_1Matrix_1_1Matrix.html#a287e40d5117f6e01171112090b447298" title="Matrix Subscripting Operator. " alt="" coords="248,319,434,357"/><area shape="rect" id="node8" href="classFarsyte_1_1Matrix_1_1Matrix.html#ab0038c16a258ea418587f15afedc3bea" title="Matrix Transpose operation. " alt="" coords="248,381,434,420"/></map>
+<area shape="rect" id="node2" href="classFarsyte_1_1Matrix_1_1Matrix.html#acd4898041f9b2d4c141cfa8d1c525cf9" title="Matrix Decrement operation. " alt="" coords="236,5,447,47"/><area shape="rect" id="node3" href="classFarsyte_1_1Matrix_1_1Matrix.html#adf5659ea0fe0f228b4e219605cce3ba8" title="Matrix Equality Test. " alt="" coords="258,71,425,112"/><area shape="rect" id="node4" href="classFarsyte_1_1Matrix_1_1Matrix.html#a92ef16f3a98345b908ed6c8e5b1c652d" title="Matrix Increment operation. " alt="" coords="238,136,445,177"/><area shape="rect" id="node5" href="classFarsyte_1_1Matrix_1_1Matrix.html#a54d7caa0fa5feb028cf94f00eaaa26df" title="Matrix Diagonal Constructor. " alt="" coords="259,201,424,243"/><area shape="rect" id="node6" href="classFarsyte_1_1Matrix_1_1Matrix.html#aaa03092a83ca5092706a056ddd738e0c" title="Matrix Negate operation. " alt="" coords="257,267,425,308"/><area shape="rect" id="node7" href="classFarsyte_1_1Matrix_1_1Matrix.html#a287e40d5117f6e01171112090b447298" title="Matrix Subscripting Operator. " alt="" coords="249,332,433,373"/><area shape="rect" id="node8" href="classFarsyte_1_1Matrix_1_1Matrix.html#acbf437c1b33bb34d239b0647192f6793" title="Matrix Transpose operation. " alt="" coords="248,397,435,439"/></map>
 </div>
 </p>
 
@@ -1107,19 +1103,19 @@ template&lt;int Nc, int Nr, typename T&gt; </div>
 <dl class="section return"><dt>Returns</dt><dd>a writable reference to the selected element. </dd></dl>
 <dl class="section note"><dt>Note</dt><dd>Fortran conventions for array subscripting. </dd></dl>
 
-<p>Definition at line <a class="el" href="matrix_8h_source.html#l00125">125</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;        {</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="preprocessor">#ifdef RANGE_CHECKER</span></div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;          RANGE_CHECKER(1,ci,Nc);</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;          RANGE_CHECKER(1,ri,Nr);</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;          <span class="keywordflow">return</span> <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#a389fad807acc81a37c4905c6959a19f4">data</a>[ci-1][ri-1];</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;        }</div>
-<div class="ttc" id="classFarsyte_1_1Matrix_1_1Matrix_html_a389fad807acc81a37c4905c6959a19f4"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1Matrix.html#a389fad807acc81a37c4905c6959a19f4">Farsyte::Matrix::Matrix::data</a></div><div class="ttdeci">A data</div><div class="ttdoc">Storage for Matrix State. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00279">matrix.h:279</a></div></div>
+<p>Definition at line <a class="el" href="matrix_8h_source.html#l00111">111</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        {</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="preprocessor">#ifdef RANGE_CHECKER</span></div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;          RANGE_CHECKER(1,ci,Nc);</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;          RANGE_CHECKER(1,ri,Nr);</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;          <span class="keywordflow">return</span> <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#a389fad807acc81a37c4905c6959a19f4">data</a>[ci-1][ri-1];</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        }</div>
+<div class="ttc" id="classFarsyte_1_1Matrix_1_1Matrix_html_a389fad807acc81a37c4905c6959a19f4"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1Matrix.html#a389fad807acc81a37c4905c6959a19f4">Farsyte::Matrix::Matrix::data</a></div><div class="ttdeci">A data</div><div class="ttdoc">Storage for Matrix State. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00280">matrix.h:280</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
-<a class="anchor" id="ab0038c16a258ea418587f15afedc3bea"></a>
+<a class="anchor" id="acbf437c1b33bb34d239b0647192f6793"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
@@ -1129,7 +1125,7 @@ template&lt;int Nc, int Nr, typename T&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html">Matrix</a> <a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html">Farsyte::Matrix::Matrix</a>&lt; Nc, Nr, T &gt;::transpose </td>
+          <td class="memname"><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html">Matrix</a>&lt;Nr,Nc,T&gt; <a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html">Farsyte::Matrix::Matrix</a>&lt; Nc, Nr, T &gt;::transpose </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -1145,15 +1141,15 @@ template&lt;int Nc, int Nr, typename T&gt; </div>
 <p><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html" title="Matrix Template. ">Matrix</a> Transpose operation. </p>
 <dl class="section return"><dt>Returns</dt><dd>transposed matrix. </dd></dl>
 
-<p>Definition at line <a class="el" href="matrix_8h_source.html#l00268">268</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;        {</div>
-<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;          Matrix&lt;Nr,Nc,T&gt; R;</div>
-<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;          <span class="keywordflow">for</span> (<span class="keywordtype">int</span> ci = 1; ci &lt;= Nc; ++ci)</div>
-<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> ri = 1; ri &lt;= Nr; ++ri)</div>
-<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;              R(ci,ri) = <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#a363946a3156161962911c95cdd5edf06">sub</a>(ri,ci);</div>
-<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;          <span class="keywordflow">return</span> R;</div>
-<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;        }</div>
-<div class="ttc" id="classFarsyte_1_1Matrix_1_1Matrix_html_a363946a3156161962911c95cdd5edf06"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1Matrix.html#a363946a3156161962911c95cdd5edf06">Farsyte::Matrix::Matrix::sub</a></div><div class="ttdeci">T const &amp; sub(int ri, int ci) const </div><div class="ttdoc">Matrix Subscripting Implementation. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00110">matrix.h:110</a></div></div>
+<p>Definition at line <a class="el" href="matrix_8h_source.html#l00269">269</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;        {</div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;          Matrix&lt;Nr,Nc,T&gt; R;</div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;          <span class="keywordflow">for</span> (<span class="keywordtype">int</span> ci = 1; ci &lt;= Nc; ++ci)</div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> ri = 1; ri &lt;= Nr; ++ri)</div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;              R(ci,ri) = <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#a363946a3156161962911c95cdd5edf06">sub</a>(ri,ci);</div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;          <span class="keywordflow">return</span> R;</div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;        }</div>
+<div class="ttc" id="classFarsyte_1_1Matrix_1_1Matrix_html_a363946a3156161962911c95cdd5edf06"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1Matrix.html#a363946a3156161962911c95cdd5edf06">Farsyte::Matrix::Matrix::sub</a></div><div class="ttdeci">T const &amp; sub(int ri, int ci) const </div><div class="ttdoc">Matrix Subscripting Implementation. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00096">matrix.h:96</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1180,9 +1176,9 @@ template&lt;int Nc, int Nr, typename T&gt; </div>
 
 <p>Storage for <a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html" title="Matrix Template. ">Matrix</a> State. </p>
 
-<p>Definition at line <a class="el" href="matrix_8h_source.html#l00279">279</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
+<p>Definition at line <a class="el" href="matrix_8h_source.html#l00280">280</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
 
-<p>Referenced by <a class="el" href="matrix_8h_source.html#l00110">Farsyte::Matrix::Matrix&lt; 1, Nr, double &gt;::sub()</a>.</p>
+<p>Referenced by <a class="el" href="matrix_8h_source.html#l00096">Farsyte::Matrix::Matrix&lt; 1, Nr, double &gt;::sub()</a>.</p>
 
 </div>
 </div>
@@ -1195,7 +1191,7 @@ template&lt;int Nc, int Nr, typename T&gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><b>Farsyte</b></li><li class="navelem"><b>Matrix</b></li><li class="navelem"><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html">Matrix</a></li>
-    <li class="footer">Generated on Sun Sep 14 2014 13:41:25 for The Farsyte Toolkit by
+    <li class="footer">Generated on Mon Sep 15 2014 22:23:01 for The Farsyte Toolkit by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

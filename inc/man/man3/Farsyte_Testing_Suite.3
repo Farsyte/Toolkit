@@ -1,0 +1,155 @@
+.TH "Farsyte::Testing::Suite" 3 "Mon Sep 15 2014" "The Farsyte Toolkit" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Farsyte::Testing::Suite \- 
+.PP
+The \fBSuite\fP Object\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <testing\&.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBSuite\fP (\fBLog\fP &\fBref\fP, std::string const &\fBname\fP)"
+.br
+.RI "\fIConstruct a new \fBSuite\fP object\&. \fP"
+.ti -1c
+.RI "\fB~Suite\fP ()"
+.br
+.RI "\fI\fBSuite\fP Destructor\&. \fP"
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBLog\fP & \fBref\fP"
+.br
+.RI "\fI\fBTest\fP \fBLog\fP associated with this \fBSuite\fP\&. \fP"
+.ti -1c
+.RI "std::string const \fBname\fP"
+.br
+.RI "\fIName of the test suite\&. \fP"
+.ti -1c
+.RI "\fBTest\fP * \fBcurr\fP"
+.br
+.RI "\fICurrently active \fBTest\fP, or NULL if none\&. \fP"
+.ti -1c
+.RI "size_t \fBtests\fP"
+.br
+.RI "\fICount of tests within this suite\&. \fP"
+.ti -1c
+.RI "size_t \fBfailed_tests\fP"
+.br
+.RI "\fICumulative count of Tests with at least one FAIL\&. \fP"
+.ti -1c
+.RI "size_t \fBskipped_tests\fP"
+.br
+.RI "\fICumulative count of Tests with at least one SKIP\&. \fP"
+.ti -1c
+.RI "size_t \fBerrored_tests\fP"
+.br
+.RI "\fICumulative count of Tests with at least one ERROR\&. \fP"
+.ti -1c
+.RI "size_t \fBtotal_fails\fP"
+.br
+.RI "\fICumulative count of all FAIL reports\&. \fP"
+.ti -1c
+.RI "size_t \fBtotal_skips\fP"
+.br
+.RI "\fICumulative count of all SKIP reports\&. \fP"
+.ti -1c
+.RI "size_t \fBtotal_errors\fP"
+.br
+.RI "\fICumulative count of all ERROR reports\&. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+The \fBSuite\fP Object\&. 
+
+The \fBSuite\fP object constructor writes appropraite opening text to the XML output stream\&. The destructor writes appropriate text to the XML stream to close the XML element corresponding to the suite\&. It is an error to construct a \fBSuite\fP object for a \fBLog\fP that currently has an active \fBSuite\fP object; be sure that each \fBSuite\fP object goes out of scope before the next one is constructed\&. 
+.PP
+Definition at line 92 of file testing\&.h\&.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "Farsyte::Testing::Suite::Suite (\fBLog\fP &ref, std::string const &name)"
+
+.PP
+Construct a new \fBSuite\fP object\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIref\fP - \fBLog\fP that contains this \fBSuite\fP\&. 
+.br
+\fIname\fP - what to call this \fBSuite\fP\&. Generates appropriate header text to the XML text output stream to start a new suite\&. May throw an exception if there is already an existing \fBSuite\fP associated with the specified \fBLog\fP\&. 
+.RE
+.PP
+
+.SS "Farsyte::Testing::Suite::~Suite ()"
+
+.PP
+\fBSuite\fP Destructor\&. Generates an appropriate trailer to the XML text output stream to close the \fBSuite\fP\&. May throw an exception if it appears that this is not the current \fBSuite\fP associated with the \fBLog\fP\&. 
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBTest\fP* Farsyte::Testing::Suite::curr"
+
+.PP
+Currently active \fBTest\fP, or NULL if none\&. 
+.PP
+Definition at line 102 of file testing\&.h\&.
+.SS "size_t Farsyte::Testing::Suite::errored_tests"
+
+.PP
+Cumulative count of Tests with at least one ERROR\&. 
+.PP
+Definition at line 114 of file testing\&.h\&.
+.SS "size_t Farsyte::Testing::Suite::failed_tests"
+
+.PP
+Cumulative count of Tests with at least one FAIL\&. 
+.PP
+Definition at line 108 of file testing\&.h\&.
+.SS "\fBLog\fP& Farsyte::Testing::Suite::ref"
+
+.PP
+\fBTest\fP \fBLog\fP associated with this \fBSuite\fP\&. 
+.PP
+Definition at line 96 of file testing\&.h\&.
+.SS "size_t Farsyte::Testing::Suite::skipped_tests"
+
+.PP
+Cumulative count of Tests with at least one SKIP\&. 
+.PP
+Definition at line 111 of file testing\&.h\&.
+.SS "size_t Farsyte::Testing::Suite::tests"
+
+.PP
+Count of tests within this suite\&. 
+.PP
+Definition at line 105 of file testing\&.h\&.
+.SS "size_t Farsyte::Testing::Suite::total_errors"
+
+.PP
+Cumulative count of all ERROR reports\&. 
+.PP
+Definition at line 123 of file testing\&.h\&.
+.SS "size_t Farsyte::Testing::Suite::total_fails"
+
+.PP
+Cumulative count of all FAIL reports\&. 
+.PP
+Definition at line 117 of file testing\&.h\&.
+.SS "size_t Farsyte::Testing::Suite::total_skips"
+
+.PP
+Cumulative count of all SKIP reports\&. 
+.PP
+Definition at line 120 of file testing\&.h\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for The Farsyte Toolkit from the source code\&.

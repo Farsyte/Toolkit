@@ -1,0 +1,165 @@
+.TH "Farsyte::Testing::Log" 3 "Mon Sep 15 2014" "The Farsyte Toolkit" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Farsyte::Testing::Log \- 
+.PP
+The \fBLog\fP Object\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <testing\&.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBLog\fP (std::ostream &\fBout\fP, std::string const &\fBname\fP)"
+.br
+.RI "\fI\fBLog\fP Constructor\&. \fP"
+.ti -1c
+.RI "\fB~Log\fP ()"
+.br
+.RI "\fI\fBLog\fP Destructor\&. \fP"
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "std::ostream & \fBout\fP"
+.br
+.RI "\fICurrent output stream\&. \fP"
+.ti -1c
+.RI "std::string const \fBname\fP"
+.br
+.RI "\fIName of the test log\&. \fP"
+.ti -1c
+.RI "\fBSuite\fP * \fBcurr\fP"
+.br
+.RI "\fICurrently active \fBSuite\fP, or NULL if none\&. \fP"
+.ti -1c
+.RI "size_t \fBsuites\fP"
+.br
+.RI "\fICumulative count of Suites\&. \fP"
+.ti -1c
+.RI "size_t \fBtests\fP"
+.br
+.RI "\fICumulative count of Tests\&. \fP"
+.ti -1c
+.RI "size_t \fBfailed_tests\fP"
+.br
+.RI "\fICumulative count of Tests with at least one FAIL\&. \fP"
+.ti -1c
+.RI "size_t \fBskipped_tests\fP"
+.br
+.RI "\fICumulative count of Tests with at least one SKIP\&. \fP"
+.ti -1c
+.RI "size_t \fBerrored_tests\fP"
+.br
+.RI "\fICumulative count of Tests with at least one ERROR\&. \fP"
+.ti -1c
+.RI "size_t \fBtotal_fails\fP"
+.br
+.RI "\fICumulative count of all FAIL reports\&. \fP"
+.ti -1c
+.RI "size_t \fBtotal_skips\fP"
+.br
+.RI "\fICumulative count of all SKIP reports\&. \fP"
+.ti -1c
+.RI "size_t \fBtotal_errors\fP"
+.br
+.RI "\fICumulative count of all ERROR reports\&. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+The \fBLog\fP Object\&. 
+
+The \fBLog\fP object constructor writes XML text to the specified output stream to start a new log file\&. The destructor writes trailer data to finish the XML element opened at the top\&. \fBTest\fP programs create a \fBLog\fP object for each file they want to write, and may have several \fBLog\fP file objects open at the same time\&. 
+.PP
+Definition at line 33 of file testing\&.h\&.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "Farsyte::Testing::Log::Log (std::ostream &out, std::string const &name)"
+
+.PP
+\fBLog\fP Constructor\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIout\fP - where to send the XML text\&. 
+.br
+\fIname\fP - the name of the \fBLog\fP\&. Writes XML header text to the output stream\&. 
+.RE
+.PP
+
+.SS "Farsyte::Testing::Log::~Log ()"
+
+.PP
+\fBLog\fP Destructor\&. Writes XML trailer text to the output stream\&. 
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBSuite\fP* Farsyte::Testing::Log::curr"
+
+.PP
+Currently active \fBSuite\fP, or NULL if none\&. 
+.PP
+Definition at line 43 of file testing\&.h\&.
+.SS "size_t Farsyte::Testing::Log::errored_tests"
+
+.PP
+Cumulative count of Tests with at least one ERROR\&. 
+.PP
+Definition at line 58 of file testing\&.h\&.
+.SS "size_t Farsyte::Testing::Log::failed_tests"
+
+.PP
+Cumulative count of Tests with at least one FAIL\&. 
+.PP
+Definition at line 52 of file testing\&.h\&.
+.SS "std::ostream& Farsyte::Testing::Log::out"
+
+.PP
+Current output stream\&. 
+.PP
+Definition at line 37 of file testing\&.h\&.
+.SS "size_t Farsyte::Testing::Log::skipped_tests"
+
+.PP
+Cumulative count of Tests with at least one SKIP\&. 
+.PP
+Definition at line 55 of file testing\&.h\&.
+.SS "size_t Farsyte::Testing::Log::suites"
+
+.PP
+Cumulative count of Suites\&. 
+.PP
+Definition at line 46 of file testing\&.h\&.
+.SS "size_t Farsyte::Testing::Log::tests"
+
+.PP
+Cumulative count of Tests\&. 
+.PP
+Definition at line 49 of file testing\&.h\&.
+.SS "size_t Farsyte::Testing::Log::total_errors"
+
+.PP
+Cumulative count of all ERROR reports\&. 
+.PP
+Definition at line 67 of file testing\&.h\&.
+.SS "size_t Farsyte::Testing::Log::total_fails"
+
+.PP
+Cumulative count of all FAIL reports\&. 
+.PP
+Definition at line 61 of file testing\&.h\&.
+.SS "size_t Farsyte::Testing::Log::total_skips"
+
+.PP
+Cumulative count of all SKIP reports\&. 
+.PP
+Definition at line 64 of file testing\&.h\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for The Farsyte Toolkit from the source code\&.

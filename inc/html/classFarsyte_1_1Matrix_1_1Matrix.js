@@ -7,9 +7,9 @@ var classFarsyte_1_1Matrix_1_1Matrix =
     [ "pointer", "classFarsyte_1_1Matrix_1_1Matrix.html#a3ea29ecd83aabb431c635eabd14f9ebd", null ],
     [ "reference", "classFarsyte_1_1Matrix_1_1Matrix.html#a0c88d265c95f6131c2746fdd3b283dba", null ],
     [ "value_type", "classFarsyte_1_1Matrix_1_1Matrix.html#adda23d85e056d54e3f0b20966e4e471d", null ],
-    [ "Matrix", "classFarsyte_1_1Matrix_1_1Matrix.html#a55d21e1ee6de3c4d8e7c957da87d150e", null ],
     [ "Matrix", "classFarsyte_1_1Matrix_1_1Matrix.html#afeb93837ea7a2961135197fc2816f842", null ],
     [ "Matrix", "classFarsyte_1_1Matrix_1_1Matrix.html#a54d7caa0fa5feb028cf94f00eaaa26df", null ],
+    [ "Matrix", "classFarsyte_1_1Matrix_1_1Matrix.html#a55d21e1ee6de3c4d8e7c957da87d150e", null ],
     [ "Matrix", "classFarsyte_1_1Matrix_1_1Matrix.html#a8acc875b389620d3ae68e893cfb9d084", null ],
     [ "decrement_by", "classFarsyte_1_1Matrix_1_1Matrix.html#acd4898041f9b2d4c141cfa8d1c525cf9", null ],
     [ "equals", "classFarsyte_1_1Matrix_1_1Matrix.html#adf5659ea0fe0f228b4e219605cce3ba8", null ],
@@ -21,6 +21,6 @@ var classFarsyte_1_1Matrix_1_1Matrix =
     [ "operator-=", "classFarsyte_1_1Matrix_1_1Matrix.html#aadf57dc35f17ed9652af5711bf8c14f5", null ],
     [ "sub", "classFarsyte_1_1Matrix_1_1Matrix.html#a363946a3156161962911c95cdd5edf06", null ],
     [ "sub", "classFarsyte_1_1Matrix_1_1Matrix.html#af99f3e4d8a71a1f7b01e0dd8ba76387d", null ],
-    [ "transpose", "classFarsyte_1_1Matrix_1_1Matrix.html#ab0038c16a258ea418587f15afedc3bea", null ],
+    [ "transpose", "classFarsyte_1_1Matrix_1_1Matrix.html#acbf437c1b33bb34d239b0647192f6793", null ],
     [ "data", "classFarsyte_1_1Matrix_1_1Matrix.html#a389fad807acc81a37c4905c6959a19f4", null ]
 ];

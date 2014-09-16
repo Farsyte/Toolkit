@@ -1,9 +1,9 @@
 <map id="Farsyte::Matrix::Matrix::sub" name="Farsyte::Matrix::Matrix::sub">
-<area shape="rect" id="node2" href="$classFarsyte_1_1Matrix_1_1Matrix.html#acd4898041f9b2d4c141cfa8d1c525cf9" title="Matrix Decrement operation. " alt="" coords="235,5,447,44"/>
-<area shape="rect" id="node3" href="$classFarsyte_1_1Matrix_1_1Matrix.html#adf5659ea0fe0f228b4e219605cce3ba8" title="Matrix Equality Test. " alt="" coords="258,68,425,107"/>
-<area shape="rect" id="node4" href="$classFarsyte_1_1Matrix_1_1Matrix.html#a92ef16f3a98345b908ed6c8e5b1c652d" title="Matrix Increment operation. " alt="" coords="238,131,445,169"/>
-<area shape="rect" id="node5" href="$classFarsyte_1_1Matrix_1_1Matrix.html#a54d7caa0fa5feb028cf94f00eaaa26df" title="Matrix Diagonal Constructor. " alt="" coords="260,193,423,232"/>
-<area shape="rect" id="node6" href="$classFarsyte_1_1Matrix_1_1Matrix.html#aaa03092a83ca5092706a056ddd738e0c" title="Matrix Negate operation. " alt="" coords="257,256,425,295"/>
-<area shape="rect" id="node7" href="$classFarsyte_1_1Matrix_1_1Matrix.html#a287e40d5117f6e01171112090b447298" title="Matrix Subscripting Operator. " alt="" coords="248,319,434,357"/>
-<area shape="rect" id="node8" href="$classFarsyte_1_1Matrix_1_1Matrix.html#ab0038c16a258ea418587f15afedc3bea" title="Matrix Transpose operation. " alt="" coords="248,381,434,420"/>
+<area shape="rect" id="node2" href="$classFarsyte_1_1Matrix_1_1Matrix.html#acd4898041f9b2d4c141cfa8d1c525cf9" title="Matrix Decrement operation. " alt="" coords="236,5,447,47"/>
+<area shape="rect" id="node3" href="$classFarsyte_1_1Matrix_1_1Matrix.html#adf5659ea0fe0f228b4e219605cce3ba8" title="Matrix Equality Test. " alt="" coords="258,71,425,112"/>
+<area shape="rect" id="node4" href="$classFarsyte_1_1Matrix_1_1Matrix.html#a92ef16f3a98345b908ed6c8e5b1c652d" title="Matrix Increment operation. " alt="" coords="238,136,445,177"/>
+<area shape="rect" id="node5" href="$classFarsyte_1_1Matrix_1_1Matrix.html#a54d7caa0fa5feb028cf94f00eaaa26df" title="Matrix Diagonal Constructor. " alt="" coords="259,201,424,243"/>
+<area shape="rect" id="node6" href="$classFarsyte_1_1Matrix_1_1Matrix.html#aaa03092a83ca5092706a056ddd738e0c" title="Matrix Negate operation. " alt="" coords="257,267,425,308"/>
+<area shape="rect" id="node7" href="$classFarsyte_1_1Matrix_1_1Matrix.html#a287e40d5117f6e01171112090b447298" title="Matrix Subscripting Operator. " alt="" coords="249,332,433,373"/>
+<area shape="rect" id="node8" href="$classFarsyte_1_1Matrix_1_1Matrix.html#acbf437c1b33bb34d239b0647192f6793" title="Matrix Transpose operation. " alt="" coords="248,397,435,439"/>
 </map>

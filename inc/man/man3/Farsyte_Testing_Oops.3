@@ -1,0 +1,121 @@
+.TH "Farsyte::Testing::Oops" 3 "Mon Sep 15 2014" "The Farsyte Toolkit" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Farsyte::Testing::Oops \- 
+.PP
+The \fBOops\fP Object\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <testing\&.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBOops\fP (std::string f, int l, std::string c)"
+.br
+.RI "\fICreate a new \fBOops\fP object\&. \fP"
+.ti -1c
+.RI "virtual std::ostream & \fBprint\fP (std::ostream &s) const "
+.br
+.RI "\fIPrint exception details to output stream\&. \fP"
+.ti -1c
+.RI "virtual void \fBcancel\fP () const "
+.br
+.RI "\fICancel exception printing\&. \fP"
+.ti -1c
+.RI "virtual \fB~Oops\fP ()"
+.br
+.RI "\fIObject Destructor\&. \fP"
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "std::string \fBfile\fP"
+.br
+.RI "\fIsource file name\&. \fP"
+.ti -1c
+.RI "int \fBline\fP"
+.br
+.RI "\fIsource line number\&. \fP"
+.ti -1c
+.RI "std::string \fBcond\fP"
+.br
+.RI "\fIone-line failed condition text \fP"
+.ti -1c
+.RI "bool \fBpend\fP"
+.br
+.RI "\fItrue if not yet dealt with \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+The \fBOops\fP Object\&. 
+
+Base class for Exception heirarchy for the Testing library\&. Errors in the Testing library or in the way test code uses the testing library MAY be reported by throwing an object of a class derived from \fBOops\fP\&. 
+.PP
+Definition at line 258 of file testing\&.h\&.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "Farsyte::Testing::Oops::Oops (std::stringf, intl, std::stringc)"
+
+.PP
+Create a new \fBOops\fP object\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIf\fP - source file name\&. 
+.br
+\fIl\fP - source line number\&. 
+.br
+\fIc\fP - condition that was violated\&. 
+.RE
+.PP
+
+.SS "virtual Farsyte::Testing::Oops::~Oops ()\fC [virtual]\fP"
+
+.PP
+Object Destructor\&. If the object has not been printed (or cancelled), prints the exception details to the standard error output\&. All resources owned by the object are released\&. 
+.SH "Member Function Documentation"
+.PP 
+.SS "virtual void Farsyte::Testing::Oops::cancel () const\fC [virtual]\fP"
+
+.PP
+Cancel exception printing\&. This method simply marks the object as having been printed, without the overhead of actually printing the details\&. 
+.SS "virtual std::ostream& Farsyte::Testing::Oops::print (std::ostream &s) const\fC [virtual]\fP"
+
+.PP
+Print exception details to output stream\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIs\fP what stream gets the output text\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+the stream after sending the text\&. This method produces all available details from this exception object onto the specified output stream (and marks the object as having been printed)\&. 
+.RE
+.PP
+
+.SH "Member Data Documentation"
+.PP 
+.SS "std::string Farsyte::Testing::Oops::file"
+
+.PP
+source file name\&. 
+.PP
+Definition at line 260 of file testing\&.h\&.
+.SS "int Farsyte::Testing::Oops::line"
+
+.PP
+source line number\&. 
+.PP
+Definition at line 261 of file testing\&.h\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for The Farsyte Toolkit from the source code\&.

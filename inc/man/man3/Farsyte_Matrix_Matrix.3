@@ -1,0 +1,657 @@
+.TH "Farsyte::Matrix::Matrix< Nc, Nr, T >" 3 "Mon Sep 15 2014" "The Farsyte Toolkit" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Farsyte::Matrix::Matrix< Nc, Nr, T > \- 
+.PP
+\fBMatrix\fP Template\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <matrix\&.h>\fP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef T \fBvalue_type\fP"
+.br
+.RI "\fITypedef for type of matrix elements\&. \fP"
+.ti -1c
+.RI "typedef T & \fBreference\fP"
+.br
+.RI "\fIReference to a matrix element\&. \fP"
+.ti -1c
+.RI "typedef T const & \fBconst_reference\fP"
+.br
+.RI "\fIConst reference to a matrix element\&. \fP"
+.ti -1c
+.RI "typedef T * \fBpointer\fP"
+.br
+.RI "\fIPointer to a matrix element\&. \fP"
+.ti -1c
+.RI "typedef T const * \fBconst_pointer\fP"
+.br
+.RI "\fIConst pointer to a matrix element\&. \fP"
+.ti -1c
+.RI "typedef std::array< T, Nr > \fBC\fP"
+.br
+.RI "\fITypedef for array containing one column of the data\&. \fP"
+.ti -1c
+.RI "typedef std::array< \fBC\fP, Nc > \fBA\fP"
+.br
+.RI "\fITypedef for array containing the data\&. \fP"
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBMatrix\fP ()"
+.br
+.RI "\fI\fBMatrix\fP Default Constructor\&. \fP"
+.ti -1c
+.RI "\fBMatrix\fP (T const &d)"
+.br
+.RI "\fI\fBMatrix\fP Diagonal Constructor\&. \fP"
+.ti -1c
+.RI "\fBMatrix\fP (\fBA\fP const &a)"
+.br
+.RI "\fI\fBMatrix\fP Construction from Array of Arrays\&. \fP"
+.ti -1c
+.RI "\fBMatrix\fP (\fBMatrix\fP const &m)"
+.br
+.RI "\fIDuplicate \fBMatrix\fP Construction\&. \fP"
+.ti -1c
+.RI "T const & \fBoperator()\fP (int ri, int ci) const "
+.br
+.RI "\fI\fBMatrix\fP Subscripting Operator\&. \fP"
+.ti -1c
+.RI "T & \fBoperator()\fP (int ri, int ci)"
+.br
+.RI "\fI\fBMatrix\fP Subscripting Operator\&. \fP"
+.ti -1c
+.RI "bool \fBequals\fP (\fBMatrix\fP const &p) const "
+.br
+.RI "\fI\fBMatrix\fP Equality Test\&. \fP"
+.ti -1c
+.RI "\fBMatrix\fP & \fBincrement_by\fP (\fBMatrix\fP const &p)"
+.br
+.RI "\fI\fBMatrix\fP Increment operation\&. \fP"
+.ti -1c
+.RI "\fBMatrix\fP & \fBoperator+=\fP (\fBMatrix\fP const &p)"
+.br
+.RI "\fI\fBMatrix\fP Increment operator\&. \fP"
+.ti -1c
+.RI "\fBMatrix\fP & \fBdecrement_by\fP (\fBMatrix\fP const &p)"
+.br
+.RI "\fI\fBMatrix\fP Decrement operation\&. \fP"
+.ti -1c
+.RI "\fBMatrix\fP & \fBoperator-=\fP (\fBMatrix\fP const &p)"
+.br
+.RI "\fI\fBMatrix\fP Decrement operator\&. \fP"
+.ti -1c
+.RI "\fBMatrix\fP \fBnegate\fP ()"
+.br
+.RI "\fI\fBMatrix\fP Negate operation\&. \fP"
+.ti -1c
+.RI "\fBMatrix\fP< Nr, Nc, T > \fBtranspose\fP () const "
+.br
+.RI "\fI\fBMatrix\fP Transpose operation\&. \fP"
+.in -1c
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static size_t \fBrows\fP ()"
+.br
+.RI "\fI\fBMatrix\fP rows\&. \fP"
+.ti -1c
+.RI "static size_t \fBcols\fP ()"
+.br
+.RI "\fI\fBMatrix\fP columns\&. \fP"
+.ti -1c
+.RI "static size_t \fBsize\fP ()"
+.br
+.RI "\fI\fBMatrix\fP elements\&. \fP"
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "T const & \fBsub\fP (int ri, int ci) const "
+.br
+.RI "\fI\fBMatrix\fP Subscripting Implementation\&. \fP"
+.ti -1c
+.RI "T & \fBsub\fP (int ri, int ci)"
+.br
+.RI "\fI\fBMatrix\fP Subscripting Implementation\&. \fP"
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBA\fP \fBdata\fP"
+.br
+.RI "\fIStorage for \fBMatrix\fP State\&. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<int Nc, int Nr, typename T>class Farsyte::Matrix::Matrix< Nc, Nr, T >"
+\fBMatrix\fP Template\&. 
+
+
+.PP
+\fBParameters:\fP
+.RS 4
+\fINc\fP Number of columns in the matrix\&. 
+.br
+\fINr\fP Number of rows in the matrix\&. 
+.br
+\fIT\fP Data type for each matrix element\&.
+.RE
+.PP
+This template implements rectangular matrices of a compile-time determined size, containing elements of compile-time determined type\&. 
+.PP
+Definition at line 37 of file matrix\&.h\&.
+.SH "Member Typedef Documentation"
+.PP 
+.SS "template<int Nc, int Nr, typename T> typedef T const* \fBFarsyte::Matrix::Matrix\fP< Nc, Nr, T >::\fBconst_pointer\fP"
+
+.PP
+Const pointer to a matrix element\&. 
+.PP
+Definition at line 54 of file matrix\&.h\&.
+.SS "template<int Nc, int Nr, typename T> typedef T const& \fBFarsyte::Matrix::Matrix\fP< Nc, Nr, T >::\fBconst_reference\fP"
+
+.PP
+Const reference to a matrix element\&. 
+.PP
+Definition at line 48 of file matrix\&.h\&.
+.SS "template<int Nc, int Nr, typename T> typedef T* \fBFarsyte::Matrix::Matrix\fP< Nc, Nr, T >::\fBpointer\fP"
+
+.PP
+Pointer to a matrix element\&. 
+.PP
+Definition at line 51 of file matrix\&.h\&.
+.SS "template<int Nc, int Nr, typename T> typedef T& \fBFarsyte::Matrix::Matrix\fP< Nc, Nr, T >::\fBreference\fP"
+
+.PP
+Reference to a matrix element\&. 
+.PP
+Definition at line 45 of file matrix\&.h\&.
+.SS "template<int Nc, int Nr, typename T> typedef T \fBFarsyte::Matrix::Matrix\fP< Nc, Nr, T >::\fBvalue_type\fP"
+
+.PP
+Typedef for type of matrix elements\&. 
+.PP
+Definition at line 42 of file matrix\&.h\&.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<int Nc, int Nr, typename T> \fBFarsyte::Matrix::Matrix\fP< Nc, Nr, T >::\fBMatrix\fP ()\fC [inline]\fP"
+
+.PP
+\fBMatrix\fP Default Constructor\&. \fBMatrix\fP objects that are default-constructed are assured of having each element appropriately initialized\&. 
+.PP
+Definition at line 126 of file matrix\&.h\&.
+.PP
+.nf
+127         : data()
+128         {
+129         }
+.fi
+.SS "template<int Nc, int Nr, typename T> \fBFarsyte::Matrix::Matrix\fP< Nc, Nr, T >::\fBMatrix\fP (T const &d)\fC [inline]\fP"
+
+.PP
+\fBMatrix\fP Diagonal Constructor\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fId\fP Value to copy into each diagonal element\&. 
+.RE
+.PP
+
+.PP
+Definition at line 134 of file matrix\&.h\&.
+.PP
+.nf
+135         : data()
+136         {
+137           for (size_t i = 1; (i <= Nr) && (i <= Nc); ++i)
+138             sub(i,i) = d;
+139         }
+.fi
+.SS "template<int Nc, int Nr, typename T> \fBFarsyte::Matrix::Matrix\fP< Nc, Nr, T >::\fBMatrix\fP (\fBA\fP const &a)\fC [inline]\fP"
+
+.PP
+\fBMatrix\fP Construction from Array of Arrays\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIa\fP Array to duplicate\&. This method is used by subclasses to provide value construction of Matrices using Arrays of Arrays of the appropriate dimensions\&. 
+.RE
+.PP
+\fBNote:\fP
+.RS 4
+Not a public interface: only classes within the class heirarchy below \fBMatrix\fP should be aware of the data organization within the \fBMatrix\fP object\&. 
+.RE
+.PP
+
+.PP
+Definition at line 150 of file matrix\&.h\&.
+.PP
+.nf
+151         : data(a)
+152         {
+153         }
+.fi
+.SS "template<int Nc, int Nr, typename T> \fBFarsyte::Matrix::Matrix\fP< Nc, Nr, T >::\fBMatrix\fP (\fBMatrix\fP< Nc, Nr, T > const &m)\fC [inline]\fP"
+
+.PP
+Duplicate \fBMatrix\fP Construction\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIm\fP \fBMatrix\fP to duplicate\&. Initialize this matrix to duplicate the data contained in the provided matrix\&. 
+.RE
+.PP
+
+.PP
+Definition at line 160 of file matrix\&.h\&.
+.PP
+.nf
+161         : data(m\&.data)
+162         {
+163         }
+.fi
+.SH "Member Function Documentation"
+.PP 
+.SS "template<int Nc, int Nr, typename T> static size_t \fBFarsyte::Matrix::Matrix\fP< Nc, Nr, T >::cols ()\fC [inline]\fP, \fC [static]\fP"
+
+.PP
+\fBMatrix\fP columns\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+number of columns \fCNc\fP in tha matrix\&. 
+.RE
+.PP
+
+.PP
+Definition at line 75 of file matrix\&.h\&.
+.PP
+Referenced by Farsyte::Matrix::Matrix< 1, Nr, double >::size()\&.
+.PP
+.nf
+76         {
+77           return Nc;
+78         }
+.fi
+.SS "template<int Nc, int Nr, typename T> \fBMatrix\fP& \fBFarsyte::Matrix::Matrix\fP< Nc, Nr, T >::decrement_by (\fBMatrix\fP< Nc, Nr, T > const &p)\fC [inline]\fP"
+
+.PP
+\fBMatrix\fP Decrement operation\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIp\fP \fBMatrix\fP of decrement values\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+this matrix, after decrementing\&. Each element of this matrix is decremented by the value of the corresponding element of the provided matrix\&. 
+.RE
+.PP
+
+.PP
+Definition at line 234 of file matrix\&.h\&.
+.PP
+Referenced by Farsyte::Matrix::Matrix< 1, Nr, double >::operator-=()\&.
+.PP
+.nf
+235         {
+236           for (int ci = 1; ci <= Nc; ++ci)
+237             for (int ri = 1; ri <= Nr; ++ri)
+238               sub(ri,ci) -= p\&.sub(ri,ci);
+239           return *this;
+240         }
+.fi
+.SS "template<int Nc, int Nr, typename T> bool \fBFarsyte::Matrix::Matrix\fP< Nc, Nr, T >::equals (\fBMatrix\fP< Nc, Nr, T > const &p) const\fC [inline]\fP"
+
+.PP
+\fBMatrix\fP Equality Test\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIp\fP \fBMatrix\fP to compare\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+true if all elements compare equal, else false\&. 
+.RE
+.PP
+
+.PP
+Definition at line 191 of file matrix\&.h\&.
+.PP
+.nf
+192         {
+193           for (int ci = 1; ci <= Nc; ++ci)
+194             for (int ri = 1; ri <= Nr; ++ri)
+195               if (sub(ri,ci) != p\&.sub(ri,ci))
+196                 return false;
+197           return true;
+198         }
+.fi
+.SS "template<int Nc, int Nr, typename T> \fBMatrix\fP& \fBFarsyte::Matrix::Matrix\fP< Nc, Nr, T >::increment_by (\fBMatrix\fP< Nc, Nr, T > const &p)\fC [inline]\fP"
+
+.PP
+\fBMatrix\fP Increment operation\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIp\fP \fBMatrix\fP of increment values\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+this matrix, after incrementing\&. Each element of this matrix is incremented by the value of the corresponding element of the provided matrix\&. 
+.RE
+.PP
+
+.PP
+Definition at line 207 of file matrix\&.h\&.
+.PP
+Referenced by Farsyte::Matrix::Matrix< 1, Nr, double >::operator+=()\&.
+.PP
+.nf
+208         {
+209           for (int ci = 1; ci <= Nc; ++ci)
+210             for (int ri = 1; ri <= Nr; ++ri)
+211               sub(ri,ci) += p\&.sub(ri,ci);
+212           return *this;
+213         }
+.fi
+.SS "template<int Nc, int Nr, typename T> \fBMatrix\fP \fBFarsyte::Matrix::Matrix\fP< Nc, Nr, T >::negate ()\fC [inline]\fP"
+
+.PP
+\fBMatrix\fP Negate operation\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+self after negating elements\&. 
+.RE
+.PP
+
+.PP
+Definition at line 257 of file matrix\&.h\&.
+.PP
+.nf
+258         {
+259           for (int ci = 1; ci <= Nc; ++ci)
+260             for (int ri = 1; ri <= Nr; ++ri)
+261               sub(ri,ci) = -sub(ri,ci);
+262           return *this;
+263         }
+.fi
+.SS "template<int Nc, int Nr, typename T> T const& \fBFarsyte::Matrix::Matrix\fP< Nc, Nr, T >::operator() (intri, intci) const\fC [inline]\fP"
+
+.PP
+\fBMatrix\fP Subscripting Operator\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIri\fP Row Index, in the range 1 to Nr inclusive\&. 
+.br
+\fIci\fP Column Index, in the range 1 to Nc inclusive\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+read-only reference to the selected element\&. 
+.RE
+.PP
+\fBNote:\fP
+.RS 4
+Fortran conventions for array subscripting\&. 
+.RE
+.PP
+
+.PP
+Definition at line 171 of file matrix\&.h\&.
+.PP
+.nf
+172         {
+173           return sub(ri, ci);
+174         }
+.fi
+.SS "template<int Nc, int Nr, typename T> T& \fBFarsyte::Matrix::Matrix\fP< Nc, Nr, T >::operator() (intri, intci)\fC [inline]\fP"
+
+.PP
+\fBMatrix\fP Subscripting Operator\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIri\fP Row Index, in the range 1 to Nr inclusive\&. 
+.br
+\fIci\fP Column Index, in the range 1 to Nc inclusive\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+modifiable reference to the selected element\&. 
+.RE
+.PP
+\fBNote:\fP
+.RS 4
+Fortran conventions for array subscripting\&. 
+.RE
+.PP
+
+.PP
+Definition at line 182 of file matrix\&.h\&.
+.PP
+.nf
+183         {
+184           return sub(ri, ci);
+185         }
+.fi
+.SS "template<int Nc, int Nr, typename T> \fBMatrix\fP& \fBFarsyte::Matrix::Matrix\fP< Nc, Nr, T >::operator+= (\fBMatrix\fP< Nc, Nr, T > const &p)\fC [inline]\fP"
+
+.PP
+\fBMatrix\fP Increment operator\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIp\fP \fBMatrix\fP of increment values\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+this matrix, after incrementing\&. Each element of this matrix is incremented by the value of the corresponding element of the provided matrix\&. 
+.RE
+.PP
+
+.PP
+Definition at line 222 of file matrix\&.h\&.
+.PP
+.nf
+223         {
+224           return increment_by(p);
+225         }
+.fi
+.SS "template<int Nc, int Nr, typename T> \fBMatrix\fP& \fBFarsyte::Matrix::Matrix\fP< Nc, Nr, T >::operator-= (\fBMatrix\fP< Nc, Nr, T > const &p)\fC [inline]\fP"
+
+.PP
+\fBMatrix\fP Decrement operator\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIp\fP \fBMatrix\fP of decrement values\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+this matrix, after decrementing\&. Each element of this matrix is decremented by the value of the corresponding element of the provided matrix\&. 
+.RE
+.PP
+
+.PP
+Definition at line 249 of file matrix\&.h\&.
+.PP
+.nf
+250         {
+251           return decrement_by(p);
+252         }
+.fi
+.SS "template<int Nc, int Nr, typename T> static size_t \fBFarsyte::Matrix::Matrix\fP< Nc, Nr, T >::rows ()\fC [inline]\fP, \fC [static]\fP"
+
+.PP
+\fBMatrix\fP rows\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+number of rows \fCNr\fP in tha matrix\&. 
+.RE
+.PP
+
+.PP
+Definition at line 67 of file matrix\&.h\&.
+.PP
+Referenced by Farsyte::Matrix::Matrix< 1, Nr, double >::size()\&.
+.PP
+.nf
+68         {
+69           return Nr;
+70         }
+.fi
+.SS "template<int Nc, int Nr, typename T> static size_t \fBFarsyte::Matrix::Matrix\fP< Nc, Nr, T >::size ()\fC [inline]\fP, \fC [static]\fP"
+
+.PP
+\fBMatrix\fP elements\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+number of elements \fCNr*Nc\fP in the matrix\&. 
+.RE
+.PP
+
+.PP
+Definition at line 83 of file matrix\&.h\&.
+.PP
+.nf
+84         {
+85           return rows() * cols();
+86         }
+.fi
+.SS "template<int Nc, int Nr, typename T> T const& \fBFarsyte::Matrix::Matrix\fP< Nc, Nr, T >::sub (intri, intci) const\fC [inline]\fP, \fC [protected]\fP"
+
+.PP
+\fBMatrix\fP Subscripting Implementation\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIri\fP Row Index, ranging from 1 to Nr inclusive\&. 
+.br
+\fIci\fP Column Index, ranging from 1 to Nc inclusive\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+a read-only reference to the selected element\&. 
+.RE
+.PP
+\fBNote:\fP
+.RS 4
+Fortran conventions for array subscripting\&. 
+.RE
+.PP
+
+.PP
+Definition at line 96 of file matrix\&.h\&.
+.PP
+Referenced by Farsyte::Matrix::Matrix< 1, Nr, double >::decrement_by(), Farsyte::Matrix::Matrix< 1, Nr, double >::equals(), Farsyte::Matrix::Matrix< 1, Nr, double >::increment_by(), Farsyte::Matrix::Matrix< 1, Nr, double >::Matrix(), Farsyte::Matrix::Matrix< 1, Nr, double >::negate(), Farsyte::Matrix::Matrix< 1, Nr, double >::operator()(), and Farsyte::Matrix::Matrix< 1, Nr, double >::transpose()\&.
+.PP
+.nf
+97         {
+98 #ifdef RANGE_CHECKER
+99           RANGE_CHECKER(1,ci,Nc);
+100           RANGE_CHECKER(1,ri,Nr);
+101 #endif
+102           return data[ci-1][ri-1];
+103         }
+.fi
+.SS "template<int Nc, int Nr, typename T> T& \fBFarsyte::Matrix::Matrix\fP< Nc, Nr, T >::sub (intri, intci)\fC [inline]\fP, \fC [protected]\fP"
+
+.PP
+\fBMatrix\fP Subscripting Implementation\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIri\fP Row Index, ranging from 1 to Nr inclusive\&. 
+.br
+\fIci\fP Column Index, ranging from 1 to Nc inclusive\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+a writable reference to the selected element\&. 
+.RE
+.PP
+\fBNote:\fP
+.RS 4
+Fortran conventions for array subscripting\&. 
+.RE
+.PP
+
+.PP
+Definition at line 111 of file matrix\&.h\&.
+.PP
+.nf
+112         {
+113 #ifdef RANGE_CHECKER
+114           RANGE_CHECKER(1,ci,Nc);
+115           RANGE_CHECKER(1,ri,Nr);
+116 #endif
+117           return data[ci-1][ri-1];
+118         }
+.fi
+.SS "template<int Nc, int Nr, typename T> \fBMatrix\fP<Nr,Nc,T> \fBFarsyte::Matrix::Matrix\fP< Nc, Nr, T >::transpose () const\fC [inline]\fP"
+
+.PP
+\fBMatrix\fP Transpose operation\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+transposed matrix\&. 
+.RE
+.PP
+
+.PP
+Definition at line 269 of file matrix\&.h\&.
+.PP
+.nf
+270         {
+271           Matrix<Nr,Nc,T> R;
+272           for (int ci = 1; ci <= Nc; ++ci)
+273             for (int ri = 1; ri <= Nr; ++ri)
+274               R(ci,ri) = sub(ri,ci);
+275           return R;
+276         }
+.fi
+.SH "Member Data Documentation"
+.PP 
+.SS "template<int Nc, int Nr, typename T> \fBA\fP \fBFarsyte::Matrix::Matrix\fP< Nc, Nr, T >::data\fC [protected]\fP"
+
+.PP
+Storage for \fBMatrix\fP State\&. 
+.PP
+Definition at line 280 of file matrix\&.h\&.
+.PP
+Referenced by Farsyte::Matrix::Matrix< 1, Nr, double >::sub()\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for The Farsyte Toolkit from the source code\&.
