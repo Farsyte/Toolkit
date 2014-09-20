@@ -9,15 +9,14 @@
  */
 
 #include <array>
-
+#include <iomanip>
 #include <iostream>
+
 using std::cerr;
 using std::endl;
-
-#include <iomanip>
 using std::fixed;
-using std::setw;
 using std::setprecision;
+using std::setw;
 
 namespace Farsyte
 {

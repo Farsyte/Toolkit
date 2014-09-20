@@ -8,10 +8,10 @@
  * definitions for C code using this Testing library.
  */
 
-#include <string>
+#include <fstream>
 #include <iostream>
 #include <sstream>
-#include <fstream>
+#include <string>
 
 namespace Farsyte {
   namespace Testing {

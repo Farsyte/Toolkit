@@ -1,32 +1,25 @@
 #include "testing.h"
 #include "utility.h"
+#include <fstream>
+#include <iomanip>
+#include <iostream>
+#include <sstream>
+#include <string>
+#include <vector>
 
 using Farsyte::Testing::Log;
+using Farsyte::Testing::Oops;
 using Farsyte::Testing::Suite;
 using Farsyte::Testing::Test;
-using Farsyte::Testing::Oops;
-
 using Farsyte::Utility::literal;
-
-#include <string>
-using std::string;
-
-#include <vector>
-using std::vector;
-
-#include <iostream>
-using std::ostream;
 using std::cout;
 using std::endl;
-
-#include <fstream>
-using std::ofstream;
-
-#include <sstream>
 using std::istringstream;
+using std::ofstream;
+using std::ostream;
 using std::ostringstream;
-
-#include <iomanip>
+using std::string;
+using std::vector;
 
 static int case_compare(
   Test &t, string const &title,

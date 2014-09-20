@@ -1,39 +1,32 @@
+#include "matrix.h"
 #include "testing.h"
 #include "utility.h"
-#include "matrix.h"
+#include <fstream>
+#include <iomanip>
+#include <iostream>
+#include <sstream>
+#include <string>
+#include <vector>
 
+using Farsyte::Matrix::ColVec;
+using Farsyte::Matrix::Matrix;
+using Farsyte::Matrix::ThreeVec;
 using Farsyte::Testing::Log;
+using Farsyte::Testing::Oops;
 using Farsyte::Testing::Suite;
 using Farsyte::Testing::Test;
-using Farsyte::Testing::Oops;
-
-using Farsyte::Matrix::Matrix;
-using Farsyte::Matrix::ColVec;
-using Farsyte::Matrix::ThreeVec;
-
-#include <string>
-using std::string;
-
-#include <vector>
-using std::vector;
-
-#include <iostream>
-using std::ostream;
 using std::cout;
 using std::endl;
-
-#include <fstream>
-using std::ofstream;
-
-#include <sstream>
 using std::istringstream;
+using std::ofstream;
+using std::ostream;
 using std::ostringstream;
-
-#include <iomanip>
 using std::setw;
+using std::string;
+using std::vector;
 
 /** Pick a specific ColVec for primary ColVec testing. */
-typedef ColVec<4,int>	ColVec4i;
+typedef ColVec<4,int>   ColVec4i;
 
 ColVec4i FourVec(int w, int x, int y, int z) {
   typedef typename ColVec4i::A A;
