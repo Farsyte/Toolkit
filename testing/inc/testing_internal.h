@@ -1,5 +1,5 @@
 #ifndef _testing_internal_h
-#define _testing_internal_h
+#define _testing_internal_h "testing_internal v0.1" /**< for header vs library matching */
 
 #include "testing.h"
 

@@ -1,5 +1,5 @@
 #ifndef _matrix_h
-#define _matrix_h
+#define _matrix_h "matrix v0.1" /**< for header vs library matching */
 
 /** \file
  * \brief Matrix Library Exported API
@@ -541,6 +541,12 @@ namespace Farsyte
     extern ThreeVec cross(
       ThreeVec const &L,
       ThreeVec const &R);
+
+    /** Report version string for library.
+     * The optional parameter may provide access
+     * to additional version information.
+     */
+    extern std::string matrix_version(int i = 0);
 
   }
 }

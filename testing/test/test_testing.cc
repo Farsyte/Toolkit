@@ -101,6 +101,17 @@ int test_compare(
   }
 }
 
+int test_testing_version(Log &l) {
+  Suite s(l, "Farsyte::Testing::Version");
+
+  return 0
+    + test_compare(s, "Compare version strings",
+                   string(_testing_h),
+                   Farsyte::Testing::testing_version(),
+                   "version string mismatch")
+    ;
+}
+
 /** Verify the next entry in a string list is as expected.
  */
 int test_testing_log_line(
@@ -789,6 +800,7 @@ int test_testing(Log &log) {
   ** and return fail if any failed, after running all.
   */
   return 0
+    + test_testing_version(log)
     + test_testing_log(log)
     + test_testing_suite(log)
     + test_testing_test(log)

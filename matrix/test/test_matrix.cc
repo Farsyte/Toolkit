@@ -344,6 +344,19 @@ int case_equals(
 
 /* -- ================================================================ -- */
 
+int test_matrix_version(Log &l) {
+  Suite s(l, "Farsyte::Matrix::Version");
+  Test t(s, "Version Comparison");
+
+  return 0
+    + case_equals(t, "version string compare",
+                  string(_matrix_h),
+                  Farsyte::Matrix::matrix_version())
+    ;
+}
+
+/* -- ================================================================ -- */
+
 int test_matrix_threevec_meta(Suite &s) {
 
   Test t(s, "Class Parameter Methods");
@@ -913,6 +926,7 @@ int test_matrix(Log &log) {
   ** and return fail if any failed, after running all.
   */
   return 0
+    + test_matrix_version(log)
     + test_matrix_threevec(log)
     + test_matrix_colvec(log)
     + test_matrix_matrix(log)

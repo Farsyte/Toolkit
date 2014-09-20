@@ -46,6 +46,17 @@ static int case_compare(
   }
 }
 
+int test_utility_version(Log &l) {
+  Suite s(l, "Farsyte::Utility::Version");
+  Test t(s, "Version Comparison");
+
+  return 0
+    + case_compare(t, "version string compare",
+                   string(_utility_h),
+                   Farsyte::Utility::utility_version())
+    ;
+}
+
 int test_utility_literal_char(Suite &s) {
   char  const   sq = '\'';
   char  const   dq = '"';
@@ -108,6 +119,7 @@ int test_utility(Log &log) {
   ** and return fail if any failed, after running all.
   */
   return 0
+    + test_utility_version(log)
     + test_utility_literal(log)
     ;
 }

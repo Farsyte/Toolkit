@@ -1,5 +1,5 @@
 #ifndef _testing_h
-#define _testing_h
+#define _testing_h "testing v0.1" /**< for header vs library matching */
 
 /** \file
  * \brief Testing Library Exported API
@@ -298,6 +298,12 @@ namespace Farsyte {
        */
       virtual ~Oops();
     };
+
+    /** Report version string for library.
+     * The optional parameter may provide access
+     * to additional version information.
+     */
+    extern std::string testing_version(int i = 0);
   }
 }
 

@@ -1,5 +1,5 @@
 #ifndef _utility_h
-#define _utility_h
+#define _utility_h "utility v0.1" /**< for header vs library matching */
 
 /** \file
  * \brief Testing Library Exported API
@@ -33,6 +33,11 @@ namespace Farsyte {
      */
     std::string literal(std::string const &str);
 
+    /** Report version string for library.
+     * The optional parameter may provide access
+     * to additional version information.
+     */
+    extern std::string utility_version(int i = 0);
   }
 }
 
