@@ -11,6 +11,8 @@ using Farsyte::Testing::Oops;
 using Farsyte::Testing::Suite;
 using Farsyte::Testing::Test;
 using Farsyte::Utility::literal;
+using Farsyte::Utility::quoted;
+using Farsyte::Utility::streamlines;
 using std::cout;
 using std::endl;
 using std::istringstream;
@@ -19,35 +21,6 @@ using std::ostream;
 using std::ostringstream;
 using std::string;
 using std::vector;
-
-/** Get array of lines sent to a string stream.
-* \todo move this to a text utility library somewhere?
-*/
-vector<string> lines (ostringstream &oss)
-{
-  string str (oss.str ());
-  istringstream iss (str);
-  string line;
-  vector<string> vos;
-  while (getline (iss, line))
-    vos.push_back (line);
-  return vos;
-}
-
-/** Templatized comparison utility
-* \todo move this to a test utility library somewhere?
-*/
-template<typename T, typename U>
-int test_compare (
-    Suite &s,
-    string const &title,
-    T const &exp,
-    U const &obs,
-    string const &message)
-{
-  Test t (s, title);
-  return t.eq (obs, exp, message);
-}
 
 int test_testing_version (Log &l)
 {
@@ -132,7 +105,7 @@ int test_testing_log_out (Suite &s)
     Log tl (oss, "Log Tester Log Name");
   }
 
-  vector<string> vos (lines (oss));
+  vector<string> vos (streamlines (oss));
   unsigned off = 0;
 
   /*
@@ -257,8 +230,7 @@ int test_testing_suite_out (Suite &s)
   // we just want to see the net addition to the log.
   (void) Suite (tl, "Suite Tester Suite Name");
 
-  vector<string> vos (lines (oss));
-  unsigned off = 0;
+  vector<string> vos (streamlines (oss));
 
   Test t (s, "XML output by Suite");
 
@@ -269,10 +241,10 @@ int test_testing_suite_out (Suite &s)
   ** tests that depend on it are not attempted.
   */
   return 0
-         || t.ge (vos.size (), 2, "long enough")
+         || t.ge (vos.size (), 2u, "long enough")
          || t.eq (vos[0], "  <testsuite name=\"Suite Tester Suite Name\">", "add <testsuite>")
          || t.eq (vos[1], "  </testsuite>", "Add </testsuite>")
-         || t.eq (vos.size (), 2, "no extra text");
+         || t.eq (vos.size (), 2u, "no extra text");
 }
 
 int test_testing_suite (Log &log)
@@ -394,8 +366,7 @@ int test_testing_test_obj (Suite &s)
 
   (void) Test (ts, "Test Tester Test Name");
 
-  vector<string> vos (lines (oss));
-  unsigned off = 0;
+  vector<string> vos (streamlines (oss));
 
   Test t (s, "XML output from Test object");
   /*
@@ -405,10 +376,10 @@ int test_testing_test_obj (Suite &s)
   ** tests that depend on it are not attempted.
   */
   return 0
-         || t.ge (vos.size (), 2, "enough XML output.")
+         || t.ge (vos.size (), 2u, "enough XML output.")
          || t.eq (vos[0], "    <testcase name=\"Test Tester Test Name\">", "<testcase>")
          || t.eq (vos[1], "    </testcase>", "</testcase>")
-         || t.eq (vos.size (), 2, "no extra XML output.");
+         || t.eq (vos.size (), 2u, "no extra XML output.");
 }
 
 int test_testing_test_fail (Suite &s)
@@ -424,17 +395,17 @@ int test_testing_test_fail (Suite &s)
   oss.str ("");
   tc.fail ("Fail Tester Condition Name");
 
-  vector<string> vos (lines (oss));
+  vector<string> vos (streamlines (oss));
 
   int ec = 0;
 
   {
     Test t (s, "XML output from Test::fail()");
     ec = ec
-         || t.ge (vos.size (), 2, "enough XML output")
+         || t.ge (vos.size (), 2u, "enough XML output")
          || t.eq (vos[0], "      <failure message=\"Fail Tester Condition Name\">", "<failure>")
          || t.eq (vos[1], "      </failure>", "</failure>")
-         || t.eq (vos.size (), 2, "not too much XML output");
+         || t.eq (vos.size (), 2u, "not too much XML output");
   }
   {
     Test t (s, "Bookkeeping update from Test::fail()");
@@ -501,7 +472,7 @@ int test_testing_test_text (Suite &s)
 
   tc.fail ("Text Tester Condition Name");
 
-  vector<string> vos (lines (oss));
+  vector<string> vos (streamlines (oss));
 
   Test t (s, "XML output of Test::fail evidence");
 
@@ -512,13 +483,13 @@ int test_testing_test_text (Suite &s)
   ** tests that depend on it are not attempted.
   */
   return 0
-         || t.ge (vos.size (), 5, "enough XML output.")
+         || t.ge (vos.size (), 5u, "enough XML output.")
          || t.eq (Farsyte::Utility::quoted (vos[0]), exp[0], msg[0])
          || t.eq (Farsyte::Utility::quoted (vos[1]), exp[1], msg[1])
          || t.eq (Farsyte::Utility::quoted (vos[2]), exp[2], msg[2])
          || t.eq (Farsyte::Utility::quoted (vos[3]), exp[3], msg[3])
          || t.eq (Farsyte::Utility::quoted (vos[4]), exp[4], msg[4])
-         || t.eq (vos.size (), 5, "no extra XML output.");
+         || t.eq (vos.size (), 5u, "no extra XML output.");
 }
 
 int test_testing_test_skip (Suite &s)
@@ -551,20 +522,20 @@ int test_testing_test_skip (Suite &s)
   tc << "Skip Tester Detail Line #3";
   tc.skip ("Skip Tester Condition Name");
 
-  vector<string> vos (lines (oss));
+  vector<string> vos (streamlines (oss));
 
   int ec = 0;
 
   {
     Test t (s, "XML output from Test::skip with evidence");
     ec = ec
-         + t.ge (vos.size (), 5, "Enough XML output")
+         + t.ge (vos.size (), 5u, "Enough XML output")
          + t.eq (Farsyte::Utility::quoted (vos[0]), exp[0], msg[0])
          + t.eq (Farsyte::Utility::quoted (vos[1]), exp[1], msg[1])
          + t.eq (Farsyte::Utility::quoted (vos[2]), exp[2], msg[2])
          + t.eq (Farsyte::Utility::quoted (vos[3]), exp[3], msg[3])
          + t.eq (Farsyte::Utility::quoted (vos[4]), exp[4], msg[4])
-         + t.ge (vos.size (), 5, "Enough XML output");
+         + t.ge (vos.size (), 5u, "Enough XML output");
   }
 
   {
@@ -630,20 +601,20 @@ int test_testing_test_error (Suite &s)
   tc << "Error Tester Detail Line #3";
   tc.error ("Error Tester Condition Name");
 
-  vector<string> vos (lines (oss));
+  vector<string> vos (streamlines (oss));
 
   int ec = 0;
 
   {
     Test t (s, "XML output from Test::error");
     ec = ec
-         || t.ge (vos.size (), 5, "Enough XML output.")
+         || t.ge (vos.size (), 5u, "Enough XML output.")
          || t.eq (Farsyte::Utility::quoted (vos[0]), exp[0], msg[0])
          || t.eq (Farsyte::Utility::quoted (vos[1]), exp[1], msg[1])
          || t.eq (Farsyte::Utility::quoted (vos[2]), exp[2], msg[2])
          || t.eq (Farsyte::Utility::quoted (vos[3]), exp[3], msg[3])
          || t.eq (Farsyte::Utility::quoted (vos[4]), exp[4], msg[4])
-         || t.eq (vos.size (), 5, "No extra XML output.");
+         || t.eq (vos.size (), 5u, "No extra XML output.");
   }
 
   {

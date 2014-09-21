@@ -49,28 +49,28 @@ namespace Farsyte {
       Suite *curr;
 
       /** Cumulative count of Suites. */
-      size_t suites;
+      int suites;
 
       /** Cumulative count of Tests. */
-      size_t tests;
+      int tests;
 
       /** Cumulative count of Tests with at least one FAIL. */
-      size_t failed_tests;
+      int failed_tests;
 
       /** Cumulative count of Tests with at least one SKIP. */
-      size_t skipped_tests;
+      int skipped_tests;
 
       /** Cumulative count of Tests with at least one ERROR. */
-      size_t errored_tests;
+      int errored_tests;
 
       /** Cumulative count of all FAIL reports. */
-      size_t total_fails;
+      int total_fails;
 
       /** Cumulative count of all SKIP reports. */
-      size_t total_skips;
+      int total_skips;
 
       /** Cumulative count of all ERROR reports. */
-      size_t total_errors;
+      int total_errors;
 
       /** Log Constructor.
       * \param out - where to send the XML text.
@@ -109,25 +109,25 @@ namespace Farsyte {
       Test *curr;
 
       /** Count of tests within this suite. */
-      size_t tests;
+      int tests;
 
       /** Cumulative count of Tests with at least one FAIL. */
-      size_t failed_tests;
+      int failed_tests;
 
       /** Cumulative count of Tests with at least one SKIP. */
-      size_t skipped_tests;
+      int skipped_tests;
 
       /** Cumulative count of Tests with at least one ERROR. */
-      size_t errored_tests;
+      int errored_tests;
 
       /** Cumulative count of all FAIL reports. */
-      size_t total_fails;
+      int total_fails;
 
       /** Cumulative count of all SKIP reports. */
-      size_t total_skips;
+      int total_skips;
 
       /** Cumulative count of all ERROR reports. */
-      size_t total_errors;
+      int total_errors;
 
       /** Construct a new Suite object.
       * \param ref - Log that contains this Suite.
@@ -178,13 +178,13 @@ namespace Farsyte {
       std::string const name;
 
       /** number of FAIL reports for this test. */
-      size_t fails;
+      int fails;
 
       /** number of SKIP reports for this test. */
-      size_t skips;
+      int skips;
 
       /** number of ERROR reports for this test. */
-      size_t errors;
+      int errors;
 
       /** Construct a new Test object.
       * \param ref - Suite that contains this Test.

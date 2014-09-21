@@ -9,6 +9,7 @@
  */
 
 #include <string>
+#include <sstream>
 #include <vector>
 
 namespace Farsyte {
@@ -43,6 +44,13 @@ namespace Farsyte {
     * DELETE character.
     */
     std::string quoted(std::string const &str);
+
+    /** Given an output string stream,
+    * extract its content as one string per line into a
+    * vector of strings.
+    */
+    extern std::vector<std::string> streamlines (std::ostringstream &oss);
+
 
     /** Retrieve "utility" version strings from library.
     * This method provides access to a list containing
