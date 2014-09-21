@@ -1,11 +1,6 @@
 #include "testing.h"
 #include "utility.h"
-#include <fstream>
 #include <iomanip>
-#include <iostream>
-#include <sstream>
-#include <string>
-#include <vector>
 
 using Farsyte::Testing::Log;
 using Farsyte::Testing::Oops;
@@ -22,14 +17,15 @@ using std::string;
 using std::vector;
 
 static int case_compare(
-  Test &t, string const &title,
-  string const &exp,
-  string const &act)
+    Test &t,
+    string const &title,
+    string const &exp,
+    string const &act)
 {
   char  const   qc = '"';
   t << title << endl
-    << "  expected: " << qc << exp << qc << endl
-    << "  observed: " << qc << act << qc << endl;
+  << "  expected: " << qc << exp << qc << endl
+  << "  observed: " << qc << act << qc << endl;
   if (act == exp) {
     t.pass(title);
     return 0;
@@ -39,15 +35,40 @@ static int case_compare(
   }
 }
 
-int test_utility_version(Log &l) {
-  Suite s(l, "Farsyte::Utility::Version");
-  Test t(s, "Version Comparison");
+static int case_compare_ge(
+    Test &t,
+    string const &title,
+    size_t exp,
+    size_t act)
+{
+  char  const   qc = '"';
+  t << title << endl
+  << "  expected: " << qc << exp << qc << endl
+  << "  observed: " << qc << act << qc << endl;
+  if (act >= exp) {
+    t.pass(title);
+    return 0;
+  } else {
+    t.fail(title + " failed");
+    return 1;
+  }
+}
+
+int test_utility_version (Log &l)
+{
+  Suite s (l, "Farsyte::Utility::Version");
+  Test t (s, "Version Comparison");
+
+  vector<string> ver_list = Farsyte::Utility::utility_versions ();
+  size_t min_size = 1;
+  size_t ver_size = ver_list.size();
 
   return 0
-    + case_compare(t, "version string compare",
-                   string(_utility_h),
-                   Farsyte::Utility::utility_version())
-    ;
+         + case_compare_ge (t, "at least one version string",
+                            min_size, ver_size)
+         + case_compare (t, "version string compare",
+                         string (_utility_h),
+                         ver_list[0]);
 }
 
 int test_utility_literal_char(Suite &s) {

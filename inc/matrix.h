@@ -11,6 +11,7 @@
 #include <array>
 #include <iomanip>
 #include <iostream>
+#include <vector>
 #include <stdexcept>
 
 namespace Farsyte
@@ -475,11 +476,12 @@ namespace Farsyte
       Matrix<1,3,double> const &L,
       Matrix<1,3,double> const &R);
 
-    /** Report version string for library.
-     * The optional parameter may provide access
-     * to additional version information.
-     */
-    extern std::string matrix_version(int i = 0);
+    /** Retrieve "matrix" version strings from library.
+    * This method provides access to a list containing
+    * the version strings from the headers used to compile
+    * the matrix library.
+    */
+    extern std::vector<std::string> const & matrix_versions();
 
   }
 }

@@ -1,11 +1,12 @@
 #include "utility.h"
 
 using std::string;
+using std::vector;
 
-string Farsyte::Utility::utility_version(int i)
+vector<string> const & Farsyte::Utility::utility_versions ()
 {
-  switch (i) {
-  case 0: return _utility_h;
-  default: return "";
-  }
+  static const vector<string> ret{
+      _utility_h,
+  };
+  return ret;
 }

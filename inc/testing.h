@@ -8,17 +8,22 @@
 * definitions for C code using this Testing library.
 */
 
+#include "utility.h"
 #include <fstream>
 #include <iostream>
 #include <sstream>
+#include <vector>
 #include <string>
 
 namespace Farsyte {
   namespace Testing {
 
     class Log;
+
     class Suite;
+
     class Test;
+
     class Oops;
 
     /** The Log Object
@@ -30,7 +35,8 @@ namespace Farsyte {
     * want to write, and may have several Log file objects open
     * at the same time.
     */
-    class Log {
+    class Log
+    {
     public:
 
       /** Current output stream. */
@@ -89,7 +95,8 @@ namespace Farsyte {
     * object; be sure that each Suite object goes out of scope
     * before the next one is constructed.
     */
-    class Suite {
+    class Suite
+    {
     public:
 
       /** Test Log associated with this Suite. */
@@ -307,11 +314,15 @@ namespace Farsyte {
     * MAY be reported by throwing an object of
     * a class derived from Oops.
     */
-    class Oops {
+    class Oops
+    {
     public:
-      std::string         file; /**< source file name. */
-      int                 line; /**< source line number. */
-      std::string         cond; /**< one-line failed condition text */
+      std::string file;
+      /**< source file name. */
+      int line;
+      /**< source line number. */
+      std::string cond;
+      /**< one-line failed condition text */
       mutable bool pend; /**< true if not yet dealt with */
 
       /** Create a new Oops object.
@@ -351,11 +362,12 @@ namespace Farsyte {
       virtual ~Oops ();
     };
 
-    /** Report version string for library.
-     * The optional parameter may provide access
-     * to additional version information.
+    /** Retrieve "testing" version strings from library.
+    * This method provides access to a list containing
+    * the version strings from the headers used to compile
+    * the testing library.
     */
-    extern std::string testing_version(int i = 0);
+    extern std::vector<std::string> const &testing_versions ();
   }
 }
 

@@ -33,3 +33,13 @@ string Farsyte::Utility::literal(string const &str) {
     oss << literal(str[i]);
   return oss.str();
 }
+
+string Farsyte::Utility::quoted(string const &str) {
+  ostringstream oss;
+  oss << '"';
+  for (size_t i = 0; i < str.size(); ++i)
+    oss << literal(str[i]);
+  oss << '"';
+  return oss.str();
+}
+

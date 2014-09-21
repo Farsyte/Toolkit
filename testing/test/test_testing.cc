@@ -49,15 +49,18 @@ int test_compare (
   return t.eq (obs, exp, message);
 }
 
-int test_testing_version(Log &l) {
+int test_testing_version (Log &l)
+{
   Suite s (l, "Farsyte::Testing::Version");
+  Test t (s, "Version Comparison");
+
+  vector<string> ver_list = Farsyte::Testing::testing_versions ();
+  size_t min_size = 1;
+  size_t ver_size = ver_list.size ();
 
   return 0
-    + test_compare(s, "Compare version strings",
-                   string(_testing_h),
-                   Farsyte::Testing::testing_version(),
-                   "version string mismatch")
-    ;
+         || t.ge (ver_size, min_size, "version string list too short")
+         || t.eq (ver_list[0], string (_testing_h), "master version string mismatch");
 }
 
 /** Verify the next entry in a string list is as expected.

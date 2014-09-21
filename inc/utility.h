@@ -9,6 +9,7 @@
  */
 
 #include <string>
+#include <vector>
 
 namespace Farsyte {
   namespace Utility {
@@ -18,26 +19,37 @@ namespace Farsyte {
      *
      * This function returns a string to use to represent
      * the "ch" character in a C literal within either a
-     * character or string literal. Oddball characters will
+     * character or string literal. Oddball characters may
      * use the representation of the DELETE character.
      */
     std::string literal(char ch);
 
-    /** Convert a character into its literal representation.
-     * \param str -- string to be quoted
-     *
-     * This function returns a string to be used within a C string
-     * literal to represent the value. Sufficiently oddball
-     * characters will be replaced by the representation of the
-     * DELETE character.
-     */
+    /** Convert a string into its literal representation (without quotes).
+    * \param str -- string to be quoted
+    *
+    * This function returns a string to be used within a C string
+    * literal to represent the value. Sufficiently oddball
+    * characters may be replaced by the representation of the
+    * DELETE character.
+    */
     std::string literal(std::string const &str);
 
-    /** Report version string for library.
-     * The optional parameter may provide access
-     * to additional version information.
+    /** Convert a character into its literal representation (with quotes).
+    * \param str -- string to be quoted
+    *
+    * This function returns a string to be used as a C string
+    * literal to represent the value. Sufficiently oddball
+    * characters may be replaced by the representation of the
+    * DELETE character.
+    */
+    std::string quoted(std::string const &str);
+
+    /** Retrieve "utility" version strings from library.
+    * This method provides access to a list containing
+    * the version strings from the headers used to compile
+    * the utility library.
      */
-    extern std::string utility_version(int i = 0);
+    extern std::vector<std::string> const & utility_versions();
   }
 }
 
