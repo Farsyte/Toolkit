@@ -41,7 +41,7 @@ Matrix23i RectMat(
   int d, int e, int f)
 {
   typedef typename Matrix23i::A A;
-  return A {{{a,d},{b,e},{c,f}}};
+  return A {a,b,c, d,e,f};
 }
 
 /** Need the type of the transpose as well. */
@@ -53,7 +53,7 @@ Matrix32i RectMatT(
   int e, int f)
 {
   typedef typename Matrix32i::A A;
-  return A {{{a,c,e},{b,d,f}}};
+  return A { a,b, c,d, e,f };
 }
 
 /** Types needed for matrix products. */
@@ -64,7 +64,7 @@ Matrix22i SquareMat2(
   int c, int d)
 {
   typedef typename Matrix22i::A A;
-  return A {{{a,c},{b,d}}};
+  return A {a,b, c,d};
 }
 
 typedef Matrix<3,3,int> Matrix33i;
@@ -75,7 +75,7 @@ Matrix33i SquareMat3(
   int g, int h, int i)
 {
   typedef typename Matrix33i::A A;
-  return A {{{a,d,g},{b,e,h},{c,f,i}}};
+  return A {a,b,c, d,e,f, g,h,i};
 }
 
 template<typename T>
@@ -355,9 +355,9 @@ int test_matrix_threevec_meta(Suite &s) {
   Test t(s, "Class Parameter Methods");
 
   return 0
-    + case_equals(t, "ThreeVec Rows", 3ul, ThreeVec::rows())
-    + case_equals(t, "ThreeVec Cols", 1ul, ThreeVec::cols())
-    + case_equals(t, "ThreeVec Size", 3ul, ThreeVec::size())
+    + case_equals(t, "ThreeVec Rows", 3, ThreeVec::rows())
+    + case_equals(t, "ThreeVec Cols", 1, ThreeVec::cols())
+    + case_equals(t, "ThreeVec Size", 3, ThreeVec::size())
     ;
 }
 
@@ -517,9 +517,9 @@ int test_matrix_colvec_meta(Suite &s) {
   Test t(s, "Class Parameter Methods");
 
   return 0
-    + case_equals(t, "ColVec Rows", 4ul, ColVec4i::rows())
-    + case_equals(t, "ColVec Cols", 1ul, ColVec4i::cols())
-    + case_equals(t, "ColVec Size", 4ul, ColVec4i::size())
+    + case_equals(t, "ColVec Rows", 4, ColVec4i::rows())
+    + case_equals(t, "ColVec Cols", 1, ColVec4i::cols())
+    + case_equals(t, "ColVec Size", 4, ColVec4i::size())
     ;
 }
 
@@ -683,9 +683,9 @@ int test_matrix_matrix_meta(Suite &s) {
   Test t(s, "Class Parameter Methods");
 
   return 0
-    + case_equals(t, "Matrix Rows", 2ul, Matrix23i::rows())
-    + case_equals(t, "Matrix Cols", 3ul, Matrix23i::cols())
-    + case_equals(t, "Matrix Size", 6ul, Matrix23i::size())
+    + case_equals(t, "Matrix Rows", 2, Matrix23i::rows())
+    + case_equals(t, "Matrix Cols", 3, Matrix23i::cols())
+    + case_equals(t, "Matrix Size", 6, Matrix23i::size())
     ;
 }
 

@@ -9,7 +9,7 @@ namespace Farsyte {
     }
 
     ThreeVec::ThreeVec(double x, double y, double z)
-      : ColMe(C{{x,y,z}})
+      : ColMe(A{{x,y,z}})
     {
     }
 
@@ -24,8 +24,8 @@ namespace Farsyte {
      * \returns Matrix whose elements are the sum of corresponding input elements.
      */
     ThreeVec cross(
-      ThreeVec const &L,
-      ThreeVec const &R)
+      Matrix<1,3,double> const &L,
+      Matrix<1,3,double> const &R)
     {
       return ThreeVec(
         L(2)*R(3) - L(3)*R(2),
