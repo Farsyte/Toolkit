@@ -140,11 +140,11 @@ int case_equals(
     << setw(16) << z
     << endl
     << "  observed: "
-    << setw(16) << r(1)
-    << setw(16) << r(2)
-    << setw(16) << r(3)
+    << setw(16) << r[0]
+    << setw(16) << r[1]
+    << setw(16) << r[2]
     << endl;
-  if ((x == r(1)) && (y == r(2)) && (z == r(3))) {
+  if ((x == r[0]) && (y == r[1]) && (z == r[2])) {
     t.pass(title);
     return 0;
   } else {
@@ -167,12 +167,12 @@ int case_equals(
     << setw(16) << z
     << endl
     << "  observed: "
-    << setw(16) << r(1)
-    << setw(16) << r(2)
-    << setw(16) << r(3)
-    << setw(16) << r(4)
+    << setw(16) << r[0]
+    << setw(16) << r[1]
+    << setw(16) << r[2]
+    << setw(16) << r[3]
     << endl;
-  if ((w == r(1)) && (x == r(2)) && (y == r(3)) && (z == r(4))) {
+  if ((w == r[0]) && (x == r[1]) && (y == r[2]) && (z == r[3])) {
     t.pass(title);
     return 0;
   } else {
@@ -194,17 +194,17 @@ int case_equals(
     << setw(8) << a
     << setw(8) << b
     << setw(8) << " "
-    << setw(8) << M(1,1)
-    << setw(8) << M(1,2)
+    << setw(8) << M(0,0)
+    << setw(8) << M(0,1)
     << endl
     << setw(8) << c
     << setw(8) << d
     << setw(8) << " "
-    << setw(8) << M(2,1)
-    << setw(8) << M(2,2)
+    << setw(8) << M(1,0)
+    << setw(8) << M(1,1)
     << endl;
-  if ((a == M(1,1)) && (b == M(1,2)) &&
-      (c == M(2,1)) && (d == M(2,2))) {
+  if ((a == M(0,0)) && (b == M(0,1)) &&
+      (c == M(1,0)) && (d == M(1,1))) {
     t.pass(title);
     return 0;
   } else {
@@ -227,20 +227,20 @@ int case_equals(
     << setw(8) << b
     << setw(8) << c
     << setw(8) << " "
-    << setw(8) << M(1,1)
-    << setw(8) << M(1,2)
-    << setw(8) << M(1,3)
+    << setw(8) << M(0,0)
+    << setw(8) << M(0,1)
+    << setw(8) << M(0,2)
     << endl
     << setw(8) << d
     << setw(8) << e
     << setw(8) << f
     << setw(8) << " "
-    << setw(8) << M(2,1)
-    << setw(8) << M(2,2)
-    << setw(8) << M(2,3)
+    << setw(8) << M(1,0)
+    << setw(8) << M(1,1)
+    << setw(8) << M(1,2)
     << endl;
-  if ((a == M(1,1)) && (b == M(1,2)) && (c == M(1,3)) &&
-      (d == M(2,1)) && (e == M(2,2)) && (f == M(2,3))) {
+  if ((a == M(0,0)) && (b == M(0,1)) && (c == M(0,2)) &&
+      (d == M(1,0)) && (e == M(1,1)) && (f == M(1,2))) {
     t.pass(title);
     return 0;
   } else {
@@ -263,24 +263,24 @@ int case_equals(
     << setw(8) << a
     << setw(8) << b
     << setw(8) << " "
-    << setw(8) << M(1,1)
-    << setw(8) << M(1,2)
+    << setw(8) << M(0,0)
+    << setw(8) << M(0,1)
     << endl
     << setw(8) << c
     << setw(8) << d
     << setw(8) << " "
-    << setw(8) << M(2,1)
-    << setw(8) << M(2,2)
+    << setw(8) << M(1,0)
+    << setw(8) << M(1,1)
     << endl
     << setw(8) << e
     << setw(8) << f
     << setw(8) << " "
-    << setw(8) << M(3,1)
-    << setw(8) << M(3,2)
+    << setw(8) << M(2,0)
+    << setw(8) << M(2,1)
     << endl;
-  if ((a == M(1,1)) && (b == M(1,2)) &&
-      (c == M(2,1)) && (d == M(2,2)) &&
-      (e == M(3,1)) && (f == M(3,2))) {
+  if ((a == M(0,0)) && (b == M(0,1)) &&
+      (c == M(1,0)) && (d == M(1,1)) &&
+      (e == M(2,0)) && (f == M(2,1))) {
     t.pass(title);
     return 0;
   } else {
@@ -304,29 +304,29 @@ int case_equals(
     << setw(8) << b
     << setw(8) << c
     << setw(8) << " "
-    << setw(8) << M(1,1)
-    << setw(8) << M(1,2)
-    << setw(8) << M(1,3)
+    << setw(8) << M(0,0)
+    << setw(8) << M(0,1)
+    << setw(8) << M(0,2)
     << endl
     << setw(8) << d
     << setw(8) << e
     << setw(8) << f
     << setw(8) << " "
-    << setw(8) << M(2,1)
-    << setw(8) << M(2,2)
-    << setw(8) << M(2,3)
+    << setw(8) << M(1,0)
+    << setw(8) << M(1,1)
+    << setw(8) << M(1,2)
     << endl
     << setw(8) << g
     << setw(8) << h
     << setw(8) << i
     << setw(8) << " "
-    << setw(8) << M(3,1)
-    << setw(8) << M(3,2)
-    << setw(8) << M(3,3)
+    << setw(8) << M(2,0)
+    << setw(8) << M(2,1)
+    << setw(8) << M(2,2)
     << endl;
-  if ((a == M(1,1)) && (b == M(1,2)) && (c == M(1,3)) &&
-      (d == M(2,1)) && (e == M(2,2)) && (f == M(2,3)) &&
-      (g == M(3,1)) && (h == M(3,2)) && (i == M(3,3))) {
+  if ((a == M(0,0)) && (b == M(0,1)) && (c == M(0,2)) &&
+      (d == M(1,0)) && (e == M(1,1)) && (f == M(1,2)) &&
+      (g == M(2,0)) && (h == M(2,1)) && (i == M(2,2))) {
     t.pass(title);
     return 0;
   } else {
@@ -420,8 +420,8 @@ int test_matrix_threevec_access(Suite &s) {
 
   ThreeVec V {3,5,7};
 
-  V(2) = 4;
-  V(3) = V(1);
+  V[1] = 4;
+  V[2] = V[0];
 
   return 0
     + case_equals(t, "Vector after access and update", 3,4,3, V)
@@ -610,8 +610,8 @@ int test_matrix_colvec_access(Suite &s) {
 
   ColVec4i V (FourVec(1,3,5,7));
 
-  V(3) = 4;
-  V(4) = V(1);
+  V[2] = 4;
+  V[3] = V[0];
 
   return 0
     + case_equals(t, "Vector after access and update", 1,3,4,1, V)
@@ -823,8 +823,8 @@ int test_matrix_matrix_access(Suite &s) {
 
   Matrix23i V = RectMat(1,3,5, 2,4,6);
 
-  V(2,2) = 8;
-  V(2,3) = V(1,1);
+  V(1,1) = 8;
+  V(1,2) = V(0,0);
 
   return 0
     + case_equals(t, "Matrix after access and update", 1,3,5, 2,8,1, V)
