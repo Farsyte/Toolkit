@@ -25,58 +25,20 @@ using std::setw;
 using std::string;
 using std::vector;
 
-/** Pick a specific ColVec for primary ColVec testing. */
+/** Pick a type for a test vector. */
 typedef ColVec<4,int>   ColVec4i;
 
-ColVec4i FourVec(int w, int x, int y, int z) {
-  typedef typename ColVec4i::A A;
-  return A {w, x, y, z};
-}
-
-/** Pick a specific ColVec for primary ColVec testing. */
+/** Pick a type for a test matrix */
 typedef Matrix<3,2,int> Matrix23i;
 
-Matrix23i RectMat(
-  int a, int b, int c,
-  int d, int e, int f)
-{
-  typedef typename Matrix23i::A A;
-  return A {a,b,c, d,e,f};
-}
-
-/** Need the type of the transpose as well. */
+/** Type for transposed test matrix */
 typedef Matrix<2,3,int> Matrix32i;
 
-Matrix32i RectMatT(
-  int a, int b,
-  int c, int d,
-  int e, int f)
-{
-  typedef typename Matrix32i::A A;
-  return A { a,b, c,d, e,f };
-}
-
-/** Types needed for matrix products. */
+/** Small square matrix for multiply testing */
 typedef Matrix<2,2,int> Matrix22i;
 
-Matrix22i SquareMat2(
-  int a, int b,
-  int c, int d)
-{
-  typedef typename Matrix22i::A A;
-  return A {a,b, c,d};
-}
-
+/** Large square matrix for multiply testing */
 typedef Matrix<3,3,int> Matrix33i;
-
-Matrix33i SquareMat3(
-  int a, int b, int c,
-  int d, int e, int f,
-  int g, int h, int i)
-{
-  typedef typename Matrix33i::A A;
-  return A {a,b,c, d,e,f, g,h,i};
-}
 
 template<typename T>
 int case_equals(
@@ -525,13 +487,15 @@ int test_matrix_colvec_meta(Suite &s) {
 
 int test_matrix_colvec_ctor_eq_ne(Suite &s) {
 
+  typedef ColVec4i::A IV;
+
   Test t(s, "Construct and Compare");
 
   ColVec4i D;
-  ColVec4i W (FourVec(1,0,0,0));
-  ColVec4i X (FourVec(0,1,0,0));
-  ColVec4i Y (FourVec(0,0,1,0));
-  ColVec4i Z (FourVec(0,0,0,1));
+  ColVec4i W = IV { 1,0,0,0 };
+  ColVec4i X = IV { 0,1,0,0 };
+  ColVec4i Y = IV { 0,0,1,0 };
+  ColVec4i Z = IV { 0,0,0,1 };
 
   return 0
     + case_equals(t, "Default initialized to Zero", 0, 0, 0, 0, D)
@@ -606,9 +570,11 @@ int test_matrix_colvec_ctor_eq_ne(Suite &s) {
 
 int test_matrix_colvec_access(Suite &s) {
 
+  typedef ColVec4i::A IV;
+
   Test t(s, "Member Access and Update");
 
-  ColVec4i V (FourVec(1,3,5,7));
+  ColVec4i V = IV { 1,3,5,7 };
 
   V[2] = 4;
   V[3] = V[0];
@@ -620,11 +586,13 @@ int test_matrix_colvec_access(Suite &s) {
 
 int test_matrix_colvec_add(Suite &s) {
 
+  typedef ColVec4i::A IV;
+
   Test t(s, "Addition");
 
   ColVec4i S;
-  ColVec4i A = FourVec(10,7,4,1);
-  ColVec4i I = FourVec(1,2,3,4);
+  ColVec4i A = IV { 10,7,4,1 };
+  ColVec4i I = IV {  1,2,3,4 };
   A += I;
 
   return 0
@@ -637,11 +605,13 @@ int test_matrix_colvec_add(Suite &s) {
 
 int test_matrix_colvec_sub(Suite &s) {
 
+  typedef ColVec4i::A IV;
+
   Test t(s, "Difference");
 
   ColVec4i D;
-  ColVec4i A = FourVec(9,8,7,6);
-  ColVec4i I = FourVec(1,2,3,4);
+  ColVec4i A = IV { 9,8,7,6 };
+  ColVec4i I = IV { 1,2,3,4 };
   A -= I;
 
   return 0
@@ -691,14 +661,16 @@ int test_matrix_matrix_meta(Suite &s) {
 
 int test_matrix_matrix_ctor_eq_ne(Suite &s) {
 
+  typedef Matrix23i::A IV;
+
   Test t(s, "Construct and Compare");
   Matrix23i I;
-  Matrix23i A = RectMat(1,0, 0,0, 0,0);
-  Matrix23i B = RectMat(0,1, 0,0, 0,0);
-  Matrix23i C = RectMat(0,0, 1,0, 0,0);
-  Matrix23i D = RectMat(0,0, 0,1, 0,0);
-  Matrix23i E = RectMat(0,0, 0,0, 1,0);
-  Matrix23i F = RectMat(0,0, 0,0, 0,1);
+  Matrix23i A = IV { 1,0, 0,0, 0,0 };
+  Matrix23i B = IV { 0,1, 0,0, 0,0 };
+  Matrix23i C = IV { 0,0, 1,0, 0,0 };
+  Matrix23i D = IV { 0,0, 0,1, 0,0 };
+  Matrix23i E = IV { 0,0, 0,0, 1,0 };
+  Matrix23i F = IV { 0,0, 0,0, 0,1 };
 
   return 0
     + case_equals(t, "Default initialized to Zero", 0,0, 0,0, 0,0, I)
@@ -819,25 +791,29 @@ int test_matrix_matrix_ctor_eq_ne(Suite &s) {
 
 int test_matrix_matrix_access(Suite &s) {
 
+  typedef Matrix23i::A IV;
+
   Test t(s, "Member Access and Update");
 
-  Matrix23i V = RectMat(1,3,5, 2,4,6);
+  Matrix23i A = IV { 1,3,5, 2,4,6 };
 
-  V(1,1) = 8;
-  V(1,2) = V(0,0);
+  A(1,1) = 8;
+  A(1,2) = A(0,0);
 
   return 0
-    + case_equals(t, "Matrix after access and update", 1,3,5, 2,8,1, V)
+    + case_equals(t, "Matrix after access and update", 1,3,5, 2,8,1, A)
     ;
 }
 
 int test_matrix_matrix_add(Suite &s) {
 
+  typedef Matrix23i::A IV;
+
   Test t(s, "Addition");
 
   Matrix23i S;
-  Matrix23i A = RectMat(16,13,10,7,4,1);
-  Matrix23i I = RectMat(1,2,3,4,5,6);
+  Matrix23i A = IV { 16,13,10, 7,4,1 };
+  Matrix23i I = IV {  1, 2, 3, 4,5,6 };
   A += I;
 
   return 0
@@ -850,11 +826,13 @@ int test_matrix_matrix_add(Suite &s) {
 
 int test_matrix_matrix_sub(Suite &s) {
 
+  typedef Matrix23i::A IV;
+
   Test t(s, "Difference");
 
   Matrix23i D;
-  Matrix23i A = RectMat(18,17,16,15,14,13);
-  Matrix23i I = RectMat(1,2,3,4,5,6);
+  Matrix23i A = IV { 18,17,16, 15,14,13 };
+  Matrix23i I = IV {  1, 2, 3,  4, 5, 6 };
   A -= I;
 
   return 0
@@ -867,10 +845,12 @@ int test_matrix_matrix_sub(Suite &s) {
 
 int test_matrix_matrix_mul(Suite &s) {
 
+  typedef Matrix23i::A IV;
+
   Test t(s, "Product (and transpose)");
 
-  Matrix23i A = RectMat(13,69,32, 82,21,20);
-  Matrix23i B = RectMat(91,26,69, 25,22,41);
+  Matrix23i A = IV { 13,69,32, 82,21,20 };
+  Matrix23i B = IV { 91,26,69, 25,22,41 };
 
   return 0
     + case_equals(t, "A*~B",
