@@ -1,5 +1,5 @@
 #ifndef _matrix_h
-#define _matrix_h
+#define _matrix_h "matrix v0.1" /**< for header vs library matching */
 
 /** \file
  * \brief Matrix Library Exported API
@@ -9,20 +9,17 @@
  */
 
 #include <array>
-
-#include <iostream>
-using std::cerr;
-using std::endl;
-
 #include <iomanip>
-using std::fixed;
-using std::setw;
-using std::setprecision;
+#include <iostream>
+#include <stdexcept>
 
 namespace Farsyte
 {
   namespace Matrix
   {
+
+    extern std::string matrix_range_error(
+        int Nr, int Nc, int ri, int ci);
 
     /** Matrix Template.
      * \param Nc    Number of columns in the matrix.
@@ -38,33 +35,14 @@ namespace Farsyte
     {
     public:
 
-      /** Typedef for type of matrix elements. */
-      typedef T               value_type;
-
-      /** Reference to a matrix element. */
-      typedef T       &       reference;
-
-      /** Const reference to a matrix element. */
-      typedef T const & const_reference;
-
-      /** Pointer to a matrix element. */
-      typedef T       *       pointer;
-
-      /** Const pointer to a matrix element. */
-      typedef T const * const_pointer;
-
-      /** Typedef for array containing one column of the data.
-       */
-      typedef std::array<T,Nr> C;
-
       /** Typedef for array containing the data.
        */
-      typedef std::array<C,Nc> A;
+      typedef std::array<T,Nr*Nc> A;
 
       /** Matrix rows.
        * \returns number of rows `Nr` in tha matrix.
        */
-      static size_t rows()
+      static int rows()
         {
           return Nr;
         }
@@ -72,7 +50,7 @@ namespace Farsyte
       /** Matrix columns.
        * \returns number of columns `Nc` in tha matrix.
        */
-      static size_t cols()
+      static int cols()
         {
           return Nc;
         }
@@ -80,12 +58,23 @@ namespace Farsyte
       /** Matrix elements.
        * \returns number of elements `Nr*Nc` in the matrix.
        */
-      static size_t size()
+      static int size()
         {
           return rows() * cols();
         }
 
     protected:
+
+      /** Matrix subscript to offset calculation.
+       */
+      int off(int ri, int ci) const
+        {
+          if ((ri < 0) || (ri >= Nr) ||
+              (ci < 0) || (ci >= Nc))
+            throw std::out_of_range(matrix_range_error(Nr,Nc,ri,ci));
+
+          return ri * Nc + ci;
+        }
 
       /** Matrix Subscripting Implementation.
        * \param ri  Row Index, ranging from 1 to Nr inclusive.
@@ -93,13 +82,9 @@ namespace Farsyte
        * \returns a read-only reference to the selected element.
        * \note Fortran conventions for array subscripting.
        */
-      T const & sub(int ri, int ci) const
+      T const & data(int ri, int ci = 0) const
         {
-#ifdef RANGE_CHECKER
-          RANGE_CHECKER(1,ci,Nc);
-          RANGE_CHECKER(1,ri,Nr);
-#endif
-          return data[ci-1][ri-1];
+          return a[off(ri,ci)];
         }
 
       /** Matrix Subscripting Implementation.
@@ -108,13 +93,9 @@ namespace Farsyte
        * \returns a writable reference to the selected element.
        * \note Fortran conventions for array subscripting.
        */
-      T       & sub(int ri, int ci)
+      T       & data(int ri, int ci = 0)
         {
-#ifdef RANGE_CHECKER
-          RANGE_CHECKER(1,ci,Nc);
-          RANGE_CHECKER(1,ri,Nr);
-#endif
-          return data[ci-1][ri-1];
+          return a[off(ri,ci)];
         }
 
     public:
@@ -124,7 +105,7 @@ namespace Farsyte
        * of having each element appropriately initialized.
        */
       Matrix()
-        : data()
+        : a()
         {
         }
 
@@ -132,23 +113,23 @@ namespace Farsyte
        * \param d   Value to copy into each diagonal element.
        */
       Matrix(T const &d)
-        : data()
+        : a()
         {
-          for (size_t i = 1; (i <= Nr) && (i <= Nc); ++i)
-            sub(i,i) = d;
+          for (int i = 0; (i < Nr) && (i < Nc); ++i)
+            data(i,i) = d;
         }
 
       /** Matrix Construction from Array of Arrays.
-       * \param a  Array to duplicate.
+       * \param iv initialization vector.
        * This method is used by subclasses to provide value
-       * construction of Matrices using Arrays of Arrays of the
-       * appropriate dimensions.
+       * construction of Matrices using appropriately
+       * sized and shaped initialization vectors.
        * \note Not a public interface: only classes within the class
        * heirarchy below Matrix should be aware of the data
        * organization within the Matrix object.
        */
-      Matrix(A const &a)
-        : data(a)
+      Matrix(A const &iv)
+        : a(iv)
         {
         }
 
@@ -158,9 +139,17 @@ namespace Farsyte
        * in the provided matrix.
        */
       Matrix(Matrix const &m)
-        : data(m.data)
+        : a(m.a)
         {
         }
+
+      T const & operator[] (int i) const {
+        return a[i];
+      }
+
+      T       & operator[] (int i)      {
+        return a[i];
+      }
 
       /** Matrix Subscripting Operator.
        * \param ri  Row Index, in the range 1 to Nr inclusive.
@@ -168,9 +157,9 @@ namespace Farsyte
        * \returns read-only reference to the selected element.
        * \note Fortran conventions for array subscripting.
        */
-      T const & operator()(int ri, int ci) const
+      T const & operator()(int ri, int ci = 0) const
         {
-          return sub(ri, ci);
+          return data(ri, ci);
         }
 
       /** Matrix Subscripting Operator.
@@ -179,9 +168,9 @@ namespace Farsyte
        * \returns modifiable reference to the selected element.
        * \note Fortran conventions for array subscripting.
        */
-      T       & operator()(int ri, int ci)
+      T       & operator()(int ri, int ci = 0)
         {
-          return sub(ri, ci);
+          return data(ri, ci);
         }
 
       /** Matrix Equality Test.
@@ -190,9 +179,9 @@ namespace Farsyte
        */
       bool equals(Matrix const &p) const
         {
-          for (int ci = 1; ci <= Nc; ++ci)
-            for (int ri = 1; ri <= Nr; ++ri)
-              if (sub(ri,ci) != p.sub(ri,ci))
+          for (int ci = 0; ci < Nc; ++ci)
+            for (int ri = 0; ri < Nr; ++ri)
+              if (data(ri,ci) != p.data(ri,ci))
                 return false;
           return true;
         }
@@ -206,9 +195,9 @@ namespace Farsyte
        */
       Matrix & increment_by(Matrix const &p)
         {
-          for (int ci = 1; ci <= Nc; ++ci)
-            for (int ri = 1; ri <= Nr; ++ri)
-              sub(ri,ci) += p.sub(ri,ci);
+          for (int ci = 0; ci < Nc; ++ci)
+            for (int ri = 0; ri < Nr; ++ri)
+              data(ri,ci) += p.data(ri,ci);
           return *this;
         }
 
@@ -233,9 +222,9 @@ namespace Farsyte
        */
       Matrix & decrement_by(Matrix const &p)
         {
-          for (int ci = 1; ci <= Nc; ++ci)
-            for (int ri = 1; ri <= Nr; ++ri)
-              sub(ri,ci) -= p.sub(ri,ci);
+          for (int ci = 0; ci < Nc; ++ci)
+            for (int ri = 0; ri < Nr; ++ri)
+              data(ri,ci) -= p.data(ri,ci);
           return *this;
         }
 
@@ -256,9 +245,9 @@ namespace Farsyte
        */
       Matrix negate()
         {
-          for (int ci = 1; ci <= Nc; ++ci)
-            for (int ri = 1; ri <= Nr; ++ri)
-              sub(ri,ci) = -sub(ri,ci);
+          for (int ci = 0; ci < Nc; ++ci)
+            for (int ri = 0; ri < Nr; ++ri)
+              data(ri,ci) = -data(ri,ci);
           return *this;
         }
 
@@ -269,15 +258,15 @@ namespace Farsyte
       transpose() const
         {
           Matrix<Nr,Nc,T> R;
-          for (int ci = 1; ci <= Nc; ++ci)
-            for (int ri = 1; ri <= Nr; ++ri)
-              R(ci,ri) = sub(ri,ci);
+          for (int ci = 0; ci < Nc; ++ci)
+            for (int ri = 0; ri < Nr; ++ri)
+              R(ci,ri) = data(ri,ci);
           return R;
         }
 
     protected:
       /** Storage for Matrix State. */
-      A                         data;
+      A                         a;
     };
 
     /** Equality Operator for Matrix-based Classes.
@@ -366,11 +355,11 @@ namespace Farsyte
       Matrix<Nc,Ni,T> const & R)
     {
       Matrix<Nc,Nr,T> X;
-      for (int ri=1; ri<=Nr; ++ri) {
-        for (int ci=1; ci<=Nc; ++ci) {
+      for (int ri = 0; ri < Nr; ++ri) {
+        for (int ci = 0; ci < Nc; ++ci) {
           T &acc(X(ri,ci));
-          acc = L(ri,1)*R(1,ci);
-          for (int ii=2; ii<=Ni; ++ii) {
+          acc = L(ri,0)*R(0,ci);
+          for (int ii = 1; ii < Ni; ++ii) {
             acc += L(ri,ii)*R(ii,ci);
           }
         }
@@ -400,32 +389,6 @@ namespace Farsyte
        */
       typedef typename MatMe::A A;
 
-      /** Typedef for array containing one column of data.
-       */
-      typedef typename MatMe::C C;
-
-    protected:
-
-      /** ColVec Subscripting Implementation.
-       * \param ri  Row Index, in the range 1 to N inclusive.
-       * \returns read-only reference to the selected element.
-       * \note Fortran conventions for array subscripting.
-       */
-      T const & sub(int ri) const
-        {
-          return MatMe::sub(ri, 1);
-        }
-
-      /** ColVec Subscripting Implementation.
-       * \param ri  Row Index, in the range 1 to N inclusive.
-       * \returns modifiable reference to the selected element.
-       * \note Fortran conventions for array subscripting.
-       */
-      T       & sub(int ri)
-        {
-          return MatMe::sub(ri, 1);
-        }
-
     public:
 
       ColVec()
@@ -443,16 +406,6 @@ namespace Farsyte
         {
         }
 
-      /** Construct a Column Vector from a 1-D Array.
-       * \param a  An appropriately shaped object of the C++ array template type.
-       * This initializes the Column Vector data to contain values from
-       * the corresponding elements of the array provided.
-       */
-      ColVec(C const &a)
-        : MatMe(A{{a}})
-        {
-        }
-
       /** Duplicate an existing Column Vector.
        * \param c  A column vector to duplicate.
        * Initialize this column vector to be a duplicate of the one provided.
@@ -461,26 +414,6 @@ namespace Farsyte
       ColVec(MatMe const &c)
         : MatMe(c)
         {
-        }
-
-      /** ColVec Subscripting Operator.
-       * \param ri  Row Index, in the range 1 to N inclusive.
-       * \returns read-only reference to the selected element.
-       * \note Fortran conventions for array subscripting.
-       */
-      T const & operator()(int ri) const
-        {
-          return sub(ri);
-        }
-
-      /** ColVec Subscripting Operator.
-       * \param ri  Row Index, in the range 1 to N inclusive.
-       * \returns modifiable reference to the selected element.
-       * \note Fortran conventions for array subscripting.
-       */
-      T       & operator()(int ri)
-        {
-          return sub(ri);
         }
 
     };
@@ -502,9 +435,9 @@ namespace Farsyte
       /** Typedef for Matrix generalization. */
       typedef ColMe::MatMe      MatMe;
 
-      /** Typedef for 1-D array containing the data.
+      /** Typedef for array containing the data.
        */
-      typedef typename ColMe::C C;
+      typedef typename ColMe::A A;
 
     public:
 
@@ -539,8 +472,14 @@ namespace Farsyte
      * \returns the cross product of the two vectors.
      */
     extern ThreeVec cross(
-      ThreeVec const &L,
-      ThreeVec const &R);
+      Matrix<1,3,double> const &L,
+      Matrix<1,3,double> const &R);
+
+    /** Report version string for library.
+     * The optional parameter may provide access
+     * to additional version information.
+     */
+    extern std::string matrix_version(int i = 0);
 
   }
 }

@@ -1,27 +1,22 @@
 #include "testing.h"
+#include <fstream>
+#include <iostream>
+#include <sstream>
+#include <string>
+#include <vector>
 
 using Farsyte::Testing::Log;
+using Farsyte::Testing::Oops;
 using Farsyte::Testing::Suite;
 using Farsyte::Testing::Test;
-using Farsyte::Testing::Oops;
-
-#include <string>
-using std::string;
-
-#include <vector>
-using std::vector;
-
-#include <iostream>
-using std::ostream;
 using std::cout;
 using std::endl;
-
-#include <fstream>
-using std::ofstream;
-
-#include <sstream>
 using std::istringstream;
+using std::ofstream;
+using std::ostream;
 using std::ostringstream;
+using std::string;
+using std::vector;
 
 /** Quote a character to go into a string constant.
  * \todo move this to a text utility library somewhere?
@@ -99,6 +94,17 @@ int test_compare(
     t.fail(message);
     return 1;
   }
+}
+
+int test_testing_version(Log &l) {
+  Suite s(l, "Farsyte::Testing::Version");
+
+  return 0
+    + test_compare(s, "Compare version strings",
+                   string(_testing_h),
+                   Farsyte::Testing::testing_version(),
+                   "version string mismatch")
+    ;
 }
 
 /** Verify the next entry in a string list is as expected.
@@ -789,6 +795,7 @@ int test_testing(Log &log) {
   ** and return fail if any failed, after running all.
   */
   return 0
+    + test_testing_version(log)
     + test_testing_log(log)
     + test_testing_suite(log)
     + test_testing_test(log)

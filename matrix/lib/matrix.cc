@@ -1,7 +1,29 @@
 #include "matrix.h"
 
+#include <sstream>
+#include <stdexcept>
+
+using std::ostringstream;
+using std::string;
+
 namespace Farsyte {
   namespace Matrix {
+
+    string matrix_range_error(
+      int Nr, int Nc, int ri, int ci)
+    {
+      ostringstream msg;
+      msg << "matrix subscript range error\n";
+      if ((ri < 0) || (ri >= Nr))
+        msg << "    ri (" << ri << ")"
+            << " is not in the range 0.." << (Nr-1)
+            << " inclusive.\n";
+      if ((ci < 0) || (ci >= Nc))
+        msg << "    ci (" << ci << ")"
+            << " is not in the range 0.." << (Nc-1)
+            << " inclusive.\n";
+      return msg.str();
+    }
 
     ThreeVec::ThreeVec()
       : ColMe()
@@ -9,7 +31,7 @@ namespace Farsyte {
     }
 
     ThreeVec::ThreeVec(double x, double y, double z)
-      : ColMe(C{{x,y,z}})
+      : ColMe(A{{x,y,z}})
     {
     }
 
@@ -24,13 +46,13 @@ namespace Farsyte {
      * \returns Matrix whose elements are the sum of corresponding input elements.
      */
     ThreeVec cross(
-      ThreeVec const &L,
-      ThreeVec const &R)
+      Matrix<1,3,double> const &L,
+      Matrix<1,3,double> const &R)
     {
       return ThreeVec(
-        L(2)*R(3) - L(3)*R(2),
-        L(3)*R(1) - L(1)*R(3),
-        L(1)*R(2) - L(2)*R(1));
+        L[1]*R[2] - L[2]*R[1],
+        L[2]*R[0] - L[0]*R[2],
+        L[0]*R[1] - L[1]*R[0]);
     }
 
   }

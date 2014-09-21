@@ -1,12 +1,11 @@
 #include "testing_internal.h"
-
-#include <string>
-using std::string;
-
 #include <iostream>
-using std::ostream;
+#include <string>
+
 using std::cerr;
 using std::endl;
+using std::ostream;
+using std::string;
 
 Oops::Oops(
   string          f,

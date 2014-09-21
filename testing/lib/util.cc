@@ -1,10 +1,9 @@
 #include "testing_internal.h"
-
-#include <string>
-using std::string;
-
 #include <sstream>
+#include <string>
+
 using std::ostringstream;
+using std::string;
 
 std::string Farsyte::Testing::cq(char ch, char qc) {
 

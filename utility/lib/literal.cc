@@ -1,10 +1,9 @@
 #include "utility.h"
-
-#include <string>
-using std::string;
-
 #include <sstream>
+#include <string>
+
 using std::ostringstream;
+using std::string;
 
 string Farsyte::Utility::literal(char ch) {
   switch (ch) {

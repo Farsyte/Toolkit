@@ -1,7 +1,5 @@
 #ifndef _testing_internal_h
-#define _testing_internal_h
-
-#include "testing.h"
+#define _testing_internal_h "testing_internal v0.1" /**< for header vs library matching */
 
 /** \file
  * \brief Testing Library Internal API
@@ -9,6 +7,10 @@
  * This file provides data types, function prototypes and macro
  * definitions for interfaces between parts of this library.
  */
+
+#include "testing.h"
+
+using namespace Farsyte::Testing;
 
 namespace Farsyte {
   namespace Testing {
@@ -51,7 +53,5 @@ namespace Farsyte {
     string str(oss.str());                      \
     throw Oops(__FILE__, __LINE__, str);        \
   } while (0)
-
-using namespace Farsyte::Testing;
 
 #endif//_testing_internal_h

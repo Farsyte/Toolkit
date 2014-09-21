@@ -1,89 +1,44 @@
+#include "matrix.h"
 #include "testing.h"
 #include "utility.h"
-#include "matrix.h"
+#include <fstream>
+#include <iomanip>
+#include <iostream>
+#include <sstream>
+#include <string>
+#include <vector>
 
+using Farsyte::Matrix::ColVec;
+using Farsyte::Matrix::Matrix;
+using Farsyte::Matrix::ThreeVec;
 using Farsyte::Testing::Log;
+using Farsyte::Testing::Oops;
 using Farsyte::Testing::Suite;
 using Farsyte::Testing::Test;
-using Farsyte::Testing::Oops;
-
-using Farsyte::Matrix::Matrix;
-using Farsyte::Matrix::ColVec;
-using Farsyte::Matrix::ThreeVec;
-
-#include <string>
-using std::string;
-
-#include <vector>
-using std::vector;
-
-#include <iostream>
-using std::ostream;
 using std::cout;
 using std::endl;
-
-#include <fstream>
-using std::ofstream;
-
-#include <sstream>
 using std::istringstream;
+using std::ofstream;
+using std::ostream;
 using std::ostringstream;
-
-#include <iomanip>
 using std::setw;
+using std::string;
+using std::vector;
 
-/** Pick a specific ColVec for primary ColVec testing. */
-typedef ColVec<4,int>	ColVec4i;
+/** Pick a type for a test vector. */
+typedef ColVec<4,int>   ColVec4i;
 
-ColVec4i FourVec(int w, int x, int y, int z) {
-  typedef typename ColVec4i::A A;
-  return A {w, x, y, z};
-}
-
-/** Pick a specific ColVec for primary ColVec testing. */
+/** Pick a type for a test matrix */
 typedef Matrix<3,2,int> Matrix23i;
 
-Matrix23i RectMat(
-  int a, int b, int c,
-  int d, int e, int f)
-{
-  typedef typename Matrix23i::A A;
-  return A {{{a,d},{b,e},{c,f}}};
-}
-
-/** Need the type of the transpose as well. */
+/** Type for transposed test matrix */
 typedef Matrix<2,3,int> Matrix32i;
 
-Matrix32i RectMatT(
-  int a, int b,
-  int c, int d,
-  int e, int f)
-{
-  typedef typename Matrix32i::A A;
-  return A {{{a,c,e},{b,d,f}}};
-}
-
-/** Types needed for matrix products. */
+/** Small square matrix for multiply testing */
 typedef Matrix<2,2,int> Matrix22i;
 
-Matrix22i SquareMat2(
-  int a, int b,
-  int c, int d)
-{
-  typedef typename Matrix22i::A A;
-  return A {{{a,c},{b,d}}};
-}
-
+/** Large square matrix for multiply testing */
 typedef Matrix<3,3,int> Matrix33i;
-
-Matrix33i SquareMat3(
-  int a, int b, int c,
-  int d, int e, int f,
-  int g, int h, int i)
-{
-  typedef typename Matrix33i::A A;
-  return A {{{a,d,g},{b,e,h},{c,f,i}}};
-}
 
 template<typename T>
 int case_equals(
@@ -147,11 +102,11 @@ int case_equals(
     << setw(16) << z
     << endl
     << "  observed: "
-    << setw(16) << r(1)
-    << setw(16) << r(2)
-    << setw(16) << r(3)
+    << setw(16) << r[0]
+    << setw(16) << r[1]
+    << setw(16) << r[2]
     << endl;
-  if ((x == r(1)) && (y == r(2)) && (z == r(3))) {
+  if ((x == r[0]) && (y == r[1]) && (z == r[2])) {
     t.pass(title);
     return 0;
   } else {
@@ -174,12 +129,12 @@ int case_equals(
     << setw(16) << z
     << endl
     << "  observed: "
-    << setw(16) << r(1)
-    << setw(16) << r(2)
-    << setw(16) << r(3)
-    << setw(16) << r(4)
+    << setw(16) << r[0]
+    << setw(16) << r[1]
+    << setw(16) << r[2]
+    << setw(16) << r[3]
     << endl;
-  if ((w == r(1)) && (x == r(2)) && (y == r(3)) && (z == r(4))) {
+  if ((w == r[0]) && (x == r[1]) && (y == r[2]) && (z == r[3])) {
     t.pass(title);
     return 0;
   } else {
@@ -201,17 +156,17 @@ int case_equals(
     << setw(8) << a
     << setw(8) << b
     << setw(8) << " "
-    << setw(8) << M(1,1)
-    << setw(8) << M(1,2)
+    << setw(8) << M(0,0)
+    << setw(8) << M(0,1)
     << endl
     << setw(8) << c
     << setw(8) << d
     << setw(8) << " "
-    << setw(8) << M(2,1)
-    << setw(8) << M(2,2)
+    << setw(8) << M(1,0)
+    << setw(8) << M(1,1)
     << endl;
-  if ((a == M(1,1)) && (b == M(1,2)) &&
-      (c == M(2,1)) && (d == M(2,2))) {
+  if ((a == M(0,0)) && (b == M(0,1)) &&
+      (c == M(1,0)) && (d == M(1,1))) {
     t.pass(title);
     return 0;
   } else {
@@ -234,20 +189,20 @@ int case_equals(
     << setw(8) << b
     << setw(8) << c
     << setw(8) << " "
-    << setw(8) << M(1,1)
-    << setw(8) << M(1,2)
-    << setw(8) << M(1,3)
+    << setw(8) << M(0,0)
+    << setw(8) << M(0,1)
+    << setw(8) << M(0,2)
     << endl
     << setw(8) << d
     << setw(8) << e
     << setw(8) << f
     << setw(8) << " "
-    << setw(8) << M(2,1)
-    << setw(8) << M(2,2)
-    << setw(8) << M(2,3)
+    << setw(8) << M(1,0)
+    << setw(8) << M(1,1)
+    << setw(8) << M(1,2)
     << endl;
-  if ((a == M(1,1)) && (b == M(1,2)) && (c == M(1,3)) &&
-      (d == M(2,1)) && (e == M(2,2)) && (f == M(2,3))) {
+  if ((a == M(0,0)) && (b == M(0,1)) && (c == M(0,2)) &&
+      (d == M(1,0)) && (e == M(1,1)) && (f == M(1,2))) {
     t.pass(title);
     return 0;
   } else {
@@ -270,24 +225,24 @@ int case_equals(
     << setw(8) << a
     << setw(8) << b
     << setw(8) << " "
-    << setw(8) << M(1,1)
-    << setw(8) << M(1,2)
+    << setw(8) << M(0,0)
+    << setw(8) << M(0,1)
     << endl
     << setw(8) << c
     << setw(8) << d
     << setw(8) << " "
-    << setw(8) << M(2,1)
-    << setw(8) << M(2,2)
+    << setw(8) << M(1,0)
+    << setw(8) << M(1,1)
     << endl
     << setw(8) << e
     << setw(8) << f
     << setw(8) << " "
-    << setw(8) << M(3,1)
-    << setw(8) << M(3,2)
+    << setw(8) << M(2,0)
+    << setw(8) << M(2,1)
     << endl;
-  if ((a == M(1,1)) && (b == M(1,2)) &&
-      (c == M(2,1)) && (d == M(2,2)) &&
-      (e == M(3,1)) && (f == M(3,2))) {
+  if ((a == M(0,0)) && (b == M(0,1)) &&
+      (c == M(1,0)) && (d == M(1,1)) &&
+      (e == M(2,0)) && (f == M(2,1))) {
     t.pass(title);
     return 0;
   } else {
@@ -311,29 +266,29 @@ int case_equals(
     << setw(8) << b
     << setw(8) << c
     << setw(8) << " "
-    << setw(8) << M(1,1)
-    << setw(8) << M(1,2)
-    << setw(8) << M(1,3)
+    << setw(8) << M(0,0)
+    << setw(8) << M(0,1)
+    << setw(8) << M(0,2)
     << endl
     << setw(8) << d
     << setw(8) << e
     << setw(8) << f
     << setw(8) << " "
-    << setw(8) << M(2,1)
-    << setw(8) << M(2,2)
-    << setw(8) << M(2,3)
+    << setw(8) << M(1,0)
+    << setw(8) << M(1,1)
+    << setw(8) << M(1,2)
     << endl
     << setw(8) << g
     << setw(8) << h
     << setw(8) << i
     << setw(8) << " "
-    << setw(8) << M(3,1)
-    << setw(8) << M(3,2)
-    << setw(8) << M(3,3)
+    << setw(8) << M(2,0)
+    << setw(8) << M(2,1)
+    << setw(8) << M(2,2)
     << endl;
-  if ((a == M(1,1)) && (b == M(1,2)) && (c == M(1,3)) &&
-      (d == M(2,1)) && (e == M(2,2)) && (f == M(2,3)) &&
-      (g == M(3,1)) && (h == M(3,2)) && (i == M(3,3))) {
+  if ((a == M(0,0)) && (b == M(0,1)) && (c == M(0,2)) &&
+      (d == M(1,0)) && (e == M(1,1)) && (f == M(1,2)) &&
+      (g == M(2,0)) && (h == M(2,1)) && (i == M(2,2))) {
     t.pass(title);
     return 0;
   } else {
@@ -344,14 +299,27 @@ int case_equals(
 
 /* -- ================================================================ -- */
 
+int test_matrix_version(Log &l) {
+  Suite s(l, "Farsyte::Matrix::Version");
+  Test t(s, "Version Comparison");
+
+  return 0
+    + case_equals(t, "version string compare",
+                  string(_matrix_h),
+                  Farsyte::Matrix::matrix_version())
+    ;
+}
+
+/* -- ================================================================ -- */
+
 int test_matrix_threevec_meta(Suite &s) {
 
   Test t(s, "Class Parameter Methods");
 
   return 0
-    + case_equals(t, "ThreeVec Rows", 3ul, ThreeVec::rows())
-    + case_equals(t, "ThreeVec Cols", 1ul, ThreeVec::cols())
-    + case_equals(t, "ThreeVec Size", 3ul, ThreeVec::size())
+    + case_equals(t, "ThreeVec Rows", 3, ThreeVec::rows())
+    + case_equals(t, "ThreeVec Cols", 1, ThreeVec::cols())
+    + case_equals(t, "ThreeVec Size", 3, ThreeVec::size())
     ;
 }
 
@@ -414,8 +382,8 @@ int test_matrix_threevec_access(Suite &s) {
 
   ThreeVec V {3,5,7};
 
-  V(2) = 4;
-  V(3) = V(1);
+  V[1] = 4;
+  V[2] = V[0];
 
   return 0
     + case_equals(t, "Vector after access and update", 3,4,3, V)
@@ -511,21 +479,23 @@ int test_matrix_colvec_meta(Suite &s) {
   Test t(s, "Class Parameter Methods");
 
   return 0
-    + case_equals(t, "ColVec Rows", 4ul, ColVec4i::rows())
-    + case_equals(t, "ColVec Cols", 1ul, ColVec4i::cols())
-    + case_equals(t, "ColVec Size", 4ul, ColVec4i::size())
+    + case_equals(t, "ColVec Rows", 4, ColVec4i::rows())
+    + case_equals(t, "ColVec Cols", 1, ColVec4i::cols())
+    + case_equals(t, "ColVec Size", 4, ColVec4i::size())
     ;
 }
 
 int test_matrix_colvec_ctor_eq_ne(Suite &s) {
 
+  typedef ColVec4i::A IV;
+
   Test t(s, "Construct and Compare");
 
   ColVec4i D;
-  ColVec4i W (FourVec(1,0,0,0));
-  ColVec4i X (FourVec(0,1,0,0));
-  ColVec4i Y (FourVec(0,0,1,0));
-  ColVec4i Z (FourVec(0,0,0,1));
+  ColVec4i W = IV { 1,0,0,0 };
+  ColVec4i X = IV { 0,1,0,0 };
+  ColVec4i Y = IV { 0,0,1,0 };
+  ColVec4i Z = IV { 0,0,0,1 };
 
   return 0
     + case_equals(t, "Default initialized to Zero", 0, 0, 0, 0, D)
@@ -600,12 +570,14 @@ int test_matrix_colvec_ctor_eq_ne(Suite &s) {
 
 int test_matrix_colvec_access(Suite &s) {
 
+  typedef ColVec4i::A IV;
+
   Test t(s, "Member Access and Update");
 
-  ColVec4i V (FourVec(1,3,5,7));
+  ColVec4i V = IV { 1,3,5,7 };
 
-  V(3) = 4;
-  V(4) = V(1);
+  V[2] = 4;
+  V[3] = V[0];
 
   return 0
     + case_equals(t, "Vector after access and update", 1,3,4,1, V)
@@ -614,11 +586,13 @@ int test_matrix_colvec_access(Suite &s) {
 
 int test_matrix_colvec_add(Suite &s) {
 
+  typedef ColVec4i::A IV;
+
   Test t(s, "Addition");
 
   ColVec4i S;
-  ColVec4i A = FourVec(10,7,4,1);
-  ColVec4i I = FourVec(1,2,3,4);
+  ColVec4i A = IV { 10,7,4,1 };
+  ColVec4i I = IV {  1,2,3,4 };
   A += I;
 
   return 0
@@ -631,11 +605,13 @@ int test_matrix_colvec_add(Suite &s) {
 
 int test_matrix_colvec_sub(Suite &s) {
 
+  typedef ColVec4i::A IV;
+
   Test t(s, "Difference");
 
   ColVec4i D;
-  ColVec4i A = FourVec(9,8,7,6);
-  ColVec4i I = FourVec(1,2,3,4);
+  ColVec4i A = IV { 9,8,7,6 };
+  ColVec4i I = IV { 1,2,3,4 };
   A -= I;
 
   return 0
@@ -677,22 +653,24 @@ int test_matrix_matrix_meta(Suite &s) {
   Test t(s, "Class Parameter Methods");
 
   return 0
-    + case_equals(t, "Matrix Rows", 2ul, Matrix23i::rows())
-    + case_equals(t, "Matrix Cols", 3ul, Matrix23i::cols())
-    + case_equals(t, "Matrix Size", 6ul, Matrix23i::size())
+    + case_equals(t, "Matrix Rows", 2, Matrix23i::rows())
+    + case_equals(t, "Matrix Cols", 3, Matrix23i::cols())
+    + case_equals(t, "Matrix Size", 6, Matrix23i::size())
     ;
 }
 
 int test_matrix_matrix_ctor_eq_ne(Suite &s) {
 
+  typedef Matrix23i::A IV;
+
   Test t(s, "Construct and Compare");
   Matrix23i I;
-  Matrix23i A = RectMat(1,0, 0,0, 0,0);
-  Matrix23i B = RectMat(0,1, 0,0, 0,0);
-  Matrix23i C = RectMat(0,0, 1,0, 0,0);
-  Matrix23i D = RectMat(0,0, 0,1, 0,0);
-  Matrix23i E = RectMat(0,0, 0,0, 1,0);
-  Matrix23i F = RectMat(0,0, 0,0, 0,1);
+  Matrix23i A = IV { 1,0, 0,0, 0,0 };
+  Matrix23i B = IV { 0,1, 0,0, 0,0 };
+  Matrix23i C = IV { 0,0, 1,0, 0,0 };
+  Matrix23i D = IV { 0,0, 0,1, 0,0 };
+  Matrix23i E = IV { 0,0, 0,0, 1,0 };
+  Matrix23i F = IV { 0,0, 0,0, 0,1 };
 
   return 0
     + case_equals(t, "Default initialized to Zero", 0,0, 0,0, 0,0, I)
@@ -813,25 +791,29 @@ int test_matrix_matrix_ctor_eq_ne(Suite &s) {
 
 int test_matrix_matrix_access(Suite &s) {
 
+  typedef Matrix23i::A IV;
+
   Test t(s, "Member Access and Update");
 
-  Matrix23i V = RectMat(1,3,5, 2,4,6);
+  Matrix23i A = IV { 1,3,5, 2,4,6 };
 
-  V(2,2) = 8;
-  V(2,3) = V(1,1);
+  A(1,1) = 8;
+  A(1,2) = A(0,0);
 
   return 0
-    + case_equals(t, "Matrix after access and update", 1,3,5, 2,8,1, V)
+    + case_equals(t, "Matrix after access and update", 1,3,5, 2,8,1, A)
     ;
 }
 
 int test_matrix_matrix_add(Suite &s) {
 
+  typedef Matrix23i::A IV;
+
   Test t(s, "Addition");
 
   Matrix23i S;
-  Matrix23i A = RectMat(16,13,10,7,4,1);
-  Matrix23i I = RectMat(1,2,3,4,5,6);
+  Matrix23i A = IV { 16,13,10, 7,4,1 };
+  Matrix23i I = IV {  1, 2, 3, 4,5,6 };
   A += I;
 
   return 0
@@ -844,11 +826,13 @@ int test_matrix_matrix_add(Suite &s) {
 
 int test_matrix_matrix_sub(Suite &s) {
 
+  typedef Matrix23i::A IV;
+
   Test t(s, "Difference");
 
   Matrix23i D;
-  Matrix23i A = RectMat(18,17,16,15,14,13);
-  Matrix23i I = RectMat(1,2,3,4,5,6);
+  Matrix23i A = IV { 18,17,16, 15,14,13 };
+  Matrix23i I = IV {  1, 2, 3,  4, 5, 6 };
   A -= I;
 
   return 0
@@ -861,10 +845,12 @@ int test_matrix_matrix_sub(Suite &s) {
 
 int test_matrix_matrix_mul(Suite &s) {
 
+  typedef Matrix23i::A IV;
+
   Test t(s, "Product (and transpose)");
 
-  Matrix23i A = RectMat(13,69,32, 82,21,20);
-  Matrix23i B = RectMat(91,26,69, 25,22,41);
+  Matrix23i A = IV { 13,69,32, 82,21,20 };
+  Matrix23i B = IV { 91,26,69, 25,22,41 };
 
   return 0
     + case_equals(t, "A*~B",
@@ -913,6 +899,7 @@ int test_matrix(Log &log) {
   ** and return fail if any failed, after running all.
   */
   return 0
+    + test_matrix_version(log)
     + test_matrix_threevec(log)
     + test_matrix_colvec(log)
     + test_matrix_matrix(log)
