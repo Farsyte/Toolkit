@@ -1,0 +1,12 @@
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../inc)
+include_directories(${CMAKE_SOURCE_DIR}/inc)
+add_definitions(--std=c++11)
+
+add_library(utility
+  literal.cc
+  streamlines.cc
+  htmlify.cc
+  vers.cc
+  )
+
+install (TARGETS utility DESTINATION lib)

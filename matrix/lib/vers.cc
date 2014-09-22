@@ -1,11 +1,14 @@
 #include "matrix.h"
 
 using std::string;
+using std::vector;
 
-string Farsyte::Matrix::matrix_version(int i)
+vector<string> const & Farsyte::Matrix::matrix_versions ()
 {
-  switch (i) {
-  case 0: return _matrix_h;
-  default: return "";
-  }
+  static const vector<string> ret{
+      _matrix_h,
+      _matrix_matrix_h,
+      _matrix_colvec_h,
+  };
+  return ret;
 }

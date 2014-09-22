@@ -1,12 +1,20 @@
+#include "testing.h"
 #include "testing_internal.h"
 
 using std::string;
+using std::vector;
 
-string Farsyte::Testing::testing_version(int i)
+using namespace Farsyte::Testing;
+
+vector<string> const & Farsyte::Testing::testing_versions ()
 {
-  switch (i) {
-  case 0: return _testing_h;
-  case 1: return _testing_internal_h;
-  default: return "";
-  }
+  static const vector<string> ret{
+      _testing_h,
+      _testing_log_h,
+      _testing_suite_h,
+      _testing_test_h,
+      _testing_oops_h,
+      _testing_internal_h,
+  };
+  return ret;
 }

@@ -1,0 +1,5 @@
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../inc)
+include_directories(${CMAKE_SOURCE_DIR}/inc)
+add_definitions(--std=c++11)
+add_library(matrix matrix.cc colvec.cc threevec.cc vers.cc)
+install (TARGETS matrix DESTINATION lib)

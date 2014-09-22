@@ -40,6 +40,45 @@ typedef Matrix<2,2,int> Matrix22i;
 /** Large square matrix for multiply testing */
 typedef Matrix<3,3,int> Matrix33i;
 
+
+static int case_compare(
+    Test &t,
+    string const &title,
+    string const &exp,
+    string const &act)
+{
+  char  const   qc = '"';
+  t << title << endl
+  << "  expected: " << qc << exp << qc << endl
+  << "  observed: " << qc << act << qc << endl;
+  if (act == exp) {
+    t.pass(title);
+    return 0;
+  } else {
+    t.fail(title + " failed");
+    return 1;
+  }
+}
+
+static int case_compare_ge(
+    Test &t,
+    string const &title,
+    size_t exp,
+    size_t act)
+{
+  char  const   qc = '"';
+  t << title << endl
+  << "  expected: " << qc << exp << qc << endl
+  << "  observed: " << qc << act << qc << endl;
+  if (act >= exp) {
+    t.pass(title);
+    return 0;
+  } else {
+    t.fail(title + " failed");
+    return 1;
+  }
+}
+
 template<typename T>
 int case_equals(
   Test &t, string const &title,
@@ -299,15 +338,21 @@ int case_equals(
 
 /* -- ================================================================ -- */
 
-int test_matrix_version(Log &l) {
-  Suite s(l, "Farsyte::Matrix::Version");
-  Test t(s, "Version Comparison");
+int test_matrix_version (Log &l)
+{
+  Suite s (l, "Farsyte::Matrix::Version");
+  Test t (s, "Version Comparison");
+
+  vector<string> ver_list = Farsyte::Matrix::matrix_versions ();
+  size_t min_size = 1;
+  size_t ver_size = ver_list.size();
 
   return 0
-    + case_equals(t, "version string compare",
-                  string(_matrix_h),
-                  Farsyte::Matrix::matrix_version())
-    ;
+         + case_compare_ge (t, "at least one version string",
+                            min_size, ver_size)
+         + case_compare (t, "version string compare",
+                         string (_matrix_h),
+                         ver_list[0]);
 }
 
 /* -- ================================================================ -- */

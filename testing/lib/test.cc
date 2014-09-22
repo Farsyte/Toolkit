@@ -1,10 +1,14 @@
+#include "testing_test.h"
+#include "testing.h"
+#include "utility.h"
 #include "testing_internal.h"
-#include <iostream>
-#include <string>
 
 using std::endl;
 using std::ostream;
 using std::string;
+
+using namespace Farsyte::Testing;
+using namespace Farsyte::Utility;
 
 /** Create a new Test within a Suite.
  *
@@ -25,7 +29,7 @@ Test::Test(Suite &r, string const &n)
   ref.tests ++;
   ref.ref.tests ++;
   ostream   & out(ref.ref.out);
-  out << "    <testcase name=" << sq(n) << ">" << endl;
+  out << "    <testcase name=" << quoted(n) << ">" << endl;
 }
 
 /** Indicate that a Test Condition has Failed.
@@ -64,11 +68,11 @@ void Test::fail(string const &c) {
 
   ostream   & out(ref.ref.out);
 
-  out << "      <failure message=" << sq(c) << ">" << endl;
+  out << "      <failure message=" << quoted(c) << ">" << endl;
 
   string        const & s ( str() );
   if (s.length() > 0) {
-    string      const & q ( hq(s) );
+    string      const & q ( htmlify(s) );
     out << q;
     if (q[q.length() - 1] != '\n')
       out << endl;
@@ -111,7 +115,7 @@ void Test::error(string const &c) {
 
   ostream   & out(ref.ref.out);
 
-  out << "      <error message=" << sq(c) << ">" << endl;
+  out << "      <error message=" << quoted(c) << ">" << endl;
 
   /*
   ** Include the supporting text whether Bamboo is willing
@@ -123,7 +127,7 @@ void Test::error(string const &c) {
   */
   string        const & s ( str() );
   if (s.length() > 0) {
-    string      const & q ( hq(s) );
+    string      const & q ( htmlify(s) );
     out << q;
     if (q[q.length() - 1] != '\n')
       out << endl;
@@ -169,11 +173,11 @@ void Test::skip(string const &c) {
 
   ostream   & out(ref.ref.out);
 
-  out << "      <skipped message=" << sq(c) << ">" << endl;
+  out << "      <skipped message=" << quoted(c) << ">" << endl;
 
   string        const & s ( str() );
   if (s.length() > 0) {
-    string      const & q ( hq(s) );
+    string      const & q ( htmlify(s) );
     out << q;
     if (q[q.length() - 1] != '\n')
       out << endl;
@@ -235,7 +239,7 @@ Test::~Test() {
   */
   string        const & s ( str() );
   if (s.length() > 0) {
-    string      const & q ( hq(s) );
+    string      const & q ( htmlify(s) );
     out << q;
     if (q[q.length() - 1] != '\n')
       out << endl;

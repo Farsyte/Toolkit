@@ -1,10 +1,15 @@
+#include "testing_suite.h"
+#include "testing.h"
 #include "testing_internal.h"
-#include <iostream>
-#include <string>
 
-using std::endl;
-using std::ostream;
+#include "utility.h"
+
+using namespace Farsyte::Testing;
+using namespace Farsyte::Utility;
+
 using std::string;
+using std::ostream;
+using std::endl;
 
 /** Start a new Test Suite.
  *
@@ -34,7 +39,7 @@ Suite::Suite(Log &r, string const &n)
   ref.curr = this;
   ref.suites ++;
   ostream   & out(ref.out);
-  out << "  <testsuite name=" << sq(n) << ">" << endl;
+  out << "  <testsuite name=" << quoted(n) << ">" << endl;
 }
 
 /** Finish a Test Suite.
