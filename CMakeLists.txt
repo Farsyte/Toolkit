@@ -6,7 +6,7 @@ enable_testing ()
 macro (test_module which)
   add_executable (test_${which} test_${which}.cc)
   target_link_libraries (test_${which} ${which} ${ARGN} testing utility)
-  add_test (test_${which} test_${which})
+  add_test (test_${which} test_${which} test_${which}_log.xml)
   set_tests_properties (test_${which}
     PROPERTIES 
     FAIL_REGULAR_EXPRESSION "<failure")

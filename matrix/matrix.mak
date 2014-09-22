@@ -35,7 +35,7 @@ tests::                 ${matrix.test.bin}
 
 ${matrix.test.out}:     matrix/log/%_log.xml:   matrix/bin/%.exe
 	$Q $P '[rt] %s%s\n' 'matrix/bin' '$*'
-	$Q $< > $@
+	$Q $< $@
 
 runtests::              ${matrix.test.out}
 
