@@ -1,10 +1,14 @@
+#include "testing_log.h"
+#include "testing.h"
+#include "utility.h"
 #include "testing_internal.h"
-#include <iostream>
-#include <string>
 
-using std::endl;
+using namespace Farsyte::Testing;
+using namespace Farsyte::Utility;
+
 using std::ostream;
 using std::string;
+using std::endl;
 
 /** Start a new Test Log.
  *
@@ -23,8 +27,8 @@ Log::Log(ostream &s, string const &n)
   , total_skips       (0)
   , total_errors      (0)
 {
-  out << "<?xml version=" << sq("1.0") << " encoding=" << sq("UTF-8") << "?>" << endl;
-  out << "<testsuites name=" << sq(n) << ">" << endl;
+  out << "<?xml version=" << quoted("1.0") << " encoding=" << quoted("UTF-8") << "?>" << endl;
+  out << "<testsuites name=" << quoted(n) << ">" << endl;
 }
 
 /** Finish the Test Log.

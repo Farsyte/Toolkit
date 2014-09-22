@@ -1,41 +1,47 @@
-#include "testing_internal.h"
-#include <iostream>
-#include <string>
+#include "testing_oops.h"
 
+#include <iostream>
+
+using namespace Farsyte::Testing;
+
+using std::string;
+using std::ostream;
 using std::cerr;
 using std::endl;
-using std::ostream;
-using std::string;
 
-Oops::Oops(
-  string          f,
-  int             l,
-  string          c)
-  : file(f)
-  , line(l)
-  , cond(c)
-  , pend(true)
+
+Oops::Oops (
+    string f,
+    int l,
+    string c)
+    : file (f), line (l), cond (c), pend (true)
 {
 }
 
-ostream& Oops::print(ostream&s) const {
+ostream &Oops::print (ostream &s) const
+{
   pend = false;
   return
-    s << file << ":"
+      s << file << ":"
       << line << ": "
       << "assertion failed\n"
       << "\t" << cond;
 }
 
-void Oops::cancel() const {
+void Oops::cancel () const
+{
   pend = false;
 }
 
-Oops::~Oops() {
-  if (pend)
-    print(cerr) << endl;
+Oops::~Oops ()
+{
+  if (pend) {
+    cancel ();
+    print (cerr) << endl;
+  }
 }
 
-ostream& operator<<(ostream&s, Oops const &f) {
-  return f.print(s);
+ostream &operator<< (ostream &s, Oops const &f)
+{
+  return f.print (s);
 }
