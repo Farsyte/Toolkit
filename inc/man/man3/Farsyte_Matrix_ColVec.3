@@ -1,4 +1,4 @@
-.TH "Farsyte::Matrix::ColVec< Nr, T >" 3 "Mon Sep 15 2014" "The Farsyte Toolkit" \" -*- nroff -*-
+.TH "Farsyte::Matrix::ColVec< Nr, T >" 3 "Mon Sep 22 2014" "The Farsyte Toolkit" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -10,7 +10,7 @@ Column Vector Template\&.
 .br
 .PP
 .PP
-\fC#include <matrix\&.h>\fP
+\fC#include <matrix_colvec\&.h>\fP
 .PP
 Inherits \fBFarsyte::Matrix::Matrix< 1, Nr, T >\fP\&.
 .SS "Public Types"
@@ -24,46 +24,18 @@ Inherits \fBFarsyte::Matrix::Matrix< 1, Nr, T >\fP\&.
 .RI "typedef \fBMatMe::A\fP \fBA\fP"
 .br
 .RI "\fITypedef for array containing the data\&. \fP"
-.ti -1c
-.RI "typedef \fBMatMe::C\fP \fBC\fP"
-.br
-.RI "\fITypedef for array containing one column of data\&. \fP"
 .in -1c
 .SS "Public Member Functions"
 
 .in +1c
 .ti -1c
-.RI "\fBColVec\fP (\fBA\fP const &a)"
+.RI "\fBColVec\fP (\fBA\fP const &\fBa\fP)"
 .br
 .RI "\fIConstruct a Column Vector from a 2-D Array\&. \fP"
-.ti -1c
-.RI "\fBColVec\fP (\fBC\fP const &a)"
-.br
-.RI "\fIConstruct a Column Vector from a 1-D Array\&. \fP"
 .ti -1c
 .RI "\fBColVec\fP (\fBMatMe\fP const &c)"
 .br
 .RI "\fIDuplicate an existing Column Vector\&. \fP"
-.ti -1c
-.RI "T const & \fBoperator()\fP (int ri) const "
-.br
-.RI "\fI\fBColVec\fP Subscripting Operator\&. \fP"
-.ti -1c
-.RI "T & \fBoperator()\fP (int ri)"
-.br
-.RI "\fI\fBColVec\fP Subscripting Operator\&. \fP"
-.in -1c
-.SS "Protected Member Functions"
-
-.in +1c
-.ti -1c
-.RI "T const & \fBsub\fP (int ri) const "
-.br
-.RI "\fI\fBColVec\fP Subscripting Implementation\&. \fP"
-.ti -1c
-.RI "T & \fBsub\fP (int ri)"
-.br
-.RI "\fI\fBColVec\fP Subscripting Implementation\&. \fP"
 .in -1c
 .SS "Additional Inherited Members"
 .SH "Detailed Description"
@@ -83,15 +55,15 @@ Column Vector Template\&.
 .PP
 This template implements a column vector of a compile-time determined size, containing elements of compile-time determined type\&. 
 .PP
-Definition at line 390 of file matrix\&.h\&.
+Definition at line 25 of file matrix_colvec\&.h\&.
 .SH "Member Typedef Documentation"
 .PP 
-.SS "template<int Nr, typename T> typedef \fBMatrix\fP<1,Nr,T> \fBFarsyte::Matrix::ColVec\fP< Nr, T >::\fBMatMe\fP"
+.SS "template<int Nr, typename T> typedef \fBMatrix\fP<1, Nr, T> \fBFarsyte::Matrix::ColVec\fP< Nr, T >::\fBMatMe\fP"
 
 .PP
 Typedef for matrix generalization\&. 
 .PP
-Definition at line 397 of file matrix\&.h\&.
+Definition at line 31 of file matrix_colvec\&.h\&.
 .SH "Constructor & Destructor Documentation"
 .PP 
 .SS "template<int Nr, typename T> \fBFarsyte::Matrix::ColVec\fP< Nr, T >::\fBColVec\fP (\fBA\fP const &a)\fC [inline]\fP"
@@ -106,31 +78,11 @@ Construct a Column Vector from a 2-D Array\&.
 .PP
 
 .PP
-Definition at line 441 of file matrix\&.h\&.
+Definition at line 48 of file matrix_colvec\&.h\&.
 .PP
 .nf
-442         : MatMe(a)
-443         {
-444         }
-.fi
-.SS "template<int Nr, typename T> \fBFarsyte::Matrix::ColVec\fP< Nr, T >::\fBColVec\fP (\fBC\fP const &a)\fC [inline]\fP"
-
-.PP
-Construct a Column Vector from a 1-D Array\&. 
-.PP
-\fBParameters:\fP
-.RS 4
-\fIa\fP An appropriately shaped object of the C++ array template type\&. This initializes the Column Vector data to contain values from the corresponding elements of the array provided\&. 
-.RE
-.PP
-
-.PP
-Definition at line 451 of file matrix\&.h\&.
-.PP
-.nf
-452         : MatMe(A{{a}})
-453         {
-454         }
+49                     : MatMe(a) {
+50             }
 .fi
 .SS "template<int Nr, typename T> \fBFarsyte::Matrix::ColVec\fP< Nr, T >::\fBColVec\fP (\fBMatMe\fP const &c)\fC [inline]\fP"
 
@@ -149,132 +101,11 @@ Can be called with any appropriately dimensioned matrix\&.
 .PP
 
 .PP
-Definition at line 461 of file matrix\&.h\&.
+Definition at line 57 of file matrix_colvec\&.h\&.
 .PP
 .nf
-462         : MatMe(c)
-463         {
-464         }
-.fi
-.SH "Member Function Documentation"
-.PP 
-.SS "template<int Nr, typename T> T const& \fBFarsyte::Matrix::ColVec\fP< Nr, T >::operator() (intri) const\fC [inline]\fP"
-
-.PP
-\fBColVec\fP Subscripting Operator\&. 
-.PP
-\fBParameters:\fP
-.RS 4
-\fIri\fP Row Index, in the range 1 to N inclusive\&. 
-.RE
-.PP
-\fBReturns:\fP
-.RS 4
-read-only reference to the selected element\&. 
-.RE
-.PP
-\fBNote:\fP
-.RS 4
-Fortran conventions for array subscripting\&. 
-.RE
-.PP
-
-.PP
-Definition at line 471 of file matrix\&.h\&.
-.PP
-.nf
-472         {
-473           return sub(ri);
-474         }
-.fi
-.SS "template<int Nr, typename T> T& \fBFarsyte::Matrix::ColVec\fP< Nr, T >::operator() (intri)\fC [inline]\fP"
-
-.PP
-\fBColVec\fP Subscripting Operator\&. 
-.PP
-\fBParameters:\fP
-.RS 4
-\fIri\fP Row Index, in the range 1 to N inclusive\&. 
-.RE
-.PP
-\fBReturns:\fP
-.RS 4
-modifiable reference to the selected element\&. 
-.RE
-.PP
-\fBNote:\fP
-.RS 4
-Fortran conventions for array subscripting\&. 
-.RE
-.PP
-
-.PP
-Definition at line 481 of file matrix\&.h\&.
-.PP
-.nf
-482         {
-483           return sub(ri);
-484         }
-.fi
-.SS "template<int Nr, typename T> T const& \fBFarsyte::Matrix::ColVec\fP< Nr, T >::sub (intri) const\fC [inline]\fP, \fC [protected]\fP"
-
-.PP
-\fBColVec\fP Subscripting Implementation\&. 
-.PP
-\fBParameters:\fP
-.RS 4
-\fIri\fP Row Index, in the range 1 to N inclusive\&. 
-.RE
-.PP
-\fBReturns:\fP
-.RS 4
-read-only reference to the selected element\&. 
-.RE
-.PP
-\fBNote:\fP
-.RS 4
-Fortran conventions for array subscripting\&. 
-.RE
-.PP
-
-.PP
-Definition at line 414 of file matrix\&.h\&.
-.PP
-Referenced by Farsyte::Matrix::ColVec< 3, double >::operator()()\&.
-.PP
-.nf
-415         {
-416           return MatMe::sub(ri, 1);
-417         }
-.fi
-.SS "template<int Nr, typename T> T& \fBFarsyte::Matrix::ColVec\fP< Nr, T >::sub (intri)\fC [inline]\fP, \fC [protected]\fP"
-
-.PP
-\fBColVec\fP Subscripting Implementation\&. 
-.PP
-\fBParameters:\fP
-.RS 4
-\fIri\fP Row Index, in the range 1 to N inclusive\&. 
-.RE
-.PP
-\fBReturns:\fP
-.RS 4
-modifiable reference to the selected element\&. 
-.RE
-.PP
-\fBNote:\fP
-.RS 4
-Fortran conventions for array subscripting\&. 
-.RE
-.PP
-
-.PP
-Definition at line 424 of file matrix\&.h\&.
-.PP
-.nf
-425         {
-426           return MatMe::sub(ri, 1);
-427         }
+58                     : MatMe(c) {
+59             }
 .fi
 
 

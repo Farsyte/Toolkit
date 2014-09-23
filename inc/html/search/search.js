@@ -7,12 +7,13 @@
 
 var indexSectionsWithContent =
 {
-  0: "acdefilmnoprstuv~",
+  0: "_acdefgilmnoprstu~",
   1: "clmost",
   2: "mtu",
-  3: "cdefilmnoprst~",
-  4: "cdeflnoprst",
-  5: "acmprv"
+  3: "cdefgilmnoprst~",
+  4: "aceflnoprst",
+  5: "acm",
+  6: "_"
 };
 
 var indexSectionNames =
@@ -22,7 +23,8 @@ var indexSectionNames =
   2: "files",
   3: "functions",
   4: "variables",
-  5: "typedefs"
+  5: "typedefs",
+  6: "defines"
 };
 
 function convertToId(search)

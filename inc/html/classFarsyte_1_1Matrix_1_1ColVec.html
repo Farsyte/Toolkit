@@ -98,7 +98,7 @@ $(document).ready(function(){initNavTree('classFarsyte_1_1Matrix_1_1ColVec.html'
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -111,7 +111,6 @@ $(document).ready(function(){initNavTree('classFarsyte_1_1Matrix_1_1ColVec.html'
   <div class="summary">
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="classFarsyte_1_1Matrix_1_1ColVec-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Farsyte::Matrix::ColVec&lt; Nr, T &gt; Class Template Reference</div>  </div>
@@ -121,7 +120,7 @@ $(document).ready(function(){initNavTree('classFarsyte_1_1Matrix_1_1ColVec.html'
 <p>Column Vector Template.  
  <a href="classFarsyte_1_1Matrix_1_1ColVec.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="matrix_8h_source.html">matrix.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="matrix__colvec_8h_source.html">matrix_colvec.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for Farsyte::Matrix::ColVec&lt; Nr, T &gt;:</div>
 <div class="dyncontent">
@@ -139,59 +138,27 @@ Collaboration diagram for Farsyte::Matrix::ColVec&lt; Nr, T &gt;:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:afa643b7106de4adecf231177b1a3274d"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html">Matrix</a>&lt; 1, Nr, T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFarsyte_1_1Matrix_1_1ColVec.html#afa643b7106de4adecf231177b1a3274d">MatMe</a></td></tr>
-<tr class="memdesc:afa643b7106de4adecf231177b1a3274d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Typedef for matrix generalization.  <a href="#afa643b7106de4adecf231177b1a3274d">More...</a><br /></td></tr>
-<tr class="separator:afa643b7106de4adecf231177b1a3274d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af03944e29ce40a7a057b746c59687e95"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html">Matrix</a>&lt; 1, Nr, T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFarsyte_1_1Matrix_1_1ColVec.html#af03944e29ce40a7a057b746c59687e95">MatMe</a></td></tr>
+<tr class="memdesc:af03944e29ce40a7a057b746c59687e95"><td class="mdescLeft">&#160;</td><td class="mdescRight">Typedef for matrix generalization.  <a href="#af03944e29ce40a7a057b746c59687e95">More...</a><br /></td></tr>
+<tr class="separator:af03944e29ce40a7a057b746c59687e95"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a242ddc9a8867d7ba2050bbebb20109b1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a242ddc9a8867d7ba2050bbebb20109b1"></a>
-typedef <a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html#aa8b5b6434e29fc287151f1c685983465">MatMe::A</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFarsyte_1_1Matrix_1_1ColVec.html#a242ddc9a8867d7ba2050bbebb20109b1">A</a></td></tr>
+typedef <a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html#ab30c8ded1811ffa93b6694d9474eddda">MatMe::A</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFarsyte_1_1Matrix_1_1ColVec.html#a242ddc9a8867d7ba2050bbebb20109b1">A</a></td></tr>
 <tr class="memdesc:a242ddc9a8867d7ba2050bbebb20109b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Typedef for array containing the data. <br /></td></tr>
 <tr class="separator:a242ddc9a8867d7ba2050bbebb20109b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4203a5c03ce162e0ef58f190c0e5efc4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4203a5c03ce162e0ef58f190c0e5efc4"></a>
-typedef <a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html#a55ee16860c80b5c21742409b690b772d">MatMe::C</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFarsyte_1_1Matrix_1_1ColVec.html#a4203a5c03ce162e0ef58f190c0e5efc4">C</a></td></tr>
-<tr class="memdesc:a4203a5c03ce162e0ef58f190c0e5efc4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Typedef for array containing one column of data. <br /></td></tr>
-<tr class="separator:a4203a5c03ce162e0ef58f190c0e5efc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_types_classFarsyte_1_1Matrix_1_1Matrix"><td colspan="2" onclick="javascript:toggleInherit('pub_types_classFarsyte_1_1Matrix_1_1Matrix')"><img src="closed.png" alt="-"/>&#160;Public Types inherited from <a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html">Farsyte::Matrix::Matrix&lt; 1, Nr, T &gt;</a></td></tr>
-<tr class="memitem:adda23d85e056d54e3f0b20966e4e471d inherit pub_types_classFarsyte_1_1Matrix_1_1Matrix"><td class="memItemLeft" align="right" valign="top">typedef T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html#adda23d85e056d54e3f0b20966e4e471d">value_type</a></td></tr>
-<tr class="memdesc:adda23d85e056d54e3f0b20966e4e471d inherit pub_types_classFarsyte_1_1Matrix_1_1Matrix"><td class="mdescLeft">&#160;</td><td class="mdescRight">Typedef for type of matrix elements.  <a href="#adda23d85e056d54e3f0b20966e4e471d">More...</a><br /></td></tr>
-<tr class="separator:adda23d85e056d54e3f0b20966e4e471d inherit pub_types_classFarsyte_1_1Matrix_1_1Matrix"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0c88d265c95f6131c2746fdd3b283dba inherit pub_types_classFarsyte_1_1Matrix_1_1Matrix"><td class="memItemLeft" align="right" valign="top">typedef T &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html#a0c88d265c95f6131c2746fdd3b283dba">reference</a></td></tr>
-<tr class="memdesc:a0c88d265c95f6131c2746fdd3b283dba inherit pub_types_classFarsyte_1_1Matrix_1_1Matrix"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reference to a matrix element.  <a href="#a0c88d265c95f6131c2746fdd3b283dba">More...</a><br /></td></tr>
-<tr class="separator:a0c88d265c95f6131c2746fdd3b283dba inherit pub_types_classFarsyte_1_1Matrix_1_1Matrix"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aed821119806bacee1af7e7f57115df8d inherit pub_types_classFarsyte_1_1Matrix_1_1Matrix"><td class="memItemLeft" align="right" valign="top">typedef T const &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html#aed821119806bacee1af7e7f57115df8d">const_reference</a></td></tr>
-<tr class="memdesc:aed821119806bacee1af7e7f57115df8d inherit pub_types_classFarsyte_1_1Matrix_1_1Matrix"><td class="mdescLeft">&#160;</td><td class="mdescRight">Const reference to a matrix element.  <a href="#aed821119806bacee1af7e7f57115df8d">More...</a><br /></td></tr>
-<tr class="separator:aed821119806bacee1af7e7f57115df8d inherit pub_types_classFarsyte_1_1Matrix_1_1Matrix"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3ea29ecd83aabb431c635eabd14f9ebd inherit pub_types_classFarsyte_1_1Matrix_1_1Matrix"><td class="memItemLeft" align="right" valign="top">typedef T *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html#a3ea29ecd83aabb431c635eabd14f9ebd">pointer</a></td></tr>
-<tr class="memdesc:a3ea29ecd83aabb431c635eabd14f9ebd inherit pub_types_classFarsyte_1_1Matrix_1_1Matrix"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to a matrix element.  <a href="#a3ea29ecd83aabb431c635eabd14f9ebd">More...</a><br /></td></tr>
-<tr class="separator:a3ea29ecd83aabb431c635eabd14f9ebd inherit pub_types_classFarsyte_1_1Matrix_1_1Matrix"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac02848c590a31d575faa5f17fba5ef38 inherit pub_types_classFarsyte_1_1Matrix_1_1Matrix"><td class="memItemLeft" align="right" valign="top">typedef T const *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html#ac02848c590a31d575faa5f17fba5ef38">const_pointer</a></td></tr>
-<tr class="memdesc:ac02848c590a31d575faa5f17fba5ef38 inherit pub_types_classFarsyte_1_1Matrix_1_1Matrix"><td class="mdescLeft">&#160;</td><td class="mdescRight">Const pointer to a matrix element.  <a href="#ac02848c590a31d575faa5f17fba5ef38">More...</a><br /></td></tr>
-<tr class="separator:ac02848c590a31d575faa5f17fba5ef38 inherit pub_types_classFarsyte_1_1Matrix_1_1Matrix"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a55ee16860c80b5c21742409b690b772d inherit pub_types_classFarsyte_1_1Matrix_1_1Matrix"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a55ee16860c80b5c21742409b690b772d"></a>
-typedef std::array&lt; T, Nr &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html#a55ee16860c80b5c21742409b690b772d">C</a></td></tr>
-<tr class="memdesc:a55ee16860c80b5c21742409b690b772d inherit pub_types_classFarsyte_1_1Matrix_1_1Matrix"><td class="mdescLeft">&#160;</td><td class="mdescRight">Typedef for array containing one column of the data. <br /></td></tr>
-<tr class="separator:a55ee16860c80b5c21742409b690b772d inherit pub_types_classFarsyte_1_1Matrix_1_1Matrix"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa8b5b6434e29fc287151f1c685983465 inherit pub_types_classFarsyte_1_1Matrix_1_1Matrix"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa8b5b6434e29fc287151f1c685983465"></a>
-typedef std::array&lt; <a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html#a55ee16860c80b5c21742409b690b772d">C</a>, Nc &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html#aa8b5b6434e29fc287151f1c685983465">A</a></td></tr>
-<tr class="memdesc:aa8b5b6434e29fc287151f1c685983465 inherit pub_types_classFarsyte_1_1Matrix_1_1Matrix"><td class="mdescLeft">&#160;</td><td class="mdescRight">Typedef for array containing the data. <br /></td></tr>
-<tr class="separator:aa8b5b6434e29fc287151f1c685983465 inherit pub_types_classFarsyte_1_1Matrix_1_1Matrix"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab30c8ded1811ffa93b6694d9474eddda inherit pub_types_classFarsyte_1_1Matrix_1_1Matrix"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab30c8ded1811ffa93b6694d9474eddda"></a>
+typedef std::array&lt; T, Nr *Nc &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html#ab30c8ded1811ffa93b6694d9474eddda">A</a></td></tr>
+<tr class="memdesc:ab30c8ded1811ffa93b6694d9474eddda inherit pub_types_classFarsyte_1_1Matrix_1_1Matrix"><td class="mdescLeft">&#160;</td><td class="mdescRight">Typedef for array containing the data. <br /></td></tr>
+<tr class="separator:ab30c8ded1811ffa93b6694d9474eddda inherit pub_types_classFarsyte_1_1Matrix_1_1Matrix"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:acf56d19c3fa57af0caeb91196e5fbd81"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFarsyte_1_1Matrix_1_1ColVec.html#acf56d19c3fa57af0caeb91196e5fbd81">ColVec</a> (<a class="el" href="classFarsyte_1_1Matrix_1_1ColVec.html#a242ddc9a8867d7ba2050bbebb20109b1">A</a> const &amp;a)</td></tr>
+<tr class="memitem:acf56d19c3fa57af0caeb91196e5fbd81"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFarsyte_1_1Matrix_1_1ColVec.html#acf56d19c3fa57af0caeb91196e5fbd81">ColVec</a> (<a class="el" href="classFarsyte_1_1Matrix_1_1ColVec.html#a242ddc9a8867d7ba2050bbebb20109b1">A</a> const &amp;<a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html#ad7c40e647f72dfacd122ada5404a25bd">a</a>)</td></tr>
 <tr class="memdesc:acf56d19c3fa57af0caeb91196e5fbd81"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a Column Vector from a 2-D Array.  <a href="#acf56d19c3fa57af0caeb91196e5fbd81">More...</a><br /></td></tr>
 <tr class="separator:acf56d19c3fa57af0caeb91196e5fbd81"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3d9fbd2ad1d2dcc9d4d6afe32083c7fe"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFarsyte_1_1Matrix_1_1ColVec.html#a3d9fbd2ad1d2dcc9d4d6afe32083c7fe">ColVec</a> (<a class="el" href="classFarsyte_1_1Matrix_1_1ColVec.html#a4203a5c03ce162e0ef58f190c0e5efc4">C</a> const &amp;a)</td></tr>
-<tr class="memdesc:a3d9fbd2ad1d2dcc9d4d6afe32083c7fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a Column Vector from a 1-D Array.  <a href="#a3d9fbd2ad1d2dcc9d4d6afe32083c7fe">More...</a><br /></td></tr>
-<tr class="separator:a3d9fbd2ad1d2dcc9d4d6afe32083c7fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abd24c9814ff43c86de1002bb73a40734"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFarsyte_1_1Matrix_1_1ColVec.html#abd24c9814ff43c86de1002bb73a40734">ColVec</a> (<a class="el" href="classFarsyte_1_1Matrix_1_1ColVec.html#afa643b7106de4adecf231177b1a3274d">MatMe</a> const &amp;c)</td></tr>
+<tr class="memitem:abd24c9814ff43c86de1002bb73a40734"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFarsyte_1_1Matrix_1_1ColVec.html#abd24c9814ff43c86de1002bb73a40734">ColVec</a> (<a class="el" href="classFarsyte_1_1Matrix_1_1ColVec.html#af03944e29ce40a7a057b746c59687e95">MatMe</a> const &amp;c)</td></tr>
 <tr class="memdesc:abd24c9814ff43c86de1002bb73a40734"><td class="mdescLeft">&#160;</td><td class="mdescRight">Duplicate an existing Column Vector.  <a href="#abd24c9814ff43c86de1002bb73a40734">More...</a><br /></td></tr>
 <tr class="separator:abd24c9814ff43c86de1002bb73a40734"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7cbd79cdcbefc45f4bce29d6d4c1cd89"><td class="memItemLeft" align="right" valign="top">T const &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFarsyte_1_1Matrix_1_1ColVec.html#a7cbd79cdcbefc45f4bce29d6d4c1cd89">operator()</a> (int ri) const </td></tr>
-<tr class="memdesc:a7cbd79cdcbefc45f4bce29d6d4c1cd89"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classFarsyte_1_1Matrix_1_1ColVec.html" title="Column Vector Template. ">ColVec</a> Subscripting Operator.  <a href="#a7cbd79cdcbefc45f4bce29d6d4c1cd89">More...</a><br /></td></tr>
-<tr class="separator:a7cbd79cdcbefc45f4bce29d6d4c1cd89"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a37a7512da2883c79b056eedc8241f974"><td class="memItemLeft" align="right" valign="top">T &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFarsyte_1_1Matrix_1_1ColVec.html#a37a7512da2883c79b056eedc8241f974">operator()</a> (int ri)</td></tr>
-<tr class="memdesc:a37a7512da2883c79b056eedc8241f974"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classFarsyte_1_1Matrix_1_1ColVec.html" title="Column Vector Template. ">ColVec</a> Subscripting Operator.  <a href="#a37a7512da2883c79b056eedc8241f974">More...</a><br /></td></tr>
-<tr class="separator:a37a7512da2883c79b056eedc8241f974"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classFarsyte_1_1Matrix_1_1Matrix"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classFarsyte_1_1Matrix_1_1Matrix')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html">Farsyte::Matrix::Matrix&lt; 1, Nr, T &gt;</a></td></tr>
 <tr class="memitem:afeb93837ea7a2961135197fc2816f842 inherit pub_methods_classFarsyte_1_1Matrix_1_1Matrix"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html#afeb93837ea7a2961135197fc2816f842">Matrix</a> ()</td></tr>
 <tr class="memdesc:afeb93837ea7a2961135197fc2816f842 inherit pub_methods_classFarsyte_1_1Matrix_1_1Matrix"><td class="mdescLeft">&#160;</td><td class="mdescRight">Matrix Default Constructor.  <a href="#afeb93837ea7a2961135197fc2816f842">More...</a><br /></td></tr>
@@ -199,18 +166,24 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a54d7caa0fa5feb028cf94f00eaaa26df inherit pub_methods_classFarsyte_1_1Matrix_1_1Matrix"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html#a54d7caa0fa5feb028cf94f00eaaa26df">Matrix</a> (T const &amp;d)</td></tr>
 <tr class="memdesc:a54d7caa0fa5feb028cf94f00eaaa26df inherit pub_methods_classFarsyte_1_1Matrix_1_1Matrix"><td class="mdescLeft">&#160;</td><td class="mdescRight">Matrix Diagonal Constructor.  <a href="#a54d7caa0fa5feb028cf94f00eaaa26df">More...</a><br /></td></tr>
 <tr class="separator:a54d7caa0fa5feb028cf94f00eaaa26df inherit pub_methods_classFarsyte_1_1Matrix_1_1Matrix"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a55d21e1ee6de3c4d8e7c957da87d150e inherit pub_methods_classFarsyte_1_1Matrix_1_1Matrix"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html#a55d21e1ee6de3c4d8e7c957da87d150e">Matrix</a> (<a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html#aa8b5b6434e29fc287151f1c685983465">A</a> const &amp;a)</td></tr>
-<tr class="memdesc:a55d21e1ee6de3c4d8e7c957da87d150e inherit pub_methods_classFarsyte_1_1Matrix_1_1Matrix"><td class="mdescLeft">&#160;</td><td class="mdescRight">Matrix Construction from Array of Arrays.  <a href="#a55d21e1ee6de3c4d8e7c957da87d150e">More...</a><br /></td></tr>
-<tr class="separator:a55d21e1ee6de3c4d8e7c957da87d150e inherit pub_methods_classFarsyte_1_1Matrix_1_1Matrix"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63614c62b5c4d8b02d4e7f4a15168427 inherit pub_methods_classFarsyte_1_1Matrix_1_1Matrix"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html#a63614c62b5c4d8b02d4e7f4a15168427">Matrix</a> (<a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html#ab30c8ded1811ffa93b6694d9474eddda">A</a> const &amp;iv)</td></tr>
+<tr class="memdesc:a63614c62b5c4d8b02d4e7f4a15168427 inherit pub_methods_classFarsyte_1_1Matrix_1_1Matrix"><td class="mdescLeft">&#160;</td><td class="mdescRight">Matrix Construction from Array of Arrays.  <a href="#a63614c62b5c4d8b02d4e7f4a15168427">More...</a><br /></td></tr>
+<tr class="separator:a63614c62b5c4d8b02d4e7f4a15168427 inherit pub_methods_classFarsyte_1_1Matrix_1_1Matrix"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8acc875b389620d3ae68e893cfb9d084 inherit pub_methods_classFarsyte_1_1Matrix_1_1Matrix"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html#a8acc875b389620d3ae68e893cfb9d084">Matrix</a> (<a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html">Matrix</a> const &amp;m)</td></tr>
 <tr class="memdesc:a8acc875b389620d3ae68e893cfb9d084 inherit pub_methods_classFarsyte_1_1Matrix_1_1Matrix"><td class="mdescLeft">&#160;</td><td class="mdescRight">Duplicate Matrix Construction.  <a href="#a8acc875b389620d3ae68e893cfb9d084">More...</a><br /></td></tr>
 <tr class="separator:a8acc875b389620d3ae68e893cfb9d084 inherit pub_methods_classFarsyte_1_1Matrix_1_1Matrix"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a287e40d5117f6e01171112090b447298 inherit pub_methods_classFarsyte_1_1Matrix_1_1Matrix"><td class="memItemLeft" align="right" valign="top">T const &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html#a287e40d5117f6e01171112090b447298">operator()</a> (int ri, int ci) const</td></tr>
-<tr class="memdesc:a287e40d5117f6e01171112090b447298 inherit pub_methods_classFarsyte_1_1Matrix_1_1Matrix"><td class="mdescLeft">&#160;</td><td class="mdescRight">Matrix Subscripting Operator.  <a href="#a287e40d5117f6e01171112090b447298">More...</a><br /></td></tr>
-<tr class="separator:a287e40d5117f6e01171112090b447298 inherit pub_methods_classFarsyte_1_1Matrix_1_1Matrix"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a53dc35f4d56a52859afffab6fcb484d0 inherit pub_methods_classFarsyte_1_1Matrix_1_1Matrix"><td class="memItemLeft" align="right" valign="top">T &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html#a53dc35f4d56a52859afffab6fcb484d0">operator()</a> (int ri, int ci)</td></tr>
-<tr class="memdesc:a53dc35f4d56a52859afffab6fcb484d0 inherit pub_methods_classFarsyte_1_1Matrix_1_1Matrix"><td class="mdescLeft">&#160;</td><td class="mdescRight">Matrix Subscripting Operator.  <a href="#a53dc35f4d56a52859afffab6fcb484d0">More...</a><br /></td></tr>
-<tr class="separator:a53dc35f4d56a52859afffab6fcb484d0 inherit pub_methods_classFarsyte_1_1Matrix_1_1Matrix"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab60f6ebb4125ac5cd3a57bdc96d005c6 inherit pub_methods_classFarsyte_1_1Matrix_1_1Matrix"><td class="memItemLeft" align="right" valign="top">T const &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html#ab60f6ebb4125ac5cd3a57bdc96d005c6">operator[]</a> (int i) const</td></tr>
+<tr class="memdesc:ab60f6ebb4125ac5cd3a57bdc96d005c6 inherit pub_methods_classFarsyte_1_1Matrix_1_1Matrix"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fast linear element access (read-only).  <a href="#ab60f6ebb4125ac5cd3a57bdc96d005c6">More...</a><br /></td></tr>
+<tr class="separator:ab60f6ebb4125ac5cd3a57bdc96d005c6 inherit pub_methods_classFarsyte_1_1Matrix_1_1Matrix"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b5e9faa456bdb6650e09fe50ba5cadd inherit pub_methods_classFarsyte_1_1Matrix_1_1Matrix"><td class="memItemLeft" align="right" valign="top">T &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html#a0b5e9faa456bdb6650e09fe50ba5cadd">operator[]</a> (int i)</td></tr>
+<tr class="memdesc:a0b5e9faa456bdb6650e09fe50ba5cadd inherit pub_methods_classFarsyte_1_1Matrix_1_1Matrix"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fast linear element access (mutable).  <a href="#a0b5e9faa456bdb6650e09fe50ba5cadd">More...</a><br /></td></tr>
+<tr class="separator:a0b5e9faa456bdb6650e09fe50ba5cadd inherit pub_methods_classFarsyte_1_1Matrix_1_1Matrix"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f0816c4f4298663d76603fcbd05f7f3 inherit pub_methods_classFarsyte_1_1Matrix_1_1Matrix"><td class="memItemLeft" align="right" valign="top">T const &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html#a8f0816c4f4298663d76603fcbd05f7f3">operator()</a> (int ri, int ci=0) const</td></tr>
+<tr class="memdesc:a8f0816c4f4298663d76603fcbd05f7f3 inherit pub_methods_classFarsyte_1_1Matrix_1_1Matrix"><td class="mdescLeft">&#160;</td><td class="mdescRight">Matrix Subscripting Operator.  <a href="#a8f0816c4f4298663d76603fcbd05f7f3">More...</a><br /></td></tr>
+<tr class="separator:a8f0816c4f4298663d76603fcbd05f7f3 inherit pub_methods_classFarsyte_1_1Matrix_1_1Matrix"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8705650f7ee288820c4a00f64018c8d8 inherit pub_methods_classFarsyte_1_1Matrix_1_1Matrix"><td class="memItemLeft" align="right" valign="top">T &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html#a8705650f7ee288820c4a00f64018c8d8">operator()</a> (int ri, int ci=0)</td></tr>
+<tr class="memdesc:a8705650f7ee288820c4a00f64018c8d8 inherit pub_methods_classFarsyte_1_1Matrix_1_1Matrix"><td class="mdescLeft">&#160;</td><td class="mdescRight">Matrix Subscripting Operator.  <a href="#a8705650f7ee288820c4a00f64018c8d8">More...</a><br /></td></tr>
+<tr class="separator:a8705650f7ee288820c4a00f64018c8d8 inherit pub_methods_classFarsyte_1_1Matrix_1_1Matrix"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adf5659ea0fe0f228b4e219605cce3ba8 inherit pub_methods_classFarsyte_1_1Matrix_1_1Matrix"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html#adf5659ea0fe0f228b4e219605cce3ba8">equals</a> (<a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html">Matrix</a> const &amp;p) const</td></tr>
 <tr class="memdesc:adf5659ea0fe0f228b4e219605cce3ba8 inherit pub_methods_classFarsyte_1_1Matrix_1_1Matrix"><td class="mdescLeft">&#160;</td><td class="mdescRight">Matrix Equality Test.  <a href="#adf5659ea0fe0f228b4e219605cce3ba8">More...</a><br /></td></tr>
 <tr class="separator:adf5659ea0fe0f228b4e219605cce3ba8 inherit pub_methods_classFarsyte_1_1Matrix_1_1Matrix"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -229,42 +202,37 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aaa03092a83ca5092706a056ddd738e0c inherit pub_methods_classFarsyte_1_1Matrix_1_1Matrix"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html">Matrix</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html#aaa03092a83ca5092706a056ddd738e0c">negate</a> ()</td></tr>
 <tr class="memdesc:aaa03092a83ca5092706a056ddd738e0c inherit pub_methods_classFarsyte_1_1Matrix_1_1Matrix"><td class="mdescLeft">&#160;</td><td class="mdescRight">Matrix Negate operation.  <a href="#aaa03092a83ca5092706a056ddd738e0c">More...</a><br /></td></tr>
 <tr class="separator:aaa03092a83ca5092706a056ddd738e0c inherit pub_methods_classFarsyte_1_1Matrix_1_1Matrix"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acbf437c1b33bb34d239b0647192f6793 inherit pub_methods_classFarsyte_1_1Matrix_1_1Matrix"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html">Matrix</a>&lt; Nr, Nc, T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html#acbf437c1b33bb34d239b0647192f6793">transpose</a> () const</td></tr>
-<tr class="memdesc:acbf437c1b33bb34d239b0647192f6793 inherit pub_methods_classFarsyte_1_1Matrix_1_1Matrix"><td class="mdescLeft">&#160;</td><td class="mdescRight">Matrix Transpose operation.  <a href="#acbf437c1b33bb34d239b0647192f6793">More...</a><br /></td></tr>
-<tr class="separator:acbf437c1b33bb34d239b0647192f6793 inherit pub_methods_classFarsyte_1_1Matrix_1_1Matrix"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
-Protected Member Functions</h2></td></tr>
-<tr class="memitem:a9ce963b958d5f6da71c8436dab3b87f8"><td class="memItemLeft" align="right" valign="top">T const &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFarsyte_1_1Matrix_1_1ColVec.html#a9ce963b958d5f6da71c8436dab3b87f8">sub</a> (int ri) const </td></tr>
-<tr class="memdesc:a9ce963b958d5f6da71c8436dab3b87f8"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classFarsyte_1_1Matrix_1_1ColVec.html" title="Column Vector Template. ">ColVec</a> Subscripting Implementation.  <a href="#a9ce963b958d5f6da71c8436dab3b87f8">More...</a><br /></td></tr>
-<tr class="separator:a9ce963b958d5f6da71c8436dab3b87f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a25e443a22c2a03b98a81b996d2be308a"><td class="memItemLeft" align="right" valign="top">T &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFarsyte_1_1Matrix_1_1ColVec.html#a25e443a22c2a03b98a81b996d2be308a">sub</a> (int ri)</td></tr>
-<tr class="memdesc:a25e443a22c2a03b98a81b996d2be308a"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classFarsyte_1_1Matrix_1_1ColVec.html" title="Column Vector Template. ">ColVec</a> Subscripting Implementation.  <a href="#a25e443a22c2a03b98a81b996d2be308a">More...</a><br /></td></tr>
-<tr class="separator:a25e443a22c2a03b98a81b996d2be308a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pro_methods_classFarsyte_1_1Matrix_1_1Matrix"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classFarsyte_1_1Matrix_1_1Matrix')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html">Farsyte::Matrix::Matrix&lt; 1, Nr, T &gt;</a></td></tr>
-<tr class="memitem:a363946a3156161962911c95cdd5edf06 inherit pro_methods_classFarsyte_1_1Matrix_1_1Matrix"><td class="memItemLeft" align="right" valign="top">T const &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html#a363946a3156161962911c95cdd5edf06">sub</a> (int ri, int ci) const</td></tr>
-<tr class="memdesc:a363946a3156161962911c95cdd5edf06 inherit pro_methods_classFarsyte_1_1Matrix_1_1Matrix"><td class="mdescLeft">&#160;</td><td class="mdescRight">Matrix Subscripting Implementation.  <a href="#a363946a3156161962911c95cdd5edf06">More...</a><br /></td></tr>
-<tr class="separator:a363946a3156161962911c95cdd5edf06 inherit pro_methods_classFarsyte_1_1Matrix_1_1Matrix"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af99f3e4d8a71a1f7b01e0dd8ba76387d inherit pro_methods_classFarsyte_1_1Matrix_1_1Matrix"><td class="memItemLeft" align="right" valign="top">T &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html#af99f3e4d8a71a1f7b01e0dd8ba76387d">sub</a> (int ri, int ci)</td></tr>
-<tr class="memdesc:af99f3e4d8a71a1f7b01e0dd8ba76387d inherit pro_methods_classFarsyte_1_1Matrix_1_1Matrix"><td class="mdescLeft">&#160;</td><td class="mdescRight">Matrix Subscripting Implementation.  <a href="#af99f3e4d8a71a1f7b01e0dd8ba76387d">More...</a><br /></td></tr>
-<tr class="separator:af99f3e4d8a71a1f7b01e0dd8ba76387d inherit pro_methods_classFarsyte_1_1Matrix_1_1Matrix"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf81c36d4e39bcfcf512bd2962a49656 inherit pub_methods_classFarsyte_1_1Matrix_1_1Matrix"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html">Matrix</a>&lt; Nr, Nc, T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html#acf81c36d4e39bcfcf512bd2962a49656">transpose</a> () const</td></tr>
+<tr class="memdesc:acf81c36d4e39bcfcf512bd2962a49656 inherit pub_methods_classFarsyte_1_1Matrix_1_1Matrix"><td class="mdescLeft">&#160;</td><td class="mdescRight">Matrix Transpose operation.  <a href="#acf81c36d4e39bcfcf512bd2962a49656">More...</a><br /></td></tr>
+<tr class="separator:acf81c36d4e39bcfcf512bd2962a49656 inherit pub_methods_classFarsyte_1_1Matrix_1_1Matrix"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pub_static_methods_classFarsyte_1_1Matrix_1_1Matrix"><td colspan="2" onclick="javascript:toggleInherit('pub_static_methods_classFarsyte_1_1Matrix_1_1Matrix')"><img src="closed.png" alt="-"/>&#160;Static Public Member Functions inherited from <a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html">Farsyte::Matrix::Matrix&lt; 1, Nr, T &gt;</a></td></tr>
-<tr class="memitem:a48df0f93a310d496a0cd3c0dad4ce268 inherit pub_static_methods_classFarsyte_1_1Matrix_1_1Matrix"><td class="memItemLeft" align="right" valign="top">static size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html#a48df0f93a310d496a0cd3c0dad4ce268">rows</a> ()</td></tr>
-<tr class="memdesc:a48df0f93a310d496a0cd3c0dad4ce268 inherit pub_static_methods_classFarsyte_1_1Matrix_1_1Matrix"><td class="mdescLeft">&#160;</td><td class="mdescRight">Matrix rows.  <a href="#a48df0f93a310d496a0cd3c0dad4ce268">More...</a><br /></td></tr>
-<tr class="separator:a48df0f93a310d496a0cd3c0dad4ce268 inherit pub_static_methods_classFarsyte_1_1Matrix_1_1Matrix"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa544710adacdf29ae9ebb6f19a4d7e89 inherit pub_static_methods_classFarsyte_1_1Matrix_1_1Matrix"><td class="memItemLeft" align="right" valign="top">static size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html#aa544710adacdf29ae9ebb6f19a4d7e89">cols</a> ()</td></tr>
-<tr class="memdesc:aa544710adacdf29ae9ebb6f19a4d7e89 inherit pub_static_methods_classFarsyte_1_1Matrix_1_1Matrix"><td class="mdescLeft">&#160;</td><td class="mdescRight">Matrix columns.  <a href="#aa544710adacdf29ae9ebb6f19a4d7e89">More...</a><br /></td></tr>
-<tr class="separator:aa544710adacdf29ae9ebb6f19a4d7e89 inherit pub_static_methods_classFarsyte_1_1Matrix_1_1Matrix"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8b5191350dc4db8b71039836c51d7a1b inherit pub_static_methods_classFarsyte_1_1Matrix_1_1Matrix"><td class="memItemLeft" align="right" valign="top">static size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html#a8b5191350dc4db8b71039836c51d7a1b">size</a> ()</td></tr>
-<tr class="memdesc:a8b5191350dc4db8b71039836c51d7a1b inherit pub_static_methods_classFarsyte_1_1Matrix_1_1Matrix"><td class="mdescLeft">&#160;</td><td class="mdescRight">Matrix elements.  <a href="#a8b5191350dc4db8b71039836c51d7a1b">More...</a><br /></td></tr>
-<tr class="separator:a8b5191350dc4db8b71039836c51d7a1b inherit pub_static_methods_classFarsyte_1_1Matrix_1_1Matrix"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa5f4f8b9fae57920f3e9be18a822bf89 inherit pub_static_methods_classFarsyte_1_1Matrix_1_1Matrix"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html#aa5f4f8b9fae57920f3e9be18a822bf89">rows</a> ()</td></tr>
+<tr class="memdesc:aa5f4f8b9fae57920f3e9be18a822bf89 inherit pub_static_methods_classFarsyte_1_1Matrix_1_1Matrix"><td class="mdescLeft">&#160;</td><td class="mdescRight">Matrix rows.  <a href="#aa5f4f8b9fae57920f3e9be18a822bf89">More...</a><br /></td></tr>
+<tr class="separator:aa5f4f8b9fae57920f3e9be18a822bf89 inherit pub_static_methods_classFarsyte_1_1Matrix_1_1Matrix"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ee7f9f4781cec54c49140bcc3844e2b inherit pub_static_methods_classFarsyte_1_1Matrix_1_1Matrix"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html#a7ee7f9f4781cec54c49140bcc3844e2b">cols</a> ()</td></tr>
+<tr class="memdesc:a7ee7f9f4781cec54c49140bcc3844e2b inherit pub_static_methods_classFarsyte_1_1Matrix_1_1Matrix"><td class="mdescLeft">&#160;</td><td class="mdescRight">Matrix columns.  <a href="#a7ee7f9f4781cec54c49140bcc3844e2b">More...</a><br /></td></tr>
+<tr class="separator:a7ee7f9f4781cec54c49140bcc3844e2b inherit pub_static_methods_classFarsyte_1_1Matrix_1_1Matrix"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a048d5059045016ac558eaf3c3b3a8fce inherit pub_static_methods_classFarsyte_1_1Matrix_1_1Matrix"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html#a048d5059045016ac558eaf3c3b3a8fce">size</a> ()</td></tr>
+<tr class="memdesc:a048d5059045016ac558eaf3c3b3a8fce inherit pub_static_methods_classFarsyte_1_1Matrix_1_1Matrix"><td class="mdescLeft">&#160;</td><td class="mdescRight">Matrix elements.  <a href="#a048d5059045016ac558eaf3c3b3a8fce">More...</a><br /></td></tr>
+<tr class="separator:a048d5059045016ac558eaf3c3b3a8fce inherit pub_static_methods_classFarsyte_1_1Matrix_1_1Matrix"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_methods_classFarsyte_1_1Matrix_1_1Matrix"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classFarsyte_1_1Matrix_1_1Matrix')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html">Farsyte::Matrix::Matrix&lt; 1, Nr, T &gt;</a></td></tr>
+<tr class="memitem:ad6f81522a3912ac3db35d205e6e3b874 inherit pro_methods_classFarsyte_1_1Matrix_1_1Matrix"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad6f81522a3912ac3db35d205e6e3b874"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html#ad6f81522a3912ac3db35d205e6e3b874">off</a> (int ri, int ci) const</td></tr>
+<tr class="memdesc:ad6f81522a3912ac3db35d205e6e3b874 inherit pro_methods_classFarsyte_1_1Matrix_1_1Matrix"><td class="mdescLeft">&#160;</td><td class="mdescRight">Matrix subscript to offset calculation. <br /></td></tr>
+<tr class="separator:ad6f81522a3912ac3db35d205e6e3b874 inherit pro_methods_classFarsyte_1_1Matrix_1_1Matrix"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af6bc7196ab70f0dd31bf8050f05c53c3 inherit pro_methods_classFarsyte_1_1Matrix_1_1Matrix"><td class="memItemLeft" align="right" valign="top">T const &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html#af6bc7196ab70f0dd31bf8050f05c53c3">data</a> (int ri, int ci=0) const</td></tr>
+<tr class="memdesc:af6bc7196ab70f0dd31bf8050f05c53c3 inherit pro_methods_classFarsyte_1_1Matrix_1_1Matrix"><td class="mdescLeft">&#160;</td><td class="mdescRight">Matrix Subscripting Implementation.  <a href="#af6bc7196ab70f0dd31bf8050f05c53c3">More...</a><br /></td></tr>
+<tr class="separator:af6bc7196ab70f0dd31bf8050f05c53c3 inherit pro_methods_classFarsyte_1_1Matrix_1_1Matrix"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c0736b81e5392ab7fcb136c8e7530af inherit pro_methods_classFarsyte_1_1Matrix_1_1Matrix"><td class="memItemLeft" align="right" valign="top">T &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html#a0c0736b81e5392ab7fcb136c8e7530af">data</a> (int ri, int ci=0)</td></tr>
+<tr class="memdesc:a0c0736b81e5392ab7fcb136c8e7530af inherit pro_methods_classFarsyte_1_1Matrix_1_1Matrix"><td class="mdescLeft">&#160;</td><td class="mdescRight">Matrix Subscripting Implementation.  <a href="#a0c0736b81e5392ab7fcb136c8e7530af">More...</a><br /></td></tr>
+<tr class="separator:a0c0736b81e5392ab7fcb136c8e7530af inherit pro_methods_classFarsyte_1_1Matrix_1_1Matrix"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_classFarsyte_1_1Matrix_1_1Matrix"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classFarsyte_1_1Matrix_1_1Matrix')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html">Farsyte::Matrix::Matrix&lt; 1, Nr, T &gt;</a></td></tr>
-<tr class="memitem:a389fad807acc81a37c4905c6959a19f4 inherit pro_attribs_classFarsyte_1_1Matrix_1_1Matrix"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html#aa8b5b6434e29fc287151f1c685983465">A</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html#a389fad807acc81a37c4905c6959a19f4">data</a></td></tr>
-<tr class="memdesc:a389fad807acc81a37c4905c6959a19f4 inherit pro_attribs_classFarsyte_1_1Matrix_1_1Matrix"><td class="mdescLeft">&#160;</td><td class="mdescRight">Storage for Matrix State.  <a href="#a389fad807acc81a37c4905c6959a19f4">More...</a><br /></td></tr>
-<tr class="separator:a389fad807acc81a37c4905c6959a19f4 inherit pro_attribs_classFarsyte_1_1Matrix_1_1Matrix"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7c40e647f72dfacd122ada5404a25bd inherit pro_attribs_classFarsyte_1_1Matrix_1_1Matrix"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html#ab30c8ded1811ffa93b6694d9474eddda">A</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html#ad7c40e647f72dfacd122ada5404a25bd">a</a></td></tr>
+<tr class="memdesc:ad7c40e647f72dfacd122ada5404a25bd inherit pro_attribs_classFarsyte_1_1Matrix_1_1Matrix"><td class="mdescLeft">&#160;</td><td class="mdescRight">Storage for Matrix State.  <a href="#ad7c40e647f72dfacd122ada5404a25bd">More...</a><br /></td></tr>
+<tr class="separator:ad7c40e647f72dfacd122ada5404a25bd inherit pro_attribs_classFarsyte_1_1Matrix_1_1Matrix"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><h3>template&lt;int Nr, typename T&gt;<br />
@@ -280,23 +248,23 @@ class Farsyte::Matrix::ColVec&lt; Nr, T &gt;</h3>
 </dl>
 <p>This template implements a column vector of a compile-time determined size, containing elements of compile-time determined type. </p>
 
-<p>Definition at line <a class="el" href="matrix_8h_source.html#l00390">390</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
+<p>Definition at line <a class="el" href="matrix__colvec_8h_source.html#l00025">25</a> of file <a class="el" href="matrix__colvec_8h_source.html">matrix_colvec.h</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
-<a class="anchor" id="afa643b7106de4adecf231177b1a3274d"></a>
+<a class="anchor" id="af03944e29ce40a7a057b746c59687e95"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;int Nr, typename T&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">typedef <a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html">Matrix</a>&lt;1,Nr,T&gt; <a class="el" href="classFarsyte_1_1Matrix_1_1ColVec.html">Farsyte::Matrix::ColVec</a>&lt; Nr, T &gt;::<a class="el" href="classFarsyte_1_1Matrix_1_1ColVec.html#afa643b7106de4adecf231177b1a3274d">MatMe</a></td>
+          <td class="memname">typedef <a class="el" href="classFarsyte_1_1Matrix_1_1Matrix.html">Matrix</a>&lt;1, Nr, T&gt; <a class="el" href="classFarsyte_1_1Matrix_1_1ColVec.html">Farsyte::Matrix::ColVec</a>&lt; Nr, T &gt;::<a class="el" href="classFarsyte_1_1Matrix_1_1ColVec.html#af03944e29ce40a7a057b746c59687e95">MatMe</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Typedef for matrix generalization. </p>
 
-<p>Definition at line <a class="el" href="matrix_8h_source.html#l00397">397</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
+<p>Definition at line <a class="el" href="matrix__colvec_8h_source.html#l00031">31</a> of file <a class="el" href="matrix__colvec_8h_source.html">matrix_colvec.h</a>.</p>
 
 </div>
 </div>
@@ -333,52 +301,11 @@ template&lt;int Nr, typename T&gt; </div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="matrix_8h_source.html#l00441">441</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;        : <a class="code" href="classFarsyte_1_1Matrix_1_1ColVec.html#afa643b7106de4adecf231177b1a3274d">MatMe</a>(a)</div>
-<div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;        {</div>
-<div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160;        }</div>
-<div class="ttc" id="classFarsyte_1_1Matrix_1_1ColVec_html_afa643b7106de4adecf231177b1a3274d"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1ColVec.html#afa643b7106de4adecf231177b1a3274d">Farsyte::Matrix::ColVec::MatMe</a></div><div class="ttdeci">Matrix&lt; 1, Nr, T &gt; MatMe</div><div class="ttdoc">Typedef for matrix generalization. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00397">matrix.h:397</a></div></div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="a3d9fbd2ad1d2dcc9d4d6afe32083c7fe"></a>
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;int Nr, typename T&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classFarsyte_1_1Matrix_1_1ColVec.html">Farsyte::Matrix::ColVec</a>&lt; Nr, T &gt;::<a class="el" href="classFarsyte_1_1Matrix_1_1ColVec.html">ColVec</a> </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classFarsyte_1_1Matrix_1_1ColVec.html#a4203a5c03ce162e0ef58f190c0e5efc4">C</a> const &amp;&#160;</td>
-          <td class="paramname"><em>a</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Construct a Column Vector from a 1-D Array. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">a</td><td>An appropriately shaped object of the C++ array template type. This initializes the Column Vector data to contain values from the corresponding elements of the array provided. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="matrix_8h_source.html#l00451">451</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160;        : <a class="code" href="classFarsyte_1_1Matrix_1_1ColVec.html#afa643b7106de4adecf231177b1a3274d">MatMe</a>(<a class="code" href="classFarsyte_1_1Matrix_1_1ColVec.html#a242ddc9a8867d7ba2050bbebb20109b1">A</a>{{a}})</div>
-<div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160;        {</div>
-<div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160;        }</div>
-<div class="ttc" id="classFarsyte_1_1Matrix_1_1ColVec_html_afa643b7106de4adecf231177b1a3274d"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1ColVec.html#afa643b7106de4adecf231177b1a3274d">Farsyte::Matrix::ColVec::MatMe</a></div><div class="ttdeci">Matrix&lt; 1, Nr, T &gt; MatMe</div><div class="ttdoc">Typedef for matrix generalization. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00397">matrix.h:397</a></div></div>
-<div class="ttc" id="classFarsyte_1_1Matrix_1_1ColVec_html_a242ddc9a8867d7ba2050bbebb20109b1"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1ColVec.html#a242ddc9a8867d7ba2050bbebb20109b1">Farsyte::Matrix::ColVec::A</a></div><div class="ttdeci">MatMe::A A</div><div class="ttdoc">Typedef for array containing the data. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00401">matrix.h:401</a></div></div>
+<p>Definition at line <a class="el" href="matrix__colvec_8h_source.html#l00048">48</a> of file <a class="el" href="matrix__colvec_8h_source.html">matrix_colvec.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;                    : <a class="code" href="classFarsyte_1_1Matrix_1_1ColVec.html#af03944e29ce40a7a057b746c59687e95">MatMe</a>(<a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#ad7c40e647f72dfacd122ada5404a25bd">a</a>) {</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;            }</div>
+<div class="ttc" id="classFarsyte_1_1Matrix_1_1ColVec_html_af03944e29ce40a7a057b746c59687e95"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1ColVec.html#af03944e29ce40a7a057b746c59687e95">Farsyte::Matrix::ColVec::MatMe</a></div><div class="ttdeci">Matrix&lt; 1, Nr, T &gt; MatMe</div><div class="ttdoc">Typedef for matrix generalization. </div><div class="ttdef"><b>Definition:</b> <a href="matrix__colvec_8h_source.html#l00031">matrix_colvec.h:31</a></div></div>
+<div class="ttc" id="classFarsyte_1_1Matrix_1_1Matrix_html_ad7c40e647f72dfacd122ada5404a25bd"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1Matrix.html#ad7c40e647f72dfacd122ada5404a25bd">Farsyte::Matrix::Matrix&lt; 1, Nr, T &gt;::a</a></div><div class="ttdeci">A a</div><div class="ttdoc">Storage for Matrix State. </div><div class="ttdef"><b>Definition:</b> <a href="matrix__matrix_8h_source.html#l00252">matrix_matrix.h:252</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -394,7 +321,7 @@ template&lt;int Nr, typename T&gt; </div>
         <tr>
           <td class="memname"><a class="el" href="classFarsyte_1_1Matrix_1_1ColVec.html">Farsyte::Matrix::ColVec</a>&lt; Nr, T &gt;::<a class="el" href="classFarsyte_1_1Matrix_1_1ColVec.html">ColVec</a> </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classFarsyte_1_1Matrix_1_1ColVec.html#afa643b7106de4adecf231177b1a3274d">MatMe</a> const &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="classFarsyte_1_1Matrix_1_1ColVec.html#af03944e29ce40a7a057b746c59687e95">MatMe</a> const &amp;&#160;</td>
           <td class="paramname"><em>c</em></td><td>)</td>
           <td></td>
         </tr>
@@ -415,196 +342,15 @@ template&lt;int Nr, typename T&gt; </div>
 </dl>
 <dl class="section note"><dt>Note</dt><dd>Can be called with any appropriately dimensioned matrix. </dd></dl>
 
-<p>Definition at line <a class="el" href="matrix_8h_source.html#l00461">461</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00462"></a><span class="lineno">  462</span>&#160;        : <a class="code" href="classFarsyte_1_1Matrix_1_1ColVec.html#afa643b7106de4adecf231177b1a3274d">MatMe</a>(c)</div>
-<div class="line"><a name="l00463"></a><span class="lineno">  463</span>&#160;        {</div>
-<div class="line"><a name="l00464"></a><span class="lineno">  464</span>&#160;        }</div>
-<div class="ttc" id="classFarsyte_1_1Matrix_1_1ColVec_html_afa643b7106de4adecf231177b1a3274d"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1ColVec.html#afa643b7106de4adecf231177b1a3274d">Farsyte::Matrix::ColVec::MatMe</a></div><div class="ttdeci">Matrix&lt; 1, Nr, T &gt; MatMe</div><div class="ttdoc">Typedef for matrix generalization. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00397">matrix.h:397</a></div></div>
-</div><!-- fragment -->
-</div>
-</div>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a7cbd79cdcbefc45f4bce29d6d4c1cd89"></a>
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;int Nr, typename T&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">T const&amp; <a class="el" href="classFarsyte_1_1Matrix_1_1ColVec.html">Farsyte::Matrix::ColVec</a>&lt; Nr, T &gt;::operator() </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>ri</em></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p><a class="el" href="classFarsyte_1_1Matrix_1_1ColVec.html" title="Column Vector Template. ">ColVec</a> Subscripting Operator. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">ri</td><td>Row Index, in the range 1 to N inclusive. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>read-only reference to the selected element. </dd></dl>
-<dl class="section note"><dt>Note</dt><dd>Fortran conventions for array subscripting. </dd></dl>
-
-<p>Definition at line <a class="el" href="matrix_8h_source.html#l00471">471</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00472"></a><span class="lineno">  472</span>&#160;        {</div>
-<div class="line"><a name="l00473"></a><span class="lineno">  473</span>&#160;          <span class="keywordflow">return</span> <a class="code" href="classFarsyte_1_1Matrix_1_1ColVec.html#a9ce963b958d5f6da71c8436dab3b87f8">sub</a>(ri);</div>
-<div class="line"><a name="l00474"></a><span class="lineno">  474</span>&#160;        }</div>
-<div class="ttc" id="classFarsyte_1_1Matrix_1_1ColVec_html_a9ce963b958d5f6da71c8436dab3b87f8"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1ColVec.html#a9ce963b958d5f6da71c8436dab3b87f8">Farsyte::Matrix::ColVec::sub</a></div><div class="ttdeci">T const &amp; sub(int ri) const </div><div class="ttdoc">ColVec Subscripting Implementation. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00414">matrix.h:414</a></div></div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="a37a7512da2883c79b056eedc8241f974"></a>
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;int Nr, typename T&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">T&amp; <a class="el" href="classFarsyte_1_1Matrix_1_1ColVec.html">Farsyte::Matrix::ColVec</a>&lt; Nr, T &gt;::operator() </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>ri</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p><a class="el" href="classFarsyte_1_1Matrix_1_1ColVec.html" title="Column Vector Template. ">ColVec</a> Subscripting Operator. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">ri</td><td>Row Index, in the range 1 to N inclusive. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>modifiable reference to the selected element. </dd></dl>
-<dl class="section note"><dt>Note</dt><dd>Fortran conventions for array subscripting. </dd></dl>
-
-<p>Definition at line <a class="el" href="matrix_8h_source.html#l00481">481</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00482"></a><span class="lineno">  482</span>&#160;        {</div>
-<div class="line"><a name="l00483"></a><span class="lineno">  483</span>&#160;          <span class="keywordflow">return</span> <a class="code" href="classFarsyte_1_1Matrix_1_1ColVec.html#a9ce963b958d5f6da71c8436dab3b87f8">sub</a>(ri);</div>
-<div class="line"><a name="l00484"></a><span class="lineno">  484</span>&#160;        }</div>
-<div class="ttc" id="classFarsyte_1_1Matrix_1_1ColVec_html_a9ce963b958d5f6da71c8436dab3b87f8"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1ColVec.html#a9ce963b958d5f6da71c8436dab3b87f8">Farsyte::Matrix::ColVec::sub</a></div><div class="ttdeci">T const &amp; sub(int ri) const </div><div class="ttdoc">ColVec Subscripting Implementation. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00414">matrix.h:414</a></div></div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="a9ce963b958d5f6da71c8436dab3b87f8"></a>
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;int Nr, typename T&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">T const&amp; <a class="el" href="classFarsyte_1_1Matrix_1_1ColVec.html">Farsyte::Matrix::ColVec</a>&lt; Nr, T &gt;::sub </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>ri</em></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p><a class="el" href="classFarsyte_1_1Matrix_1_1ColVec.html" title="Column Vector Template. ">ColVec</a> Subscripting Implementation. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">ri</td><td>Row Index, in the range 1 to N inclusive. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>read-only reference to the selected element. </dd></dl>
-<dl class="section note"><dt>Note</dt><dd>Fortran conventions for array subscripting. </dd></dl>
-
-<p>Definition at line <a class="el" href="matrix_8h_source.html#l00414">414</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
-
-<p>Referenced by <a class="el" href="matrix_8h_source.html#l00471">Farsyte::Matrix::ColVec&lt; 3, double &gt;::operator()()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;        {</div>
-<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;          <span class="keywordflow">return</span> <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#a363946a3156161962911c95cdd5edf06">MatMe::sub</a>(ri, 1);</div>
-<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;        }</div>
-<div class="ttc" id="classFarsyte_1_1Matrix_1_1Matrix_html_a363946a3156161962911c95cdd5edf06"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1Matrix.html#a363946a3156161962911c95cdd5edf06">Farsyte::Matrix::Matrix&lt; 1, Nr, T &gt;::sub</a></div><div class="ttdeci">T const &amp; sub(int ri, int ci) const</div><div class="ttdoc">Matrix Subscripting Implementation. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00096">matrix.h:96</a></div></div>
-</div><!-- fragment -->
-<p><div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="classFarsyte_1_1Matrix_1_1ColVec_a9ce963b958d5f6da71c8436dab3b87f8_icgraph.png" border="0" usemap="#classFarsyte_1_1Matrix_1_1ColVec_a9ce963b958d5f6da71c8436dab3b87f8_icgraph" alt=""/></div>
-<map name="classFarsyte_1_1Matrix_1_1ColVec_a9ce963b958d5f6da71c8436dab3b87f8_icgraph" id="classFarsyte_1_1Matrix_1_1ColVec_a9ce963b958d5f6da71c8436dab3b87f8_icgraph">
-<area shape="rect" id="node2" href="classFarsyte_1_1Matrix_1_1ColVec.html#a7cbd79cdcbefc45f4bce29d6d4c1cd89" title="ColVec Subscripting Operator. " alt="" coords="244,5,407,47"/></map>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="a25e443a22c2a03b98a81b996d2be308a"></a>
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;int Nr, typename T&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">T&amp; <a class="el" href="classFarsyte_1_1Matrix_1_1ColVec.html">Farsyte::Matrix::ColVec</a>&lt; Nr, T &gt;::sub </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>ri</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p><a class="el" href="classFarsyte_1_1Matrix_1_1ColVec.html" title="Column Vector Template. ">ColVec</a> Subscripting Implementation. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">ri</td><td>Row Index, in the range 1 to N inclusive. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>modifiable reference to the selected element. </dd></dl>
-<dl class="section note"><dt>Note</dt><dd>Fortran conventions for array subscripting. </dd></dl>
-
-<p>Definition at line <a class="el" href="matrix_8h_source.html#l00424">424</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;        {</div>
-<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;          <span class="keywordflow">return</span> <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#a363946a3156161962911c95cdd5edf06">MatMe::sub</a>(ri, 1);</div>
-<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;        }</div>
-<div class="ttc" id="classFarsyte_1_1Matrix_1_1Matrix_html_a363946a3156161962911c95cdd5edf06"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1Matrix.html#a363946a3156161962911c95cdd5edf06">Farsyte::Matrix::Matrix&lt; 1, Nr, T &gt;::sub</a></div><div class="ttdeci">T const &amp; sub(int ri, int ci) const</div><div class="ttdoc">Matrix Subscripting Implementation. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00096">matrix.h:96</a></div></div>
+<p>Definition at line <a class="el" href="matrix__colvec_8h_source.html#l00057">57</a> of file <a class="el" href="matrix__colvec_8h_source.html">matrix_colvec.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                    : <a class="code" href="classFarsyte_1_1Matrix_1_1ColVec.html#af03944e29ce40a7a057b746c59687e95">MatMe</a>(c) {</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            }</div>
+<div class="ttc" id="classFarsyte_1_1Matrix_1_1ColVec_html_af03944e29ce40a7a057b746c59687e95"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1ColVec.html#af03944e29ce40a7a057b746c59687e95">Farsyte::Matrix::ColVec::MatMe</a></div><div class="ttdeci">Matrix&lt; 1, Nr, T &gt; MatMe</div><div class="ttdoc">Typedef for matrix generalization. </div><div class="ttdef"><b>Definition:</b> <a href="matrix__colvec_8h_source.html#l00031">matrix_colvec.h:31</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li><a class="el" href="matrix_8h_source.html">matrix.h</a></li>
+<li><a class="el" href="matrix__colvec_8h_source.html">matrix_colvec.h</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -612,7 +358,7 @@ template&lt;int Nr, typename T&gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><b>Farsyte</b></li><li class="navelem"><b>Matrix</b></li><li class="navelem"><a class="el" href="classFarsyte_1_1Matrix_1_1ColVec.html">ColVec</a></li>
-    <li class="footer">Generated on Mon Sep 15 2014 22:23:01 for The Farsyte Toolkit by
+    <li class="footer">Generated on Mon Sep 22 2014 23:06:00 for The Farsyte Toolkit by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

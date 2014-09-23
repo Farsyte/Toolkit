@@ -1,4 +1,4 @@
-.TH "Farsyte::Testing::Log" 3 "Mon Sep 15 2014" "The Farsyte Toolkit" \" -*- nroff -*-
+.TH "Farsyte::Testing::Log" 3 "Mon Sep 22 2014" "The Farsyte Toolkit" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -10,7 +10,7 @@ The \fBLog\fP Object\&.
 .br
 .PP
 .PP
-\fC#include <testing\&.h>\fP
+\fC#include <testing_log\&.h>\fP
 .SS "Public Member Functions"
 
 .in +1c
@@ -39,35 +39,35 @@ The \fBLog\fP Object\&.
 .br
 .RI "\fICurrently active \fBSuite\fP, or NULL if none\&. \fP"
 .ti -1c
-.RI "size_t \fBsuites\fP"
+.RI "int \fBsuites\fP"
 .br
 .RI "\fICumulative count of Suites\&. \fP"
 .ti -1c
-.RI "size_t \fBtests\fP"
+.RI "int \fBtests\fP"
 .br
 .RI "\fICumulative count of Tests\&. \fP"
 .ti -1c
-.RI "size_t \fBfailed_tests\fP"
+.RI "int \fBfailed_tests\fP"
 .br
 .RI "\fICumulative count of Tests with at least one FAIL\&. \fP"
 .ti -1c
-.RI "size_t \fBskipped_tests\fP"
+.RI "int \fBskipped_tests\fP"
 .br
 .RI "\fICumulative count of Tests with at least one SKIP\&. \fP"
 .ti -1c
-.RI "size_t \fBerrored_tests\fP"
+.RI "int \fBerrored_tests\fP"
 .br
 .RI "\fICumulative count of Tests with at least one ERROR\&. \fP"
 .ti -1c
-.RI "size_t \fBtotal_fails\fP"
+.RI "int \fBtotal_fails\fP"
 .br
 .RI "\fICumulative count of all FAIL reports\&. \fP"
 .ti -1c
-.RI "size_t \fBtotal_skips\fP"
+.RI "int \fBtotal_skips\fP"
 .br
 .RI "\fICumulative count of all SKIP reports\&. \fP"
 .ti -1c
-.RI "size_t \fBtotal_errors\fP"
+.RI "int \fBtotal_errors\fP"
 .br
 .RI "\fICumulative count of all ERROR reports\&. \fP"
 .in -1c
@@ -77,7 +77,7 @@ The \fBLog\fP Object\&.
 
 The \fBLog\fP object constructor writes XML text to the specified output stream to start a new log file\&. The destructor writes trailer data to finish the XML element opened at the top\&. \fBTest\fP programs create a \fBLog\fP object for each file they want to write, and may have several \fBLog\fP file objects open at the same time\&. 
 .PP
-Definition at line 33 of file testing\&.h\&.
+Definition at line 24 of file testing_log\&.h\&.
 .SH "Constructor & Destructor Documentation"
 .PP 
 .SS "Farsyte::Testing::Log::Log (std::ostream &out, std::string const &name)"
@@ -97,68 +97,6 @@ Definition at line 33 of file testing\&.h\&.
 
 .PP
 \fBLog\fP Destructor\&. Writes XML trailer text to the output stream\&. 
-.SH "Member Data Documentation"
-.PP 
-.SS "\fBSuite\fP* Farsyte::Testing::Log::curr"
-
-.PP
-Currently active \fBSuite\fP, or NULL if none\&. 
-.PP
-Definition at line 43 of file testing\&.h\&.
-.SS "size_t Farsyte::Testing::Log::errored_tests"
-
-.PP
-Cumulative count of Tests with at least one ERROR\&. 
-.PP
-Definition at line 58 of file testing\&.h\&.
-.SS "size_t Farsyte::Testing::Log::failed_tests"
-
-.PP
-Cumulative count of Tests with at least one FAIL\&. 
-.PP
-Definition at line 52 of file testing\&.h\&.
-.SS "std::ostream& Farsyte::Testing::Log::out"
-
-.PP
-Current output stream\&. 
-.PP
-Definition at line 37 of file testing\&.h\&.
-.SS "size_t Farsyte::Testing::Log::skipped_tests"
-
-.PP
-Cumulative count of Tests with at least one SKIP\&. 
-.PP
-Definition at line 55 of file testing\&.h\&.
-.SS "size_t Farsyte::Testing::Log::suites"
-
-.PP
-Cumulative count of Suites\&. 
-.PP
-Definition at line 46 of file testing\&.h\&.
-.SS "size_t Farsyte::Testing::Log::tests"
-
-.PP
-Cumulative count of Tests\&. 
-.PP
-Definition at line 49 of file testing\&.h\&.
-.SS "size_t Farsyte::Testing::Log::total_errors"
-
-.PP
-Cumulative count of all ERROR reports\&. 
-.PP
-Definition at line 67 of file testing\&.h\&.
-.SS "size_t Farsyte::Testing::Log::total_fails"
-
-.PP
-Cumulative count of all FAIL reports\&. 
-.PP
-Definition at line 61 of file testing\&.h\&.
-.SS "size_t Farsyte::Testing::Log::total_skips"
-
-.PP
-Cumulative count of all SKIP reports\&. 
-.PP
-Definition at line 64 of file testing\&.h\&.
 
 .SH "Author"
 .PP 

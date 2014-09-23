@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Matrix Library">
+  <testsuite name="Farsyte::Matrix::Version">
+    <testcase name="Version Comparison">
+    </testcase>
+  </testsuite>
+</testsuites>

@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['skipped_5ftests',['skipped_tests',['../classFarsyte_1_1Testing_1_1Log.html#ad71781ac6b22e86e799e874419a8e47d',1,'Farsyte::Testing::Log::skipped_tests()'],['../classFarsyte_1_1Testing_1_1Suite.html#a7eeccb080584f55036a91096f13f0a42',1,'Farsyte::Testing::Suite::skipped_tests()']]],
-  ['skips',['skips',['../classFarsyte_1_1Testing_1_1Test.html#a2e38717e549b6eff88830666504f3bde',1,'Farsyte::Testing::Test']]],
-  ['suites',['suites',['../classFarsyte_1_1Testing_1_1Log.html#a819fe5d84c2c265f205c46c76b8f25f9',1,'Farsyte::Testing::Log']]]
+  ['skipped_5ftests',['skipped_tests',['../classFarsyte_1_1Testing_1_1Log.html#a0448ef00eb6535ad40f4d11192839adb',1,'Farsyte::Testing::Log::skipped_tests()'],['../classFarsyte_1_1Testing_1_1Suite.html#a46735fc18f04c8dc1cc1ac31589852da',1,'Farsyte::Testing::Suite::skipped_tests()']]],
+  ['skips',['skips',['../classFarsyte_1_1Testing_1_1Test.html#ae071aaefc6bfbf707215b066e2993df7',1,'Farsyte::Testing::Test']]],
+  ['suites',['suites',['../classFarsyte_1_1Testing_1_1Log.html#a220cfe47414d2f06d58eca2e460e9f51',1,'Farsyte::Testing::Log']]]
 ];

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Testing Library">
+  <testsuite name="Farsyte::Testing::Version">
+    <testcase name="Version Comparison">
+    </testcase>
+  </testsuite>
+</testsuites>

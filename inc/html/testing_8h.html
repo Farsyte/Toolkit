@@ -96,7 +96,7 @@ $(document).ready(function(){initNavTree('testing_8h.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -107,7 +107,7 @@ $(document).ready(function(){initNavTree('testing_8h.html','');});
 
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a> &#124;
+<a href="#define-members">Macros</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">testing.h File Reference</div>  </div>
@@ -116,37 +116,35 @@ $(document).ready(function(){initNavTree('testing_8h.html','');});
 
 <p>Testing Library Exported API.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &lt;string&gt;</code><br />
+<div class="textblock"><code>#include &lt;vector&gt;</code><br />
 <code>#include &lt;iostream&gt;</code><br />
-<code>#include &lt;sstream&gt;</code><br />
-<code>#include &lt;fstream&gt;</code><br />
+<code>#include &lt;string&gt;</code><br />
+<code>#include &quot;<a class="el" href="testing__log_8h_source.html">testing_log.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="testing__suite_8h_source.html">testing_suite.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="testing__test_8h_source.html">testing_test.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="testing__oops_8h_source.html">testing_oops.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for testing.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="testing_8h__incl.png" border="0" usemap="#testing_8h" alt=""/></div>
 <map name="testing_8h" id="testing_8h">
-</map>
+<area shape="rect" id="node5" href="testing__log_8h.html" title="Testing Log Interface. " alt="" coords="139,80,235,107"/><area shape="rect" id="node6" href="testing__suite_8h.html" title="Testing Suite Interface. " alt="" coords="309,80,416,107"/><area shape="rect" id="node7" href="testing__test_8h.html" title="Testing Test Case Interface. " alt="" coords="571,80,672,107"/><area shape="rect" id="node9" href="testing__oops_8h.html" title="Testing Oops Interface. " alt="" coords="440,80,547,107"/></map>
 </div>
 </div>
 <p><a href="testing_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
-Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFarsyte_1_1Testing_1_1Log.html">Farsyte::Testing::Log</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <a class="el" href="classFarsyte_1_1Testing_1_1Log.html" title="The Log Object. ">Log</a> Object.  <a href="classFarsyte_1_1Testing_1_1Log.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFarsyte_1_1Testing_1_1Suite.html">Farsyte::Testing::Suite</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <a class="el" href="classFarsyte_1_1Testing_1_1Suite.html" title="The Suite Object. ">Suite</a> Object.  <a href="classFarsyte_1_1Testing_1_1Suite.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFarsyte_1_1Testing_1_1Test.html">Farsyte::Testing::Test</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <a class="el" href="classFarsyte_1_1Testing_1_1Test.html" title="The Test object. ">Test</a> object.  <a href="classFarsyte_1_1Testing_1_1Test.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFarsyte_1_1Testing_1_1Oops.html">Farsyte::Testing::Oops</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <a class="el" href="classFarsyte_1_1Testing_1_1Oops.html" title="The Oops Object. ">Oops</a> Object.  <a href="classFarsyte_1_1Testing_1_1Oops.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a7c63248a7e93f2acdf4aa1ce1165ad1f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7c63248a7e93f2acdf4aa1ce1165ad1f"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="testing_8h.html#a7c63248a7e93f2acdf4aa1ce1165ad1f">_testing_h</a>&#160;&#160;&#160;&quot;testing v0.1&quot;</td></tr>
+<tr class="memdesc:a7c63248a7e93f2acdf4aa1ce1165ad1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">for header vs library matching <br /></td></tr>
+<tr class="separator:a7c63248a7e93f2acdf4aa1ce1165ad1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:a463d9ef2a19c8b5cdd8849ea8a6e6dbd"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt; const &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>Farsyte::Testing::testing_versions</b> ()</td></tr>
+<tr class="memdesc:a463d9ef2a19c8b5cdd8849ea8a6e6dbd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve "testing" version strings from library.  <a href="#a463d9ef2a19c8b5cdd8849ea8a6e6dbd">More...</a><br /></td></tr>
+<tr class="separator:a463d9ef2a19c8b5cdd8849ea8a6e6dbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac00b407538084b18afc8e7f527540a20"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac00b407538084b18afc8e7f527540a20"></a>
 std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="testing_8h.html#ac00b407538084b18afc8e7f527540a20">operator&lt;&lt;</a> (std::ostream &amp;s, <a class="el" href="classFarsyte_1_1Testing_1_1Oops.html">Farsyte::Testing::Oops</a> const &amp;f)</td></tr>
 <tr class="memdesc:ac00b407538084b18afc8e7f527540a20"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dump information from an Oops onto an output stream. <br /></td></tr>
@@ -163,7 +161,7 @@ std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="testing_8h.html">testing.h</a></li>
-    <li class="footer">Generated on Mon Sep 15 2014 22:23:01 for The Farsyte Toolkit by
+    <li class="footer">Generated on Mon Sep 22 2014 23:06:00 for The Farsyte Toolkit by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

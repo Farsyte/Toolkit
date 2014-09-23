@@ -96,7 +96,7 @@ $(document).ready(function(){initNavTree('matrix_8h_source.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -111,371 +111,31 @@ $(document).ready(function(){initNavTree('matrix_8h_source.html','');});
 </div><!--header-->
 <div class="contents">
 <a href="matrix_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef _matrix_h</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define _matrix_h</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;array&gt;</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;iostream&gt;</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">using</span> std::cerr;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">using</span> std::endl;</div>
+<div class="line"><a name="l00002"></a><span class="lineno"><a class="line" href="matrix_8h.html#a92d09f40a8886fe465cc77df7b1171d4">    2</a></span>&#160;<span class="preprocessor">#define _matrix_h &quot;matrix v0.1&quot; </span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;matrix_matrix.h&quot;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="matrix__colvec_8h.html">matrix_colvec.h</a>&quot;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="matrix__threevec_8h.html">matrix_threevec.h</a>&quot;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &lt;iomanip&gt;</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keyword">using</span> std::fixed;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">using</span> std::setw;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keyword">using</span> std::setprecision;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keyword">namespace </span>Farsyte</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;{</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;  <span class="keyword">namespace </span>Matrix</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;  {</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">namespace </span>Farsyte {</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keyword">namespace </span>Matrix {</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        <span class="keyword">extern</span> std::vector&lt;std::string&gt; <span class="keyword">const</span> &amp;matrix_versions();</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keyword">template</span>&lt;<span class="keywordtype">int</span> Nc, <span class="keywordtype">int</span> Nr, <span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="classFarsyte_1_1Matrix_1_1Matrix.html">   37</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html">Matrix</a></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    {</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
-<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="classFarsyte_1_1Matrix_1_1Matrix.html#adda23d85e056d54e3f0b20966e4e471d">   42</a></span>&#160;      <span class="keyword">typedef</span> T               <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#adda23d85e056d54e3f0b20966e4e471d">value_type</a>;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
-<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="classFarsyte_1_1Matrix_1_1Matrix.html#a0c88d265c95f6131c2746fdd3b283dba">   45</a></span>&#160;      <span class="keyword">typedef</span> T       &amp;       <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#a0c88d265c95f6131c2746fdd3b283dba">reference</a>;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
-<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="classFarsyte_1_1Matrix_1_1Matrix.html#aed821119806bacee1af7e7f57115df8d">   48</a></span>&#160;      <span class="keyword">typedef</span> T <span class="keyword">const</span> &amp; <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#aed821119806bacee1af7e7f57115df8d">const_reference</a>;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
-<div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="classFarsyte_1_1Matrix_1_1Matrix.html#a3ea29ecd83aabb431c635eabd14f9ebd">   51</a></span>&#160;      <span class="keyword">typedef</span> T       *       <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#a3ea29ecd83aabb431c635eabd14f9ebd">pointer</a>;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
-<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="classFarsyte_1_1Matrix_1_1Matrix.html#ac02848c590a31d575faa5f17fba5ef38">   54</a></span>&#160;      <span class="keyword">typedef</span> T <span class="keyword">const</span> * <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#ac02848c590a31d575faa5f17fba5ef38">const_pointer</a>;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
-<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="classFarsyte_1_1Matrix_1_1Matrix.html#a55ee16860c80b5c21742409b690b772d">   58</a></span>&#160;      <span class="keyword">typedef</span> std::array&lt;T,Nr&gt; <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#a55ee16860c80b5c21742409b690b772d">C</a>;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
-<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="classFarsyte_1_1Matrix_1_1Matrix.html#aa8b5b6434e29fc287151f1c685983465">   62</a></span>&#160;      <span class="keyword">typedef</span> std::array&lt;C,Nc&gt; <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#aa8b5b6434e29fc287151f1c685983465">A</a>;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
-<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="classFarsyte_1_1Matrix_1_1Matrix.html#a48df0f93a310d496a0cd3c0dad4ce268">   67</a></span>&#160;      <span class="keyword">static</span> <span class="keywordtype">size_t</span> <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#a48df0f93a310d496a0cd3c0dad4ce268">rows</a>()</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        {</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;          <span class="keywordflow">return</span> Nr;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        }</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
-<div class="line"><a name="l00075"></a><span class="lineno"><a class="line" href="classFarsyte_1_1Matrix_1_1Matrix.html#aa544710adacdf29ae9ebb6f19a4d7e89">   75</a></span>&#160;      <span class="keyword">static</span> <span class="keywordtype">size_t</span> <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#aa544710adacdf29ae9ebb6f19a4d7e89">cols</a>()</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        {</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;          <span class="keywordflow">return</span> Nc;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        }</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
-<div class="line"><a name="l00083"></a><span class="lineno"><a class="line" href="classFarsyte_1_1Matrix_1_1Matrix.html#a8b5191350dc4db8b71039836c51d7a1b">   83</a></span>&#160;      <span class="keyword">static</span> <span class="keywordtype">size_t</span> <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#a8b5191350dc4db8b71039836c51d7a1b">size</a>()</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        {</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;          <span class="keywordflow">return</span> <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#a48df0f93a310d496a0cd3c0dad4ce268">rows</a>() * <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#aa544710adacdf29ae9ebb6f19a4d7e89">cols</a>();</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        }</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;</div>
-<div class="line"><a name="l00096"></a><span class="lineno"><a class="line" href="classFarsyte_1_1Matrix_1_1Matrix.html#a363946a3156161962911c95cdd5edf06">   96</a></span>&#160;      T <span class="keyword">const</span> &amp; <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#a363946a3156161962911c95cdd5edf06">sub</a>(<span class="keywordtype">int</span> ri, <span class="keywordtype">int</span> ci)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="keyword">        </span>{</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="preprocessor">#ifdef RANGE_CHECKER</span></div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;          RANGE_CHECKER(1,ci,Nc);</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;          RANGE_CHECKER(1,ri,Nr);</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;          <span class="keywordflow">return</span> <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#a389fad807acc81a37c4905c6959a19f4">data</a>[ci-1][ri-1];</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        }</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;</div>
-<div class="line"><a name="l00111"></a><span class="lineno"><a class="line" href="classFarsyte_1_1Matrix_1_1Matrix.html#af99f3e4d8a71a1f7b01e0dd8ba76387d">  111</a></span>&#160;      T       &amp; <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#af99f3e4d8a71a1f7b01e0dd8ba76387d">sub</a>(<span class="keywordtype">int</span> ri, <span class="keywordtype">int</span> ci)</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        {</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="preprocessor">#ifdef RANGE_CHECKER</span></div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;          RANGE_CHECKER(1,ci,Nc);</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;          RANGE_CHECKER(1,ri,Nr);</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;          <span class="keywordflow">return</span> <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#a389fad807acc81a37c4905c6959a19f4">data</a>[ci-1][ri-1];</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        }</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;</div>
-<div class="line"><a name="l00126"></a><span class="lineno"><a class="line" href="classFarsyte_1_1Matrix_1_1Matrix.html#afeb93837ea7a2961135197fc2816f842">  126</a></span>&#160;      <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#afeb93837ea7a2961135197fc2816f842">Matrix</a>()</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;        : <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#a389fad807acc81a37c4905c6959a19f4">data</a>()</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;        {</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;        }</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;</div>
-<div class="line"><a name="l00134"></a><span class="lineno"><a class="line" href="classFarsyte_1_1Matrix_1_1Matrix.html#a54d7caa0fa5feb028cf94f00eaaa26df">  134</a></span>&#160;      <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#a54d7caa0fa5feb028cf94f00eaaa26df">Matrix</a>(T <span class="keyword">const</span> &amp;d)</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        : <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#a389fad807acc81a37c4905c6959a19f4">data</a>()</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;        {</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;          <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 1; (i &lt;= Nr) &amp;&amp; (i &lt;= Nc); ++i)</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;            <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#a363946a3156161962911c95cdd5edf06">sub</a>(i,i) = d;</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;        }</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;</div>
-<div class="line"><a name="l00150"></a><span class="lineno"><a class="line" href="classFarsyte_1_1Matrix_1_1Matrix.html#a55d21e1ee6de3c4d8e7c957da87d150e">  150</a></span>&#160;      <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#a55d21e1ee6de3c4d8e7c957da87d150e">Matrix</a>(<a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#aa8b5b6434e29fc287151f1c685983465">A</a> <span class="keyword">const</span> &amp;a)</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;        : <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#a389fad807acc81a37c4905c6959a19f4">data</a>(a)</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;        {</div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;        }</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;</div>
-<div class="line"><a name="l00160"></a><span class="lineno"><a class="line" href="classFarsyte_1_1Matrix_1_1Matrix.html#a8acc875b389620d3ae68e893cfb9d084">  160</a></span>&#160;      <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#a8acc875b389620d3ae68e893cfb9d084">Matrix</a>(<a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html">Matrix</a> <span class="keyword">const</span> &amp;m)</div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;        : <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#a389fad807acc81a37c4905c6959a19f4">data</a>(m.<a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#a389fad807acc81a37c4905c6959a19f4">data</a>)</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;        {</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;        }</div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;</div>
-<div class="line"><a name="l00171"></a><span class="lineno"><a class="line" href="classFarsyte_1_1Matrix_1_1Matrix.html#a287e40d5117f6e01171112090b447298">  171</a></span>&#160;      T <span class="keyword">const</span> &amp; <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#a287e40d5117f6e01171112090b447298">operator()</a>(<span class="keywordtype">int</span> ri, <span class="keywordtype">int</span> ci)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;<span class="keyword">        </span>{</div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;          <span class="keywordflow">return</span> <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#a363946a3156161962911c95cdd5edf06">sub</a>(ri, ci);</div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;        }</div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;</div>
-<div class="line"><a name="l00182"></a><span class="lineno"><a class="line" href="classFarsyte_1_1Matrix_1_1Matrix.html#a53dc35f4d56a52859afffab6fcb484d0">  182</a></span>&#160;      T       &amp; <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#a53dc35f4d56a52859afffab6fcb484d0">operator()</a>(<span class="keywordtype">int</span> ri, <span class="keywordtype">int</span> ci)</div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;        {</div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;          <span class="keywordflow">return</span> <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#a363946a3156161962911c95cdd5edf06">sub</a>(ri, ci);</div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;        }</div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;</div>
-<div class="line"><a name="l00191"></a><span class="lineno"><a class="line" href="classFarsyte_1_1Matrix_1_1Matrix.html#adf5659ea0fe0f228b4e219605cce3ba8">  191</a></span>&#160;      <span class="keywordtype">bool</span> <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#adf5659ea0fe0f228b4e219605cce3ba8">equals</a>(<a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html">Matrix</a> <span class="keyword">const</span> &amp;p)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;<span class="keyword">        </span>{</div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;          <span class="keywordflow">for</span> (<span class="keywordtype">int</span> ci = 1; ci &lt;= Nc; ++ci)</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> ri = 1; ri &lt;= Nr; ++ri)</div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;              <span class="keywordflow">if</span> (<a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#a363946a3156161962911c95cdd5edf06">sub</a>(ri,ci) != p.sub(ri,ci))</div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;          <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;        }</div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;</div>
-<div class="line"><a name="l00207"></a><span class="lineno"><a class="line" href="classFarsyte_1_1Matrix_1_1Matrix.html#a92ef16f3a98345b908ed6c8e5b1c652d">  207</a></span>&#160;      <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html">Matrix</a> &amp; <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#a92ef16f3a98345b908ed6c8e5b1c652d">increment_by</a>(<a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html">Matrix</a> <span class="keyword">const</span> &amp;p)</div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;        {</div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;          <span class="keywordflow">for</span> (<span class="keywordtype">int</span> ci = 1; ci &lt;= Nc; ++ci)</div>
-<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> ri = 1; ri &lt;= Nr; ++ri)</div>
-<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;              <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#a363946a3156161962911c95cdd5edf06">sub</a>(ri,ci) += p.sub(ri,ci);</div>
-<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;          <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;        }</div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;</div>
-<div class="line"><a name="l00222"></a><span class="lineno"><a class="line" href="classFarsyte_1_1Matrix_1_1Matrix.html#a0bbe0dc4b406b1d1668829ebd884b146">  222</a></span>&#160;      <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html">Matrix</a> &amp; <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#a0bbe0dc4b406b1d1668829ebd884b146">operator+=</a>(<a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html">Matrix</a> <span class="keyword">const</span> &amp;p)</div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;        {</div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;          <span class="keywordflow">return</span> <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#a92ef16f3a98345b908ed6c8e5b1c652d">increment_by</a>(p);</div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;        }</div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;</div>
-<div class="line"><a name="l00234"></a><span class="lineno"><a class="line" href="classFarsyte_1_1Matrix_1_1Matrix.html#acd4898041f9b2d4c141cfa8d1c525cf9">  234</a></span>&#160;      <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html">Matrix</a> &amp; <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#acd4898041f9b2d4c141cfa8d1c525cf9">decrement_by</a>(<a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html">Matrix</a> <span class="keyword">const</span> &amp;p)</div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;        {</div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;          <span class="keywordflow">for</span> (<span class="keywordtype">int</span> ci = 1; ci &lt;= Nc; ++ci)</div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> ri = 1; ri &lt;= Nr; ++ri)</div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;              <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#a363946a3156161962911c95cdd5edf06">sub</a>(ri,ci) -= p.sub(ri,ci);</div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;          <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;        }</div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;</div>
-<div class="line"><a name="l00249"></a><span class="lineno"><a class="line" href="classFarsyte_1_1Matrix_1_1Matrix.html#aadf57dc35f17ed9652af5711bf8c14f5">  249</a></span>&#160;      <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html">Matrix</a> &amp; <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#aadf57dc35f17ed9652af5711bf8c14f5">operator-=</a>(<a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html">Matrix</a> <span class="keyword">const</span> &amp;p)</div>
-<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;        {</div>
-<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;          <span class="keywordflow">return</span> <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#acd4898041f9b2d4c141cfa8d1c525cf9">decrement_by</a>(p);</div>
-<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;        }</div>
-<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;</div>
-<div class="line"><a name="l00257"></a><span class="lineno"><a class="line" href="classFarsyte_1_1Matrix_1_1Matrix.html#aaa03092a83ca5092706a056ddd738e0c">  257</a></span>&#160;      <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html">Matrix</a> <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#aaa03092a83ca5092706a056ddd738e0c">negate</a>()</div>
-<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;        {</div>
-<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;          <span class="keywordflow">for</span> (<span class="keywordtype">int</span> ci = 1; ci &lt;= Nc; ++ci)</div>
-<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> ri = 1; ri &lt;= Nr; ++ri)</div>
-<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;              <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#a363946a3156161962911c95cdd5edf06">sub</a>(ri,ci) = -<a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#a363946a3156161962911c95cdd5edf06">sub</a>(ri,ci);</div>
-<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;          <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
-<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;        }</div>
-<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;</div>
-<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;      <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html">Matrix&lt;Nr,Nc,T&gt;</a></div>
-<div class="line"><a name="l00269"></a><span class="lineno"><a class="line" href="classFarsyte_1_1Matrix_1_1Matrix.html#acbf437c1b33bb34d239b0647192f6793">  269</a></span>&#160;      <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#acbf437c1b33bb34d239b0647192f6793">transpose</a>()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;<span class="keyword">        </span>{</div>
-<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;          <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html">Matrix&lt;Nr,Nc,T&gt;</a> R;</div>
-<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;          <span class="keywordflow">for</span> (<span class="keywordtype">int</span> ci = 1; ci &lt;= Nc; ++ci)</div>
-<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> ri = 1; ri &lt;= Nr; ++ri)</div>
-<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;              R(ci,ri) = <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#a363946a3156161962911c95cdd5edf06">sub</a>(ri,ci);</div>
-<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;          <span class="keywordflow">return</span> R;</div>
-<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;        }</div>
-<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;</div>
-<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;    <span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00280"></a><span class="lineno"><a class="line" href="classFarsyte_1_1Matrix_1_1Matrix.html#a389fad807acc81a37c4905c6959a19f4">  280</a></span>&#160;      <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#aa8b5b6434e29fc287151f1c685983465">A</a>                         <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#a389fad807acc81a37c4905c6959a19f4">data</a>;</div>
-<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;    };</div>
-<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;</div>
-<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;    <span class="keyword">template</span>&lt;<span class="keywordtype">int</span> Nc, <span class="keywordtype">int</span> Nr, <span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">bool</span> operator==(</div>
-<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;      <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html">Matrix&lt;Nc,Nr,T&gt;</a> <span class="keyword">const</span> &amp;L,</div>
-<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;      <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html">Matrix&lt;Nc,Nr,T&gt;</a> <span class="keyword">const</span> &amp;R)</div>
-<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;    {</div>
-<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;      <span class="keywordflow">return</span> L.equals(R);</div>
-<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;    }</div>
-<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;</div>
-<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;    <span class="keyword">template</span>&lt;<span class="keywordtype">int</span> Nc, <span class="keywordtype">int</span> Nr, <span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">bool</span> operator!=(</div>
-<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;      Matrix&lt;Nc,Nr,T&gt; <span class="keyword">const</span> &amp;L,</div>
-<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;      Matrix&lt;Nc,Nr,T&gt; <span class="keyword">const</span> &amp;R)</div>
-<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;    {</div>
-<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;      <span class="keywordflow">return</span> !(L == R);</div>
-<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;    }</div>
-<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;</div>
-<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;    <span class="keyword">template</span>&lt;<span class="keywordtype">int</span> Nc, <span class="keywordtype">int</span> Nr, <span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;    <span class="keyword">inline</span> Matrix&lt;Nc,Nr,T&gt; operator+(</div>
-<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;      Matrix&lt;Nc,Nr,T&gt; L,</div>
-<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;      Matrix&lt;Nc,Nr,T&gt; <span class="keyword">const</span> &amp;R)</div>
-<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;    {</div>
-<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;      <span class="keywordflow">return</span> L += R;</div>
-<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;    }</div>
-<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;</div>
-<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;    <span class="keyword">template</span>&lt;<span class="keywordtype">int</span> Nc, <span class="keywordtype">int</span> Nr, <span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;    <span class="keyword">inline</span> Matrix&lt;Nc,Nr,T&gt; operator-(</div>
-<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;      Matrix&lt;Nc,Nr,T&gt; L,</div>
-<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;      Matrix&lt;Nc,Nr,T&gt; <span class="keyword">const</span> &amp;R)</div>
-<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;    {</div>
-<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;      <span class="keywordflow">return</span> L -= R;</div>
-<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;    }</div>
-<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;</div>
-<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;    <span class="keyword">template</span>&lt;<span class="keywordtype">int</span> Nc, <span class="keywordtype">int</span> Nr, <span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;    <span class="keyword">inline</span> Matrix&lt;Nc,Nr,T&gt; operator-(</div>
-<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;      Matrix&lt;Nc,Nr,T&gt; R)</div>
-<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;    {</div>
-<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;      <span class="keywordflow">return</span> R.negate();</div>
-<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;    }</div>
-<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;</div>
-<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;    <span class="keyword">template</span>&lt;<span class="keywordtype">int</span> Nc, <span class="keywordtype">int</span> Nr, <span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;    <span class="keyword">inline</span> Matrix&lt;Nr,Nc,T&gt; operator~(</div>
-<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;      Matrix&lt;Nc,Nr,T&gt; <span class="keyword">const</span> &amp;R)</div>
-<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;    {</div>
-<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;      <span class="keywordflow">return</span> R.transpose();</div>
-<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;    }</div>
-<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;</div>
-<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;    <span class="keyword">template</span>&lt;<span class="keywordtype">int</span> Nc, <span class="keywordtype">int</span> Ni, <span class="keywordtype">int</span> Nr, <span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;    <span class="keyword">inline</span> Matrix&lt;Nc,Nr,T&gt;</div>
-<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;    operator*(</div>
-<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;      Matrix&lt;Ni,Nr,T&gt; <span class="keyword">const</span> &amp; L,</div>
-<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;      Matrix&lt;Nc,Ni,T&gt; <span class="keyword">const</span> &amp; R)</div>
-<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;    {</div>
-<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;      Matrix&lt;Nc,Nr,T&gt; X;</div>
-<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;      <span class="keywordflow">for</span> (<span class="keywordtype">int</span> ri=1; ri&lt;=Nr; ++ri) {</div>
-<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> ci=1; ci&lt;=Nc; ++ci) {</div>
-<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;          T &amp;acc(X(ri,ci));</div>
-<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;          acc = L(ri,1)*R(1,ci);</div>
-<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;          <span class="keywordflow">for</span> (<span class="keywordtype">int</span> ii=2; ii&lt;=Ni; ++ii) {</div>
-<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;            acc += L(ri,ii)*R(ii,ci);</div>
-<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;          }</div>
-<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;        }</div>
-<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;      }</div>
-<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;      <span class="keywordflow">return</span> X;</div>
-<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;    }</div>
-<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;</div>
-<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;    <span class="keyword">template</span>&lt;<span class="keywordtype">int</span> Nr, <span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a name="l00390"></a><span class="lineno"><a class="line" href="classFarsyte_1_1Matrix_1_1ColVec.html">  390</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classFarsyte_1_1Matrix_1_1ColVec.html">ColVec</a></div>
-<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;      : <span class="keyword">public</span> <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html">Matrix</a>&lt;1,Nr,T&gt;</div>
-<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;    {</div>
-<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;</div>
-<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;</div>
-<div class="line"><a name="l00397"></a><span class="lineno"><a class="line" href="classFarsyte_1_1Matrix_1_1ColVec.html#afa643b7106de4adecf231177b1a3274d">  397</a></span>&#160;      <span class="keyword">typedef</span> <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html">Matrix&lt;1,Nr,T&gt;</a>            <a class="code" href="classFarsyte_1_1Matrix_1_1ColVec.html#afa643b7106de4adecf231177b1a3274d">MatMe</a>;</div>
-<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;</div>
-<div class="line"><a name="l00401"></a><span class="lineno"><a class="line" href="classFarsyte_1_1Matrix_1_1ColVec.html#a242ddc9a8867d7ba2050bbebb20109b1">  401</a></span>&#160;      <span class="keyword">typedef</span> <span class="keyword">typename</span> <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#aa8b5b6434e29fc287151f1c685983465">MatMe::A</a> <a class="code" href="classFarsyte_1_1Matrix_1_1ColVec.html#a242ddc9a8867d7ba2050bbebb20109b1">A</a>;</div>
-<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;</div>
-<div class="line"><a name="l00405"></a><span class="lineno"><a class="line" href="classFarsyte_1_1Matrix_1_1ColVec.html#a4203a5c03ce162e0ef58f190c0e5efc4">  405</a></span>&#160;      <span class="keyword">typedef</span> <span class="keyword">typename</span> <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#a55ee16860c80b5c21742409b690b772d">MatMe::C</a> <a class="code" href="classFarsyte_1_1Matrix_1_1ColVec.html#a4203a5c03ce162e0ef58f190c0e5efc4">C</a>;</div>
-<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;</div>
-<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;    <span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;</div>
-<div class="line"><a name="l00414"></a><span class="lineno"><a class="line" href="classFarsyte_1_1Matrix_1_1ColVec.html#a9ce963b958d5f6da71c8436dab3b87f8">  414</a></span>&#160;      T <span class="keyword">const</span> &amp; <a class="code" href="classFarsyte_1_1Matrix_1_1ColVec.html#a9ce963b958d5f6da71c8436dab3b87f8">sub</a>(<span class="keywordtype">int</span> ri)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;<span class="keyword">        </span>{</div>
-<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;          <span class="keywordflow">return</span> <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#a363946a3156161962911c95cdd5edf06">MatMe::sub</a>(ri, 1);</div>
-<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;        }</div>
-<div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;</div>
-<div class="line"><a name="l00424"></a><span class="lineno"><a class="line" href="classFarsyte_1_1Matrix_1_1ColVec.html#a25e443a22c2a03b98a81b996d2be308a">  424</a></span>&#160;      T       &amp; <a class="code" href="classFarsyte_1_1Matrix_1_1ColVec.html#a25e443a22c2a03b98a81b996d2be308a">sub</a>(<span class="keywordtype">int</span> ri)</div>
-<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;        {</div>
-<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;          <span class="keywordflow">return</span> <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#a363946a3156161962911c95cdd5edf06">MatMe::sub</a>(ri, 1);</div>
-<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;        }</div>
-<div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160;</div>
-<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160;</div>
-<div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160;      <a class="code" href="classFarsyte_1_1Matrix_1_1ColVec.html">ColVec</a>()</div>
-<div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160;        : <a class="code" href="classFarsyte_1_1Matrix_1_1ColVec.html#afa643b7106de4adecf231177b1a3274d">MatMe</a>()</div>
-<div class="line"><a name="l00433"></a><span class="lineno">  433</span>&#160;        {</div>
-<div class="line"><a name="l00434"></a><span class="lineno">  434</span>&#160;        }</div>
-<div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160;</div>
-<div class="line"><a name="l00441"></a><span class="lineno"><a class="line" href="classFarsyte_1_1Matrix_1_1ColVec.html#acf56d19c3fa57af0caeb91196e5fbd81">  441</a></span>&#160;      <a class="code" href="classFarsyte_1_1Matrix_1_1ColVec.html#acf56d19c3fa57af0caeb91196e5fbd81">ColVec</a>(<a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#aa8b5b6434e29fc287151f1c685983465">A</a> <span class="keyword">const</span> &amp;a)</div>
-<div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;        : <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html">MatMe</a>(a)</div>
-<div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;        {</div>
-<div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160;        }</div>
-<div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;</div>
-<div class="line"><a name="l00451"></a><span class="lineno"><a class="line" href="classFarsyte_1_1Matrix_1_1ColVec.html#a3d9fbd2ad1d2dcc9d4d6afe32083c7fe">  451</a></span>&#160;      <a class="code" href="classFarsyte_1_1Matrix_1_1ColVec.html#a3d9fbd2ad1d2dcc9d4d6afe32083c7fe">ColVec</a>(<a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#a55ee16860c80b5c21742409b690b772d">C</a> <span class="keyword">const</span> &amp;a)</div>
-<div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160;        : <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html">MatMe</a>(<a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html#aa8b5b6434e29fc287151f1c685983465">A</a>{{a}})</div>
-<div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160;        {</div>
-<div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160;        }</div>
-<div class="line"><a name="l00455"></a><span class="lineno">  455</span>&#160;</div>
-<div class="line"><a name="l00461"></a><span class="lineno"><a class="line" href="classFarsyte_1_1Matrix_1_1ColVec.html#abd24c9814ff43c86de1002bb73a40734">  461</a></span>&#160;      <a class="code" href="classFarsyte_1_1Matrix_1_1ColVec.html#abd24c9814ff43c86de1002bb73a40734">ColVec</a>(<a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html">MatMe</a> <span class="keyword">const</span> &amp;c)</div>
-<div class="line"><a name="l00462"></a><span class="lineno">  462</span>&#160;        : <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html">MatMe</a>(c)</div>
-<div class="line"><a name="l00463"></a><span class="lineno">  463</span>&#160;        {</div>
-<div class="line"><a name="l00464"></a><span class="lineno">  464</span>&#160;        }</div>
-<div class="line"><a name="l00465"></a><span class="lineno">  465</span>&#160;</div>
-<div class="line"><a name="l00471"></a><span class="lineno"><a class="line" href="classFarsyte_1_1Matrix_1_1ColVec.html#a7cbd79cdcbefc45f4bce29d6d4c1cd89">  471</a></span>&#160;      T <span class="keyword">const</span> &amp; <a class="code" href="classFarsyte_1_1Matrix_1_1ColVec.html#a7cbd79cdcbefc45f4bce29d6d4c1cd89">operator()</a>(<span class="keywordtype">int</span> ri)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00472"></a><span class="lineno">  472</span>&#160;<span class="keyword">        </span>{</div>
-<div class="line"><a name="l00473"></a><span class="lineno">  473</span>&#160;          <span class="keywordflow">return</span> <a class="code" href="classFarsyte_1_1Matrix_1_1ColVec.html#a9ce963b958d5f6da71c8436dab3b87f8">sub</a>(ri);</div>
-<div class="line"><a name="l00474"></a><span class="lineno">  474</span>&#160;        }</div>
-<div class="line"><a name="l00475"></a><span class="lineno">  475</span>&#160;</div>
-<div class="line"><a name="l00481"></a><span class="lineno"><a class="line" href="classFarsyte_1_1Matrix_1_1ColVec.html#a37a7512da2883c79b056eedc8241f974">  481</a></span>&#160;      T       &amp; <a class="code" href="classFarsyte_1_1Matrix_1_1ColVec.html#a37a7512da2883c79b056eedc8241f974">operator()</a>(<span class="keywordtype">int</span> ri)</div>
-<div class="line"><a name="l00482"></a><span class="lineno">  482</span>&#160;        {</div>
-<div class="line"><a name="l00483"></a><span class="lineno">  483</span>&#160;          <span class="keywordflow">return</span> <a class="code" href="classFarsyte_1_1Matrix_1_1ColVec.html#a9ce963b958d5f6da71c8436dab3b87f8">sub</a>(ri);</div>
-<div class="line"><a name="l00484"></a><span class="lineno">  484</span>&#160;        }</div>
-<div class="line"><a name="l00485"></a><span class="lineno">  485</span>&#160;</div>
-<div class="line"><a name="l00486"></a><span class="lineno">  486</span>&#160;    };</div>
-<div class="line"><a name="l00487"></a><span class="lineno">  487</span>&#160;</div>
-<div class="line"><a name="l00495"></a><span class="lineno"><a class="line" href="classFarsyte_1_1Matrix_1_1ThreeVec.html">  495</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classFarsyte_1_1Matrix_1_1ThreeVec.html">ThreeVec</a></div>
-<div class="line"><a name="l00496"></a><span class="lineno">  496</span>&#160;      : <span class="keyword">public</span> <a class="code" href="classFarsyte_1_1Matrix_1_1ColVec.html">ColVec</a>&lt;3,double&gt;</div>
-<div class="line"><a name="l00497"></a><span class="lineno">  497</span>&#160;    {</div>
-<div class="line"><a name="l00498"></a><span class="lineno">  498</span>&#160;    <span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00500"></a><span class="lineno"><a class="line" href="classFarsyte_1_1Matrix_1_1ThreeVec.html#a7f69aeeb62ff3814d7c2e821e1a0fb58">  500</a></span>&#160;      <span class="keyword">typedef</span> <a class="code" href="classFarsyte_1_1Matrix_1_1ColVec.html">ColVec&lt;3,double&gt;</a>  <a class="code" href="classFarsyte_1_1Matrix_1_1ThreeVec.html#a7f69aeeb62ff3814d7c2e821e1a0fb58">ColMe</a>;</div>
-<div class="line"><a name="l00501"></a><span class="lineno">  501</span>&#160;</div>
-<div class="line"><a name="l00503"></a><span class="lineno"><a class="line" href="classFarsyte_1_1Matrix_1_1ThreeVec.html#a32761a8addf3a5c817004db0d0ada261">  503</a></span>&#160;      <span class="keyword">typedef</span> <a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html">ColMe::MatMe</a>      <a class="code" href="classFarsyte_1_1Matrix_1_1ThreeVec.html#a32761a8addf3a5c817004db0d0ada261">MatMe</a>;</div>
-<div class="line"><a name="l00504"></a><span class="lineno">  504</span>&#160;</div>
-<div class="line"><a name="l00507"></a><span class="lineno"><a class="line" href="classFarsyte_1_1Matrix_1_1ThreeVec.html#aebbf6f5dad0908f7880c8b9c166c46d8">  507</a></span>&#160;      <span class="keyword">typedef</span> <span class="keyword">typename</span> <a class="code" href="classFarsyte_1_1Matrix_1_1ColVec.html#a4203a5c03ce162e0ef58f190c0e5efc4">ColMe::C</a> <a class="code" href="classFarsyte_1_1Matrix_1_1ThreeVec.html#aebbf6f5dad0908f7880c8b9c166c46d8">C</a>;</div>
-<div class="line"><a name="l00508"></a><span class="lineno">  508</span>&#160;</div>
-<div class="line"><a name="l00509"></a><span class="lineno">  509</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00510"></a><span class="lineno">  510</span>&#160;</div>
-<div class="line"><a name="l00516"></a><span class="lineno">  516</span>&#160;      <a class="code" href="classFarsyte_1_1Matrix_1_1ThreeVec.html#a312761e1a88318a96e270038984808cb">ThreeVec</a>();</div>
-<div class="line"><a name="l00517"></a><span class="lineno">  517</span>&#160;</div>
-<div class="line"><a name="l00525"></a><span class="lineno">  525</span>&#160;      <a class="code" href="classFarsyte_1_1Matrix_1_1ThreeVec.html#a312761e1a88318a96e270038984808cb">ThreeVec</a>(<span class="keywordtype">double</span> x, <span class="keywordtype">double</span> y, <span class="keywordtype">double</span> z);</div>
-<div class="line"><a name="l00526"></a><span class="lineno">  526</span>&#160;</div>
-<div class="line"><a name="l00532"></a><span class="lineno">  532</span>&#160;      <a class="code" href="classFarsyte_1_1Matrix_1_1ThreeVec.html#a312761e1a88318a96e270038984808cb">ThreeVec</a>(<a class="code" href="classFarsyte_1_1Matrix_1_1Matrix.html">MatMe</a> <span class="keyword">const</span> &amp;p);</div>
-<div class="line"><a name="l00533"></a><span class="lineno">  533</span>&#160;</div>
-<div class="line"><a name="l00534"></a><span class="lineno">  534</span>&#160;    };</div>
-<div class="line"><a name="l00535"></a><span class="lineno">  535</span>&#160;</div>
-<div class="line"><a name="l00541"></a><span class="lineno">  541</span>&#160;    <span class="keyword">extern</span> <a class="code" href="classFarsyte_1_1Matrix_1_1ThreeVec.html">ThreeVec</a> cross(</div>
-<div class="line"><a name="l00542"></a><span class="lineno">  542</span>&#160;      <a class="code" href="classFarsyte_1_1Matrix_1_1ThreeVec.html">ThreeVec</a> <span class="keyword">const</span> &amp;L,</div>
-<div class="line"><a name="l00543"></a><span class="lineno">  543</span>&#160;      <a class="code" href="classFarsyte_1_1Matrix_1_1ThreeVec.html">ThreeVec</a> <span class="keyword">const</span> &amp;R);</div>
-<div class="line"><a name="l00544"></a><span class="lineno">  544</span>&#160;</div>
-<div class="line"><a name="l00545"></a><span class="lineno">  545</span>&#160;  }</div>
-<div class="line"><a name="l00546"></a><span class="lineno">  546</span>&#160;}</div>
-<div class="line"><a name="l00547"></a><span class="lineno">  547</span>&#160;</div>
-<div class="line"><a name="l00548"></a><span class="lineno">  548</span>&#160;<span class="preprocessor">#endif//_matrix_h</span></div>
-<div class="ttc" id="classFarsyte_1_1Matrix_1_1Matrix_html_a55ee16860c80b5c21742409b690b772d"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1Matrix.html#a55ee16860c80b5c21742409b690b772d">Farsyte::Matrix::Matrix::C</a></div><div class="ttdeci">std::array&lt; T, Nr &gt; C</div><div class="ttdoc">Typedef for array containing one column of the data. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00058">matrix.h:58</a></div></div>
-<div class="ttc" id="classFarsyte_1_1Matrix_1_1ColVec_html_acf56d19c3fa57af0caeb91196e5fbd81"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1ColVec.html#acf56d19c3fa57af0caeb91196e5fbd81">Farsyte::Matrix::ColVec::ColVec</a></div><div class="ttdeci">ColVec(A const &amp;a)</div><div class="ttdoc">Construct a Column Vector from a 2-D Array. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00441">matrix.h:441</a></div></div>
-<div class="ttc" id="classFarsyte_1_1Matrix_1_1Matrix_html_ac02848c590a31d575faa5f17fba5ef38"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1Matrix.html#ac02848c590a31d575faa5f17fba5ef38">Farsyte::Matrix::Matrix::const_pointer</a></div><div class="ttdeci">T const * const_pointer</div><div class="ttdoc">Const pointer to a matrix element. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00054">matrix.h:54</a></div></div>
-<div class="ttc" id="classFarsyte_1_1Matrix_1_1ColVec_html_a7cbd79cdcbefc45f4bce29d6d4c1cd89"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1ColVec.html#a7cbd79cdcbefc45f4bce29d6d4c1cd89">Farsyte::Matrix::ColVec::operator()</a></div><div class="ttdeci">T const &amp; operator()(int ri) const </div><div class="ttdoc">ColVec Subscripting Operator. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00471">matrix.h:471</a></div></div>
-<div class="ttc" id="classFarsyte_1_1Matrix_1_1ThreeVec_html_aebbf6f5dad0908f7880c8b9c166c46d8"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1ThreeVec.html#aebbf6f5dad0908f7880c8b9c166c46d8">Farsyte::Matrix::ThreeVec::C</a></div><div class="ttdeci">ColMe::C C</div><div class="ttdoc">Typedef for 1-D array containing the data. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00507">matrix.h:507</a></div></div>
-<div class="ttc" id="classFarsyte_1_1Matrix_1_1ColVec_html"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1ColVec.html">Farsyte::Matrix::ColVec</a></div><div class="ttdoc">Column Vector Template. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00390">matrix.h:390</a></div></div>
-<div class="ttc" id="classFarsyte_1_1Matrix_1_1Matrix_html_a92ef16f3a98345b908ed6c8e5b1c652d"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1Matrix.html#a92ef16f3a98345b908ed6c8e5b1c652d">Farsyte::Matrix::Matrix::increment_by</a></div><div class="ttdeci">Matrix &amp; increment_by(Matrix const &amp;p)</div><div class="ttdoc">Matrix Increment operation. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00207">matrix.h:207</a></div></div>
-<div class="ttc" id="classFarsyte_1_1Matrix_1_1ThreeVec_html_a32761a8addf3a5c817004db0d0ada261"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1ThreeVec.html#a32761a8addf3a5c817004db0d0ada261">Farsyte::Matrix::ThreeVec::MatMe</a></div><div class="ttdeci">ColMe::MatMe MatMe</div><div class="ttdoc">Typedef for Matrix generalization. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00503">matrix.h:503</a></div></div>
-<div class="ttc" id="classFarsyte_1_1Matrix_1_1Matrix_html_a8b5191350dc4db8b71039836c51d7a1b"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1Matrix.html#a8b5191350dc4db8b71039836c51d7a1b">Farsyte::Matrix::Matrix::size</a></div><div class="ttdeci">static size_t size()</div><div class="ttdoc">Matrix elements. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00083">matrix.h:83</a></div></div>
-<div class="ttc" id="classFarsyte_1_1Matrix_1_1Matrix_html_aa8b5b6434e29fc287151f1c685983465"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1Matrix.html#aa8b5b6434e29fc287151f1c685983465">Farsyte::Matrix::Matrix::A</a></div><div class="ttdeci">std::array&lt; C, Nc &gt; A</div><div class="ttdoc">Typedef for array containing the data. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00062">matrix.h:62</a></div></div>
-<div class="ttc" id="classFarsyte_1_1Matrix_1_1Matrix_html_aadf57dc35f17ed9652af5711bf8c14f5"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1Matrix.html#aadf57dc35f17ed9652af5711bf8c14f5">Farsyte::Matrix::Matrix::operator-=</a></div><div class="ttdeci">Matrix &amp; operator-=(Matrix const &amp;p)</div><div class="ttdoc">Matrix Decrement operator. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00249">matrix.h:249</a></div></div>
-<div class="ttc" id="classFarsyte_1_1Matrix_1_1Matrix_html_a363946a3156161962911c95cdd5edf06"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1Matrix.html#a363946a3156161962911c95cdd5edf06">Farsyte::Matrix::Matrix::sub</a></div><div class="ttdeci">T const &amp; sub(int ri, int ci) const </div><div class="ttdoc">Matrix Subscripting Implementation. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00096">matrix.h:96</a></div></div>
-<div class="ttc" id="classFarsyte_1_1Matrix_1_1ColVec_html_a3d9fbd2ad1d2dcc9d4d6afe32083c7fe"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1ColVec.html#a3d9fbd2ad1d2dcc9d4d6afe32083c7fe">Farsyte::Matrix::ColVec::ColVec</a></div><div class="ttdeci">ColVec(C const &amp;a)</div><div class="ttdoc">Construct a Column Vector from a 1-D Array. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00451">matrix.h:451</a></div></div>
-<div class="ttc" id="classFarsyte_1_1Matrix_1_1Matrix_html_a0bbe0dc4b406b1d1668829ebd884b146"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1Matrix.html#a0bbe0dc4b406b1d1668829ebd884b146">Farsyte::Matrix::Matrix::operator+=</a></div><div class="ttdeci">Matrix &amp; operator+=(Matrix const &amp;p)</div><div class="ttdoc">Matrix Increment operator. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00222">matrix.h:222</a></div></div>
-<div class="ttc" id="classFarsyte_1_1Matrix_1_1Matrix_html_a8acc875b389620d3ae68e893cfb9d084"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1Matrix.html#a8acc875b389620d3ae68e893cfb9d084">Farsyte::Matrix::Matrix::Matrix</a></div><div class="ttdeci">Matrix(Matrix const &amp;m)</div><div class="ttdoc">Duplicate Matrix Construction. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00160">matrix.h:160</a></div></div>
-<div class="ttc" id="classFarsyte_1_1Matrix_1_1ThreeVec_html"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1ThreeVec.html">Farsyte::Matrix::ThreeVec</a></div><div class="ttdoc">ThreeVec Class. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00495">matrix.h:495</a></div></div>
-<div class="ttc" id="classFarsyte_1_1Matrix_1_1ThreeVec_html_a312761e1a88318a96e270038984808cb"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1ThreeVec.html#a312761e1a88318a96e270038984808cb">Farsyte::Matrix::ThreeVec::ThreeVec</a></div><div class="ttdeci">ThreeVec()</div><div class="ttdoc">ThreeVec Default Constructor. </div></div>
-<div class="ttc" id="classFarsyte_1_1Matrix_1_1Matrix_html_aaa03092a83ca5092706a056ddd738e0c"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1Matrix.html#aaa03092a83ca5092706a056ddd738e0c">Farsyte::Matrix::Matrix::negate</a></div><div class="ttdeci">Matrix negate()</div><div class="ttdoc">Matrix Negate operation. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00257">matrix.h:257</a></div></div>
-<div class="ttc" id="classFarsyte_1_1Matrix_1_1ThreeVec_html_a7f69aeeb62ff3814d7c2e821e1a0fb58"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1ThreeVec.html#a7f69aeeb62ff3814d7c2e821e1a0fb58">Farsyte::Matrix::ThreeVec::ColMe</a></div><div class="ttdeci">ColVec&lt; 3, double &gt; ColMe</div><div class="ttdoc">Typedef for ColVec generalization. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00500">matrix.h:500</a></div></div>
-<div class="ttc" id="classFarsyte_1_1Matrix_1_1ColVec_html_a9ce963b958d5f6da71c8436dab3b87f8"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1ColVec.html#a9ce963b958d5f6da71c8436dab3b87f8">Farsyte::Matrix::ColVec::sub</a></div><div class="ttdeci">T const &amp; sub(int ri) const </div><div class="ttdoc">ColVec Subscripting Implementation. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00414">matrix.h:414</a></div></div>
-<div class="ttc" id="classFarsyte_1_1Matrix_1_1Matrix_html_acd4898041f9b2d4c141cfa8d1c525cf9"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1Matrix.html#acd4898041f9b2d4c141cfa8d1c525cf9">Farsyte::Matrix::Matrix::decrement_by</a></div><div class="ttdeci">Matrix &amp; decrement_by(Matrix const &amp;p)</div><div class="ttdoc">Matrix Decrement operation. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00234">matrix.h:234</a></div></div>
-<div class="ttc" id="classFarsyte_1_1Matrix_1_1Matrix_html_a389fad807acc81a37c4905c6959a19f4"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1Matrix.html#a389fad807acc81a37c4905c6959a19f4">Farsyte::Matrix::Matrix::data</a></div><div class="ttdeci">A data</div><div class="ttdoc">Storage for Matrix State. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00280">matrix.h:280</a></div></div>
-<div class="ttc" id="classFarsyte_1_1Matrix_1_1Matrix_html_a48df0f93a310d496a0cd3c0dad4ce268"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1Matrix.html#a48df0f93a310d496a0cd3c0dad4ce268">Farsyte::Matrix::Matrix::rows</a></div><div class="ttdeci">static size_t rows()</div><div class="ttdoc">Matrix rows. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00067">matrix.h:67</a></div></div>
-<div class="ttc" id="classFarsyte_1_1Matrix_1_1Matrix_html_a287e40d5117f6e01171112090b447298"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1Matrix.html#a287e40d5117f6e01171112090b447298">Farsyte::Matrix::Matrix::operator()</a></div><div class="ttdeci">T const &amp; operator()(int ri, int ci) const </div><div class="ttdoc">Matrix Subscripting Operator. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00171">matrix.h:171</a></div></div>
-<div class="ttc" id="classFarsyte_1_1Matrix_1_1Matrix_html_a55d21e1ee6de3c4d8e7c957da87d150e"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1Matrix.html#a55d21e1ee6de3c4d8e7c957da87d150e">Farsyte::Matrix::Matrix::Matrix</a></div><div class="ttdeci">Matrix(A const &amp;a)</div><div class="ttdoc">Matrix Construction from Array of Arrays. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00150">matrix.h:150</a></div></div>
-<div class="ttc" id="classFarsyte_1_1Matrix_1_1Matrix_html_a0c88d265c95f6131c2746fdd3b283dba"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1Matrix.html#a0c88d265c95f6131c2746fdd3b283dba">Farsyte::Matrix::Matrix::reference</a></div><div class="ttdeci">T &amp; reference</div><div class="ttdoc">Reference to a matrix element. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00045">matrix.h:45</a></div></div>
-<div class="ttc" id="classFarsyte_1_1Matrix_1_1ColVec_html_a25e443a22c2a03b98a81b996d2be308a"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1ColVec.html#a25e443a22c2a03b98a81b996d2be308a">Farsyte::Matrix::ColVec::sub</a></div><div class="ttdeci">T &amp; sub(int ri)</div><div class="ttdoc">ColVec Subscripting Implementation. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00424">matrix.h:424</a></div></div>
-<div class="ttc" id="classFarsyte_1_1Matrix_1_1ColVec_html_abd24c9814ff43c86de1002bb73a40734"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1ColVec.html#abd24c9814ff43c86de1002bb73a40734">Farsyte::Matrix::ColVec::ColVec</a></div><div class="ttdeci">ColVec(MatMe const &amp;c)</div><div class="ttdoc">Duplicate an existing Column Vector. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00461">matrix.h:461</a></div></div>
-<div class="ttc" id="classFarsyte_1_1Matrix_1_1Matrix_html_acbf437c1b33bb34d239b0647192f6793"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1Matrix.html#acbf437c1b33bb34d239b0647192f6793">Farsyte::Matrix::Matrix::transpose</a></div><div class="ttdeci">Matrix&lt; Nr, Nc, T &gt; transpose() const </div><div class="ttdoc">Matrix Transpose operation. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00269">matrix.h:269</a></div></div>
-<div class="ttc" id="classFarsyte_1_1Matrix_1_1Matrix_html_a54d7caa0fa5feb028cf94f00eaaa26df"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1Matrix.html#a54d7caa0fa5feb028cf94f00eaaa26df">Farsyte::Matrix::Matrix::Matrix</a></div><div class="ttdeci">Matrix(T const &amp;d)</div><div class="ttdoc">Matrix Diagonal Constructor. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00134">matrix.h:134</a></div></div>
-<div class="ttc" id="classFarsyte_1_1Matrix_1_1ColVec_html_afa643b7106de4adecf231177b1a3274d"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1ColVec.html#afa643b7106de4adecf231177b1a3274d">Farsyte::Matrix::ColVec::MatMe</a></div><div class="ttdeci">Matrix&lt; 1, Nr, T &gt; MatMe</div><div class="ttdoc">Typedef for matrix generalization. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00397">matrix.h:397</a></div></div>
-<div class="ttc" id="classFarsyte_1_1Matrix_1_1Matrix_html_a53dc35f4d56a52859afffab6fcb484d0"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1Matrix.html#a53dc35f4d56a52859afffab6fcb484d0">Farsyte::Matrix::Matrix::operator()</a></div><div class="ttdeci">T &amp; operator()(int ri, int ci)</div><div class="ttdoc">Matrix Subscripting Operator. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00182">matrix.h:182</a></div></div>
-<div class="ttc" id="classFarsyte_1_1Matrix_1_1Matrix_html_adda23d85e056d54e3f0b20966e4e471d"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1Matrix.html#adda23d85e056d54e3f0b20966e4e471d">Farsyte::Matrix::Matrix::value_type</a></div><div class="ttdeci">T value_type</div><div class="ttdoc">Typedef for type of matrix elements. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00042">matrix.h:42</a></div></div>
-<div class="ttc" id="classFarsyte_1_1Matrix_1_1Matrix_html_adf5659ea0fe0f228b4e219605cce3ba8"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1Matrix.html#adf5659ea0fe0f228b4e219605cce3ba8">Farsyte::Matrix::Matrix::equals</a></div><div class="ttdeci">bool equals(Matrix const &amp;p) const </div><div class="ttdoc">Matrix Equality Test. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00191">matrix.h:191</a></div></div>
-<div class="ttc" id="classFarsyte_1_1Matrix_1_1ColVec_html_a37a7512da2883c79b056eedc8241f974"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1ColVec.html#a37a7512da2883c79b056eedc8241f974">Farsyte::Matrix::ColVec::operator()</a></div><div class="ttdeci">T &amp; operator()(int ri)</div><div class="ttdoc">ColVec Subscripting Operator. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00481">matrix.h:481</a></div></div>
-<div class="ttc" id="classFarsyte_1_1Matrix_1_1Matrix_html_aa544710adacdf29ae9ebb6f19a4d7e89"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1Matrix.html#aa544710adacdf29ae9ebb6f19a4d7e89">Farsyte::Matrix::Matrix::cols</a></div><div class="ttdeci">static size_t cols()</div><div class="ttdoc">Matrix columns. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00075">matrix.h:75</a></div></div>
-<div class="ttc" id="classFarsyte_1_1Matrix_1_1Matrix_html_afeb93837ea7a2961135197fc2816f842"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1Matrix.html#afeb93837ea7a2961135197fc2816f842">Farsyte::Matrix::Matrix::Matrix</a></div><div class="ttdeci">Matrix()</div><div class="ttdoc">Matrix Default Constructor. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00126">matrix.h:126</a></div></div>
-<div class="ttc" id="classFarsyte_1_1Matrix_1_1ColVec_html_a4203a5c03ce162e0ef58f190c0e5efc4"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1ColVec.html#a4203a5c03ce162e0ef58f190c0e5efc4">Farsyte::Matrix::ColVec::C</a></div><div class="ttdeci">MatMe::C C</div><div class="ttdoc">Typedef for array containing one column of data. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00405">matrix.h:405</a></div></div>
-<div class="ttc" id="classFarsyte_1_1Matrix_1_1Matrix_html"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1Matrix.html">Farsyte::Matrix::Matrix</a></div><div class="ttdoc">Matrix Template. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00037">matrix.h:37</a></div></div>
-<div class="ttc" id="classFarsyte_1_1Matrix_1_1ColVec_html_a242ddc9a8867d7ba2050bbebb20109b1"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1ColVec.html#a242ddc9a8867d7ba2050bbebb20109b1">Farsyte::Matrix::ColVec::A</a></div><div class="ttdeci">MatMe::A A</div><div class="ttdoc">Typedef for array containing the data. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00401">matrix.h:401</a></div></div>
-<div class="ttc" id="classFarsyte_1_1Matrix_1_1Matrix_html_aed821119806bacee1af7e7f57115df8d"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1Matrix.html#aed821119806bacee1af7e7f57115df8d">Farsyte::Matrix::Matrix::const_reference</a></div><div class="ttdeci">T const &amp; const_reference</div><div class="ttdoc">Const reference to a matrix element. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00048">matrix.h:48</a></div></div>
-<div class="ttc" id="classFarsyte_1_1Matrix_1_1Matrix_html_a3ea29ecd83aabb431c635eabd14f9ebd"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1Matrix.html#a3ea29ecd83aabb431c635eabd14f9ebd">Farsyte::Matrix::Matrix::pointer</a></div><div class="ttdeci">T * pointer</div><div class="ttdoc">Pointer to a matrix element. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00051">matrix.h:51</a></div></div>
-<div class="ttc" id="classFarsyte_1_1Matrix_1_1Matrix_html_af99f3e4d8a71a1f7b01e0dd8ba76387d"><div class="ttname"><a href="classFarsyte_1_1Matrix_1_1Matrix.html#af99f3e4d8a71a1f7b01e0dd8ba76387d">Farsyte::Matrix::Matrix::sub</a></div><div class="ttdeci">T &amp; sub(int ri, int ci)</div><div class="ttdoc">Matrix Subscripting Implementation. </div><div class="ttdef"><b>Definition:</b> <a href="matrix_8h_source.html#l00111">matrix.h:111</a></div></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    }</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;}</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#endif//_matrix_h</span></div>
+<div class="ttc" id="matrix__threevec_8h_html"><div class="ttname"><a href="matrix__threevec_8h.html">matrix_threevec.h</a></div><div class="ttdoc">Matrix Library Exported API. </div></div>
+<div class="ttc" id="matrix__colvec_8h_html"><div class="ttname"><a href="matrix__colvec_8h.html">matrix_colvec.h</a></div><div class="ttdoc">ColVec Template. </div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="matrix_8h.html">matrix.h</a></li>
-    <li class="footer">Generated on Mon Sep 15 2014 22:23:01 for The Farsyte Toolkit by
+    <li class="footer">Generated on Mon Sep 22 2014 23:06:00 for The Farsyte Toolkit by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

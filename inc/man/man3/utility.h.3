@@ -1,4 +1,4 @@
-.TH "utility.h" 3 "Mon Sep 15 2014" "The Farsyte Toolkit" \" -*- nroff -*-
+.TH "utility.h" 3 "Mon Sep 22 2014" "The Farsyte Toolkit" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -11,7 +11,19 @@ Testing Library Exported API\&.
 .PP
 \fC#include <string>\fP
 .br
+\fC#include <sstream>\fP
+.br
+\fC#include <vector>\fP
+.br
 
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fB_utility_h\fP   'utility v0\&.1'"
+.br
+.RI "\fIfor header vs library matching \fP"
+.in -1c
 .SS "Functions"
 
 .in +1c
@@ -22,7 +34,27 @@ Testing Library Exported API\&.
 .ti -1c
 .RI "std::string \fBFarsyte::Utility::literal\fP (std::string const &str)"
 .br
-.RI "\fIConvert a character into its literal representation\&. \fP"
+.RI "\fIConvert a string into its literal representation (without quotes)\&. \fP"
+.ti -1c
+.RI "std::string \fBFarsyte::Utility::quoted\fP (std::string const &str)"
+.br
+.RI "\fIConvert a character into its literal representation (with quotes)\&. \fP"
+.ti -1c
+.RI "std::string \fBFarsyte::Utility::htmlify\fP (char ch)"
+.br
+.RI "\fIConvert a character into its HTML representation\&. \fP"
+.ti -1c
+.RI "std::string \fBFarsyte::Utility::htmlify\fP (std::string const &str)"
+.br
+.RI "\fIConvert a string into its HTML representation\&. \fP"
+.ti -1c
+.RI "std::vector< std::string > \fBFarsyte::Utility::streamlines\fP (std::ostringstream &oss)"
+.br
+.RI "\fIGiven an output string stream, extract its content as one string per line into a vector of strings\&. \fP"
+.ti -1c
+.RI "std::vector< std::string > const & \fBFarsyte::Utility::utility_versions\fP ()"
+.br
+.RI "\fIRetrieve 'utility' version strings from library\&. \fP"
 .in -1c
 .SH "Detailed Description"
 .PP 

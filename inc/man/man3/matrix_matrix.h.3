@@ -1,0 +1,88 @@
+.TH "matrix_matrix.h" 3 "Mon Sep 22 2014" "The Farsyte Toolkit" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+matrix_matrix.h \- 
+.PP
+Matrix Template\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <array>\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBFarsyte::Matrix::Matrix< Nc, Nr, T >\fP"
+.br
+.RI "\fI\fBMatrix\fP Template\&. \fP"
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fB_matrix_matrix_h\fP   'matrix_matrix v0\&.1'"
+.br
+.RI "\fIHeader version string\&. \fP"
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "std::string \fBFarsyte::Matrix::matrix_range_error\fP (int Nr, int Nc, int ri, int ci)"
+.br
+.RI "\fIConstruct matrix range error string\&. \fP"
+.ti -1c
+.RI "template<int Nc, int Nr, typename T > bool \fBFarsyte::Matrix::operator==\fP (Matrix< Nc, Nr, T > const &L, Matrix< Nc, Nr, T > const &R)"
+.br
+.RI "\fIEquality Operator for Matrix-based Classes\&. \fP"
+.ti -1c
+.RI "template<int Nc, int Nr, typename T > bool \fBFarsyte::Matrix::operator!=\fP (Matrix< Nc, Nr, T > const &L, Matrix< Nc, Nr, T > const &R)"
+.br
+.RI "\fIInequality Operator for Matrix-based Classes\&. \fP"
+.ti -1c
+.RI "template<int Nc, int Nr, typename T > Matrix< Nc, Nr, T > \fBFarsyte::Matrix::operator+\fP (Matrix< Nc, Nr, T > L, Matrix< Nc, Nr, T > const &R)"
+.br
+.RI "\fIAddition Operator for Matrix-based Classes\&. \fP"
+.ti -1c
+.RI "template<int Nc, int Nr, typename T > Matrix< Nc, Nr, T > \fBFarsyte::Matrix::operator-\fP (Matrix< Nc, Nr, T > L, Matrix< Nc, Nr, T > const &R)"
+.br
+.RI "\fIAddition Operator for Matrix-based Classes\&. \fP"
+.ti -1c
+.RI "template<int Nc, int Nr, typename T > Matrix< Nc, Nr, T > \fBFarsyte::Matrix::operator-\fP (Matrix< Nc, Nr, T > R)"
+.br
+.RI "\fINegation Operator for Matrix-based Classes\&. \fP"
+.ti -1c
+.RI "template<int Nc, int Nr, typename T > Matrix< Nr, Nc, T > \fBFarsyte::Matrix::operator~\fP (Matrix< Nc, Nr, T > const &R)"
+.br
+.RI "\fITranspose Operator for Matrix-based Classes\&. \fP"
+.ti -1c
+.RI "template<int Nc, int Ni, int Nr, typename T > Matrix< Nc, Nr, T > \fBFarsyte::Matrix::operator*\fP (Matrix< Ni, Nr, T > const &L, Matrix< Nc, Ni, T > const &R)"
+.br
+.RI "\fI\fBMatrix\fP Multiply\&. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+Matrix Template\&. 
+
+
+.IP "\(bu" 2
+
+.PP
+
+.PP
+Definition in file \fBmatrix_matrix\&.h\fP\&.
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define _matrix_matrix_h   'matrix_matrix v0\&.1'"
+
+.PP
+Header version string\&. 
+.PP
+Definition at line 3 of file matrix_matrix\&.h\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for The Farsyte Toolkit from the source code\&.
