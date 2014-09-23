@@ -133,9 +133,8 @@ int test_utility(Log &log) {
             + test_utility_literal(log);
 }
 
-int main(int argc, char **argv) {
-    assert(argc > 1);
-    ofstream xml(argv[1]);
+int main(void) {
+    ofstream xml("test_utility_log.xml");
     assert(xml);
     Log log(xml, "Utility Library");
 

@@ -300,10 +300,9 @@ static int test_matrix(Log &log) {
             + test_matrix_colvec(log);
 }
 
-int main(int argc, char **argv) {
+int main(void) {
 
-    assert(argc > 1);
-    ofstream xml(argv[1]);
+    ofstream xml("test_matrix_colvec_log.xml");
     assert(xml);
     Log log(xml, "Matrix Library");
 

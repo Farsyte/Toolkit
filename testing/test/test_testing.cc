@@ -76,9 +76,8 @@ static int test_testing(Log &log) {
             + test_testing_version(log);
 }
 
-int main(int argc, char **argv) {
-    assert(argc > 1);
-    ofstream xml(argv[1]);
+int main(void) {
+    ofstream xml("test_testing_log.xml");
     assert(xml);
     Log log(xml, "Testing Library");
 
