@@ -23,18 +23,19 @@ matrix.test.cc		= ${wildcard matrix/test/test_*.cc}
 matrix.test.bin		= ${matrix.test.cc:matrix/test/%.cc=matrix/bin/%.exe}
 matrix.test.out		= ${matrix.test.bin:matrix/bin/%.exe=matrix/log/%_log.xml}
 
-${matrix.test.bin}:	$${testing.lib.a}
 ${matrix.test.bin}:	${matrix.lib.a}
+${matrix.test.bin}:	$${testing.lib.a}
+${matrix.test.bin}:	$${utility.lib.a}
 
 ${matrix.test.bin}:     matrix/bin/%.exe:       matrix/test/%.cc
 	$Q $P '[ld] %s%s\n' 'matrix/bin/' '$*'
-	$Q $(LINK.cc) -Iinc matrix/test/$*.cc -Llib -ltesting -lmatrix -o $@
+	$Q $(LINK.cc) -Iinc matrix/test/$*.cc -Llib -lmatrix -ltesting -lutility -o $@
 
 tests::                 ${matrix.test.bin}
 
 ${matrix.test.out}:     matrix/log/%_log.xml:   matrix/bin/%.exe
 	$Q $P '[rt] %s%s\n' 'matrix/bin' '$*'
-	$Q $< > $@
+	$Q $<
 
 runtests::              ${matrix.test.out}
 

@@ -34,16 +34,17 @@ testing.test.bin	= ${testing.test.cc:testing/test/%.cc=testing/bin/%.exe}
 testing.test.out	= ${testing.test.bin:testing/bin/%.exe=testing/log/%_log.xml}
 
 ${testing.test.bin}:	${testing.lib.a}
+${testing.test.bin}:	$${utility.lib.a}
 
 ${testing.test.bin}:    testing/bin/%.exe:      testing/test/%.cc
 	$Q $P '[ld] %s%s\n' 'testing/bin/' '$*'
-	$Q $(LINK.cc) -Iinc testing/test/$*.cc -Llib -ltesting -o $@
+	$Q $(LINK.cc) -Iinc testing/test/$*.cc -Llib -ltesting -lutility -o $@
 
 tests::                 ${testing.test.bin}
 
 ${testing.test.out}:    testing/log/%_log.xml:  testing/bin/%.exe
 	$Q $P '[rt] %s%s\n' 'testing/bin' '$*'
-	$Q $< > $@
+	$Q $<
 
 runtests::              ${testing.test.out}
 
