@@ -29,3 +29,8 @@ add_custom_target(runtests
         testing-test-all
         matrix-test-all
     )
+
+add_custom_target(pmccabe
+    COMMAND
+        /bin/bash ${CMAKE_SOURCE_DIR}/bin/make-pmccabe.sh ${CMAKE_SOURCE_DIR}
+    )
