@@ -2,16 +2,16 @@
 #define _testing_internal_h "testing_internal v0.1" /**< for header vs library matching */
 
 /** \file
- * \brief Testing Library Internal API
- *
- * This file provides data types, function prototypes and macro
- * definitions for interfaces between parts of this library.
- */
+* \brief Testing Library Internal API
+*
+* This file provides data types, function prototypes and macro
+* definitions for interfaces between parts of this library.
+*/
 
 /** Throw an Oops if a condition is not true.
- * \param cond - actual expression to evaluate
- * \param msg - one line description of failed condition
- */
+* \param cond - actual expression to evaluate
+* \param msg - one line description of failed condition
+*/
 #define CHECK_OOPS(cond, msg)                   \
   do {                                          \
     if ((cond)) break;                          \

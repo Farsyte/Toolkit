@@ -15,16 +15,16 @@
 #include <vector>
 
 namespace Farsyte {
-  namespace Matrix {
+    namespace Matrix {
 
-    /** Retrieve "matrix" version strings from library.
-    * This method provides access to a list containing
-    * the version strings from the headers used to compile
-    * the matrix library.
-    */
-    extern std::vector<std::string> const &matrix_versions ();
+        /** Retrieve "matrix" version strings from library.
+        * This method provides access to a list containing
+        * the version strings from the headers used to compile
+        * the matrix library.
+        */
+        extern std::vector<std::string> const &matrix_versions();
 
-  }
+    }
 }
 
 #endif//_matrix_h

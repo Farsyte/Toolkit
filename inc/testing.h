@@ -19,19 +19,19 @@
 #include "testing_oops.h"
 
 namespace Farsyte {
-  namespace Testing {
+    namespace Testing {
 
-    /** Retrieve "testing" version strings from library.
-    * This method provides access to a list containing
-    * the version strings from the headers used to compile
-    * the testing library.
-    */
-    extern std::vector<std::string> const &testing_versions ();
-  }
+        /** Retrieve "testing" version strings from library.
+        * This method provides access to a list containing
+        * the version strings from the headers used to compile
+        * the testing library.
+        */
+        extern std::vector<std::string> const &testing_versions();
+    }
 }
 
 /** Dump information from an Oops onto an output stream.
 */
-extern std::ostream &operator<< (std::ostream &s, Farsyte::Testing::Oops const &f);
+extern std::ostream &operator<<(std::ostream &s, Farsyte::Testing::Oops const &f);
 
 #endif//_testing_h

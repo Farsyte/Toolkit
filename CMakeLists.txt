@@ -3,9 +3,9 @@ project (Tutorial)
 
 enable_testing ()
 
-macro (test_module which)
+macro (test_module package which)
   add_executable (test_${which} test_${which}.cc)
-  target_link_libraries (test_${which} ${which} ${ARGN} testing utility)
+  target_link_libraries (test_${which} ${package} ${ARGN} testing utility)
   add_test (test_${which} test_${which})
   set_tests_properties (test_${which}
     PROPERTIES 
@@ -18,3 +18,19 @@ add_subdirectory (inc)
 add_subdirectory (utility)
 add_subdirectory (testing)
 add_subdirectory (matrix)
+
+add_custom_target(runtests
+    COMMAND
+        /bin/bash ${CMAKE_SOURCE_DIR}/bin/make-runtests.sh
+    DEPENDS
+        bin/make-runtests.sh
+        utility testing matrix
+        utility-test-all
+        testing-test-all
+        matrix-test-all
+    )
+
+add_custom_target(pmccabe
+    COMMAND
+        /bin/bash ${CMAKE_SOURCE_DIR}/bin/make-pmccabe.sh ${CMAKE_SOURCE_DIR}
+    )
