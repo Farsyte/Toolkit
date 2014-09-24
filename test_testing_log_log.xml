@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites name="Testing Library">
-  <testsuite name="Farsyte::Testing::Log">
-    <testcase name="Initial state of Log">
-    </testcase>
-    <testcase name="XML Header">
-    </testcase>
-    <testcase name="top of testsuites entity">
-    </testcase>
-    <testcase name="end of testsuites entity">
-    </testcase>
-    <testcase name="text after end of testsuites">
-    </testcase>
-  </testsuite>
+    <testsuite name="Farsyte::Testing::Log">
+        <testcase name="Initial state of Log">
+        </testcase>
+        <testcase name="XML Header">
+        </testcase>
+        <testcase name="top of testsuites entity">
+        </testcase>
+        <testcase name="end of testsuites entity">
+        </testcase>
+        <testcase name="text after end of testsuites">
+        </testcase>
+    </testsuite>
 </testsuites>

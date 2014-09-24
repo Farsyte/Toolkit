@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites name="Testing Library">
-  <testsuite name="Farsyte::Testing::Suite">
-    <testcase name="Initial Suite Primary Bookkeeping">
-    </testcase>
-    <testcase name="Initial Suite Result Counters">
-    </testcase>
-    <testcase name="Initial Log Result Counters">
-    </testcase>
-    <testcase name="Initialization of Second Suite">
-    </testcase>
-    <testcase name="Detect opening a suite with a suite still open">
-    </testcase>
-    <testcase name="XML output by Suite">
-    </testcase>
-  </testsuite>
+    <testsuite name="Farsyte::Testing::Suite">
+        <testcase name="Initial Suite Primary Bookkeeping">
+        </testcase>
+        <testcase name="Initial Suite Result Counters">
+        </testcase>
+        <testcase name="Initial Log Result Counters">
+        </testcase>
+        <testcase name="Initialization of Second Suite">
+        </testcase>
+        <testcase name="Detect opening a suite with a suite still open">
+        </testcase>
+        <testcase name="XML output by Suite">
+        </testcase>
+    </testsuite>
 </testsuites>

@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites name="Matrix Library">
-  <testsuite name="Farsyte::Matrix::Matrix">
-    <testcase name="Class Parameter Methods">
-    </testcase>
-    <testcase name="Construct and Compare">
-    </testcase>
-    <testcase name="Member Access and Update">
-    </testcase>
-    <testcase name="Addition">
-    </testcase>
-    <testcase name="Difference">
-    </testcase>
-    <testcase name="Product (and transpose)">
-    </testcase>
-  </testsuite>
+    <testsuite name="Farsyte::Matrix::Matrix">
+        <testcase name="Class Parameter Methods">
+        </testcase>
+        <testcase name="Construct and Compare">
+        </testcase>
+        <testcase name="Member Access and Update">
+        </testcase>
+        <testcase name="Addition">
+        </testcase>
+        <testcase name="Difference">
+        </testcase>
+        <testcase name="Product (and transpose)">
+        </testcase>
+    </testsuite>
 </testsuites>

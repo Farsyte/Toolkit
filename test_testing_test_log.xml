@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites name="Testing Library">
-  <testsuite name="Farsyte::Testing::Test">
-    <testcase name="Test object initialization">
-    </testcase>
-    <testcase name="Second Test Object Init">
-    </testcase>
-    <testcase name="Multi-suite Multi-test init check">
-    </testcase>
-    <testcase name="Detect opening a test with a test still open">
-    </testcase>
-    <testcase name="XML output from Test object">
-    </testcase>
-    <testcase name="XML output from Test::fail()">
-    </testcase>
-    <testcase name="Bookkeeping update from Test::fail()">
-    </testcase>
-    <testcase name="XML output of Test::fail evidence">
-    </testcase>
-    <testcase name="XML output from Test::skip with evidence">
-    </testcase>
-    <testcase name="Bookkeeping update from Test::skip">
-    </testcase>
-    <testcase name="XML output from Test::error">
-    </testcase>
-    <testcase name="Bookkeeping update from Test::error">
-    </testcase>
-  </testsuite>
+    <testsuite name="Farsyte::Testing::Test">
+        <testcase name="Test object initialization">
+        </testcase>
+        <testcase name="Second Test Object Init">
+        </testcase>
+        <testcase name="Multi-suite Multi-test init check">
+        </testcase>
+        <testcase name="Detect opening a test with a test still open">
+        </testcase>
+        <testcase name="XML output from Test object">
+        </testcase>
+        <testcase name="XML output from Test::fail()">
+        </testcase>
+        <testcase name="Bookkeeping update from Test::fail()">
+        </testcase>
+        <testcase name="XML output of Test::fail evidence">
+        </testcase>
+        <testcase name="XML output from Test::skip with evidence">
+        </testcase>
+        <testcase name="Bookkeeping update from Test::skip">
+        </testcase>
+        <testcase name="XML output from Test::error">
+        </testcase>
+        <testcase name="Bookkeeping update from Test::error">
+        </testcase>
+    </testsuite>
 </testsuites>
