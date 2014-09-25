@@ -1,7 +1,7 @@
-#include "testing_test.h"
-#include "testing.h"
-#include "utility.h"
-#include "testing_internal.h"
+#include "testing_test.hh"
+#include "testing.hh"
+#include "utility.hh"
+#include "testing_internal.hh"
 
 using std::endl;
 using std::ostream;

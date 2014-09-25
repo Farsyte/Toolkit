@@ -1,5 +1,5 @@
-#include "testing.h"
-#include "utility.h"
+#include "testing.hh"
+#include "utility.hh"
 #include <fstream>
 #include <iostream>
 #include <sstream>

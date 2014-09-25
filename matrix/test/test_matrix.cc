@@ -1,6 +1,6 @@
-#include "matrix.h"
-#include "testing.h"
-#include "utility.h"
+#include "matrix.hh"
+#include "testing.hh"
+#include "utility.hh"
 #include <fstream>
 #include <iomanip>
 #include <iostream>

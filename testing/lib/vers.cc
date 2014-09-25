@@ -1,5 +1,5 @@
-#include "testing.h"
-#include "testing_internal.h"
+#include "testing.hh"
+#include "testing_internal.hh"
 
 using std::string;
 using std::vector;

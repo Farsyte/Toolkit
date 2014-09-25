@@ -10,10 +10,10 @@ collisions with simiarly named things defined elsewhere.
 Header File Overview
 ====================
 
-Farsyte::Utility "utility.h"
+Farsyte::Utility "utility.hh"
 ----------------
 
-The `utility.h` header collects general utility code that
+The `utility.hh` header collects general utility code that
 is not associated with any of the larger packages within
 the toolkit project. This could be code that is shared
 across multiple packages (without an obvious owner), or it
@@ -23,7 +23,7 @@ warrant tracking as their own library.
 Farsyte::Testing "testing.h"
 ----------------
 
-The `testing.h` header provides declarations for the API
+The `testing.hh` header provides declarations for the API
 for the library that is used to record test results in a
 form that allows an automated build system (currently the
 Bamboo continuous intergration system from Atlassian) to
@@ -70,7 +70,7 @@ The `Testing` Library implements four classes:
 	if this is appropriate and useful.
 
 
-Farsyte::Matrix "matrix.h"
+Farsyte::Matrix "matrix.hh"
 ---------------
 
 Matrix math is provided as a genearlized template for dense

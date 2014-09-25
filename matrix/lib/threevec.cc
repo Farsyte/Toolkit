@@ -1,4 +1,4 @@
-#include "matrix_threevec.h"
+#include "matrix_threevec.hh"
 
 #include <sstream>
 
