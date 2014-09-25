@@ -1,4 +1,4 @@
-#include "matrix_threevec.hh"
+#include "matrix_trivec.hh"
 
 #include <sstream>
 
@@ -9,15 +9,15 @@ namespace Farsyte {
     namespace Matrix {
 
 
-        ThreeVec::ThreeVec()
+        TriVec::TriVec()
                 : ColMe() {
         }
 
-        ThreeVec::ThreeVec(double x, double y, double z)
+        TriVec::TriVec(double x, double y, double z)
                 : ColMe(A{{x, y, z}}) {
         }
 
-        ThreeVec::ThreeVec(MatMe const &p)
+        TriVec::TriVec(MatMe const &p)
                 : ColMe(p) {
         }
 
@@ -26,10 +26,10 @@ namespace Farsyte {
         * \param R  Second operand for product.
         * \returns Matrix whose elements are the sum of corresponding input elements.
         */
-        ThreeVec cross(
+        TriVec cross(
                 Matrix<1, 3, double> const &L,
                 Matrix<1, 3, double> const &R) {
-            return ThreeVec(
+            return TriVec(
                     L[1] * R[2] - L[2] * R[1],
                     L[2] * R[0] - L[0] * R[2],
                     L[0] * R[1] - L[1] * R[0]);

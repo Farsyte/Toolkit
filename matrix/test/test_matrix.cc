@@ -12,7 +12,7 @@
 
 using Farsyte::Matrix::ColVec;
 using Farsyte::Matrix::Matrix;
-using Farsyte::Matrix::ThreeVec;
+using Farsyte::Matrix::TriVec;
 using Farsyte::Testing::Log;
 using Farsyte::Testing::Oops;
 using Farsyte::Testing::Suite;

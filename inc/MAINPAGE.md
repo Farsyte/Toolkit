@@ -101,10 +101,10 @@ The `Matrix` Library implements two templates and one class:
 	The API differences mainly involve not having to redundantly
  	specify column numbers when working with a ColVec class.
 
-  * The [ThreeVec](classFarsyte_1_1Matrix_1_1ThreeVec.html) class
+  * The [TriVec](classFarsyte_1_1Matrix_1_1TriVec.html) class
 	likewise provides for a three-element column vector such as might
 	be used to represent a Position (north, east and above the
 	flagpole), Velocity, Direction, and so on.
-	The `ThreeVec` class adds the Cross Product operation, which is
+	The `TriVec` class adds the Cross Product operation, which is
     not provided for general Matrix and Column Vector objects.
 

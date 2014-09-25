@@ -10,7 +10,7 @@
 
 #include "matrix_matrix.hh"
 #include "matrix_colvec.hh"
-#include "matrix_threevec.hh"
+#include "matrix_trivec.hh"
 
 #include <vector>
 

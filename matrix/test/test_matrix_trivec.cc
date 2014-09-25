@@ -12,7 +12,7 @@
 
 using Farsyte::Matrix::ColVec;
 using Farsyte::Matrix::Matrix;
-using Farsyte::Matrix::ThreeVec;
+using Farsyte::Matrix::TriVec;
 using Farsyte::Testing::Log;
 using Farsyte::Testing::Oops;
 using Farsyte::Testing::Suite;
@@ -94,7 +94,7 @@ static int case_F(
 static int case_equals(
         Test &t, string const &title,
         double x, double y, double z,
-        ThreeVec const &r) {
+        TriVec const &r) {
 
     t << title << endl
             << "  expected: "
@@ -118,24 +118,24 @@ static int case_equals(
 
 /* -- ================================================================ -- */
 
-static int test_matrix_threevec_meta(Suite &s) {
+static int test_matrix_trivec_meta(Suite &s) {
 
     Test t(s, "Class Parameter Methods");
 
     return 0
-            + case_equals(t, "ThreeVec Rows", 3, ThreeVec::rows())
-            + case_equals(t, "ThreeVec Cols", 1, ThreeVec::cols())
-            + case_equals(t, "ThreeVec Size", 3, ThreeVec::size());
+            + case_equals(t, "TriVec Rows", 3, TriVec::rows())
+            + case_equals(t, "TriVec Cols", 1, TriVec::cols())
+            + case_equals(t, "TriVec Size", 3, TriVec::size());
 }
 
-static int test_matrix_threevec_ctor_eq_ne(Suite &s) {
+static int test_matrix_trivec_ctor_eq_ne(Suite &s) {
 
     Test t(s, "Construct and Compare");
 
-    ThreeVec D;
-    ThreeVec X{1, 0, 0};
-    ThreeVec Y{0, 1, 0};
-    ThreeVec Z{0, 0, 1};
+    TriVec D;
+    TriVec X{1, 0, 0};
+    TriVec Y{0, 1, 0};
+    TriVec Z{0, 0, 1};
 
     return 0
             + case_equals(t, "Default initialized to Zero", 0, 0, 0, D)
@@ -180,11 +180,11 @@ static int test_matrix_threevec_ctor_eq_ne(Suite &s) {
             + case_F(t, "(Z == Y) is False", (Z == Y));
 }
 
-static int test_matrix_threevec_access(Suite &s) {
+static int test_matrix_trivec_access(Suite &s) {
 
     Test t(s, "Member Access and Update");
 
-    ThreeVec V{3, 5, 7};
+    TriVec V{3, 5, 7};
 
     V[1] = 4;
     V[2] = V[0];
@@ -193,13 +193,13 @@ static int test_matrix_threevec_access(Suite &s) {
             + case_equals(t, "Vector after access and update", 3, 4, 3, V);
 }
 
-static int test_matrix_threevec_add(Suite &s) {
+static int test_matrix_trivec_add(Suite &s) {
 
     Test t(s, "Addition");
 
-    ThreeVec S;
-    ThreeVec A{7, 4, 1};
-    ThreeVec I{1, 2, 3};
+    TriVec S;
+    TriVec A{7, 4, 1};
+    TriVec I{1, 2, 3};
     A += I;
 
     return 0
@@ -209,13 +209,13 @@ static int test_matrix_threevec_add(Suite &s) {
             + case_equals(t, "Add Negative", 7, 4, 1, A + (-I));
 }
 
-static int test_matrix_threevec_sub(Suite &s) {
+static int test_matrix_trivec_sub(Suite &s) {
 
     Test t(s, "Difference");
 
-    ThreeVec D;
-    ThreeVec A{9, 8, 7};
-    ThreeVec I{1, 2, 3};
+    TriVec D;
+    TriVec A{9, 8, 7};
+    TriVec I{1, 2, 3};
     A -= I;
 
     return 0
@@ -225,13 +225,13 @@ static int test_matrix_threevec_sub(Suite &s) {
             + case_equals(t, "Sub Negative", 9, 8, 7, A - (-I));
 }
 
-static int test_matrix_threevec_cross(Suite &s) {
+static int test_matrix_trivec_cross(Suite &s) {
 
     Test t(s, "Construct and Compare");
 
-    ThreeVec X{1, 0, 0};
-    ThreeVec Y{0, 2, 0};
-    ThreeVec Z{0, 0, 3};
+    TriVec X{1, 0, 0};
+    TriVec Y{0, 2, 0};
+    TriVec Z{0, 0, 3};
 
     return 0
             + case_equals(t, "cross(X,X)", 0, 0, 0, cross(X, X))
@@ -247,12 +247,12 @@ static int test_matrix_threevec_cross(Suite &s) {
             + case_equals(t, "cross(Z,Y)", -6, 0, 0, cross(Z, Y));
 }
 
-static int test_matrix_threevec(Log &log) {
+static int test_matrix_trivec(Log &log) {
 
     /*
-    ** Tests specific to the ThreeVec Class
+    ** Tests specific to the TriVec Class
     */
-    Suite s(log, "Farsyte::Matrix::ThreeVec");
+    Suite s(log, "Farsyte::Matrix::TriVec");
 
     /*
     ** return convention: 0 is success, nonzero is failure.
@@ -262,12 +262,12 @@ static int test_matrix_threevec(Log &log) {
     */
 
     return 0
-            + test_matrix_threevec_meta(s)
-            + test_matrix_threevec_ctor_eq_ne(s)
-            + test_matrix_threevec_access(s)
-            + test_matrix_threevec_add(s)
-            + test_matrix_threevec_sub(s)
-            + test_matrix_threevec_cross(s);
+            + test_matrix_trivec_meta(s)
+            + test_matrix_trivec_ctor_eq_ne(s)
+            + test_matrix_trivec_access(s)
+            + test_matrix_trivec_add(s)
+            + test_matrix_trivec_sub(s)
+            + test_matrix_trivec_cross(s);
 
 }
 
@@ -281,21 +281,21 @@ static int test_matrix(Log &log) {
     ** and return fail if any failed, after running all.
     */
     return 0
-            + test_matrix_threevec(log);
+            + test_matrix_trivec(log);
 }
 
 int main(void) {
 
-    ofstream xml("test_matrix_threevec_log.xml");
+    ofstream xml("test_matrix_trivec_log.xml");
     assert(xml);
     Log log(xml, "Matrix Library");
 
     int ec = test_matrix(log);
 
     if (ec)
-        cerr << setw(7) << ec << " FAIL test_matrix_threevec" << endl;
+        cerr << setw(7) << ec << " FAIL test_matrix_trivec" << endl;
     else
-        cerr << setw(7) << ec << " PASS test_matrix_threevec" << endl;
+        cerr << setw(7) << ec << " PASS test_matrix_trivec" << endl;
 
     return 0;
 }
