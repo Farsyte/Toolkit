@@ -265,11 +265,10 @@ static int test_matrix_colvec_mul(Suite &s) {
     auto AtI = ~A * I;          // an integer!
 
     return 0
-      + t.eq(AIt.rows(), 4, "AIt number of rows")
-      + t.eq(AIt.cols(), 4, "AIt number of columns")
-      + t.eq(AIt.size(),16, "AIt number of elements")
-      + t.eq(AtI, 70, "dot(A,I) value")
-      ;      
+            + t.eq(AIt.rows(), 4, "AIt number of rows")
+            + t.eq(AIt.cols(), 4, "AIt number of columns")
+            + t.eq(AIt.size(), 16, "AIt number of elements")
+            + t.eq(AtI, 70, "dot(A,I) value");
 }
 
 static int test_matrix_colvec(Log &log) {

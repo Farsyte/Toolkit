@@ -1,7 +1,6 @@
 #include "matrix_trivec.hh"
 
 #include <sstream>
-#include <iomanip>
 
 using std::ostringstream;
 using std::ostream;

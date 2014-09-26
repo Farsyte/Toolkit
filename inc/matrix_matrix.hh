@@ -241,21 +241,21 @@ namespace Farsyte {
             }
 
             /** Matrix Scalar Multiply operator.
-             * \param p  Scalaing Factor.
-             * \returns this matrix, after scaling values up.
+            * \param p  Scalaing Factor.
+            * \returns this matrix, after scaling values up.
             * Each element of this matrix is multiplied by
             * the provided scale factor.
-             */
+            */
             Matrix &operator*=(T const &p) {
                 return scalar_mul_by(p);
             }
 
             /** Matrix Scalar Divide operation.
-             * \param p  Scaling Factor.
-             * \returns this matrix, after scaling values down.
-             * Each element of this matrix is divided by
-             * the scaling factor.
-             */
+            * \param p  Scaling Factor.
+            * \returns this matrix, after scaling values down.
+            * Each element of this matrix is divided by
+            * the scaling factor.
+            */
             Matrix &scalar_div_by(T const &p) {
                 for (int ci = 0; ci < Nc; ++ci)
                     for (int ri = 0; ri < Nr; ++ri)
@@ -264,11 +264,11 @@ namespace Farsyte {
             }
 
             /** Matrix Scalar Divide operator.
-             * \param p  Scaling Factor.
-             * \returns this matrix, after scaling values down.
-             * Each element of this matrix is divided by
-             * the scaling factor.
-             */
+            * \param p  Scaling Factor.
+            * \returns this matrix, after scaling values down.
+            * Each element of this matrix is divided by
+            * the scaling factor.
+            */
             Matrix &operator/=(T const &p) {
                 return scalar_div_by(p);
             }
@@ -442,41 +442,41 @@ namespace Farsyte {
         operator*(
                 Matrix<Ni, 1, T> const &L,
                 Matrix<1, Ni, T> const &R) {
-            T acc(L(0,0)*R(0,0));
+            T acc(L(0, 0) * R(0, 0));
             for (int i = 1; i < Ni; ++i)
-                acc += L(0,i)*R(i,0);
+                acc += L(0, i) * R(i, 0);
             return acc;
         }
 
         template<int Nc, int Nr, typename T>
-        std::ostream& operator<<(std::ostream&s, Matrix<Nc,Nr,T> const &m) {
+        std::ostream &operator<<(std::ostream &s, Matrix<Nc, Nr, T> const &m) {
             auto w = s.width();     // apply width to each element,
-            s << std::setw(1) << "[[" << std::setw(w) << m(0,0);
+            s << std::setw(1) << "[[" << std::setw(w) << m(0, 0);
             for (int ci = 1; ci < Nc; ++ci)
-                s << "," << std::setw(w) << m(0,ci);
+                s << "," << std::setw(w) << m(0, ci);
             for (int ri = 1; ri < Nr; ++ri) {
-                s << "],[" << std::setw(w) << m(ri,0);
+                s << "],[" << std::setw(w) << m(ri, 0);
                 for (int ci = 1; ci < Nc; ++ci)
-                    s << "," << std::setw(w) << m(ri,ci);
+                    s << "," << std::setw(w) << m(ri, ci);
             }
             return s << "]]";
         }
 
         template<int Nr, typename T>
-        std::ostream& operator<<(std::ostream&s, Matrix<1,Nr,T> const &m) {
+        std::ostream &operator<<(std::ostream &s, Matrix<1, Nr, T> const &m) {
             auto w = s.width();     // apply width to each element,
-            s << std::setw(1) << "[" << std::setw(w) << m(0,0);
+            s << std::setw(1) << "[" << std::setw(w) << m(0, 0);
             for (int ri = 1; ri < Nr; ++ri)
-                s << "," << std::setw(w) << m(ri,0);
+                s << "," << std::setw(w) << m(ri, 0);
             return s << "]";
         }
 
         template<int Nc, typename T>
-        std::ostream& operator<<(std::ostream&s, Matrix<Nc,1,T> const &m) {
+        std::ostream &operator<<(std::ostream &s, Matrix<Nc, 1, T> const &m) {
             auto w = s.width();     // apply width to each element,
-            s << std::setw(1) << "[" << std::setw(w) << m(0,0);
+            s << std::setw(1) << "[" << std::setw(w) << m(0, 0);
             for (int ci = 1; ci < Nc; ++ci)
-                s << "," << std::setw(w) << m(0,ci);
+                s << "," << std::setw(w) << m(0, ci);
             return s << "]'";
         }
 

@@ -426,10 +426,9 @@ static int test_matrix_matrix_scale(Suite &s) {
     Matrix23i D = IV {  27*3*23   ,   27*5*23   ,   27*7*23   ,   27*11*23   ,   27*13*23   ,   27*17*23  };
 
     return 0
-      + t.eq(A * (23*3), B, "A * (23*3)")
-      + t.eq((2*27) * B, C, "(2*27) * B")
-      + t.eq(C / 6, D, "C / 6")
-      ;
+            + t.eq(A * (23 * 3), B, "A * (23*3)")
+            + t.eq((2 * 27) * B, C, "(2*27) * B")
+            + t.eq(C / 6, D, "C / 6");
 }
 
 static int test_matrix_matrix(Log &log) {
