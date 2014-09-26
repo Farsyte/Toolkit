@@ -68,7 +68,9 @@ namespace Farsyte {
                 Matrix<1, 3, double> const &L,
                 Matrix<1, 3, double> const &R);
 
-
+        /** Stream Output Operation.
+        */
+        extern std::ostream &operator<<(std::ostream &s, TriVec const &v);
     }
 }
 
