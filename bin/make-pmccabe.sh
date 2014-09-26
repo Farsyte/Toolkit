@@ -22,7 +22,7 @@ sed 's/^/    /'
 
 find . -name '.??*' -prune -o \
     \( -name '*.cc' \
-    -o -name '*.h' \
+    -o -name '*.hh' \
     \) -type f -print |
 sed 's|^[.]/||' |
 tr '\n' '\0' |

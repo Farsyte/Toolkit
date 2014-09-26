@@ -1,8 +1,8 @@
-#include "testing_suite.h"
-#include "testing.h"
-#include "testing_internal.h"
+#include "testing_suite.hh"
+#include "testing.hh"
+#include "testing_internal.hh"
 
-#include "utility.h"
+#include "utility.hh"
 
 using namespace Farsyte::Testing;
 using namespace Farsyte::Utility;

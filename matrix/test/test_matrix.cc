@@ -1,18 +1,11 @@
-#include "matrix.h"
-#include "testing.h"
-#include "utility.h"
+#include "matrix.hh"
+#include "testing.hh"
 #include <fstream>
-#include <iomanip>
-#include <iostream>
-#include <sstream>
-#include <string>
-#include <vector>
 #include <assert.h>
-#include <iomanip>
 
 using Farsyte::Matrix::ColVec;
 using Farsyte::Matrix::Matrix;
-using Farsyte::Matrix::ThreeVec;
+using Farsyte::Matrix::TriVec;
 using Farsyte::Testing::Log;
 using Farsyte::Testing::Oops;
 using Farsyte::Testing::Suite;
@@ -34,9 +27,6 @@ typedef ColVec<4, int> ColVec4i;
 
 /** Pick a type for a test matrix */
 typedef Matrix<3, 2, int> Matrix23i;
-
-/** Type for transposed test matrix */
-typedef Matrix<2, 3, int> Matrix32i;
 
 /** Small square matrix for multiply testing */
 typedef Matrix<2, 2, int> Matrix22i;

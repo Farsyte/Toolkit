@@ -1,12 +1,12 @@
 install (
   FILES
-  matrix.h
-    matrix_matrix.h
-    matrix_colvec.h
-    matrix_threevec.h
-  testing.h
-    testing_log.h
-    testing_suite.h
-    testing_test.h
-  utility.h
+  matrix.hh
+    matrix_matrix.hh
+    matrix_colvec.hh
+    matrix_trivec.hh
+  testing.hh
+    testing_log.hh
+    testing_suite.hh
+    testing_test.hh
+  utility.hh
   DESTINATION include)

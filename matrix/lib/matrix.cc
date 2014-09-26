@@ -1,4 +1,4 @@
-#include "matrix_matrix.h"
+#include "matrix_matrix.hh"
 
 #include <sstream>
 

@@ -115,6 +115,30 @@ namespace Farsyte {
             */
             ~Test();
 
+            /** Common Test Case: Condition True
+            */
+            int is_T(int cond, std::string const &msg) {
+                if (0 != cond) {
+                    pass(msg);
+                    return 0;
+                } else {
+                    fail(msg);
+                    return 1;
+                }
+            }
+
+            /** Common Test Case: Condition True
+            */
+            int is_F(int cond, std::string const &msg) {
+                if (0 == cond) {
+                    pass(msg);
+                    return 0;
+                } else {
+                    fail(msg);
+                    return 1;
+                }
+            }
+
             /** Common Test Case: (obs == exp).
             */
             template<typename T, typename U>
@@ -122,13 +146,7 @@ namespace Farsyte {
                 (*this)
                         << "observed:    " << obs << "\n"
                         << "expected: == " << exp << "\n";
-                if (obs == exp) {
-                    pass(msg);
-                    return 0;
-                } else {
-                    fail(msg);
-                    return 1;
-                }
+                return is_T(obs == exp, msg);
             }
 
             /** Common Test Case: (obs >= exp).
@@ -138,13 +156,7 @@ namespace Farsyte {
                 (*this)
                         << "observed:    " << obs << "\n"
                         << "expected: >= " << exp << "\n";
-                if (obs >= exp) {
-                    pass(msg);
-                    return 0;
-                } else {
-                    fail(msg);
-                    return 1;
-                }
+                return is_T(obs >= exp, msg);
             }
         };
 

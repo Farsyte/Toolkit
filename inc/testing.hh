@@ -13,10 +13,10 @@
 #include <iostream>
 #include <string>
 
-#include "testing_log.h"
-#include "testing_suite.h"
-#include "testing_test.h"
-#include "testing_oops.h"
+#include "testing_log.hh"
+#include "testing_suite.hh"
+#include "testing_test.hh"
+#include "testing_oops.hh"
 
 namespace Farsyte {
     namespace Testing {

@@ -7,6 +7,8 @@
 */
 
 #include <array>
+#include <iostream>
+#include <iomanip>
 
 namespace Farsyte {
     namespace Matrix {
@@ -225,6 +227,52 @@ namespace Farsyte {
                 return decrement_by(p);
             }
 
+            /** Matrix Scalar Multiply operation.
+            * \param p  Scaling factor.
+            * \returns this matrix, after scaling values up.
+            * Each element of this matrix is multiplied by
+            * the provided scale factor.
+            */
+            Matrix &scalar_mul_by(T const &p) {
+                for (int ci = 0; ci < Nc; ++ci)
+                    for (int ri = 0; ri < Nr; ++ri)
+                        data(ri, ci) *= p;
+                return *this;
+            }
+
+            /** Matrix Scalar Multiply operator.
+            * \param p  Scalaing Factor.
+            * \returns this matrix, after scaling values up.
+            * Each element of this matrix is multiplied by
+            * the provided scale factor.
+            */
+            Matrix &operator*=(T const &p) {
+                return scalar_mul_by(p);
+            }
+
+            /** Matrix Scalar Divide operation.
+            * \param p  Scaling Factor.
+            * \returns this matrix, after scaling values down.
+            * Each element of this matrix is divided by
+            * the scaling factor.
+            */
+            Matrix &scalar_div_by(T const &p) {
+                for (int ci = 0; ci < Nc; ++ci)
+                    for (int ri = 0; ri < Nr; ++ri)
+                        data(ri, ci) /= p;
+                return *this;
+            }
+
+            /** Matrix Scalar Divide operator.
+            * \param p  Scaling Factor.
+            * \returns this matrix, after scaling values down.
+            * Each element of this matrix is divided by
+            * the scaling factor.
+            */
+            Matrix &operator/=(T const &p) {
+                return scalar_div_by(p);
+            }
+
             /** Matrix Negate operation.
             * \returns self after negating elements.
             */
@@ -288,7 +336,7 @@ namespace Farsyte {
             return L += R;
         }
 
-        /** Addition Operator for Matrix-based Classes.
+        /** Subtraction Operator for Matrix-based Classes.
         * \param L  First operand for addition.
         * \param R  Second operand for addition.
         * \returns Matrix whose elements are the difference between corresponding input elements.
@@ -298,6 +346,43 @@ namespace Farsyte {
                 Matrix<Nc, Nr, T> L,
                 Matrix<Nc, Nr, T> const &R) {
             return L -= R;
+        }
+
+        /** Scalar Multiplication Operator for Matrix-based Classes.
+        * \param L  First operand for addition.
+        * \param R  Second operand for addition.
+        * \returns Matrix whose elements are the sum of corresponding input elements.
+        */
+        template<int Nc, int Nr, typename T>
+        inline Matrix<Nc, Nr, T> operator*(
+                Matrix<Nc, Nr, T> L,
+                T const &R) {
+            return L *= R;
+        }
+
+        /** Scalar Pre-Multiplication Operator for Matrix-based Classes.
+        * \param L  First operand for addition.
+        * \param R  Second operand for addition.
+        * \note: assumes multiplication (T*T) is commutative.
+        * \returns Matrix whose elements are the sum of corresponding input elements.
+        */
+        template<int Nc, int Nr, typename T>
+        inline Matrix<Nc, Nr, T> operator*(
+                T const &L,
+                Matrix<Nc, Nr, T> R) {
+            return R *= L;
+        }
+
+        /** Scalar Division Operator for Matrix-based Classes.
+        * \param L  First operand for addition.
+        * \param R  Second operand for addition.
+        * \returns Matrix whose elements are the difference between corresponding input elements.
+        */
+        template<int Nc, int Nr, typename T>
+        inline Matrix<Nc, Nr, T> operator/(
+                Matrix<Nc, Nr, T> L,
+                T const &R) {
+            return L /= R;
         }
 
         /** Negation Operator for Matrix-based Classes.
@@ -341,6 +426,88 @@ namespace Farsyte {
                 }
             }
             return X;
+        }
+
+        /** Matrix Multiply Special Case: 1xN by Nx1
+        * \param L  left operand for multiply.
+        * \param R  right operand for multiply.
+        * This version of multiply is used when the result
+        * would be a 1x1 matrix -- that is, when we are
+        * calculating the inner product of two colvecs
+        * by transposing the first.
+        * \returns the product of the matrices.
+        */
+        template<int Ni, typename T>
+        inline T
+        operator*(
+                Matrix<Ni, 1, T> const &L,
+                Matrix<1, Ni, T> const &R) {
+            T acc(L(0, 0) * R(0, 0));
+            for (int i = 1; i < Ni; ++i)
+                acc += L(0, i) * R(i, 0);
+            return acc;
+        }
+
+        /** Matrix Output Method.
+         * \param s  stream
+         * \param m  matrix to print
+         * \returns stream after printing matrix
+         * placeholder method for printing a matrix.
+         * I really need to provide a way to build
+         * up boxes of text that stack horizontally
+         * so matrices can be printed side by side.
+         */
+        template<int Nc, int Nr, typename T>
+        std::ostream &operator<<(std::ostream &s, Matrix<Nc, Nr, T> const &m) {
+            auto w = s.width();     // apply width to each element,
+            s << std::setw(1) << "[[" << std::setw(w) << m(0, 0);
+            for (int ci = 1; ci < Nc; ++ci)
+                s << "," << std::setw(w) << m(0, ci);
+            for (int ri = 1; ri < Nr; ++ri) {
+                s << "],[" << std::setw(w) << m(ri, 0);
+                for (int ci = 1; ci < Nc; ++ci)
+                    s << "," << std::setw(w) << m(ri, ci);
+            }
+            return s << "]]";
+        }
+
+        /** Column Vector Output Method.
+         * \param s  stream
+         * \param m  matrix to print
+         * \returns stream after printing matrix
+         * placeholder method for printing a matrix.
+         * I really need to provide a way to build
+         * up boxes of text that stack horizontally
+         * so matrices can be printed side by side.
+         * NOTE: the form "~[...]" is used to emphasize
+         * that the vector is the transpose of what
+         * has the visual appearance of a row vector.
+         */
+        template<int Nr, typename T>
+        std::ostream &operator<<(std::ostream &s, Matrix<1, Nr, T> const &m) {
+            auto w = s.width();     // apply width to each element,
+            s << std::setw(1) << "~[" << std::setw(w) << m(0, 0);
+            for (int ri = 1; ri < Nr; ++ri)
+                s << "," << std::setw(w) << m(ri, 0);
+            return s << "]";
+        }
+
+        /** Row Vector Output Method.
+         * \param s  stream
+         * \param m  matrix to print
+         * \returns stream after printing matrix
+         * placeholder method for printing a matrix.
+         * I really need to provide a way to build
+         * up boxes of text that stack horizontally
+         * so matrices can be printed side by side.
+         */
+        template<int Nc, typename T>
+        std::ostream &operator<<(std::ostream &s, Matrix<Nc, 1, T> const &m) {
+            auto w = s.width();     // apply width to each element,
+            s << std::setw(1) << "[" << std::setw(w) << m(0, 0);
+            for (int ci = 1; ci < Nc; ++ci)
+                s << "," << std::setw(w) << m(0, ci);
+            return s << "]";
         }
 
     }
