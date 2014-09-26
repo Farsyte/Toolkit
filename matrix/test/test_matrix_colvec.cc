@@ -32,18 +32,6 @@ using std::vector;
 /** Pick a type for a test vector. */
 typedef ColVec<4, int> ColVec4i;
 
-/** Pick a type for a test matrix */
-typedef Matrix<3, 2, int> Matrix23i;
-
-/** Type for transposed test matrix */
-typedef Matrix<2, 3, int> Matrix32i;
-
-/** Small square matrix for multiply testing */
-typedef Matrix<2, 2, int> Matrix22i;
-
-/** Large square matrix for multiply testing */
-typedef Matrix<3, 3, int> Matrix33i;
-
 
 template<typename T>
 int case_equals(
@@ -264,6 +252,29 @@ static int test_matrix_colvec_sub(Suite &s) {
             + case_equals(t, "Sub Negative", 9, 8, 7, 6, A - (-I));
 }
 
+static int test_matrix_colvec_mul(Suite &s) {
+
+    typedef ColVec4i::A IV;
+
+    Test t(s, "Product");
+
+    ColVec4i A = IV {9, 8, 7, 6};
+    ColVec4i I = IV {1, 2, 3, 4};
+
+    auto AIt = A * ~I;          // a 4x4 matrix
+    auto AtI = ~A * I;          // a 1x1 matrix
+
+    return 0
+      + t.eq(AIt.rows(), 4, "AIt number of rows")
+      + t.eq(AIt.cols(), 4, "AIt number of columns")
+      + t.eq(AIt.size(),16, "AIt number of elements")
+      + t.eq(AtI.rows(), 1, "AtI number of rows")
+      + t.eq(AtI.cols(), 1, "AtI number of columns")
+      + t.eq(AtI.size(), 1, "AtI number of elements")
+      + t.eq(AtI[0], 70, "dot(A,I) value")
+      ;      
+}
+
 static int test_matrix_colvec(Log &log) {
 
     /*
@@ -283,7 +294,8 @@ static int test_matrix_colvec(Log &log) {
             + test_matrix_colvec_ctor_eq_ne(s)
             + test_matrix_colvec_access(s)
             + test_matrix_colvec_add(s)
-            + test_matrix_colvec_sub(s);
+            + test_matrix_colvec_sub(s)
+            + test_matrix_colvec_mul(s);
 
 }
 
