@@ -262,16 +262,13 @@ static int test_matrix_colvec_mul(Suite &s) {
     ColVec4i I = IV {1, 2, 3, 4};
 
     auto AIt = A * ~I;          // a 4x4 matrix
-    auto AtI = ~A * I;          // a 1x1 matrix
+    auto AtI = ~A * I;          // an integer!
 
     return 0
       + t.eq(AIt.rows(), 4, "AIt number of rows")
       + t.eq(AIt.cols(), 4, "AIt number of columns")
       + t.eq(AIt.size(),16, "AIt number of elements")
-      + t.eq(AtI.rows(), 1, "AtI number of rows")
-      + t.eq(AtI.cols(), 1, "AtI number of columns")
-      + t.eq(AtI.size(), 1, "AtI number of elements")
-      + t.eq(AtI[0], 70, "dot(A,I) value")
+      + t.eq(AtI, 70, "dot(A,I) value")
       ;      
 }
 

@@ -343,6 +343,26 @@ namespace Farsyte {
             return X;
         }
 
+        /** Matrix Multiply Special Case: 1xN by Nx1
+        * \param L  left operand for multiply.
+        * \param R  right operand for multiply.
+        * This version of multiply is used when the result
+        * would be a 1x1 matrix -- that is, when we are
+        * calculating the inner product of two colvecs
+        * by transposing the first.
+        * \returns the product of the matrices.
+        */
+        template<int Ni, typename T>
+        inline T
+        operator*(
+                Matrix<Ni, 1, T> const &L,
+                Matrix<1, Ni, T> const &R) {
+            T acc(L(0,0)*R(0,0));
+            for (int i = 1; i < Ni; ++i)
+                acc += L(0,i)*R(i,0);
+            return acc;
+        }
+
     }
 }
 
