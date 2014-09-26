@@ -448,6 +448,15 @@ namespace Farsyte {
             return acc;
         }
 
+        /** Matrix Output Method.
+         * \param s  stream
+         * \param m  matrix to print
+         * \returns stream after printing matrix
+         * placeholder method for printing a matrix.
+         * I really need to provide a way to build
+         * up boxes of text that stack horizontally
+         * so matrices can be printed side by side.
+         */
         template<int Nc, int Nr, typename T>
         std::ostream &operator<<(std::ostream &s, Matrix<Nc, Nr, T> const &m) {
             auto w = s.width();     // apply width to each element,
@@ -462,22 +471,43 @@ namespace Farsyte {
             return s << "]]";
         }
 
+        /** Column Vector Output Method.
+         * \param s  stream
+         * \param m  matrix to print
+         * \returns stream after printing matrix
+         * placeholder method for printing a matrix.
+         * I really need to provide a way to build
+         * up boxes of text that stack horizontally
+         * so matrices can be printed side by side.
+         * NOTE: the form "~[...]" is used to emphasize
+         * that the vector is the transpose of what
+         * has the visual appearance of a row vector.
+         */
         template<int Nr, typename T>
         std::ostream &operator<<(std::ostream &s, Matrix<1, Nr, T> const &m) {
             auto w = s.width();     // apply width to each element,
-            s << std::setw(1) << "[" << std::setw(w) << m(0, 0);
+            s << std::setw(1) << "~[" << std::setw(w) << m(0, 0);
             for (int ri = 1; ri < Nr; ++ri)
                 s << "," << std::setw(w) << m(ri, 0);
             return s << "]";
         }
 
+        /** Row Vector Output Method.
+         * \param s  stream
+         * \param m  matrix to print
+         * \returns stream after printing matrix
+         * placeholder method for printing a matrix.
+         * I really need to provide a way to build
+         * up boxes of text that stack horizontally
+         * so matrices can be printed side by side.
+         */
         template<int Nc, typename T>
         std::ostream &operator<<(std::ostream &s, Matrix<Nc, 1, T> const &m) {
             auto w = s.width();     // apply width to each element,
             s << std::setw(1) << "[" << std::setw(w) << m(0, 0);
             for (int ci = 1; ci < Nc; ++ci)
                 s << "," << std::setw(w) << m(0, ci);
-            return s << "]'";
+            return s << "]";
         }
 
     }
