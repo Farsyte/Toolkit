@@ -11,6 +11,7 @@
 #include "matrix_matrix.hh"
 #include "matrix_colvec.hh"
 #include "matrix_trivec.hh"
+#include "matrix_quat.hh"
 
 #include <vector>
 

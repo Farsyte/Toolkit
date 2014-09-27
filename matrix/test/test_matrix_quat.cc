@@ -1,5 +1,7 @@
-#include "matrix.h"
-#include "testing.h"
+#include "matrix.hh"
+#include "testing.hh"
+
+#include <fstream>
 
 #include <assert.h>
 
@@ -7,13 +9,19 @@ using Farsyte::Testing::Log;
 using Farsyte::Testing::Suite;
 using Farsyte::Testing::Test;
 
+using Farsyte::Matrix::Quat;
+
 using std::ofstream;
 using std::cerr;
 using std::endl;
 using std::setw;
 
 static int test_matrix_quat_ctor(Suite &s) {
-    Test T(s, "Construct without Exceptions");
+    Test t(s, "Construct without Exceptions");
+
+    Quat D;
+
+    t.pass("Quat constructor did not throw an exception.");
 
     return 0
         ;
