@@ -5,7 +5,7 @@ BEGIN {
     bad = 0
     semi = 0
     hi = 10
-    lo = 5
+    lo = 3
 
     sorter = "sort -k1,1nr -k2,2nr -k3nr -k5nr -k6df"
 }
