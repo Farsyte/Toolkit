@@ -38,7 +38,8 @@ namespace Farsyte {
         }
 
         ostream &operator<<(ostream &s, TriVec const &v) {
-            auto w = s.width();     // apply width to each element,
+            int w = (int)
+                    s.width();
             return
                     s << setw(1) << "["   // not to the leading bracket!
                             << setw(w) << v[0] << ","
