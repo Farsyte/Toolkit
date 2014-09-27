@@ -1,7 +1,6 @@
 #include "matrix_quat.hh"
 
 #include <sstream>
-#include <iomanip>
 
 using std::ostringstream;
 using std::ostream;
@@ -11,13 +10,21 @@ using std::string;
 namespace Farsyte {
     namespace Matrix {
 
-        Quat::Quat() {
+        Quat::Quat()
+                : w(0), v() {
         }
 
-        ostream &operator<<(ostream &s, Quat const &v) {
-            auto w = s.width();     // apply width to each element,
+        Quat::Quat(double iw, TriVec const &iv)
+                : w(iw), v(iv) {
+        }
+
+        ostream &operator<<(ostream &s, Quat const &q) {
+            int w = (int)
+                    s.width();
             return
-                    s << setw(1) << "<"   // not to the leading bracket!
+                    s << setw(1) << "<"
+                            << setw(w) << q.scalar() << ","
+                            << setw(w) << q.vector()
                             << ">";
         }
 

@@ -10,24 +10,67 @@ using Farsyte::Testing::Suite;
 using Farsyte::Testing::Test;
 
 using Farsyte::Matrix::Quat;
+using Farsyte::Matrix::TriVec;
 
 using std::ofstream;
 using std::cerr;
 using std::endl;
 using std::setw;
 
-static int test_matrix_quat_ctor(Suite &s) {
-    Test t(s, "Construct without Exceptions");
+static int test_matrix_quat_ctor_access(Suite &s) {
+    int ec = 0;
 
-    Quat D;
+    {
+        Test t(s, "Default Constructor");
+        const Quat Q;
+        ec += t.eq(Q.scalar(), 0, "Scalar part of Quat::Quat()");
+        ec += t.eq(Q.vector(), TriVec{0, 0, 0}, "Scalar part of Quat::Quat()");
+    }
+    {
+        Test t(s, "Quat{0,{0,0,0}}");
+        const Quat Q{0, {0, 0, 0}};
+        ec += t.eq(Q.scalar(), 0, "Scalar part of Quat{0,{0,0,0}}");
+        ec += t.eq(Q.vector(), TriVec{0, 0, 0}, "Scalar part of Quat{0,{0,0,0}}");
+    }
+    {
+        Test t(s, "Quat{1,{0,0,0}}");
+        const Quat Q{1, {0, 0, 0}};
+        ec += t.eq(Q.scalar(), 1, "Scalar part of Quat{1,{0,0,0}}");
+        ec += t.eq(Q.vector(), TriVec{0, 0, 0}, "Scalar part of Quat{1,{0,0,0}}");
+    }
+    {
+        Test t(s, "Quat{0,{1,0,0}}");
+        const Quat Q{0, {1, 0, 0}};
+        ec += t.eq(Q.scalar(), 0, "Scalar part of Quat{0,{1,0,0}}");
+        ec += t.eq(Q.vector(), TriVec{1, 0, 0}, "Scalar part of Quat{0,{1,0,0}}");
+    }
+    {
+        Test t(s, "Quat{0,{0,1,0}}");
+        const Quat Q{0, {0, 1, 0}};
+        ec += t.eq(Q.scalar(), 0, "Scalar part of Quat{0,{0,1,0}}");
+        ec += t.eq(Q.vector(), TriVec{0, 1, 0}, "Scalar part of Quat{0,{0,1,0}}");
+    }
+    {
+        Test t(s, "Quat{0,{0,0,1}}");
+        const Quat Q{0, {0, 0, 1}};
+        ec += t.eq(Q.scalar(), 0, "Scalar part of Quat{0,{0,0,1}}");
+        ec += t.eq(Q.vector(), TriVec{0, 0, 1}, "Scalar part of Quat{0,{0,0,1}}");
+    }
+    {
+        Test t(s, "Mutability");
+        Quat Q{1, {2, 3, 4}};
+        TriVec V{5, 6, 7};
+        Q.vector() = V;
+        Q.vector()[1] = Q.scalar();
+        Q.scalar() = Q.vector()[2];
+        ec += t.eq(Q.scalar(), 7, "Scalar part of modified Quat");
+        ec += t.eq(Q.vector(), TriVec{5, 1, 7}, "Scalar part of modified Quat");
+    }
 
-    t.pass("Quat constructor did not throw an exception.");
-
-    return 0
-        ;
+    return ec;
 }
 
-static int test_matrix_quat(Log & log) {
+static int test_matrix_quat(Log &log) {
 
     /*
     ** Tests specific to the Quat Class
@@ -42,15 +85,14 @@ static int test_matrix_quat(Log & log) {
     */
 
     return 0
-            + test_matrix_quat_ctor(s)
-            ;
+            + test_matrix_quat_ctor_access(s);
 
 }
 
 
 /* -- ================================================================ -- */
 
-static int test_matrix(Log & log) {
+static int test_matrix(Log &log) {
     /*
     ** return convention: 0 is success, nonzero is failure.
     ** The subtests of this unit are sequentially independent;

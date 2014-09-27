@@ -8,6 +8,8 @@
 * definitions for C code using this Matrix library.
 */
 
+#include "matrix_trivec.hh"
+
 #include <iostream>
 
 namespace Farsyte {
@@ -20,8 +22,9 @@ namespace Farsyte {
         * hypercomplex number comprising a real scalar
         * part and a complex vector part.
         */
-        class Quat
-        {
+        class Quat {
+            double w;
+            TriVec v;
         public:
 
             /** Quat Default Constructor.
@@ -30,6 +33,36 @@ namespace Farsyte {
             * specified via a different constructor.
             */
             Quat();
+
+            /** Quat Constructor for Given Value.
+            */
+            Quat(double iw, TriVec const &iv);
+
+            /** Access (read-only) to Scalar Part.
+            */
+            double const &scalar() const {
+                return w;
+            }
+
+            /** Access (mutable) to Scalar Part.
+            *
+            */
+            double &scalar() {
+                return w;
+            }
+
+            /** Access (read-only) to Vector Part.
+            */
+            TriVec const &vector() const {
+                return v;
+            }
+
+            /** Access (mutable) to Vector Part.
+            *
+            */
+            TriVec &vector() {
+                return v;
+            }
         };
 
         /** Stream Output Operation.
