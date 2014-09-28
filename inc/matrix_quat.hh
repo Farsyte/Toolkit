@@ -63,7 +63,32 @@ namespace Farsyte {
             TriVec &vector() {
                 return v;
             }
+
+            /** Equality Comparison Operation.
+            */
+            bool eq(Quat const &that) const {
+                return (w == that.w) && (v == that.v);
+            }
+
+            /** Inequality Comparison Operation.
+            */
+            bool ne(Quat const &that) const {
+                return (w != that.w) || (v != that.v);
+            }
+
         };
+
+        /** Quat Equality Operator
+        */
+        inline bool operator==(Quat const &p, Quat const &q) {
+            return p.eq(q);
+        }
+
+        /** Quat Equality Operator
+        */
+        inline bool operator!=(Quat const &p, Quat const &q) {
+            return p.ne(q);
+        }
 
         /** Stream Output Operation.
         */
