@@ -10,14 +10,6 @@ using std::string;
 namespace Farsyte {
     namespace Matrix {
 
-        Quat::Quat()
-                : w(0), v() {
-        }
-
-        Quat::Quat(double iw, TriVec const &iv)
-                : w(iw), v(iv) {
-        }
-
         ostream &operator<<(ostream &s, Quat const &q) {
             int w = (int)
                     s.width();

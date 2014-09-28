@@ -32,11 +32,15 @@ namespace Farsyte {
             * to zero when they are constructed, if no initial value is
             * specified via a different constructor.
             */
-            Quat();
+            Quat()
+                    : w(0), v() {
+            }
 
             /** Quat Constructor for Given Value.
             */
-            Quat(double iw, TriVec const &iv);
+            Quat(double iw, TriVec const &iv)
+                    : w(iw), v(iv) {
+            }
 
             /** Access (read-only) to Scalar Part.
             */
