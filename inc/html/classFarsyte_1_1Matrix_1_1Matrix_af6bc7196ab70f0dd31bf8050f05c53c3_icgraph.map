@@ -5,5 +5,7 @@
 <area shape="rect" id="node5" href="$classFarsyte_1_1Matrix_1_1Matrix.html#a54d7caa0fa5feb028cf94f00eaaa26df" title="Matrix Diagonal Constructor. " alt="" coords="231,201,396,243"/>
 <area shape="rect" id="node6" href="$classFarsyte_1_1Matrix_1_1Matrix.html#aaa03092a83ca5092706a056ddd738e0c" title="Matrix Negate operation. " alt="" coords="229,267,397,308"/>
 <area shape="rect" id="node7" href="$classFarsyte_1_1Matrix_1_1Matrix.html#a8f0816c4f4298663d76603fcbd05f7f3" title="Matrix Subscripting Operator. " alt="" coords="221,332,405,373"/>
-<area shape="rect" id="node8" href="$classFarsyte_1_1Matrix_1_1Matrix.html#acf81c36d4e39bcfcf512bd2962a49656" title="Matrix Transpose operation. " alt="" coords="220,397,407,439"/>
+<area shape="rect" id="node8" href="$classFarsyte_1_1Matrix_1_1Matrix.html#a0fb649b7fa00745faacb679d0da5d0c7" title="Matrix Scalar Divide operation. " alt="" coords="231,397,395,453"/>
+<area shape="rect" id="node9" href="$classFarsyte_1_1Matrix_1_1Matrix.html#a169a64feb2ffb1694bad18c084ea6b79" title="Matrix Scalar Multiply operation. " alt="" coords="231,477,395,533"/>
+<area shape="rect" id="node10" href="$classFarsyte_1_1Matrix_1_1Matrix.html#acf81c36d4e39bcfcf512bd2962a49656" title="Matrix Transpose operation. " alt="" coords="220,556,407,597"/>
 </map>

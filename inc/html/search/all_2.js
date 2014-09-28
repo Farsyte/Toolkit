@@ -1,7 +1,7 @@
 var searchData=
 [
   ['cancel',['cancel',['../classFarsyte_1_1Testing_1_1Oops.html#af283e08b8639fe566f898556f51f7446',1,'Farsyte::Testing::Oops']]],
-  ['colme',['ColMe',['../classFarsyte_1_1Matrix_1_1ThreeVec.html#acf2f39db587ec62ebe196fdce05bb637',1,'Farsyte::Matrix::ThreeVec']]],
+  ['colme',['ColMe',['../classFarsyte_1_1Matrix_1_1TriVec.html#a8cdd962d0e7e13f6332c99fc93ad23d6',1,'Farsyte::Matrix::TriVec']]],
   ['cols',['cols',['../classFarsyte_1_1Matrix_1_1Matrix.html#a7ee7f9f4781cec54c49140bcc3844e2b',1,'Farsyte::Matrix::Matrix']]],
   ['colvec',['ColVec',['../classFarsyte_1_1Matrix_1_1ColVec.html#acf56d19c3fa57af0caeb91196e5fbd81',1,'Farsyte::Matrix::ColVec::ColVec(A const &amp;a)'],['../classFarsyte_1_1Matrix_1_1ColVec.html#abd24c9814ff43c86de1002bb73a40734',1,'Farsyte::Matrix::ColVec::ColVec(MatMe const &amp;c)']]],
   ['colvec',['ColVec',['../classFarsyte_1_1Matrix_1_1ColVec.html',1,'Farsyte::Matrix']]],

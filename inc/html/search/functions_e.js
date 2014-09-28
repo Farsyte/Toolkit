@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['_7elog',['~Log',['../classFarsyte_1_1Testing_1_1Log.html#a6fcf2b4f163447ddd6fd509e0ed7b7dd',1,'Farsyte::Testing::Log']]],
-  ['_7eoops',['~Oops',['../classFarsyte_1_1Testing_1_1Oops.html#a45a21443285a8bd83afb99ddf6290884',1,'Farsyte::Testing::Oops']]],
-  ['_7esuite',['~Suite',['../classFarsyte_1_1Testing_1_1Suite.html#a66cb6ec56755bacc532da0d39c1f0a83',1,'Farsyte::Testing::Suite']]],
-  ['_7etest',['~Test',['../classFarsyte_1_1Testing_1_1Test.html#adb47425952f80a62a8fc78880f162544',1,'Farsyte::Testing::Test']]]
+  ['test',['Test',['../classFarsyte_1_1Testing_1_1Test.html#ac870fe294bee3bd4b43b70ab7c0fa950',1,'Farsyte::Testing::Test']]],
+  ['transpose',['transpose',['../classFarsyte_1_1Matrix_1_1Matrix.html#acf81c36d4e39bcfcf512bd2962a49656',1,'Farsyte::Matrix::Matrix']]],
+  ['trivec',['TriVec',['../classFarsyte_1_1Matrix_1_1TriVec.html#a289d68d75af17ab4519e8d0289685b15',1,'Farsyte::Matrix::TriVec::TriVec()'],['../classFarsyte_1_1Matrix_1_1TriVec.html#a27e258028790f9edfc8290f572ab5449',1,'Farsyte::Matrix::TriVec::TriVec(double x, double y, double z)'],['../classFarsyte_1_1Matrix_1_1TriVec.html#abfb2f3a771610843dde34044f2bcaada',1,'Farsyte::Matrix::TriVec::TriVec(MatMe const &amp;p)']]]
 ];

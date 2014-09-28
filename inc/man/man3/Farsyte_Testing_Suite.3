@@ -1,4 +1,4 @@
-.TH "Farsyte::Testing::Suite" 3 "Mon Sep 22 2014" "The Farsyte Toolkit" \" -*- nroff -*-
+.TH "Farsyte::Testing::Suite" 3 "Sat Sep 27 2014" "The Farsyte Toolkit" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -10,7 +10,7 @@ The \fBSuite\fP Object\&.
 .br
 .PP
 .PP
-\fC#include <testing_suite\&.h>\fP
+\fC#include <testing_suite\&.hh>\fP
 .SS "Public Member Functions"
 
 .in +1c
@@ -73,7 +73,7 @@ The \fBSuite\fP Object\&.
 
 The \fBSuite\fP object constructor writes appropraite opening text to the XML output stream\&. The destructor writes appropriate text to the XML stream to close the XML element corresponding to the suite\&. It is an error to construct a \fBSuite\fP object for a \fBLog\fP that currently has an active \fBSuite\fP object; be sure that each \fBSuite\fP object goes out of scope before the next one is constructed\&. 
 .PP
-Definition at line 27 of file testing_suite\&.h\&.
+Definition at line 27 of file testing_suite\&.hh\&.
 .SH "Constructor & Destructor Documentation"
 .PP 
 .SS "Farsyte::Testing::Suite::Suite (\fBLog\fP &ref, std::string const &name)"

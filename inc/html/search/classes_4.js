@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['suite',['Suite',['../classFarsyte_1_1Testing_1_1Suite.html',1,'Farsyte::Testing']]]
+  ['quat',['Quat',['../classFarsyte_1_1Matrix_1_1Quat.html',1,'Farsyte::Matrix']]]
 ];

@@ -1,4 +1,4 @@
-.TH "Farsyte::Testing::Test" 3 "Mon Sep 22 2014" "The Farsyte Toolkit" \" -*- nroff -*-
+.TH "Farsyte::Testing::Test" 3 "Sat Sep 27 2014" "The Farsyte Toolkit" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -10,7 +10,7 @@ The \fBTest\fP object\&.
 .br
 .PP
 .PP
-\fC#include <testing_test\&.h>\fP
+\fC#include <testing_test\&.hh>\fP
 .PP
 Inherits ostringstream\&.
 .SS "Public Member Functions"
@@ -40,6 +40,14 @@ Inherits ostringstream\&.
 .RI "\fB~Test\fP ()"
 .br
 .RI "\fI\fBSuite\fP Destructor\&. \fP"
+.ti -1c
+.RI "int \fBis_T\fP (int cond, std::string const &msg)"
+.br
+.RI "\fICommon \fBTest\fP Case: Condition True\&. \fP"
+.ti -1c
+.RI "int \fBis_F\fP (int cond, std::string const &msg)"
+.br
+.RI "\fICommon \fBTest\fP Case: Condition True\&. \fP"
 .ti -1c
 .RI "template<typename T , typename U > int \fBeq\fP (T obs, U exp, std::string const &msg)"
 .br
@@ -83,7 +91,7 @@ The \fBTest\fP object constructor writes appropriate opening text to the XML fil
 .PP
 Data sent to this object using the \fC<<\fP operator will be formatted appropriately and displayed by Bamboo as supporting text in appropriate reporting conditions\&. 
 .PP
-Definition at line 34 of file testing_test\&.h\&.
+Definition at line 34 of file testing_test\&.hh\&.
 .SH "Constructor & Destructor Documentation"
 .PP 
 .SS "Farsyte::Testing::Test::Test (\fBSuite\fP &ref, std::string const &name)"
@@ -130,7 +138,7 @@ Register a \fBTest\fP FAIL\&.
 .PP
 Sends text to the XML log indicating that a test condition has failed, as described in the parameter string\&. Any accumulated text sent to the \fBTest\fP object with the C++ \fC<<\fP operator will be included in the FAIL object as supporting text\&. 
 .PP
-Referenced by eq(), and ge()\&.
+Referenced by is_F(), and is_T()\&.
 .SS "void Farsyte::Testing::Test::pass (std::string const &cond)"
 
 .PP
@@ -143,7 +151,7 @@ Register a \fBTest\fP PASS\&.
 .PP
 Mark that a test condition has PASSED\&. There is no XML output for Bamboo in this case\&. The purpose of this call is to correctly assocaite any supporting text sent to the \fBTest\fP object with this PASSING condition rather than including it in a subsequent fail, skip, or error\&. 
 .PP
-Referenced by eq(), and ge()\&.
+Referenced by is_F(), and is_T()\&.
 .SS "void Farsyte::Testing::Test::skip (std::string const &cond)"
 
 .PP
@@ -162,25 +170,25 @@ Sends text to the XML log indicating that a test condition has been skipped, as 
 .PP
 number of ERROR reports for this test\&. 
 .PP
-Definition at line 50 of file testing_test\&.h\&.
+Definition at line 50 of file testing_test\&.hh\&.
 .SS "int Farsyte::Testing::Test::fails"
 
 .PP
 number of FAIL reports for this test\&. 
 .PP
-Definition at line 44 of file testing_test\&.h\&.
+Definition at line 44 of file testing_test\&.hh\&.
 .SS "\fBSuite\fP& Farsyte::Testing::Test::ref"
 
 .PP
 \fBTest\fP \fBSuite\fP associated with this \fBTest\fP\&. 
 .PP
-Definition at line 38 of file testing_test\&.h\&.
+Definition at line 38 of file testing_test\&.hh\&.
 .SS "int Farsyte::Testing::Test::skips"
 
 .PP
 number of SKIP reports for this test\&. 
 .PP
-Definition at line 47 of file testing_test\&.h\&.
+Definition at line 47 of file testing_test\&.hh\&.
 
 .SH "Author"
 .PP 

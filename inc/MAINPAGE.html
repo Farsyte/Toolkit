@@ -1,106 +1,105 @@
 <p>Documentation for the publicly exported interfaces
-    to the libraries provided by the Farsyte Toolkit.</p>
+to the libraries provided by the Farsyte Toolkit.</p>
 
 <h2>A Note on Namespaces</h2>
 
 <p>All interfaces live within the <code>Farsyte</code> namespace, to avoid
-    collisions with simiarly named things defined elsewhere.</p>
+collisions with simiarly named things defined elsewhere.</p>
 
 <h1>Header File Overview</h1>
 
-<h2>Farsyte::Utility "utility.h"</h2>
+<h2>Farsyte::Utility "utility.hh"</h2>
 
-<p>The <code>utility.h</code> header collects general utility code that
-    is not associated with any of the larger packages within
-    the toolkit project. This could be code that is shared
-    across multiple packages (without an obvious owner), or it
-    could be entire packages that are simply too small to
-    warrant tracking as their own library.</p>
+<p>The <code>utility.hh</code> header collects general utility code that
+is not associated with any of the larger packages within
+the toolkit project. This could be code that is shared
+across multiple packages (without an obvious owner), or it
+could be entire packages that are simply too small to
+warrant tracking as their own library.</p>
 
 <h2>Farsyte::Testing "testing.h"</h2>
 
-<p>The <code>testing.h</code> header provides declarations for the API
-    for the library that is used to record test results in a
-    form that allows an automated build system (currently the
-    Bamboo continuous intergration system from Atlassian) to
-    track testing results.</p>
+<p>The <code>testing.hh</code> header provides declarations for the API
+for the library that is used to record test results in a
+form that allows an automated build system (currently the
+Bamboo continuous intergration system from Atlassian) to
+track testing results.</p>
 
 <p>The <code>Testing</code> Library implements four classes:</p>
 
 <ul>
-    <li><p>The <a href="classFarsyte_1_1Testing_1_1Oops.html">Oops</a> class
-        is the base class for exceptions thrown within
-        the <code>Testing</code> library representing failures of
-        the library or failure to follow the requirements
-        of the library when calling it.</p></li>
-    <li><p>The <a href="classFarsyte_1_1Testing_1_1Test.html">Test</a> class
-        represents a single test, counting as one test when presenting
-        counts of tests passed or failed. Tests may indicate one or more
-        conditions that fail or were skipped, with supporting text, as
-        well as errors occurring in the testing process.
-        It is not uncommon for a Test to correspond to a single method
-        name within a class, and for the code to test various aspects of
-        the method in sequence.
-        If two Test objects have the same test name and the same suite
-        name, their results will be combined during reporting.</p></li>
-    <li><p>The <a href="classFarsyte_1_1Testing_1_1Suite.html">Suite</a> class
-        represents a collection of Test objects that are logically
-        related; tests with the same Suite name are grouped together when
-        reporting summaries of test results.
-        It is not uncommon for a Suite to correspond to a single Class to
-        be tested within a library.
-        If two Suite objects have the same name, their results will be
-        combined during reporting (even if they come from tests in quite
-        different subprojects). Risks associated with this can be
-        mitigated by assuring that class names are distinct between
-        subprojects of a superproject, when tests are run across the
-        entire superproject as a unit.</p></li>
-    <li><p>The <a href="classFarsyte_1_1Testing_1_1Log.html">Log</a> class
-        corresponds to a single stream of test output produced by
-        sequentially running a series test suites, each of which
-        sequentially runs a series of test cases. Note that the Log class
-        allows test programs to have multiple Log objects open at once,
-        allowing a test program to persue multiple test series in parallel
-        if this is appropriate and useful.</p></li>
+<li><p>The <a href="classFarsyte_1_1Testing_1_1Oops.html">Oops</a> class
+is the base class for exceptions thrown within
+the <code>Testing</code> library representing failures of
+the library or failure to follow the requirements
+of the library when calling it.</p></li>
+<li><p>The <a href="classFarsyte_1_1Testing_1_1Test.html">Test</a> class
+represents a single test, counting as one test when presenting
+counts of tests passed or failed. Tests may indicate one or more
+conditions that fail or were skipped, with supporting text, as
+well as errors occurring in the testing process.
+It is not uncommon for a Test to correspond to a single method
+name within a class, and for the code to test various aspects of
+the method in sequence.
+If two Test objects have the same test name and the same suite
+name, their results will be combined during reporting.</p></li>
+<li><p>The <a href="classFarsyte_1_1Testing_1_1Suite.html">Suite</a> class
+represents a collection of Test objects that are logically
+related; tests with the same Suite name are grouped together when
+reporting summaries of test results.
+It is not uncommon for a Suite to correspond to a single Class to
+be tested within a library.
+If two Suite objects have the same name, their results will be
+combined during reporting (even if they come from tests in quite
+different subprojects). Risks associated with this can be
+mitigated by assuring that class names are distinct between
+subprojects of a superproject, when tests are run across the
+entire superproject as a unit.</p></li>
+<li><p>The <a href="classFarsyte_1_1Testing_1_1Log.html">Log</a> class
+corresponds to a single stream of test output produced by
+sequentially running a series test suites, each of which
+sequentially runs a series of test cases. Note that the Log class
+allows test programs to have multiple Log objects open at once,
+allowing a test program to persue multiple test series in parallel
+if this is appropriate and useful.</p></li>
 </ul>
 
-<h2>Farsyte::Matrix "matrix.h"</h2>
+<h2>Farsyte::Matrix "matrix.hh"</h2>
 
 <p>Matrix math is provided as a genearlized template for dense
-    rectangular matrices, a derived template for working with column
-    vectors, and a class representing a position in a three dimensional
-    state space (such as distance north, east, and above the flagpole).</p>
+rectangular matrices, a derived template for working with column
+vectors, and a class representing a position in a three dimensional
+state space (such as distance north, east, and above the flagpole).</p>
 
 <p>The <code>Matrix</code> Library implements two templates and one class:</p>
 
 <ul>
-    <li><p>The <a href="classFarsyte_1_1Matrix_1_1Matrix.html">Matrix</a> class
-        template supports dense rectangular matrices with any small
-        positive integer number of rows and columns, containing data
-        elements of any data type that supports the desired operations.
-        This class currently provides class methods retrieving the
-        dimensions of the matrix, and member methods providing the
-        operations listed here. More operations will be added once I am
-        happy with code quality, test coverage, and documentation for
-        these operations:</p>
+<li><p>The <a href="classFarsyte_1_1Matrix_1_1Matrix.html">Matrix</a> class
+template supports dense rectangular matrices with any small
+positive integer number of rows and columns, containing data
+elements of any data type that supports the desired operations.
+This class currently provides class methods retrieving the
+dimensions of the matrix, and member methods providing the
+operations listed here.  More operations will be added once I am
+happy with code quality, test coverage, and documentation for
+these operations:</p>
 
-        <ul>
-            <li>Initialization</li>
-            <li>Addition</li>
-            <li>Difference</li>
-            <li>Negation</li>
-            <li>Transpose</li>
-        </ul>
-    </li>
-    <li><p>The <a href="classFarsyte_1_1Matrix_1_1Colvec.html">ColVec</a> class template
-        is a proxy class providing the obvious API adjustments to use
-        for column vectors, which are simply a one-column matrix.
-        The API differences mainly involve not having to redundantly
-        specify column numbers when working with a ColVec class.</p></li>
-    <li><p>The <a href="classFarsyte_1_1Matrix_1_1ThreeVec.html">ThreeVec</a> class
-        likewise provides for a three-element column vector such as might
-        be used to represent a Position (north, east and above the
-        flagpole), Velocity, Direction, and so on.
-        The <code>ThreeVec</code> class adds the Cross Product operation, which is
-        not provided for general Matrix and Column Vector objects.</p></li>
+<ul>
+<li>Initialization</li>
+<li>Addition</li>
+<li>Difference</li>
+<li>Negation</li>
+<li>Transpose</li>
+</ul></li>
+<li><p>The <a href="classFarsyte_1_1Matrix_1_1Colvec.html">ColVec</a> class template
+is a proxy class providing the obvious API adjustments to use
+for column vectors, which are simply a one-column matrix.
+The API differences mainly involve not having to redundantly
+specify column numbers when working with a ColVec class.</p></li>
+<li><p>The <a href="classFarsyte_1_1Matrix_1_1TriVec.html">TriVec</a> class
+likewise provides for a three-element column vector such as might
+be used to represent a Position (north, east and above the
+flagpole), Velocity, Direction, and so on.
+The <code>TriVec</code> class adds the Cross Product operation, which is
+not provided for general Matrix and Column Vector objects.</p></li>
 </ul>

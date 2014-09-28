@@ -1,17 +1,13 @@
 var searchData=
 [
-  ['test',['Test',['../classFarsyte_1_1Testing_1_1Test.html',1,'Farsyte::Testing']]],
-  ['test',['Test',['../classFarsyte_1_1Testing_1_1Test.html#ac870fe294bee3bd4b43b70ab7c0fa950',1,'Farsyte::Testing::Test']]],
-  ['testing_2eh',['testing.h',['../testing_8h.html',1,'']]],
-  ['testing_5flog_2eh',['testing_log.h',['../testing__log_8h.html',1,'']]],
-  ['testing_5foops_2eh',['testing_oops.h',['../testing__oops_8h.html',1,'']]],
-  ['testing_5fsuite_2eh',['testing_suite.h',['../testing__suite_8h.html',1,'']]],
-  ['testing_5ftest_2eh',['testing_test.h',['../testing__test_8h.html',1,'']]],
-  ['tests',['tests',['../classFarsyte_1_1Testing_1_1Log.html#a0edae7731dedfbffc85e83abe4858236',1,'Farsyte::Testing::Log::tests()'],['../classFarsyte_1_1Testing_1_1Suite.html#a0d39a688132c807deeffcdf069ef1315',1,'Farsyte::Testing::Suite::tests()']]],
-  ['threevec',['ThreeVec',['../classFarsyte_1_1Matrix_1_1ThreeVec.html',1,'Farsyte::Matrix']]],
-  ['threevec',['ThreeVec',['../classFarsyte_1_1Matrix_1_1ThreeVec.html#a312761e1a88318a96e270038984808cb',1,'Farsyte::Matrix::ThreeVec::ThreeVec()'],['../classFarsyte_1_1Matrix_1_1ThreeVec.html#a1f239356734bf4f9d73c8fcdce05e4ee',1,'Farsyte::Matrix::ThreeVec::ThreeVec(double x, double y, double z)'],['../classFarsyte_1_1Matrix_1_1ThreeVec.html#a1e1d5ece640543ad192c502308dd6135',1,'Farsyte::Matrix::ThreeVec::ThreeVec(MatMe const &amp;p)']]],
-  ['total_5ferrors',['total_errors',['../classFarsyte_1_1Testing_1_1Log.html#a0edf1175cc8d6edb6724eef63758ec34',1,'Farsyte::Testing::Log::total_errors()'],['../classFarsyte_1_1Testing_1_1Suite.html#a5299f3fc765d1c87b13668c40223fe42',1,'Farsyte::Testing::Suite::total_errors()']]],
-  ['total_5ffails',['total_fails',['../classFarsyte_1_1Testing_1_1Log.html#a7331e468fa58f179db50e09de4fb56b9',1,'Farsyte::Testing::Log::total_fails()'],['../classFarsyte_1_1Testing_1_1Suite.html#a99a235cc760992ae09900325428f91aa',1,'Farsyte::Testing::Suite::total_fails()']]],
-  ['total_5fskips',['total_skips',['../classFarsyte_1_1Testing_1_1Log.html#a5fc409e80cb69b3f9bb1f6085c442f9d',1,'Farsyte::Testing::Log::total_skips()'],['../classFarsyte_1_1Testing_1_1Suite.html#a722376b404d0676c7b5b6a8c8f5a73d2',1,'Farsyte::Testing::Suite::total_skips()']]],
-  ['transpose',['transpose',['../classFarsyte_1_1Matrix_1_1Matrix.html#acf81c36d4e39bcfcf512bd2962a49656',1,'Farsyte::Matrix::Matrix']]]
+  ['scalar',['scalar',['../classFarsyte_1_1Matrix_1_1Quat.html#aee1c7d683d9e9412e9b2fddd3c752241',1,'Farsyte::Matrix::Quat::scalar() const '],['../classFarsyte_1_1Matrix_1_1Quat.html#a4a41773a7b1f5552d8ddd8919a9301d0',1,'Farsyte::Matrix::Quat::scalar()']]],
+  ['scalar_5fdiv_5fby',['scalar_div_by',['../classFarsyte_1_1Matrix_1_1Matrix.html#a0fb649b7fa00745faacb679d0da5d0c7',1,'Farsyte::Matrix::Matrix']]],
+  ['scalar_5fmul_5fby',['scalar_mul_by',['../classFarsyte_1_1Matrix_1_1Matrix.html#a169a64feb2ffb1694bad18c084ea6b79',1,'Farsyte::Matrix::Matrix']]],
+  ['size',['size',['../classFarsyte_1_1Matrix_1_1Matrix.html#a048d5059045016ac558eaf3c3b3a8fce',1,'Farsyte::Matrix::Matrix']]],
+  ['skip',['skip',['../classFarsyte_1_1Testing_1_1Test.html#a335d329f2e225b277f63013bb34c4ec2',1,'Farsyte::Testing::Test']]],
+  ['skipped_5ftests',['skipped_tests',['../classFarsyte_1_1Testing_1_1Log.html#a0448ef00eb6535ad40f4d11192839adb',1,'Farsyte::Testing::Log::skipped_tests()'],['../classFarsyte_1_1Testing_1_1Suite.html#a46735fc18f04c8dc1cc1ac31589852da',1,'Farsyte::Testing::Suite::skipped_tests()']]],
+  ['skips',['skips',['../classFarsyte_1_1Testing_1_1Test.html#ae071aaefc6bfbf707215b066e2993df7',1,'Farsyte::Testing::Test']]],
+  ['suite',['Suite',['../classFarsyte_1_1Testing_1_1Suite.html',1,'Farsyte::Testing']]],
+  ['suite',['Suite',['../classFarsyte_1_1Testing_1_1Suite.html#a85d3f7c88c58e92c4eb40333dc553245',1,'Farsyte::Testing::Suite']]],
+  ['suites',['suites',['../classFarsyte_1_1Testing_1_1Log.html#a220cfe47414d2f06d58eca2e460e9f51',1,'Farsyte::Testing::Log']]]
 ];

@@ -1,13 +1,14 @@
 var files =
-    [
-        ["matrix.h", "matrix_8h.html", "matrix_8h"],
-        ["matrix_colvec.h", "matrix__colvec_8h.html", "matrix__colvec_8h"],
-        ["matrix_matrix.h", "matrix__matrix_8h.html", "matrix__matrix_8h"],
-        ["matrix_threevec.h", "matrix__threevec_8h.html", "matrix__threevec_8h"],
-        ["testing.h", "testing_8h.html", "testing_8h"],
-        ["testing_log.h", "testing__log_8h.html", "testing__log_8h"],
-        ["testing_oops.h", "testing__oops_8h.html", "testing__oops_8h"],
-        ["testing_suite.h", "testing__suite_8h.html", "testing__suite_8h"],
-        ["testing_test.h", "testing__test_8h.html", "testing__test_8h"],
-        ["utility.h", "utility_8h.html", "utility_8h"]
-    ];
+[
+    [ "matrix.hh", "matrix_8hh.html", "matrix_8hh" ],
+    [ "matrix_colvec.hh", "matrix__colvec_8hh.html", "matrix__colvec_8hh" ],
+    [ "matrix_matrix.hh", "matrix__matrix_8hh.html", "matrix__matrix_8hh" ],
+    [ "matrix_quat.hh", "matrix__quat_8hh.html", "matrix__quat_8hh" ],
+    [ "matrix_trivec.hh", "matrix__trivec_8hh.html", "matrix__trivec_8hh" ],
+    [ "testing.hh", "testing_8hh.html", "testing_8hh" ],
+    [ "testing_log.hh", "testing__log_8hh.html", "testing__log_8hh" ],
+    [ "testing_oops.hh", "testing__oops_8hh.html", "testing__oops_8hh" ],
+    [ "testing_suite.hh", "testing__suite_8hh.html", "testing__suite_8hh" ],
+    [ "testing_test.hh", "testing__test_8hh.html", "testing__test_8hh" ],
+    [ "utility.hh", "utility_8hh.html", "utility_8hh" ]
+];

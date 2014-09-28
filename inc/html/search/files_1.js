@@ -1,8 +1,8 @@
 var searchData=
 [
-  ['testing_2eh',['testing.h',['../testing_8h.html',1,'']]],
-  ['testing_5flog_2eh',['testing_log.h',['../testing__log_8h.html',1,'']]],
-  ['testing_5foops_2eh',['testing_oops.h',['../testing__oops_8h.html',1,'']]],
-  ['testing_5fsuite_2eh',['testing_suite.h',['../testing__suite_8h.html',1,'']]],
-  ['testing_5ftest_2eh',['testing_test.h',['../testing__test_8h.html',1,'']]]
+  ['testing_2ehh',['testing.hh',['../testing_8hh.html',1,'']]],
+  ['testing_5flog_2ehh',['testing_log.hh',['../testing__log_8hh.html',1,'']]],
+  ['testing_5foops_2ehh',['testing_oops.hh',['../testing__oops_8hh.html',1,'']]],
+  ['testing_5fsuite_2ehh',['testing_suite.hh',['../testing__suite_8hh.html',1,'']]],
+  ['testing_5ftest_2ehh',['testing_test.hh',['../testing__test_8hh.html',1,'']]]
 ];

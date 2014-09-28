@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['ref',['ref',['../classFarsyte_1_1Testing_1_1Suite.html#a3b8ae3bfe347ffe33c1b0b05d40c544f',1,'Farsyte::Testing::Suite::ref()'],['../classFarsyte_1_1Testing_1_1Test.html#a434952a1180fe41fd16ce57b57963713',1,'Farsyte::Testing::Test::ref()']]],
-  ['rows',['rows',['../classFarsyte_1_1Matrix_1_1Matrix.html#aa5f4f8b9fae57920f3e9be18a822bf89',1,'Farsyte::Matrix::Matrix']]]
+  ['quat',['Quat',['../classFarsyte_1_1Matrix_1_1Quat.html',1,'Farsyte::Matrix']]],
+  ['quat',['Quat',['../classFarsyte_1_1Matrix_1_1Quat.html#ad061f4f472e81835ee8e952a33918b99',1,'Farsyte::Matrix::Quat::Quat()'],['../classFarsyte_1_1Matrix_1_1Quat.html#ad63f7e9417083d7a5b8440bd69f8ee25',1,'Farsyte::Matrix::Quat::Quat(double iw, TriVec const &amp;iv)']]]
 ];

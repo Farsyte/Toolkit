@@ -1,4 +1,4 @@
-.TH "Farsyte::Matrix::ColVec< Nr, T >" 3 "Mon Sep 22 2014" "The Farsyte Toolkit" \" -*- nroff -*-
+.TH "Farsyte::Matrix::ColVec< Nr, T >" 3 "Sat Sep 27 2014" "The Farsyte Toolkit" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -10,7 +10,7 @@ Column Vector Template\&.
 .br
 .PP
 .PP
-\fC#include <matrix_colvec\&.h>\fP
+\fC#include <matrix_colvec\&.hh>\fP
 .PP
 Inherits \fBFarsyte::Matrix::Matrix< 1, Nr, T >\fP\&.
 .SS "Public Types"
@@ -55,7 +55,7 @@ Column Vector Template\&.
 .PP
 This template implements a column vector of a compile-time determined size, containing elements of compile-time determined type\&. 
 .PP
-Definition at line 25 of file matrix_colvec\&.h\&.
+Definition at line 25 of file matrix_colvec\&.hh\&.
 .SH "Member Typedef Documentation"
 .PP 
 .SS "template<int Nr, typename T> typedef \fBMatrix\fP<1, Nr, T> \fBFarsyte::Matrix::ColVec\fP< Nr, T >::\fBMatMe\fP"
@@ -63,7 +63,7 @@ Definition at line 25 of file matrix_colvec\&.h\&.
 .PP
 Typedef for matrix generalization\&. 
 .PP
-Definition at line 31 of file matrix_colvec\&.h\&.
+Definition at line 31 of file matrix_colvec\&.hh\&.
 .SH "Constructor & Destructor Documentation"
 .PP 
 .SS "template<int Nr, typename T> \fBFarsyte::Matrix::ColVec\fP< Nr, T >::\fBColVec\fP (\fBA\fP const &a)\fC [inline]\fP"
@@ -78,7 +78,7 @@ Construct a Column Vector from a 2-D Array\&.
 .PP
 
 .PP
-Definition at line 48 of file matrix_colvec\&.h\&.
+Definition at line 48 of file matrix_colvec\&.hh\&.
 .PP
 .nf
 49                     : MatMe(a) {
@@ -101,7 +101,7 @@ Can be called with any appropriately dimensioned matrix\&.
 .PP
 
 .PP
-Definition at line 57 of file matrix_colvec\&.h\&.
+Definition at line 57 of file matrix_colvec\&.hh\&.
 .PP
 .nf
 58                     : MatMe(c) {

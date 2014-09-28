@@ -1,4 +1,4 @@
-.TH "Farsyte::Matrix::Matrix< Nc, Nr, T >" 3 "Mon Sep 22 2014" "The Farsyte Toolkit" \" -*- nroff -*-
+.TH "Farsyte::Matrix::Matrix< Nc, Nr, T >" 3 "Sat Sep 27 2014" "The Farsyte Toolkit" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -10,7 +10,7 @@ Farsyte::Matrix::Matrix< Nc, Nr, T > \-
 .br
 .PP
 .PP
-\fC#include <matrix_matrix\&.h>\fP
+\fC#include <matrix_matrix\&.hh>\fP
 .SS "Public Types"
 
 .in +1c
@@ -74,6 +74,22 @@ Farsyte::Matrix::Matrix< Nc, Nr, T > \-
 .RI "\fBMatrix\fP & \fBoperator-=\fP (\fBMatrix\fP const &p)"
 .br
 .RI "\fI\fBMatrix\fP Decrement operator\&. \fP"
+.ti -1c
+.RI "\fBMatrix\fP & \fBscalar_mul_by\fP (T const &p)"
+.br
+.RI "\fI\fBMatrix\fP Scalar Multiply operation\&. \fP"
+.ti -1c
+.RI "\fBMatrix\fP & \fBoperator*=\fP (T const &p)"
+.br
+.RI "\fI\fBMatrix\fP Scalar Multiply operator\&. \fP"
+.ti -1c
+.RI "\fBMatrix\fP & \fBscalar_div_by\fP (T const &p)"
+.br
+.RI "\fI\fBMatrix\fP Scalar Divide operation\&. \fP"
+.ti -1c
+.RI "\fBMatrix\fP & \fBoperator/=\fP (T const &p)"
+.br
+.RI "\fI\fBMatrix\fP Scalar Divide operator\&. \fP"
 .ti -1c
 .RI "\fBMatrix\fP \fBnegate\fP ()"
 .br
@@ -142,7 +158,7 @@ Farsyte::Matrix::Matrix< Nc, Nr, T > \-
 .PP
 This template implements rectangular matrices of a compile-time determined size, containing elements of compile-time determined type\&. 
 .PP
-Definition at line 29 of file matrix_matrix\&.h\&.
+Definition at line 31 of file matrix_matrix\&.hh\&.
 .SH "Constructor & Destructor Documentation"
 .PP 
 .SS "template<int Nc, int Nr, typename T> \fBFarsyte::Matrix::Matrix\fP< Nc, Nr, T >::\fBMatrix\fP ()\fC [inline]\fP"
@@ -150,11 +166,11 @@ Definition at line 29 of file matrix_matrix\&.h\&.
 .PP
 \fBMatrix\fP Default Constructor\&. \fBMatrix\fP objects that are default-constructed are assured of having each element appropriately initialized\&. 
 .PP
-Definition at line 95 of file matrix_matrix\&.h\&.
+Definition at line 97 of file matrix_matrix\&.hh\&.
 .PP
 .nf
-96                     : a() {
-97             }
+98                     : a() {
+99             }
 .fi
 .SS "template<int Nc, int Nr, typename T> \fBFarsyte::Matrix::Matrix\fP< Nc, Nr, T >::\fBMatrix\fP (T const &d)\fC [inline]\fP"
 
@@ -168,13 +184,13 @@ Definition at line 95 of file matrix_matrix\&.h\&.
 .PP
 
 .PP
-Definition at line 102 of file matrix_matrix\&.h\&.
+Definition at line 104 of file matrix_matrix\&.hh\&.
 .PP
 .nf
-103                     : a() {
-104                 for (int i = 0; (i < Nr) && (i < Nc); ++i)
-105                     data(i, i) = d;
-106             }
+105                     : a() {
+106                 for (int i = 0; (i < Nr) && (i < Nc); ++i)
+107                     data(i, i) = d;
+108             }
 .fi
 .SS "template<int Nc, int Nr, typename T> \fBFarsyte::Matrix::Matrix\fP< Nc, Nr, T >::\fBMatrix\fP (\fBA\fP const &iv)\fC [inline]\fP"
 
@@ -193,11 +209,11 @@ Not a public interface: only classes within the class heirarchy below \fBMatrix\
 .PP
 
 .PP
-Definition at line 117 of file matrix_matrix\&.h\&.
+Definition at line 119 of file matrix_matrix\&.hh\&.
 .PP
 .nf
-118                     : a(iv) {
-119             }
+120                     : a(iv) {
+121             }
 .fi
 .SS "template<int Nc, int Nr, typename T> \fBFarsyte::Matrix::Matrix\fP< Nc, Nr, T >::\fBMatrix\fP (\fBMatrix\fP< Nc, Nr, T > const &m)\fC [inline]\fP"
 
@@ -211,11 +227,11 @@ Duplicate \fBMatrix\fP Construction\&.
 .PP
 
 .PP
-Definition at line 126 of file matrix_matrix\&.h\&.
+Definition at line 128 of file matrix_matrix\&.hh\&.
 .PP
 .nf
-127                     : a(m\&.a) {
-128             }
+129                     : a(m\&.a) {
+130             }
 .fi
 .SH "Member Function Documentation"
 .PP 
@@ -231,14 +247,14 @@ number of columns \fCNc\fP in tha matrix\&.
 .PP
 
 .PP
-Definition at line 46 of file matrix_matrix\&.h\&.
+Definition at line 48 of file matrix_matrix\&.hh\&.
 .PP
 Referenced by Farsyte::Matrix::Matrix< 1, Nr, double >::size()\&.
 .PP
 .nf
-46                               {
-47                 return Nc;
-48             }
+48                               {
+49                 return Nc;
+50             }
 .fi
 .SS "template<int Nc, int Nr, typename T> T const& \fBFarsyte::Matrix::Matrix\fP< Nc, Nr, T >::data (intri, intci = \fC0\fP) const\fC [inline]\fP, \fC [protected]\fP"
 
@@ -264,14 +280,14 @@ Fortran conventions for array subscripting\&.
 .PP
 
 .PP
-Definition at line 75 of file matrix_matrix\&.h\&.
+Definition at line 77 of file matrix_matrix\&.hh\&.
 .PP
-Referenced by Farsyte::Matrix::Matrix< 1, Nr, double >::decrement_by(), Farsyte::Matrix::Matrix< 1, Nr, double >::equals(), Farsyte::Matrix::Matrix< 1, Nr, double >::increment_by(), Farsyte::Matrix::Matrix< 1, Nr, double >::Matrix(), Farsyte::Matrix::Matrix< 1, Nr, double >::negate(), Farsyte::Matrix::Matrix< 1, Nr, double >::operator()(), and Farsyte::Matrix::Matrix< 1, Nr, double >::transpose()\&.
+Referenced by Farsyte::Matrix::Matrix< 1, Nr, double >::decrement_by(), Farsyte::Matrix::Matrix< 1, Nr, double >::equals(), Farsyte::Matrix::Matrix< 1, Nr, double >::increment_by(), Farsyte::Matrix::Matrix< 1, Nr, double >::Matrix(), Farsyte::Matrix::Matrix< 1, Nr, double >::negate(), Farsyte::Matrix::Matrix< 1, Nr, double >::operator()(), Farsyte::Matrix::Matrix< 1, Nr, double >::scalar_div_by(), Farsyte::Matrix::Matrix< 1, Nr, double >::scalar_mul_by(), and Farsyte::Matrix::Matrix< 1, Nr, double >::transpose()\&.
 .PP
 .nf
-75                                                     {
-76                 return a[off(ri, ci)];
-77             }
+77                                                     {
+78                 return a[off(ri, ci)];
+79             }
 .fi
 .SS "template<int Nc, int Nr, typename T> T& \fBFarsyte::Matrix::Matrix\fP< Nc, Nr, T >::data (intri, intci = \fC0\fP)\fC [inline]\fP, \fC [protected]\fP"
 
@@ -297,12 +313,12 @@ Fortran conventions for array subscripting\&.
 .PP
 
 .PP
-Definition at line 85 of file matrix_matrix\&.h\&.
+Definition at line 87 of file matrix_matrix\&.hh\&.
 .PP
 .nf
-85                                         {
-86                 return a[off(ri, ci)];
-87             }
+87                                         {
+88                 return a[off(ri, ci)];
+89             }
 .fi
 .SS "template<int Nc, int Nr, typename T> \fBMatrix\fP& \fBFarsyte::Matrix::Matrix\fP< Nc, Nr, T >::decrement_by (\fBMatrix\fP< Nc, Nr, T > const &p)\fC [inline]\fP"
 
@@ -321,17 +337,17 @@ this matrix, after decrementing\&. Each element of this matrix is decremented by
 .PP
 
 .PP
-Definition at line 210 of file matrix_matrix\&.h\&.
+Definition at line 212 of file matrix_matrix\&.hh\&.
 .PP
 Referenced by Farsyte::Matrix::Matrix< 1, Nr, double >::operator-=()\&.
 .PP
 .nf
-210                                                   {
-211                 for (int ci = 0; ci < Nc; ++ci)
-212                     for (int ri = 0; ri < Nr; ++ri)
-213                         data(ri, ci) -= p\&.data(ri, ci);
-214                 return *this;
-215             }
+212                                                   {
+213                 for (int ci = 0; ci < Nc; ++ci)
+214                     for (int ri = 0; ri < Nr; ++ri)
+215                         data(ri, ci) -= p\&.data(ri, ci);
+216                 return *this;
+217             }
 .fi
 .SS "template<int Nc, int Nr, typename T> bool \fBFarsyte::Matrix::Matrix\fP< Nc, Nr, T >::equals (\fBMatrix\fP< Nc, Nr, T > const &p) const\fC [inline]\fP"
 
@@ -350,16 +366,16 @@ true if all elements compare equal, else false\&.
 .PP
 
 .PP
-Definition at line 170 of file matrix_matrix\&.h\&.
+Definition at line 172 of file matrix_matrix\&.hh\&.
 .PP
 .nf
-170                                                {
-171                 for (int ci = 0; ci < Nc; ++ci)
-172                     for (int ri = 0; ri < Nr; ++ri)
-173                         if (data(ri, ci) != p\&.data(ri, ci))
-174                             return false;
-175                 return true;
-176             }
+172                                                {
+173                 for (int ci = 0; ci < Nc; ++ci)
+174                     for (int ri = 0; ri < Nr; ++ri)
+175                         if (data(ri, ci) != p\&.data(ri, ci))
+176                             return false;
+177                 return true;
+178             }
 .fi
 .SS "template<int Nc, int Nr, typename T> \fBMatrix\fP& \fBFarsyte::Matrix::Matrix\fP< Nc, Nr, T >::increment_by (\fBMatrix\fP< Nc, Nr, T > const &p)\fC [inline]\fP"
 
@@ -378,17 +394,17 @@ this matrix, after incrementing\&. Each element of this matrix is incremented by
 .PP
 
 .PP
-Definition at line 185 of file matrix_matrix\&.h\&.
+Definition at line 187 of file matrix_matrix\&.hh\&.
 .PP
 Referenced by Farsyte::Matrix::Matrix< 1, Nr, double >::operator+=()\&.
 .PP
 .nf
-185                                                   {
-186                 for (int ci = 0; ci < Nc; ++ci)
-187                     for (int ri = 0; ri < Nr; ++ri)
-188                         data(ri, ci) += p\&.data(ri, ci);
-189                 return *this;
-190             }
+187                                                   {
+188                 for (int ci = 0; ci < Nc; ++ci)
+189                     for (int ri = 0; ri < Nr; ++ri)
+190                         data(ri, ci) += p\&.data(ri, ci);
+191                 return *this;
+192             }
 .fi
 .SS "template<int Nc, int Nr, typename T> \fBMatrix\fP \fBFarsyte::Matrix::Matrix\fP< Nc, Nr, T >::negate ()\fC [inline]\fP"
 
@@ -402,15 +418,15 @@ self after negating elements\&.
 .PP
 
 .PP
-Definition at line 231 of file matrix_matrix\&.h\&.
+Definition at line 279 of file matrix_matrix\&.hh\&.
 .PP
 .nf
-231                             {
-232                 for (int ci = 0; ci < Nc; ++ci)
-233                     for (int ri = 0; ri < Nr; ++ri)
-234                         data(ri, ci) = -data(ri, ci);
-235                 return *this;
-236             }
+279                             {
+280                 for (int ci = 0; ci < Nc; ++ci)
+281                     for (int ri = 0; ri < Nr; ++ri)
+282                         data(ri, ci) = -data(ri, ci);
+283                 return *this;
+284             }
 .fi
 .SS "template<int Nc, int Nr, typename T> T const& \fBFarsyte::Matrix::Matrix\fP< Nc, Nr, T >::operator() (intri, intci = \fC0\fP) const\fC [inline]\fP"
 
@@ -436,12 +452,12 @@ Fortran conventions for array subscripting\&.
 .PP
 
 .PP
-Definition at line 152 of file matrix_matrix\&.h\&.
+Definition at line 154 of file matrix_matrix\&.hh\&.
 .PP
 .nf
-152                                                           {
-153                 return data(ri, ci);
-154             }
+154                                                           {
+155                 return data(ri, ci);
+156             }
 .fi
 .SS "template<int Nc, int Nr, typename T> T& \fBFarsyte::Matrix::Matrix\fP< Nc, Nr, T >::operator() (intri, intci = \fC0\fP)\fC [inline]\fP"
 
@@ -467,12 +483,36 @@ Fortran conventions for array subscripting\&.
 .PP
 
 .PP
-Definition at line 162 of file matrix_matrix\&.h\&.
+Definition at line 164 of file matrix_matrix\&.hh\&.
 .PP
 .nf
-162                                               {
-163                 return data(ri, ci);
-164             }
+164                                               {
+165                 return data(ri, ci);
+166             }
+.fi
+.SS "template<int Nc, int Nr, typename T> \fBMatrix\fP& \fBFarsyte::Matrix::Matrix\fP< Nc, Nr, T >::operator*= (T const &p)\fC [inline]\fP"
+
+.PP
+\fBMatrix\fP Scalar Multiply operator\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIp\fP Scalaing Factor\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+this matrix, after scaling values up\&. Each element of this matrix is multiplied by the provided scale factor\&. 
+.RE
+.PP
+
+.PP
+Definition at line 249 of file matrix_matrix\&.hh\&.
+.PP
+.nf
+249                                            {
+250                 return scalar_mul_by(p);
+251             }
 .fi
 .SS "template<int Nc, int Nr, typename T> \fBMatrix\fP& \fBFarsyte::Matrix::Matrix\fP< Nc, Nr, T >::operator+= (\fBMatrix\fP< Nc, Nr, T > const &p)\fC [inline]\fP"
 
@@ -491,12 +531,12 @@ this matrix, after incrementing\&. Each element of this matrix is incremented by
 .PP
 
 .PP
-Definition at line 199 of file matrix_matrix\&.h\&.
+Definition at line 201 of file matrix_matrix\&.hh\&.
 .PP
 .nf
-199                                                 {
-200                 return increment_by(p);
-201             }
+201                                                 {
+202                 return increment_by(p);
+203             }
 .fi
 .SS "template<int Nc, int Nr, typename T> \fBMatrix\fP& \fBFarsyte::Matrix::Matrix\fP< Nc, Nr, T >::operator-= (\fBMatrix\fP< Nc, Nr, T > const &p)\fC [inline]\fP"
 
@@ -515,12 +555,36 @@ this matrix, after decrementing\&. Each element of this matrix is decremented by
 .PP
 
 .PP
-Definition at line 224 of file matrix_matrix\&.h\&.
+Definition at line 226 of file matrix_matrix\&.hh\&.
 .PP
 .nf
-224                                                 {
-225                 return decrement_by(p);
-226             }
+226                                                 {
+227                 return decrement_by(p);
+228             }
+.fi
+.SS "template<int Nc, int Nr, typename T> \fBMatrix\fP& \fBFarsyte::Matrix::Matrix\fP< Nc, Nr, T >::operator/= (T const &p)\fC [inline]\fP"
+
+.PP
+\fBMatrix\fP Scalar Divide operator\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIp\fP Scaling Factor\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+this matrix, after scaling values down\&. Each element of this matrix is divided by the scaling factor\&. 
+.RE
+.PP
+
+.PP
+Definition at line 272 of file matrix_matrix\&.hh\&.
+.PP
+.nf
+272                                            {
+273                 return scalar_div_by(p);
+274             }
 .fi
 .SS "template<int Nc, int Nr, typename T> T const& \fBFarsyte::Matrix::Matrix\fP< Nc, Nr, T >::operator[] (inti) const\fC [inline]\fP"
 
@@ -539,12 +603,12 @@ an element within the matrix\&.
 .PP
 
 .PP
-Definition at line 134 of file matrix_matrix\&.h\&.
+Definition at line 136 of file matrix_matrix\&.hh\&.
 .PP
 .nf
-134                                              {
-135                 return a[i];
-136             }
+136                                              {
+137                 return a[i];
+138             }
 .fi
 .SS "template<int Nc, int Nr, typename T> T& \fBFarsyte::Matrix::Matrix\fP< Nc, Nr, T >::operator[] (inti)\fC [inline]\fP"
 
@@ -563,12 +627,12 @@ an element within the matrix\&.
 .PP
 
 .PP
-Definition at line 142 of file matrix_matrix\&.h\&.
+Definition at line 144 of file matrix_matrix\&.hh\&.
 .PP
 .nf
-142                                  {
-143                 return a[i];
-144             }
+144                                  {
+145                 return a[i];
+146             }
 .fi
 .SS "template<int Nc, int Nr, typename T> static int \fBFarsyte::Matrix::Matrix\fP< Nc, Nr, T >::rows ()\fC [inline]\fP, \fC [static]\fP"
 
@@ -582,14 +646,72 @@ number of rows \fCNr\fP in tha matrix\&.
 .PP
 
 .PP
-Definition at line 39 of file matrix_matrix\&.h\&.
+Definition at line 41 of file matrix_matrix\&.hh\&.
 .PP
 Referenced by Farsyte::Matrix::Matrix< 1, Nr, double >::size()\&.
 .PP
 .nf
-39                               {
-40                 return Nr;
-41             }
+41                               {
+42                 return Nr;
+43             }
+.fi
+.SS "template<int Nc, int Nr, typename T> \fBMatrix\fP& \fBFarsyte::Matrix::Matrix\fP< Nc, Nr, T >::scalar_div_by (T const &p)\fC [inline]\fP"
+
+.PP
+\fBMatrix\fP Scalar Divide operation\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIp\fP Scaling Factor\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+this matrix, after scaling values down\&. Each element of this matrix is divided by the scaling factor\&. 
+.RE
+.PP
+
+.PP
+Definition at line 259 of file matrix_matrix\&.hh\&.
+.PP
+Referenced by Farsyte::Matrix::Matrix< 1, Nr, double >::operator/=()\&.
+.PP
+.nf
+259                                               {
+260                 for (int ci = 0; ci < Nc; ++ci)
+261                     for (int ri = 0; ri < Nr; ++ri)
+262                         data(ri, ci) /= p;
+263                 return *this;
+264             }
+.fi
+.SS "template<int Nc, int Nr, typename T> \fBMatrix\fP& \fBFarsyte::Matrix::Matrix\fP< Nc, Nr, T >::scalar_mul_by (T const &p)\fC [inline]\fP"
+
+.PP
+\fBMatrix\fP Scalar Multiply operation\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIp\fP Scaling factor\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+this matrix, after scaling values up\&. Each element of this matrix is multiplied by the provided scale factor\&. 
+.RE
+.PP
+
+.PP
+Definition at line 236 of file matrix_matrix\&.hh\&.
+.PP
+Referenced by Farsyte::Matrix::Matrix< 1, Nr, double >::operator*=()\&.
+.PP
+.nf
+236                                               {
+237                 for (int ci = 0; ci < Nc; ++ci)
+238                     for (int ri = 0; ri < Nr; ++ri)
+239                         data(ri, ci) *= p;
+240                 return *this;
+241             }
 .fi
 .SS "template<int Nc, int Nr, typename T> static int \fBFarsyte::Matrix::Matrix\fP< Nc, Nr, T >::size ()\fC [inline]\fP, \fC [static]\fP"
 
@@ -603,12 +725,12 @@ number of elements \fCNr*Nc\fP in the matrix\&.
 .PP
 
 .PP
-Definition at line 53 of file matrix_matrix\&.h\&.
+Definition at line 55 of file matrix_matrix\&.hh\&.
 .PP
 .nf
-53                               {
-54                 return rows() * cols();
-55             }
+55                               {
+56                 return rows() * cols();
+57             }
 .fi
 .SS "template<int Nc, int Nr, typename T> \fBMatrix\fP<Nr, Nc, T> \fBFarsyte::Matrix::Matrix\fP< Nc, Nr, T >::transpose () const\fC [inline]\fP"
 
@@ -622,16 +744,16 @@ transposed matrix\&.
 .PP
 
 .PP
-Definition at line 242 of file matrix_matrix\&.h\&.
+Definition at line 290 of file matrix_matrix\&.hh\&.
 .PP
 .nf
-242                               {
-243                 Matrix<Nr, Nc, T> R;
-244                 for (int ci = 0; ci < Nc; ++ci)
-245                     for (int ri = 0; ri < Nr; ++ri)
-246                         R(ci, ri) = data(ri, ci);
-247                 return R;
-248             }
+290                               {
+291                 Matrix<Nr, Nc, T> R;
+292                 for (int ci = 0; ci < Nc; ++ci)
+293                     for (int ri = 0; ri < Nr; ++ri)
+294                         R(ci, ri) = data(ri, ci);
+295                 return R;
+296             }
 .fi
 .SH "Member Data Documentation"
 .PP 
@@ -640,7 +762,7 @@ Definition at line 242 of file matrix_matrix\&.h\&.
 .PP
 Storage for \fBMatrix\fP State\&. 
 .PP
-Definition at line 252 of file matrix_matrix\&.h\&.
+Definition at line 300 of file matrix_matrix\&.hh\&.
 .PP
 Referenced by Farsyte::Matrix::Matrix< 1, Nr, double >::data(), and Farsyte::Matrix::Matrix< 1, Nr, double >::operator[]()\&.
 
