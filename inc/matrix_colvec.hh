@@ -8,7 +8,7 @@
 * definitions for C code using this Matrix library.
 */
 
-#include "matrix_matrix.h"
+#include "matrix_matrix.hh"
 
 namespace Farsyte {
     namespace Matrix {

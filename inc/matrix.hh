@@ -8,9 +8,10 @@
 * definitions for C code using this Matrix library.
 */
 
-#include "matrix_matrix.h"
-#include "matrix_colvec.h"
-#include "matrix_threevec.h"
+#include "matrix_matrix.hh"
+#include "matrix_colvec.hh"
+#include "matrix_trivec.hh"
+#include "matrix_quat.hh"
 
 #include <vector>
 

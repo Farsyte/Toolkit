@@ -1,4 +1,4 @@
-#include "utility.h"
+#include "utility.hh"
 
 using std::string;
 using std::vector;

@@ -1,7 +1,7 @@
-#include "testing_log.h"
-#include "testing.h"
-#include "utility.h"
-#include "testing_internal.h"
+#include "testing_log.hh"
+#include "testing.hh"
+#include "utility.hh"
+#include "testing_internal.hh"
 
 using namespace Farsyte::Testing;
 using namespace Farsyte::Utility;
