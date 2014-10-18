@@ -37,8 +37,7 @@ Suite::Suite(Log &r, string const &n)
     CHECK_OOPS(NULL == ref.curr, "Suite ctor: Log has an open Suite.");
     ref.curr = this;
     ref.suites++;
-    ostream &out(ref.out);
-    out << "  <testsuite name=" << quoted(n) << ">" << endl;
+    ref << "  <testsuite name=" << quoted(n) << ">" << endl;
 }
 
 /** Finish a Test Suite.
@@ -49,6 +48,5 @@ Suite::~Suite() {
     CHECK_OOPS(this == ref.curr, "Suite dtor: I am not the current Suite.");
     ref.curr = 0;
     CHECK_OOPS(NULL == curr, "Suite dtor: I still have an open Suite.");
-    ostream &out(ref.out);
-    out << "  </testsuite>" << endl;
+    ref << "  </testsuite>" << endl;
 }
