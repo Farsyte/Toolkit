@@ -5,12 +5,12 @@
 * * \brief Testing Suite Interface
 */
 
+#include "testing_log.hh"
+
 #include <string>
 
 namespace Farsyte {
     namespace Testing {
-
-        class Log;
 
         class Test;
 
@@ -60,6 +60,20 @@ namespace Farsyte {
             * current Suite associated with the Log.
             */
             ~Suite();
+
+            /** Append output text. */
+            template<typename T>
+            Suite &operator<<(T const &t) {
+                ref << t;
+                return *this;
+            }
+
+            /** Apply I/O manipulator. */
+            Suite &operator<<(std::ostream &(*man)(std::ostream &stream)) {
+                ref << man;
+                return *this;
+            }
+
         };
 
     }
