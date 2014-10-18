@@ -26,102 +26,60 @@ using std::ostringstream;
 using std::string;
 using std::vector;
 
+UT_CASE(Suite, Init) {
 
-/** Verify the next entry in a string list is as expected.
-*/
-
-/** Verify that we are at the end of the string list.
-*/
-
-/** Test that Log objects have correct initial state.
-*/
-
-
-
-static int test_testing_suite_init(Suite &s) {
     ostringstream oss;
-    int ec = 0;
     Log tl(oss, "Suite Tester Log Name");
     Suite ts(tl, "Suite Tester Suite Name");
 
-    {
-        Test t(s, "Initial Suite Primary Bookkeeping");
-        ec = ec
-                + t.eq(&ts.ref, &tl, "Suite link to Log object")
-                + t.eq(tl.curr, &ts, "Log link to Suite object")
-                + t.eq(ts.curr, (void *) 0, "Suite link to Test object")
-                + t.eq(tl.suites, 1, "Log count of Suite objects")
-                + t.eq(ts.tests, 0, "Suite count of Test objects");
-    }
+    EXPECT_EQ(&ts.ref, &tl);            // Suite link to Log object
+    EXPECT_EQ(tl.curr, &ts);            // Log link to Suite object
+    EXPECT_EQ(ts.curr, (void *) 0);     // Suite link to Test object
+    EXPECT_EQ(tl.suites, 1);            // Log count of Suite objects
+    EXPECT_EQ(ts.tests, 0);             // Suite count of Test objects
 
-    {
-        Test t(s, "Initial Suite Result Counters");
-        ec = ec
-                + t.eq(ts.failed_tests, 0, "suite failed test count")
-                + t.eq(ts.skipped_tests, 0, "suite skipped test count")
-                + t.eq(ts.errored_tests, 0, "suite errored test count")
-                + t.eq(ts.total_fails, 0, "suite failed condition count")
-                + t.eq(ts.total_skips, 0, "suite skipped condition count")
-                + t.eq(ts.total_errors, 0, "suite total error count");
-    }
+    EXPECT_EQ(ts.failed_tests, 0);                              // suite failed test count
+    EXPECT_EQ(ts.skipped_tests, 0);                             // suite skipped test count
+    EXPECT_EQ(ts.errored_tests, 0);                             // suite errored test count
+    EXPECT_EQ(ts.total_fails, 0);                               // suite failed condition count
+    EXPECT_EQ(ts.total_skips, 0);                               // suite skipped condition count
+    EXPECT_EQ(ts.total_errors, 0);                              // suite total error count
 
-    {
-        Test t(s, "Initial Log Result Counters");
-        ec = ec
-                + t.eq(tl.failed_tests, 0, "log failed test count")
-                + t.eq(tl.skipped_tests, 0, "log skipped test count")
-                + t.eq(tl.errored_tests, 0, "log errored test count")
-                + t.eq(tl.total_fails, 0, "log failed condition count")
-                + t.eq(tl.total_skips, 0, "log skipped condition count")
-                + t.eq(tl.total_errors, 0, "log total error count");
-    }
+    EXPECT_EQ(tl.failed_tests, 0);                              // log failed test count
+    EXPECT_EQ(tl.skipped_tests, 0);                             // log skipped test count
+    EXPECT_EQ(tl.errored_tests, 0);                             // log errored test count
+    EXPECT_EQ(tl.total_fails, 0);                               // log failed condition count
+    EXPECT_EQ(tl.total_skips, 0);                               // log skipped condition count
+    EXPECT_EQ(tl.total_errors, 0);                              // log total error count
+};
 
-    return ec;
-}
-
-static int test_testing_suite_init2(Suite &s) {
+UT_CASE(Suite, Init2) {
     ostringstream oss;
     Log tl(oss, "Suite Tester Log Name");
     Suite(tl, "Suite Tester Suite Name1");
     Suite ts(tl, "Suite Tester Suite Name2");
 
-    Test t(s, "Initialization of Second Suite");
+    EXPECT_EQ(&ts.ref, &tl);                                    // Second Suite links to Log
+    EXPECT_EQ(tl.curr, &ts);                                    // Log links to Second Suite
+    EXPECT_EQ(ts.curr, (void *) 0);                             // Second Suite link to Test is NULL
+    EXPECT_EQ(tl.suites, 2);                                    // Log count of Suites
+};
 
-    return 0
-            + t.eq(&ts.ref, &tl, "Second Suite links to Log")
-            + t.eq(tl.curr, &ts, "Log links to Second Suite")
-            + t.eq(ts.curr, (void *) 0, "Second Suite link to Test is NULL")
-            + t.eq(tl.suites, 2, "Log count of Suites");
-}
+UT_CASE(Suite, Ierr) {
 
-static int test_testing_suite_ierr(Suite &s) {
-    int ec = 0;
     ostringstream oss;
     Log tl(oss, "Suite Tester Log Name");
     Suite ts1(tl, "Suite Tester Suite Name 1");
 
-    /*
-    ** More complicated test: trying to construct
-    ** a new Suite object when one is already
-    ** open for that log should trigger an exception.
-    */
+    // Opening a second suite inside a Log
+    // triggers an exception.
 
-    Test t(s, "Detect opening a suite with a suite still open");
+    Suite *sp = 0;
+    EXPECT_EX(sp = new Suite(tl, "Suite Tester Suite Name 2"));
+    if (sp) delete sp;
+};
 
-    try {
-        Suite ts2(tl, "Suite Tester Suite Name 2");
-        t.fail("second suite created without exception");
-        ec++;
-    }
-    catch (Oops &e) {
-        t << e << endl;
-        t.pass("Suite nesting properly rejected");
-    }
-
-    return ec;
-}
-
-static int test_testing_suite_out(Suite &s) {
+UT_CASE(Suite, Output) {
 
     ostringstream oss;
 
@@ -135,53 +93,7 @@ static int test_testing_suite_out(Suite &s) {
 
     vector<string> vos(streamlines(oss));
 
-    Test t(s, "XML output by Suite");
-
-    /*
-    ** return convention: 0 is success, nonzero is failure.
-    ** The subtests of this unit are sequentially dependent;
-    ** use boolean `||` operator so that if one test fails,
-    ** tests that depend on it are not attempted.
-    */
-    return 0
-            || t.ge(vos.size(), 2u, "long enough")
-            || t.eq(vos[0], "  <testsuite name=\"Suite Tester Suite Name\">", "add <testsuite>")
-            || t.eq(vos[1], "  </testsuite>", "Add </testsuite>")
-            || t.eq(vos.size(), 2u, "no extra text");
-}
-
-static int test_testing_suite(Log &log) {
-    Suite s(log, "Farsyte::Testing::Suite");
-    return 0
-            || test_testing_suite_init(s)
-            || test_testing_suite_init2(s)
-            || test_testing_suite_ierr(s)
-            || test_testing_suite_out(s);
-}
-
-
-static int test_testing(Log &log) {
-    /*
-    ** return convention: 0 is success, nonzero is failure.
-    ** The subtests of this unit are sequentially independent;
-    ** use boolean '|' operator to run multiple tests
-    ** and return fail if any failed, after running all.
-    */
-    return 0
-            + test_testing_suite(log);
-}
-
-int main(void) {
-    ofstream xml("test_testing_suite_log.xml");
-    assert(xml);
-    Log log(xml, "Testing Library");
-
-    int ec = test_testing(log);
-
-    if (ec)
-        cerr << setw(7) << ec << " FAIL test_testing_suite" << endl;
-    else
-        cerr << setw(7) << ec << " PASS test_testing_suite" << endl;
-
-    return 0;
-}
+    ASSERT_GE(vos.size(), 1u); EXPECT_EQ(vos[0], "  <testsuite name=\"Suite Tester Suite Name\">"); // add <testsuite>
+    ASSERT_GE(vos.size(), 2u); EXPECT_EQ(vos[1], "  </testsuite>");                        // Add </testsuite>
+    EXPECT_EQ(vos.size(), 2u);                                  // no extra text
+};
