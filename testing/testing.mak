@@ -44,7 +44,7 @@ tests::                 ${testing.test.bin}
 
 ${testing.test.out}:    testing/log/%_log.xml:  testing/bin/%.exe
 	$Q $P '[rt] %s%s\n' 'testing/bin' '$*'
-	$Q $<
+	$Q $< > $@
 
 runtests::              ${testing.test.out}
 

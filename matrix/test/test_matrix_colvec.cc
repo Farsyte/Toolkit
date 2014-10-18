@@ -32,98 +32,19 @@ using std::vector;
 /** Pick a type for a test vector. */
 typedef ColVec<4, int> ColVec4i;
 
-
-template<typename T>
-int case_equals(
-        Test &t, string const &title,
-        T const &exp,
-        T const &act) {
-
-    t << title << endl
-            << "  expected: "
-            << exp << endl
-            << "  observed: "
-            << act << endl;
-    if (exp == act) {
-        t.pass(title);
-        return 0;
-    } else {
-        t.fail(title + " failed");
-        return 1;
-    }
-}
-
-static int case_T(
-        Test &t, string const &title,
-        bool cond) {
-    t << title << endl;
-    if (cond) {
-        t.pass(title);
-        return 0;
-    } else {
-        t.fail(title + " failed");
-        return 1;
-    }
-}
-
-static int case_F(
-        Test &t, string const &title,
-        bool cond) {
-    t << title << endl;
-    if (!cond) {
-        t.pass(title);
-        return 0;
-    } else {
-        t.fail(title + " failed");
-        return 1;
-    }
-}
-
-
-static int case_equals(
-        Test &t, string const &title,
-        int w, int x, int y, int z,
-        ColVec4i const &r) {
-
-    t << title << endl
-            << "  expected: "
-            << setw(16) << w
-            << setw(16) << x
-            << setw(16) << y
-            << setw(16) << z
-            << endl
-            << "  observed: "
-            << setw(16) << r[0]
-            << setw(16) << r[1]
-            << setw(16) << r[2]
-            << setw(16) << r[3]
-            << endl;
-    if ((w == r[0]) && (x == r[1]) && (y == r[2]) && (z == r[3])) {
-        t.pass(title);
-        return 0;
-    } else {
-        t.fail(title + " failed");
-        return 1;
-    }
-}
-
 /* -- ================================================================ -- */
 
-static int test_matrix_colvec_meta(Suite &s) {
+UT_CASE(ColVec, Meta) {
 
-    Test t(s, "Class Parameter Methods");
+    EXPECT_EQ(ColVec4i::rows(), 4);             // ColVec Rows
+    EXPECT_EQ(ColVec4i::cols(), 1);             // ColVec Cols
+    EXPECT_EQ(ColVec4i::size(), 4);             // ColVec Size
 
-    return 0
-            + case_equals(t, "ColVec Rows", 4, ColVec4i::rows())
-            + case_equals(t, "ColVec Cols", 1, ColVec4i::cols())
-            + case_equals(t, "ColVec Size", 4, ColVec4i::size());
-}
+};
 
-static int test_matrix_colvec_ctor_eq_ne(Suite &s) {
+UT_CASE(ColVec, CtorEqNe) {
 
     typedef ColVec4i::A IV;
-
-    Test t(s, "Construct and Compare");
 
     ColVec4i D;
     ColVec4i W = IV {1, 0, 0, 0};
@@ -131,132 +52,141 @@ static int test_matrix_colvec_ctor_eq_ne(Suite &s) {
     ColVec4i Y = IV {0, 0, 1, 0};
     ColVec4i Z = IV {0, 0, 0, 1};
 
-    return 0
-            + case_equals(t, "Default initialized to Zero", 0, 0, 0, 0, D)
-            + case_equals(t, "W Axis Initialization", 1, 0, 0, 0, W)
-            + case_equals(t, "X Axis Initialization", 0, 1, 0, 0, X)
-            + case_equals(t, "Y Axis Initialization", 0, 0, 1, 0, Y)
-            + case_equals(t, "Z Axis Initialization", 0, 0, 0, 1, Z)
+    EXPECT_NE((bool)0, (bool)(D == D));         // (D == D) is True
+    EXPECT_NE((bool)0, (bool)(W == W));         // (W == W) is True
+    EXPECT_NE((bool)0, (bool)(X == X));         // (X == X) is True
+    EXPECT_NE((bool)0, (bool)(Y == Y));         // (Y == Y) is True
+    EXPECT_NE((bool)0, (bool)(Z == Z));         // (Z == Z) is True
 
-            + case_T(t, "(D == D) is True", (D == D))
-            + case_T(t, "(W == W) is True", (W == W))
-            + case_T(t, "(X == X) is True", (X == X))
-            + case_T(t, "(Y == Y) is True", (Y == Y))
-            + case_T(t, "(Z == Z) is True", (Z == Z))
+    EXPECT_NE((bool)0, (bool)(D != W));         // (D != W) is True
+    EXPECT_NE((bool)0, (bool)(D != X));         // (D != X) is True
+    EXPECT_NE((bool)0, (bool)(D != Y));         // (D != Y) is True
+    EXPECT_NE((bool)0, (bool)(D != Z));         // (D != Z) is True
 
-            + case_T(t, "(D != W) is True", (D != W))
-            + case_T(t, "(D != X) is True", (D != X))
-            + case_T(t, "(D != Y) is True", (D != Y))
-            + case_T(t, "(D != Z) is True", (D != Z))
+    EXPECT_NE((bool)0, (bool)(W != D));         // (W != D) is True
+    EXPECT_NE((bool)0, (bool)(W != X));         // (W != X) is True
+    EXPECT_NE((bool)0, (bool)(W != Y));         // (W != Y) is True
+    EXPECT_NE((bool)0, (bool)(W != Z));         // (W != Z) is True
 
-            + case_T(t, "(W != D) is True", (W != D))
-            + case_T(t, "(W != X) is True", (W != X))
-            + case_T(t, "(W != Y) is True", (W != Y))
-            + case_T(t, "(W != Z) is True", (W != Z))
+    EXPECT_NE((bool)0, (bool)(X != D));         // (X != D) is True
+    EXPECT_NE((bool)0, (bool)(X != W));         // (X != W) is True
+    EXPECT_NE((bool)0, (bool)(X != Y));         // (X != Y) is True
+    EXPECT_NE((bool)0, (bool)(X != Z));         // (X != Z) is True
 
-            + case_T(t, "(X != D) is True", (X != D))
-            + case_T(t, "(X != W) is True", (X != W))
-            + case_T(t, "(X != Y) is True", (X != Y))
-            + case_T(t, "(X != Z) is True", (X != Z))
+    EXPECT_NE((bool)0, (bool)(Y != D));         // (Y != D) is True
+    EXPECT_NE((bool)0, (bool)(Y != W));         // (Y != W) is True
+    EXPECT_NE((bool)0, (bool)(Y != X));         // (Y != X) is True
+    EXPECT_NE((bool)0, (bool)(Y != Z));         // (Y != Z) is True
 
-            + case_T(t, "(Y != D) is True", (Y != D))
-            + case_T(t, "(Y != W) is True", (Y != W))
-            + case_T(t, "(Y != X) is True", (Y != X))
-            + case_T(t, "(Y != Z) is True", (Y != Z))
+    EXPECT_NE((bool)0, (bool)(Z != D));         // (Z != D) is True
+    EXPECT_NE((bool)0, (bool)(Z != W));         // (Z != W) is True
+    EXPECT_NE((bool)0, (bool)(Z != X));         // (Z != X) is True
+    EXPECT_NE((bool)0, (bool)(Z != Y));         // (Z != Y) is True
 
-            + case_T(t, "(Z != D) is True", (Z != D))
-            + case_T(t, "(Z != W) is True", (Z != W))
-            + case_T(t, "(Z != X) is True", (Z != X))
-            + case_T(t, "(Z != Y) is True", (Z != Y))
+    EXPECT_EQ((bool)0, (bool)(D != D));         // (D != D) is False
+    EXPECT_EQ((bool)0, (bool)(W != W));         // (W != W) is False
+    EXPECT_EQ((bool)0, (bool)(X != X));         // (X != X) is False
+    EXPECT_EQ((bool)0, (bool)(Y != Y));         // (Y != Y) is False
+    EXPECT_EQ((bool)0, (bool)(Z != Z));         // (Z != Z) is False
 
-            + case_F(t, "(D != D) is False", (D != D))
-            + case_F(t, "(W != W) is False", (W != W))
-            + case_F(t, "(X != X) is False", (X != X))
-            + case_F(t, "(Y != Y) is False", (Y != Y))
-            + case_F(t, "(Z != Z) is False", (Z != Z))
+    EXPECT_EQ((bool)0, (bool)(D == W));         // (D == W) is False
+    EXPECT_EQ((bool)0, (bool)(D == X));         // (D == X) is False
+    EXPECT_EQ((bool)0, (bool)(D == Y));         // (D == Y) is False
+    EXPECT_EQ((bool)0, (bool)(D == Z));         // (D == Z) is False
 
-            + case_F(t, "(D == W) is False", (D == W))
-            + case_F(t, "(D == X) is False", (D == X))
-            + case_F(t, "(D == Y) is False", (D == Y))
-            + case_F(t, "(D == Z) is False", (D == Z))
+    EXPECT_EQ((bool)0, (bool)(W == D));         // (W == D) is False
+    EXPECT_EQ((bool)0, (bool)(W == X));         // (W == X) is False
+    EXPECT_EQ((bool)0, (bool)(W == Y));         // (W == Y) is False
+    EXPECT_EQ((bool)0, (bool)(W == Z));         // (W == Z) is False
 
-            + case_F(t, "(W == D) is False", (W == D))
-            + case_F(t, "(W == X) is False", (W == X))
-            + case_F(t, "(W == Y) is False", (W == Y))
-            + case_F(t, "(W == Z) is False", (W == Z))
+    EXPECT_EQ((bool)0, (bool)(X == D));         // (X == D) is False
+    EXPECT_EQ((bool)0, (bool)(X == D));         // (X == W) is False
+    EXPECT_EQ((bool)0, (bool)(X == Y));         // (X == Y) is False
+    EXPECT_EQ((bool)0, (bool)(X == Z));         // (X == Z) is False
 
-            + case_F(t, "(X == D) is False", (X == D))
-            + case_F(t, "(X == W) is False", (X == D))
-            + case_F(t, "(X == Y) is False", (X == Y))
-            + case_F(t, "(X == Z) is False", (X == Z))
+    EXPECT_EQ((bool)0, (bool)(Y == D));         // (Y == D) is False
+    EXPECT_EQ((bool)0, (bool)(Y == W));         // (Y == W) is False
+    EXPECT_EQ((bool)0, (bool)(Y == X));         // (Y == X) is False
+    EXPECT_EQ((bool)0, (bool)(Y == Z));         // (Y == Z) is False
 
-            + case_F(t, "(Y == D) is False", (Y == D))
-            + case_F(t, "(Y == W) is False", (Y == W))
-            + case_F(t, "(Y == X) is False", (Y == X))
-            + case_F(t, "(Y == Z) is False", (Y == Z))
+    EXPECT_EQ((bool)0, (bool)(Z == D));         // (Z == D) is False
+    EXPECT_EQ((bool)0, (bool)(Z == W));         // (Z == W) is False
+    EXPECT_EQ((bool)0, (bool)(Z == X));         // (Z == X) is False
+    EXPECT_EQ((bool)0, (bool)(Z == Y));;        // (Z == Y) is False
 
-            + case_F(t, "(Z == D) is False", (Z == D))
-            + case_F(t, "(Z == W) is False", (Z == W))
-            + case_F(t, "(Z == X) is False", (Z == X))
-            + case_F(t, "(Z == Y) is False", (Z == Y));
-}
+};
 
-static int test_matrix_colvec_access(Suite &s) {
+UT_CASE(ColVec, Access) {
 
     typedef ColVec4i::A IV;
-
-    Test t(s, "Member Access and Update");
 
     ColVec4i V = IV {1, 3, 5, 7};
 
     V[2] = 4;
     V[3] = V[0];
 
-    return 0
-            + case_equals(t, "Vector after access and update", 1, 3, 4, 1, V);
-}
+    EXPECT_EQ(V[0], 1);
+    EXPECT_EQ(V[1], 3);
+    EXPECT_EQ(V[2], 4);
+    EXPECT_EQ(V[3], 1);
 
-static int test_matrix_colvec_add(Suite &s) {
+};
+
+UT_CASE(ColVec, Add) {
 
     typedef ColVec4i::A IV;
-
-    Test t(s, "Addition");
 
     ColVec4i S;
     ColVec4i A = IV {10, 7, 4, 1};
     ColVec4i I = IV {1, 2, 3, 4};
     A += I;
 
-    return 0
-            + case_equals(t, "I unchanged", 1, 2, 3, 4, I)
-            + case_equals(t, "A incremented once", 11, 9, 7, 5, A)
-            + case_equals(t, "Second Sum", 12, 11, 10, 9, A + I)
-            + case_equals(t, "Add Negative", 10, 7, 4, 1, A + (-I));
-}
+    auto ApI = A + I;
+    auto ApnI = A + (-I);
 
-static int test_matrix_colvec_sub(Suite &s) {
+    // I unchanged
+    EXPECT_EQ(I[0], 1); EXPECT_EQ(I[1], 2); EXPECT_EQ(I[2], 3); EXPECT_EQ(I[3], 4);
+
+    // A incremented once
+    EXPECT_EQ(A[0], 11); EXPECT_EQ(A[1], 9); EXPECT_EQ(A[2], 7); EXPECT_EQ(A[3], 5);
+
+    // Second Sum
+    EXPECT_EQ(ApI[0], 12); EXPECT_EQ(ApI[1], 11); EXPECT_EQ(ApI[2], 10); EXPECT_EQ(ApI[3], 9);
+
+    // Add Negative
+    EXPECT_EQ(ApnI[0], 10); EXPECT_EQ(ApnI[1], 7); EXPECT_EQ(ApnI[2], 4); EXPECT_EQ(ApnI[3], 1);
+
+};
+
+UT_CASE(ColVec, Sub) {
 
     typedef ColVec4i::A IV;
-
-    Test t(s, "Difference");
 
     ColVec4i D;
     ColVec4i A = IV {9, 8, 7, 6};
     ColVec4i I = IV {1, 2, 3, 4};
     A -= I;
 
-    return 0
-            + case_equals(t, "I unchanged", 1, 2, 3, 4, I)
-            + case_equals(t, "A decremented once", 8, 6, 4, 2, A)
-            + case_equals(t, "second difference", 7, 4, 1, -2, A - I)
-            + case_equals(t, "Sub Negative", 9, 8, 7, 6, A - (-I));
-}
+    auto AmI = A - I;
+    auto AmnI = A - (-I);
 
-static int test_matrix_colvec_mul(Suite &s) {
+    // I unchanged
+    EXPECT_EQ(I[0], 1); EXPECT_EQ(I[1], 2); EXPECT_EQ(I[2], 3); EXPECT_EQ(I[3], 4);
+
+    // A decremented once
+    EXPECT_EQ(A[0], 8); EXPECT_EQ(A[1], 6); EXPECT_EQ(A[2], 4); EXPECT_EQ(A[3], 2);
+
+    // second difference
+    EXPECT_EQ(AmI[0], 7); EXPECT_EQ(AmI[1], 4); EXPECT_EQ(AmI[2], 1); EXPECT_EQ(AmI[3], -2);
+
+    // Sub Negative
+    EXPECT_EQ(AmnI[0], 9); EXPECT_EQ(AmnI[1], 8); EXPECT_EQ(AmnI[2], 7); EXPECT_EQ(AmnI[3], 6);
+
+};
+
+UT_CASE(ColVec, Mul) {
 
     typedef ColVec4i::A IV;
-
-    Test t(s, "Product");
 
     ColVec4i A = IV {9, 8, 7, 6};
     ColVec4i I = IV {1, 2, 3, 4};
@@ -264,62 +194,8 @@ static int test_matrix_colvec_mul(Suite &s) {
     auto AIt = A * ~I;          // a 4x4 matrix
     auto AtI = ~A * I;          // an integer!
 
-    return 0
-            + t.eq(AIt.rows(), 4, "AIt number of rows")
-            + t.eq(AIt.cols(), 4, "AIt number of columns")
-            + t.eq(AIt.size(), 16, "AIt number of elements")
-            + t.eq(AtI, 70, "dot(A,I) value");
-}
-
-static int test_matrix_colvec(Log &log) {
-
-    /*
-    ** Tests specific to the ColVec Template
-    */
-    Suite s(log, "Farsyte::Matrix::ColVec");
-
-    /*
-    ** return convention: 0 is success, nonzero is failure.
-    ** the subtests of this unit are sequentially independent;
-    ** use boolean '|' operator to run multiple tests
-    ** and return fail if any failed, after running all.
-    */
-
-    return 0
-            + test_matrix_colvec_meta(s)
-            + test_matrix_colvec_ctor_eq_ne(s)
-            + test_matrix_colvec_access(s)
-            + test_matrix_colvec_add(s)
-            + test_matrix_colvec_sub(s)
-            + test_matrix_colvec_mul(s);
-
-}
-
-/* -- ================================================================ -- */
-
-static int test_matrix(Log &log) {
-    /*
-    ** return convention: 0 is success, nonzero is failure.
-    ** The subtests of this unit are sequentially independent;
-    ** use boolean '|' operator to run multiple tests
-    ** and return fail if any failed, after running all.
-    */
-    return 0
-            + test_matrix_colvec(log);
-}
-
-int main(void) {
-
-    ofstream xml("test_matrix_colvec_log.xml");
-    assert(xml);
-    Log log(xml, "Matrix Library");
-
-    int ec = test_matrix(log);
-
-    if (ec)
-        cerr << setw(7) << ec << " FAIL test_matrix_colvec" << endl;
-    else
-        cerr << setw(7) << ec << " PASS test_matrix_colvec" << endl;
-
-    return 0;
-}
+    EXPECT_EQ(AIt.rows(), 4);           // AIt number of rows
+    EXPECT_EQ(AIt.cols(), 4);           // AIt number of columns
+    EXPECT_EQ(AIt.size(), 16);          // AIt number of elements
+    EXPECT_EQ(AtI, 70);                 // dot(A,I) value
+};
