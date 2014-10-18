@@ -17,6 +17,7 @@
 #include "testing_suite.hh"
 #include "testing_test.hh"
 #include "testing_oops.hh"
+#include "testing_fixture.hh"
 
 namespace Farsyte {
     namespace Testing {
