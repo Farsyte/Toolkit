@@ -168,11 +168,11 @@ UT_CASE(Test, Fail) {
 UT_CASE(Test, Text) {
 
     static const vector<string> exp = {
-            Farsyte::Utility::quoted("      <failure message=\"Text Tester Condition Name\">"),
-            Farsyte::Utility::quoted("Text Tester Detail Line #1"),
-            Farsyte::Utility::quoted("Text Tester Detail Line #2"),
-            Farsyte::Utility::quoted("Text Tester Detail Line #3"),
-            Farsyte::Utility::quoted("      </failure>"),
+            quoted("      <failure message=\"Text Tester Condition Name\">"),
+            quoted("Text Tester Detail Line #1"),
+            quoted("Text Tester Detail Line #2"),
+            quoted("Text Tester Detail Line #3"),
+            quoted("      </failure>"),
     };
 
     static const vector<string> msg = {
@@ -201,7 +201,7 @@ UT_CASE(Test, Text) {
 
     for (unsigned i = 0; i < exp.size(); ++i) {
         ASSERT_GE(vos.size(), i+1);
-        EXPECT_EQ(vos[i], exp[i]);
+        EXPECT_EQ(quoted(vos[i]), exp[i]);
     }
     EXPECT_EQ(vos.size(), exp.size());
 
@@ -210,11 +210,11 @@ UT_CASE(Test, Text) {
 UT_CASE(Test, Skip) {
 
     static const vector<string> exp = {
-            Farsyte::Utility::quoted("      <skipped message=\"Skip Tester Condition Name\">"),
-            Farsyte::Utility::quoted("Skip Tester Detail Line #1"),
-            Farsyte::Utility::quoted("Skip Tester Detail Line #2"),
-            Farsyte::Utility::quoted("Skip Tester Detail Line #3"),
-            Farsyte::Utility::quoted("      </skipped>"),
+            quoted("      <skipped message=\"Skip Tester Condition Name\">"),
+            quoted("Skip Tester Detail Line #1"),
+            quoted("Skip Tester Detail Line #2"),
+            quoted("Skip Tester Detail Line #3"),
+            quoted("      </skipped>"),
     };
     static const vector<string> msg = {
             "open skipped entity",
@@ -241,7 +241,7 @@ UT_CASE(Test, Skip) {
 
     for (unsigned i = 0; i < exp.size(); ++i) {
         ASSERT_GE(vos.size(), i+1);
-        EXPECT_EQ(vos[i], exp[i]);
+        EXPECT_EQ(quoted(vos[i]), exp[i]);
     }
     EXPECT_GE(vos.size(), 5u);                                  // Enough XML output
 
@@ -270,11 +270,11 @@ UT_CASE(Test, Skip) {
 UT_CASE(Test, Error) {
 
     static const vector<string> exp = {
-            Farsyte::Utility::quoted("      <error message=\"Error Tester Condition Name\">"),
-            Farsyte::Utility::quoted("Error Tester Detail Line #1"),
-            Farsyte::Utility::quoted("Error Tester Detail Line #2"),
-            Farsyte::Utility::quoted("Error Tester Detail Line #3"),
-            Farsyte::Utility::quoted("      </error>"),
+            quoted("      <error message=\"Error Tester Condition Name\">"),
+            quoted("Error Tester Detail Line #1"),
+            quoted("Error Tester Detail Line #2"),
+            quoted("Error Tester Detail Line #3"),
+            quoted("      </error>"),
     };
     static const vector<string> msg = {
             "open error entity",
@@ -301,7 +301,7 @@ UT_CASE(Test, Error) {
 
     for (unsigned i = 0; i < exp.size(); ++i) {
         ASSERT_GE(vos.size(), i);
-        EXPECT_EQ(vos[i], exp[i]);
+        EXPECT_EQ(quoted(vos[i]), exp[i]);
     }
     EXPECT_EQ(vos.size(), 5u);                                  // No extra XML output.
 
