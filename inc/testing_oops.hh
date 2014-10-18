@@ -66,6 +66,10 @@ namespace Farsyte {
             virtual ~Oops();
         };
 
+        /** Dump information from an Oops onto an output stream.
+         */
+        extern std::ostream &operator<<(std::ostream &s, Oops const &f);
+
 
     }
 }

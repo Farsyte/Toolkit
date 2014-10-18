@@ -52,6 +52,19 @@ namespace Farsyte {
             * Writes XML trailer text to the output stream.
             */
             ~Log();
+
+            /** Append output text. */
+            template<typename T>
+            Log &operator<<(T const &t) {
+                out << t;
+                return *this;
+            }
+
+            /** Apply I/O manipulator. */
+            Log &operator<<(std::ostream &(*man)(std::ostream &stream)) {
+                out << man;
+                return *this;
+            }
         };
 
     }
