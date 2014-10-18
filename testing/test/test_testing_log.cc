@@ -79,7 +79,7 @@ static int test_testing_log_init(Suite &s) {
     Test t(s, "Initial state of Log");
 
     return 0
-            + t.eq(&tl.out, &oss, "output stream reference")
+        // tl.out is now private, can not compare to oss.
             + t.eq(tl.curr, (void *) 0, "initial Suite link")
             + t.eq(tl.suites, 0, "initial Suite count")
             + t.eq(tl.tests, 0, "initial Test count");

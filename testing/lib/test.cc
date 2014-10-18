@@ -23,8 +23,7 @@ Test::Test(Suite &r, string const &n)
     ref.curr = this;
     ref.tests++;
     ref.ref.tests++;
-    ostream &out(ref.ref.out);
-    out << "    <testcase name=" << quoted(n) << ">" << endl;
+    ref << "    <testcase name=" << quoted(n) << ">" << endl;
 }
 
 /** Indicate that a Test Condition has Failed.
@@ -61,19 +60,17 @@ void Test::fail(string const &c) {
         ref.ref.failed_tests++;
     ref.ref.total_fails++;
 
-    ostream &out(ref.ref.out);
-
-    out << "      <failure message=" << quoted(c) << ">" << endl;
+    ref << "      <failure message=" << quoted(c) << ">" << endl;
 
     string const s = drain();
     if (s.length() > 0) {
         string const &q(htmlify(s));
-        out << q;
+        ref << q;
         if (q[q.length() - 1] != '\n')
-            out << endl;
+            ref << endl;
     }
 
-    out << "      </failure>" << endl;
+    ref << "      </failure>" << endl;
 }
 
 /** Indicate that a Test has encountered an Error.
@@ -107,9 +104,7 @@ void Test::error(string const &c) {
         ref.ref.errored_tests++;
     ref.ref.total_errors++;
 
-    ostream &out(ref.ref.out);
-
-    out << "      <error message=" << quoted(c) << ">" << endl;
+    ref << "      <error message=" << quoted(c) << ">" << endl;
 
     /*
     ** Include the supporting text whether Bamboo is willing
@@ -122,12 +117,12 @@ void Test::error(string const &c) {
     string const s = drain();
     if (s.length() > 0) {
         string const &q(htmlify(s));
-        out << q;
+        ref << q;
         if (q[q.length() - 1] != '\n')
-            out << endl;
+            ref << endl;
     }
 
-    out << "      </error>" << endl;
+    ref << "      </error>" << endl;
 }
 
 /** Indicate that a Test Condition has been Skiped.
@@ -164,19 +159,17 @@ void Test::skip(string const &c) {
         ref.ref.skipped_tests++;
     ref.ref.total_skips++;
 
-    ostream &out(ref.ref.out);
-
-    out << "      <skipped message=" << quoted(c) << ">" << endl;
+    ref << "      <skipped message=" << quoted(c) << ">" << endl;
 
     string const s = drain();
     if (s.length() > 0) {
         string const &q(htmlify(s));
-        out << q;
+        ref << q;
         if (q[q.length() - 1] != '\n')
-            out << endl;
+            ref << endl;
     }
 
-    out << "      </skipped>" << endl;
+    ref << "      </skipped>" << endl;
 }
 
 /** Indicate that a Test Condition has Passed.
@@ -221,22 +214,20 @@ Test::~Test() {
     CHECK_OOPS(this == ref.curr, "Test dtor: I am not the current Test.");
     ref.curr = 0;
 
-    ostream &out(ref.ref.out);
-
 #if 0
   /*
   ** If Bamboo provided us with a way to view supporting
   ** text for a test not associated with a fail or skip
   ** object, then this could be turned on.
   */
-  string        const & s ( str() );
+  string        const   s = drain();
   if (s.length() > 0) {
     string      const & q ( htmlify(s) );
-    out << q;
+    ref << q;
     if (q[q.length() - 1] != '\n')
-      out << endl;
+      ref << endl;
   }
 #endif
 
-    out << "    </testcase>" << endl;
+    ref << "    </testcase>" << endl;
 }

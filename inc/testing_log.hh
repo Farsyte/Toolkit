@@ -22,10 +22,10 @@ namespace Farsyte {
         * at the same time.
         */
         class Log {
-        public:
-
+        private:
             std::ostream &out;                ///< Current output stream.
-
+            
+        public:
             std::string const name;           ///< Name of the test log.
 
             Suite *curr;                      ///< Currently active Suite, or NULL if none.
