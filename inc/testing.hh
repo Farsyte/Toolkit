@@ -31,8 +31,4 @@ namespace Farsyte {
     }
 }
 
-/** Dump information from an Oops onto an output stream.
-*/
-extern std::ostream &operator<<(std::ostream &s, Farsyte::Testing::Oops const &f);
-
 #endif//_testing_h

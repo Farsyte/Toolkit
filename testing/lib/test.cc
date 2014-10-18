@@ -65,13 +65,12 @@ void Test::fail(string const &c) {
 
     out << "      <failure message=" << quoted(c) << ">" << endl;
 
-    string const &s(str());
+    string const s = drain();
     if (s.length() > 0) {
         string const &q(htmlify(s));
         out << q;
         if (q[q.length() - 1] != '\n')
             out << endl;
-        this->str("");
     }
 
     out << "      </failure>" << endl;
@@ -120,13 +119,12 @@ void Test::error(string const &c) {
     ** bad effects on the testing. Anything we can do to help
     ** diagnose this is a good thing.
     */
-    string const &s(str());
+    string const s = drain();
     if (s.length() > 0) {
         string const &q(htmlify(s));
         out << q;
         if (q[q.length() - 1] != '\n')
             out << endl;
-        this->str("");
     }
 
     out << "      </error>" << endl;
@@ -170,13 +168,12 @@ void Test::skip(string const &c) {
 
     out << "      <skipped message=" << quoted(c) << ">" << endl;
 
-    string const &s(str());
+    string const s = drain();
     if (s.length() > 0) {
         string const &q(htmlify(s));
         out << q;
         if (q[q.length() - 1] != '\n')
             out << endl;
-        this->str("");
     }
 
     out << "      </skipped>" << endl;
@@ -196,7 +193,7 @@ void Test::skip(string const &c) {
 * conditions that pass together with their supporting log
 * information.
 *
-* For now, this *IMPLEMENTATION* will consume the text assocaited
+* For now, this *IMPLEMENTATION* will consume the text associated
 * with the passing condition, so that it is not erroneously
 * included in a subsequent fail, skip, or error block.
 */
@@ -211,7 +208,7 @@ void Test::pass(string const &c) {
     (void) c;                      // not used
 #endif/*TEST_RESULTS_ALSO_TO*/
 
-    this->str("");
+    (void) drain();
 }
 
 /** Finish a Test.

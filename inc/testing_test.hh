@@ -5,7 +5,9 @@
 * * \brief Testing Test Case Interface
 */
 
+#include <iostream>
 #include <sstream>
+#include <iomanip>
 
 namespace Farsyte {
     namespace Testing {
@@ -31,8 +33,7 @@ namespace Farsyte {
         * formatted appropriately and displayed by Bamboo as
         * supporting text in appropriate reporting conditions.
         */
-        class Test
-                : public std::ostringstream {
+        class Test {
         public:
             /** Test Suite associated with this Test. */
             Suite &ref;
@@ -48,6 +49,29 @@ namespace Farsyte {
 
             /** number of ERROR reports for this test. */
             int errors;
+
+            /** Where to accumulate the output text. */
+            std::ostringstream oss;
+
+            /** Get (and clear) accumulated output. */
+            std::string drain() {
+                std::string s = oss.str();
+                oss.str("");
+                return s;
+            }
+
+            /** Append output text. */
+            template<typename T>
+            Test &operator<<(T const &t) {
+                oss << t;
+                return *this;
+            }
+
+            /** Apply I/O manipulator. */
+            Test &operator<<(std::ostream &(*man)(std::ostream &stream)) {
+                oss << man;
+                return *this;
+            }
 
             /** Construct a new Test object.
             * \param ref - Suite that contains this Test.

@@ -32,6 +32,7 @@ UT_CASE(Factorial, PositiveInput) {
   EXPECT_EQ(24, Factorial(4));
   EXPECT_EQ(99, Factorial(5));
 };
+
 #endif
 
 #include <fstream>
