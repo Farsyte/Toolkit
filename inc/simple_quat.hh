@@ -8,6 +8,7 @@
 
 #include "simple_base.hh"
 #include "simple_col.hh"
+#include "simple_mat.hh"
 
 #include <iostream>
 
@@ -35,6 +36,10 @@ namespace Farsyte {
             Quat &operator*=(Quat const &that);
 
             Quat &operator/=(Quat const &that);
+
+            V operator()(V const &that) const;
+
+            operator M() const;
 
             T w;
             V v;

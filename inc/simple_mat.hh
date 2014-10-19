@@ -15,8 +15,7 @@
 namespace Farsyte {
   namespace Simple {
 
-    class Mat {
-    public:
+    struct Mat {
 
       Mat();
 
@@ -52,7 +51,6 @@ namespace Farsyte {
 
       Mat &operator/=(T by);
 
-    private:
       Row a[Nr];
 
     };
