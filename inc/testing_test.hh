@@ -141,64 +141,7 @@ namespace Farsyte {
              */
             ~Test();
 
-
             /* -- ================================================================ -- */
-            /* the old way to do things */
-
-            
-            /** Common Test Case: Condition True
-             */
-            [[deprecated]] 
-            int is_T(int cond, std::string const &msg) {
-                if (0 != cond) {
-                    pass(msg);
-                    return 0;
-                } else {
-                    fail(msg);
-                    return 1;
-                }
-            }
-
-            /** Common Test Case: Condition True
-             */
-            [[deprecated]]
-            int is_F(int cond, std::string const &msg) {
-                if (0 == cond) {
-                    pass(msg);
-                    return 0;
-                } else {
-                    fail(msg);
-                    return 1;
-                }
-            }
-
-            /** Common Test Case: (obs == exp).
-             */
-            template<typename T, typename U>
-            [[deprecated]]
-            int eq(T obs, U exp, std::string const &msg) {
-                (*this)
-                    << "observed:    " << obs << "\n"
-                    << "expected: == " << exp << "\n";
-                return is_T(obs == exp, msg);
-            }
-
-            /** Common Test Case: (obs >= exp).
-             */
-            template<typename T, typename U>
-            [[deprecated]]
-            int ge(T obs, U exp, std::string const &msg) {
-                (*this)
-                    << "observed:    " << obs << "\n"
-                    << "expected: >= " << exp << "\n";
-                return is_T(obs >= exp, msg);
-            }
-
-
-
-            /* -- ================================================================ -- */
-
-            /* the new way to do things */
 
             int check(bool ok, std::string const &msg) __attribute__ ((unused)) {
                 if (ok)
@@ -267,7 +210,7 @@ namespace Farsyte {
                         op, msg);               \
                 }
 
-            DECL_CHECK_OP(eq, ==)
+            DECL_CHECK_OP(eq, ==);
 
 #define EXPECT_EQ(obs, exp)        UT_EXPECT(check_eq,obs,exp,"==",#obs " == " #exp)
 #define ASSERT_EQ(obs, exp)        UT_ASSERT(check_eq,obs,exp,"==",#obs " == " #exp)
@@ -275,7 +218,7 @@ namespace Farsyte {
 #define EXPECT_Null(obs)           UT_EXPECT(check_eq,obs,(void*)0,"==",#obs " == nullptr")
 #define ASSERT_Null(obs)           UT_ASSERT(check_eq,obs,(void*)0,"==",#obs " == nullptr")
 
-            DECL_CHECK_OP(ne, !=)
+            DECL_CHECK_OP(ne, !=);
 
 #define EXPECT_NE(obs, exp)        UT_EXPECT(check_ne,obs,exp,"!=",#obs " != " #exp)
 #define ASSERT_NE(obs, exp)        UT_ASSERT(check_ne,obs,exp,"!=",#obs " != " #exp)
@@ -283,7 +226,7 @@ namespace Farsyte {
 #define EXPECT_NotNull(obs)        UT_EXPECT(check_ne,obs,(void*)0,"!=",#obs " != nullptr")
 #define ASSERT_NotNull(obs)        UT_ASSERT(check_ne,obs,(void*)0,"!=",#obs " != nullptr")
 
-            DECL_CHECK_OP(ge, >=)
+            DECL_CHECK_OP(ge, >=);
 
 #define EXPECT_GE(obs, exp)        UT_EXPECT(check_ge,obs,exp,">=",#obs " >= " #exp)
 #define ASSERT_GE(obs, exp)        UT_ASSERT(check_ge,obs,exp,">=",#obs " >= " #exp)

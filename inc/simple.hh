@@ -12,6 +12,7 @@
 #include "simple_col.hh"
 #include "simple_row.hh"
 #include "simple_mat.hh"
+#include "simple_quat.hh"
 
 #include <vector>
 #include <string>
