@@ -15,6 +15,16 @@ namespace Farsyte {
         {
         }
 
+        Quat::Quat(T const & wi)
+            : w(wi), v()
+        {
+        }
+
+        Quat::Quat(V const & vi)
+            : w(), v(vi)
+        {
+        }
+
         Quat::Quat(T const & wi, V const & vi)
             : w(wi), v(vi)
         {
@@ -37,6 +47,11 @@ namespace Farsyte {
         Quat &Quat::operator-=(Quat const &that) {
             w -= that.w;
             v -= that.v;
+            return *this;
+        }
+
+        Quat &Quat::operator*=(Quat const &that) {
+            *this = *this * that;
             return *this;
         }
 
@@ -71,6 +86,11 @@ namespace Farsyte {
         Quat operator-(Quat a, Quat const &b) {
             a -= b;
             return a;
+        }
+
+        Quat operator*(Quat const &a, Quat const &b) {
+            return Quat(a.w * b.w - dot(a.v, b.v),
+                        a.w * b.v + a.v * b.w + cross(a.v, b.v));
         }
 
         Quat operator*(Quat a, T const &b) {
