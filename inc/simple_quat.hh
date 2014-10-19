@@ -18,17 +18,11 @@ namespace Farsyte {
 
             Quat();
 
-            explicit
             Quat(T const & wi);
 
-            explicit
             Quat(V const & vi);
 
             Quat(T const & wi, V const & vi);
-
-            bool                  operator==(Quat const &that) const;
-
-            bool                  operator!=(Quat const &that) const;
 
             Quat &operator+=(Quat const &that);
 
@@ -43,6 +37,14 @@ namespace Farsyte {
             T w;
             V v;
         };
+
+        extern bool     operator==(
+            Quat const &a,
+            Quat const &b);
+
+        extern bool     operator!=(
+            Quat const &a,
+            Quat const &b);
 
         extern Quat     operator-(
             Quat const &a);

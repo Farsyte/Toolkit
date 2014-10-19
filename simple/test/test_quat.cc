@@ -54,6 +54,29 @@ UT_CASE(Quat, Compare) {
     EXPECT_NE(DirZ, Unit);
     EXPECT_NE(DirZ, DirX);
     EXPECT_NE(DirZ, DirY);
+
+    // Compare vs Scalar
+    EXPECT_EQ(Zero, 0); EXPECT_EQ(0, Zero);
+    EXPECT_EQ(Unit, 1); EXPECT_EQ(1, Unit);
+    EXPECT_NE(Zero, 1); EXPECT_NE(1, Zero);
+    EXPECT_NE(Unit, 0); EXPECT_NE(0, Unit);
+    EXPECT_NE(0, DirX); EXPECT_NE(DirX, 0);
+    EXPECT_NE(0, DirY); EXPECT_NE(DirY, 0);
+    EXPECT_NE(0, DirZ); EXPECT_NE(DirZ, 0);
+
+    // Compare vs Vector
+    V W{0, 0, 0};
+    V U{0, 0, 0};
+    V X{1, 0, 0};
+    V Y{0, 1, 0};
+    V Z{0, 0, 1};
+
+    EXPECT_EQ(Zero, W); EXPECT_EQ(W, Zero);
+    EXPECT_NE(Unit, U); EXPECT_NE(U, Unit);
+    EXPECT_EQ(DirX, X); EXPECT_EQ(X, DirX);
+    EXPECT_EQ(DirY, Y); EXPECT_EQ(Y, DirY);
+    EXPECT_EQ(DirZ, Z); EXPECT_EQ(Z, DirZ);
+
 };
 
 UT_CASE(Quat, Access) {
