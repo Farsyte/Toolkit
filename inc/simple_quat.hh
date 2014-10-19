@@ -28,11 +28,13 @@ namespace Farsyte {
 
             Quat &operator-=(Quat const &that);
 
-            Quat &operator*=(Quat const &that);
-
             Quat &operator*=(T by);
 
             Quat &operator/=(T by);
+
+            Quat &operator*=(Quat const &that);
+
+            Quat &operator/=(Quat const &that);
 
             T w;
             V v;
@@ -75,6 +77,14 @@ namespace Farsyte {
         extern Quat     operator/(
             Quat a,
             T const &b);
+
+        extern Quat     operator/(
+            T const &a,
+            Quat const &b);
+
+        extern Quat     operator/(
+            Quat const &a,
+            Quat const &b);
 
         extern T normsq(
             Quat const &a);

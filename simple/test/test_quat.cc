@@ -6,6 +6,7 @@ using Farsyte::Simple::T;
 using Farsyte::Simple::V;
 
 using std::cerr;
+using std::endl;
 using std::setw;
 
 UT_CASE(Quat, Compare) {
@@ -218,5 +219,42 @@ UT_CASE(Quat, Mul) {
     EXPECT_EQ(~A*A, (Quat{normsq(A)}));
     EXPECT_EQ(C*~C, (Quat{normsq(C)}));
     EXPECT_EQ(~C*C, (Quat{normsq(C)}));
+
+};
+
+// DIVISION TESTING: Here we hit the usual pitfalls with
+// trying to do equality comparisons between the results
+// of a floating point operation and a constant. This could
+// be eliminated by finding a quaternion C such that its
+// inverse has nice round coefficients.
+//
+// Until I find such, my choices are to round the results
+// before comparing, or modify the comparison to allow
+// an acceptable error interval.
+
+
+static T round(T const &t) {
+    if (t < 0) return -round(-t);
+    static const double rf = 10000.0;
+    return ((int)(t * rf + 0.5)) / rf;
+}
+
+static V round(V const &v) {
+    return V(round(v[0]), round(v[1]), round(v[2]));
+}
+
+static Quat round(Quat const &q) {
+    return Quat(round(q.w), round(q.v));
+}
+
+UT_CASE(Quat, Div) {
+    
+    Quat       A { 2, { 4, 5, 6 }};
+    Quat const C { 0.17, { 0.19, 0.25, 0.35 }};
+
+    EXPECT_EQ(round(1/C), (Quat{ 0.68, { -0.76, -1, -1.4 }}));
+    EXPECT_EQ(round(A/C), (Quat{ 17.8, { 0.2, 2.44, 1.08 }}));
+    EXPECT_EQ(round(A/=C), (Quat{ 17.8, { 0.2, 2.44, 1.08 }}));
+    EXPECT_EQ(round(A*C), (Quat{ 2, { 4, 5, 6 }}));
 
 };
