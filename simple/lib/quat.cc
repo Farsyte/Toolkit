@@ -32,22 +32,13 @@ namespace Farsyte {
         }
 
         Quat::operator M() const {
-            const T &x (v[0]);
-            const T &y (v[1]);
-            const T &z (v[2]);
+
+            const T &x (v[0]), &y (v[1]), &z (v[2]);
 
             const T ww = w * w;
-            const T xx = x * x;
-            const T yy = y * y;
-            const T zz = z * z;
-
-            const T wx = w * x;
-            const T wy = w * y;
-            const T wz = w * z;
-
-            const T xy = x * y;
-            const T xz = x * z;
-            const T yz = y * z;
+            const T xx = x * x, yy = y * y, zz = z * z;
+            const T wx = w * x, wy = w * y, wz = w * z;
+            const T xy = x * y, xz = x * z, yz = y * z;
 
             const R r1 {ww+xx-yy-zz, xy+xy-wz-wz, xz+xz+wy+wy};
             const R r2 {xy+xy+wz+wz, ww-xx+yy-zz, yz+yz-wx-wx};
@@ -57,12 +48,9 @@ namespace Farsyte {
         }
 
         V Quat::operator()(V const &that) const {
-#if 1
-            return ((*this) * that * ~(*this)).v;
-#else
-            M m = (M) (*this);
-            return m * that;
-#endif
+            Q const &q (*this);
+
+            return (q * that * ~q).v;
         }
 
         bool operator==(Quat const &a, Quat const &b) {

@@ -333,8 +333,64 @@ UT_CASE(Quat, Mat) {
     Quat const DirY{cos(a), Y*sin(a)};
     Quat const DirZ{cos(a), Z*sin(a)};
 
+    // Construction of the rotation matrix
+    // requires 10 multiplies and 27 add/sub ops.
+
     EXPECT_EQ(r4((M)Unit), (M{{1,0,0},{0,1,0},{0,0,1}}));
     EXPECT_EQ(r4((M)DirX), (M{{1,0,0},{0,0,-1},{0,1,0}}));
     EXPECT_EQ(r4((M)DirY), (M{{0,0,1},{0,1,0},{-1,0,0}}));
     EXPECT_EQ(r4((M)DirZ), (M{{0,-1,0},{1,0,0},{0,0,1}}));
+};
+
+UT_CASE(Quat, MatRot) {
+
+    // The unit quaternion represents the null rotation.
+    Quat const Unit{1};
+
+    // Vectors for each axis
+    V const X{1,0,0};
+    V const Y{0,1,0};
+    V const Z{0,0,1};
+
+    // "a" is half of the rotation angle.
+    T const a{atan2(1,1)};
+
+
+    // Quaternions for rotation around each axis.
+    Quat const DirX{cos(a), X*sin(a)};
+    Quat const DirY{cos(a), Y*sin(a)};
+    Quat const DirZ{cos(a), Z*sin(a)};
+
+    // Rotation matrices for each quaternion
+
+    M  const MatU = (M) Unit;
+    M  const MatX = (M) DirX;
+    M  const MatY = (M) DirY;
+    M  const MatZ = (M) DirZ;
+
+    // Rotating each vector with this method
+    // requires 9 multiplies and 6 adds.
+
+    EXPECT_EQ(r4(MatU * X), (V{1,0,0}));
+    EXPECT_EQ(r4(MatU * Y), (V{0,1,0}));
+    EXPECT_EQ(r4(MatU * Z), (V{0,0,1}));
+
+    // Rotation of a vector around itself does not change it.
+
+    EXPECT_EQ(r4(MatX * X), (V{1,0,0}));
+    EXPECT_EQ(r4(MatY * Y), (V{0,1,0}));
+    EXPECT_EQ(r4(MatZ * Z), (V{0,0,1}));
+
+    // Forward cycle through X, Y, Z axes
+
+    EXPECT_EQ(r4(MatY * Z), (V{1,0,0}));
+    EXPECT_EQ(r4(MatZ * X), (V{0,1,0}));
+    EXPECT_EQ(r4(MatX * Y), (V{0,0,1}));
+    
+    // Reverse cycle through Z, Y, X axes
+
+    EXPECT_EQ(r4(MatZ * Y), (V{-1,0,0}));
+    EXPECT_EQ(r4(MatX * Z), (V{0,-1,0}));
+    EXPECT_EQ(r4(MatY * X), (V{0,0,-1}));
+
 };

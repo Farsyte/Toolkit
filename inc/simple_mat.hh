@@ -86,6 +86,8 @@ namespace Farsyte {
                                     Mat const &m);
 
 
+    V operator*(M const &m, V const &v);
+
   }
 }
 
