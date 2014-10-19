@@ -17,6 +17,7 @@ add_subdirectory (inc)
 
 add_subdirectory (utility)
 add_subdirectory (testing)
+add_subdirectory (simple)
 add_subdirectory (matrix)
 
 add_custom_target(runtests

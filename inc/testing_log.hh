@@ -22,10 +22,10 @@ namespace Farsyte {
         * at the same time.
         */
         class Log {
-        public:
-
+        private:
             std::ostream &out;                ///< Current output stream.
-
+            
+        public:
             std::string const name;           ///< Name of the test log.
 
             Suite *curr;                      ///< Currently active Suite, or NULL if none.
@@ -52,6 +52,25 @@ namespace Farsyte {
             * Writes XML trailer text to the output stream.
             */
             ~Log();
+
+            /** Append output text. 
+             * \param t data to print to the log.
+             * \returns this Log object (for further operations).
+             */
+            template<typename T>
+            Log &operator<<(T const &t) {
+                out << t;
+                return *this;
+            }
+
+            /** Apply I/O manipulator. 
+             * \param man manipulator to apply to the log stream.
+             * \returns this Log object (for further operations).
+             */
+            Log &operator<<(std::ostream &(*man)(std::ostream &stream)) {
+                out << man;
+                return *this;
+            }
         };
 
     }
