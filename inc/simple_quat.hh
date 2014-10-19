@@ -20,14 +20,6 @@ namespace Farsyte {
 
             Quat(T const & wi, V const & vi);
 
-            T const & scalar() const { return w; }
-
-            T       & scalar()       { return w; }
-
-            V const & vector() const { return v; }
-      
-            V       & vector()       { return v; }
-
             bool                  operator==(Quat const &that) const;
 
             bool                  operator!=(Quat const &that) const;

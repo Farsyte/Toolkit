@@ -53,16 +53,16 @@ UT_CASE(Quat, Access) {
     Quat const Zero;
     Quat       Uniq{2,{4,5,6}};
 
-    EXPECT_EQ(Zero.scalar(), T());
-    EXPECT_EQ(Zero.vector(), V());
-    EXPECT_EQ(Uniq.scalar(), 2);
-    EXPECT_EQ(Uniq.vector(), (V{4,5,6}));
+    EXPECT_EQ(Zero.w, T());
+    EXPECT_EQ(Zero.v, V());
+    EXPECT_EQ(Uniq.w, 2);
+    EXPECT_EQ(Uniq.v, (V{4,5,6}));
 
-    Uniq.scalar() = 6;
-    Uniq.vector() = {5,4,2};
+    Uniq.w = 6;
+    Uniq.v = {5,4,2};
 
-    EXPECT_EQ(Uniq.scalar(), 6);
-    EXPECT_EQ(Uniq.vector(), (V{5,4,2}));
+    EXPECT_EQ(Uniq.w, 6);
+    EXPECT_EQ(Uniq.v, (V{5,4,2}));
 };
 
 UT_CASE(Quat, Add) {

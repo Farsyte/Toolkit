@@ -59,7 +59,7 @@ namespace Farsyte {
         }
 
         Quat operator~(Quat const &a) {
-            Quat z(a.scalar(), -a.vector());
+            Quat z(a.w, -a.v);
             return z;
         }
 
@@ -100,8 +100,8 @@ namespace Farsyte {
         std::ostream &operator<<(std::ostream &s, Quat const &r) {
             int w = (int) s.width();
             s << setw(1) << "{"
-              << setw(w) << r.scalar() << ","
-              << setw(w) << r.vector() << "}";
+              << setw(w) << r.w << ","
+              << setw(w) << r.v << "}";
             return s;
         }
 
