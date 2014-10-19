@@ -25,7 +25,8 @@ endif
 
 CSTD            = --std=c11
 XSTD            = --std=c++11
-ERR             = -W -Wall -Wextra -pedantic -Werror
+ERR             = -W -Wall -Wextra -pedantic -Werror \
+		  -Wno-missing-braces
 
 IPATH           = $(IDIRS:%=-I%)
 LPATH           = $(LDIRS:%=-L%)

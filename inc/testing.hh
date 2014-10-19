@@ -17,6 +17,7 @@
 #include "testing_suite.hh"
 #include "testing_test.hh"
 #include "testing_oops.hh"
+#include "testing_fixture.hh"
 
 namespace Farsyte {
     namespace Testing {
@@ -29,9 +30,5 @@ namespace Farsyte {
         extern std::vector<std::string> const &testing_versions();
     }
 }
-
-/** Dump information from an Oops onto an output stream.
-*/
-extern std::ostream &operator<<(std::ostream &s, Farsyte::Testing::Oops const &f);
 
 #endif//_testing_h
