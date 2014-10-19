@@ -53,14 +53,20 @@ namespace Farsyte {
             */
             ~Log();
 
-            /** Append output text. */
+            /** Append output text. 
+             * \param t data to print to the log.
+             * \returns this Log object (for further operations).
+             */
             template<typename T>
             Log &operator<<(T const &t) {
                 out << t;
                 return *this;
             }
 
-            /** Apply I/O manipulator. */
+            /** Apply I/O manipulator. 
+             * \param man manipulator to apply to the log stream.
+             * \returns this Log object (for further operations).
+             */
             Log &operator<<(std::ostream &(*man)(std::ostream &stream)) {
                 out << man;
                 return *this;

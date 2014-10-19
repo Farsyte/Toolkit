@@ -61,14 +61,20 @@ namespace Farsyte {
             */
             ~Suite();
 
-            /** Append output text. */
+            /** Append output text.
+             * \param t data to print to the log.
+             * \returns this Suite object for further operations.
+             */
             template<typename T>
             Suite &operator<<(T const &t) {
                 ref << t;
                 return *this;
             }
 
-            /** Apply I/O manipulator. */
+            /** Apply I/O manipulator.
+             * \param man manipulator to apply to the log stream.
+             * \returns this Suite object for further operations.
+             */
             Suite &operator<<(std::ostream &(*man)(std::ostream &stream)) {
                 ref << man;
                 return *this;

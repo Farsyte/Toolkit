@@ -21,6 +21,33 @@ By "work correctly" I mean that the code should pass automated testing
 that checks all documented features. Test coverage should include all
 of the intended common usage scenarios.
 
+Current level of compiler warnings:
+
+  * `--std=c++11`
+	to enable C++11 facilities without compiler extensions.
+
+  * `-pedantic`
+	Issue all warnings demanded by Strict ISO C and C++.
+	Reject all programs that use forbidden extensions,
+	and some programs that do not follow ISO C and C++.
+
+  * `-Wall`
+    Turn on nearly every warning in the compiler.
+
+  * `-Wextra` and `-W`
+    Turn on even more warnings.
+
+  * `-Weffc++`
+    Warnings from _Effective C++_ by Scott Meyers.
+
+  * `-Werror`
+	I am serious about not having warnings.
+
+Currently "green carded" exceptions are:
+
+  * Turn off `missing-braces` until I am happy with my constructors.
+
+
 Contents
 --------
 
@@ -53,5 +80,6 @@ Less common tools that a complete build of the Toolkit needs:
 
   * markdown
   * doxyen
-  * dot
+  * graphviz
+
 
