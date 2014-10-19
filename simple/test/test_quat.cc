@@ -1,9 +1,13 @@
 #include "simple_quat.hh"
 #include "testing.hh"
 
+#include <cmath>
+
 using Farsyte::Simple::Quat;
 using Farsyte::Simple::T;
 using Farsyte::Simple::V;
+using Farsyte::Simple::M;
+using Farsyte::Simple::R;
 
 using std::cerr;
 using std::endl;
@@ -233,18 +237,26 @@ UT_CASE(Quat, Mul) {
 // an acceptable error interval.
 
 
-static T round(T const &t) {
-    if (t < 0) return -round(-t);
+static T r4(T const &t) {
+    if (t < 0) return -r4(-t);
     static const double rf = 10000.0;
     return ((int)(t * rf + 0.5)) / rf;
 }
 
-static V round(V const &v) {
-    return V(round(v[0]), round(v[1]), round(v[2]));
+static V r4(V const &v) {
+    return V(r4(v[0]), r4(v[1]), r4(v[2]));
 }
 
-static Quat round(Quat const &q) {
-    return Quat(round(q.w), round(q.v));
+static Quat r4(Quat const &q) {
+    return Quat(r4(q.w), r4(q.v));
+}
+
+static R r4(R const &r) {
+    return R(r4(r[0]), r4(r[1]), r4(r[2]));
+}
+
+static M r4(M const &m) {
+    return M(r4(m[0]), r4(m[1]), r4(m[2]));
 }
 
 UT_CASE(Quat, Div) {
@@ -252,9 +264,77 @@ UT_CASE(Quat, Div) {
     Quat       A { 2, { 4, 5, 6 }};
     Quat const C { 0.17, { 0.19, 0.25, 0.35 }};
 
-    EXPECT_EQ(round(1/C), (Quat{ 0.68, { -0.76, -1, -1.4 }}));
-    EXPECT_EQ(round(A/C), (Quat{ 17.8, { 0.2, 2.44, 1.08 }}));
-    EXPECT_EQ(round(A/=C), (Quat{ 17.8, { 0.2, 2.44, 1.08 }}));
-    EXPECT_EQ(round(A*C), (Quat{ 2, { 4, 5, 6 }}));
+    EXPECT_EQ(r4(1/C), (Quat{ 0.68, { -0.76, -1, -1.4 }}));
+    EXPECT_EQ(r4(A/C), (Quat{ 17.8, { 0.2, 2.44, 1.08 }}));
+    EXPECT_EQ(r4(A/=C), (Quat{ 17.8, { 0.2, 2.44, 1.08 }}));
+    EXPECT_EQ(r4(A*C), (Quat{ 2, { 4, 5, 6 }}));
 
+};
+
+UT_CASE(Quat, Rot) {
+
+    // The unit quaternion represents the null rotation.
+    Quat const Unit{1};
+
+    // Vectors for each axis
+    V const X{1,0,0};
+    V const Y{0,1,0};
+    V const Z{0,0,1};
+
+    // "a" is half of the rotation angle.
+    T const a{atan2(1,1)};
+
+
+    // Quaternions for rotation around each axis.
+    Quat const DirX{cos(a), X*sin(a)};
+    Quat const DirY{cos(a), Y*sin(a)};
+    Quat const DirZ{cos(a), Z*sin(a)};
+
+    // Unit does not rotate.
+
+    EXPECT_EQ(r4(Unit(X)), (V{1,0,0}));
+    EXPECT_EQ(r4(Unit(Y)), (V{0,1,0}));
+    EXPECT_EQ(r4(Unit(Z)), (V{0,0,1}));
+
+    // Rotation of a vector around itself does not change it.
+
+    EXPECT_EQ(r4(DirX(X)), (V{1,0,0}));
+    EXPECT_EQ(r4(DirY(Y)), (V{0,1,0}));
+    EXPECT_EQ(r4(DirZ(Z)), (V{0,0,1}));
+
+    EXPECT_EQ(r4(DirY(Z)), (V{1,0,0}));
+    EXPECT_EQ(r4(DirZ(X)), (V{0,1,0}));
+    EXPECT_EQ(r4(DirX(Y)), (V{0,0,1}));
+    
+    EXPECT_EQ(r4(DirZ(Y)), (V{-1,0,0}));
+    EXPECT_EQ(r4(DirX(Z)), (V{0,-1,0}));
+    EXPECT_EQ(r4(DirY(X)), (V{0,0,-1}));
+
+};
+
+UT_CASE(Quat, Mat) {
+
+#define SHO(v) cerr << #v ": " << v << endl
+
+    // The unit quaternion represents the null rotation.
+    Quat const Unit{1};
+
+
+    // Vectors for each axis
+    V const X{1,0,0};
+    V const Y{0,1,0};
+    V const Z{0,0,1};
+
+    // "a" is half of the rotation angle.
+    T const a{atan2(1,1)};
+
+    // Quaternions for rotation around each axis.
+    Quat const DirX{cos(a), X*sin(a)};
+    Quat const DirY{cos(a), Y*sin(a)};
+    Quat const DirZ{cos(a), Z*sin(a)};
+
+    EXPECT_EQ(r4((M)Unit), (M{{1,0,0},{0,1,0},{0,0,1}}));
+    EXPECT_EQ(r4((M)DirX), (M{{1,0,0},{0,0,-1},{0,1,0}}));
+    EXPECT_EQ(r4((M)DirY), (M{{0,0,1},{0,1,0},{-1,0,0}}));
+    EXPECT_EQ(r4((M)DirZ), (M{{0,-1,0},{1,0,0},{0,0,1}}));
 };

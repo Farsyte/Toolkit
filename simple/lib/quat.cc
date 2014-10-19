@@ -1,4 +1,5 @@
 #include "simple_quat.hh"
+#include "simple.hh"
 
 #include <stdexcept>
 #include <cmath>
@@ -28,6 +29,40 @@ namespace Farsyte {
         Quat::Quat(T const & wi, V const & vi)
             : w(wi), v(vi)
         {
+        }
+
+        Quat::operator M() const {
+            const T &x (v[0]);
+            const T &y (v[1]);
+            const T &z (v[2]);
+
+            const T ww = w * w;
+            const T xx = x * x;
+            const T yy = y * y;
+            const T zz = z * z;
+
+            const T wx = w * x;
+            const T wy = w * y;
+            const T wz = w * z;
+
+            const T xy = x * y;
+            const T xz = x * z;
+            const T yz = y * z;
+
+            const R r1 {ww+xx-yy-zz, xy+xy-wz-wz, xz+xz+wy+wy};
+            const R r2 {xy+xy+wz+wz, ww-xx+yy-zz, yz+yz-wx-wx};
+            const R r3 {xz+xz-wy-wy, yz+yz+wx+wx, ww-xx-yy+zz};
+
+            return M{r1,r2,r3};
+        }
+
+        V Quat::operator()(V const &that) const {
+#if 1
+            return ((*this) * that * ~(*this)).v;
+#else
+            M m = (M) (*this);
+            return m * that;
+#endif
         }
 
         bool operator==(Quat const &a, Quat const &b) {
