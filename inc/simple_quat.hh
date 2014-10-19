@@ -39,6 +39,7 @@ namespace Farsyte {
 
             V operator()(V const &that) const;
 
+            explicit
             operator M() const;
 
             T w;

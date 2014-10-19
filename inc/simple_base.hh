@@ -19,6 +19,8 @@ namespace Farsyte {
 
         typedef struct Mat M;
 
+        typedef struct Quat Q;
+
     }
 }
 
