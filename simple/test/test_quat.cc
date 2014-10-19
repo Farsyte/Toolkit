@@ -10,11 +10,19 @@ using std::setw;
 
 UT_CASE(Quat, Compare) {
 
+    // Default constructor makes an all-zero quaternion.
     Quat const Zero;
-    Quat const Unit{1, {0, 0, 0}};
-    Quat const DirX{0, {1, 0, 0}};
-    Quat const DirY{0, {0, 1, 0}};
-    Quat const DirZ{0, {0, 0, 1}};
+
+    // Initialization from a scalar builds a quaternion
+    // with a zero imaginary part.
+    Quat const Unit{1};
+
+    // Initialization from a vector builds a quaternion
+    // that is "pure" -- the imaginary parts are taken
+    // from the vector, and the real part is zero.
+    Quat const DirX{{1, 0, 0}};
+    Quat const DirY{{0, 1, 0}};
+    Quat const DirZ{{0, 0, 1}};
 
     EXPECT_EQ(Zero, Zero);
     EXPECT_EQ(Unit, Unit);
@@ -125,10 +133,10 @@ UT_CASE(Quat, ConjNeg) {
 UT_CASE(Quat, Mul) {
 
     Quat const Zero;
-    Quat const Unit{1, {0, 0, 0}};
-    Quat const DirX{0, {3, 0, 0}};
-    Quat const DirY{0, {0, 5, 0}};
-    Quat const DirZ{0, {0, 0, 7}};
+    Quat const Unit{1};
+    Quat const DirX{{3, 0, 0}};
+    Quat const DirY{{0, 5, 0}};
+    Quat const DirZ{{0, 0, 7}};
 
     Quat       A { 2, { 4, 5, 6 }};
     Quat const C { 34, { 38, 50, 70 }};
@@ -165,27 +173,27 @@ UT_CASE(Quat, Mul) {
     // axes, the square of the quaternion is a
     // negative real value.
 
-    EXPECT_EQ(DirX * DirX, (Quat{-9, {0, 0, 0}}));
-    EXPECT_EQ(DirY * DirY, (Quat{-25, {0, 0, 0}}));
-    EXPECT_EQ(DirZ * DirZ, (Quat{-49, {0, 0, 0}}));
+    EXPECT_EQ(DirX * DirX, (Quat{-9}));
+    EXPECT_EQ(DirY * DirY, (Quat{-25}));
+    EXPECT_EQ(DirZ * DirZ, (Quat{-49}));
 
     // Quaternion multiplication is not commutative.
 
-    EXPECT_EQ(DirX * DirY, (Quat{0, {0, 0, 15}}));
-    EXPECT_EQ(DirY * DirX, (Quat{0, {0, 0, -15}}));
+    EXPECT_EQ(DirX * DirY, (Quat{{0, 0, 15}}));
+    EXPECT_EQ(DirY * DirX, (Quat{{0, 0, -15}}));
 
-    EXPECT_EQ(DirX * DirZ, (Quat{0, {0, -21, 0}}));
-    EXPECT_EQ(DirZ * DirX, (Quat{0, {0, 21, 0}}));
+    EXPECT_EQ(DirX * DirZ, (Quat{{0, -21, 0}}));
+    EXPECT_EQ(DirZ * DirX, (Quat{{0, 21, 0}}));
 
-    EXPECT_EQ(DirY * DirZ, (Quat{0, {35, 0, 0}}));
-    EXPECT_EQ(DirZ * DirY, (Quat{0, {-35, 0, 0}}));
+    EXPECT_EQ(DirY * DirZ, (Quat{{35, 0, 0}}));
+    EXPECT_EQ(DirZ * DirY, (Quat{{-35, 0, 0}}));
 
     // Multiplication of a quaternion by its conjugate
     // gives the square of the two-norm.
 
-    EXPECT_EQ(A*~A, (Quat{normsq(A), {0, 0, 0}}));
-    EXPECT_EQ(~A*A, (Quat{normsq(A), {0, 0, 0}}));
-    EXPECT_EQ(C*~C, (Quat{normsq(C), {0, 0, 0}}));
-    EXPECT_EQ(~C*C, (Quat{normsq(C), {0, 0, 0}}));
+    EXPECT_EQ(A*~A, (Quat{normsq(A)}));
+    EXPECT_EQ(~A*A, (Quat{normsq(A)}));
+    EXPECT_EQ(C*~C, (Quat{normsq(C)}));
+    EXPECT_EQ(~C*C, (Quat{normsq(C)}));
 
 };

@@ -15,6 +15,16 @@ namespace Farsyte {
         {
         }
 
+        Quat::Quat(T const & wi)
+            : w(wi), v()
+        {
+        }
+
+        Quat::Quat(V const & vi)
+            : w(), v(vi)
+        {
+        }
+
         Quat::Quat(T const & wi, V const & vi)
             : w(wi), v(vi)
         {
