@@ -2,6 +2,8 @@ var classFarsyte_1_1Testing_1_1Suite =
 [
     [ "Suite", "classFarsyte_1_1Testing_1_1Suite.html#a85d3f7c88c58e92c4eb40333dc553245", null ],
     [ "~Suite", "classFarsyte_1_1Testing_1_1Suite.html#a66cb6ec56755bacc532da0d39c1f0a83", null ],
+    [ "operator<<", "classFarsyte_1_1Testing_1_1Suite.html#a3078a7826f34eab75884190564223820", null ],
+    [ "operator<<", "classFarsyte_1_1Testing_1_1Suite.html#ac8842601899e6923505cc284dd1a027c", null ],
     [ "curr", "classFarsyte_1_1Testing_1_1Suite.html#a2e30857d9b44fe3a020aa40f9170f717", null ],
     [ "errored_tests", "classFarsyte_1_1Testing_1_1Suite.html#ad503720c2a2144aa224a672adc211c67", null ],
     [ "failed_tests", "classFarsyte_1_1Testing_1_1Suite.html#ae4d83f448ee0c7fd0ed39976eb1f1fc1", null ],

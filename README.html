@@ -3,51 +3,76 @@
 <p>This is a collection of tools I use from time to time.</p>
 
 <p>I will be moving tools into this project, generally by rewriting them
-    from scratch.</p>
+from scratch.</p>
 
 <p>Along the way, it is my intention to be strict about software
-    engineering ideals and methods: I would really like this code to
-    compile cleanly and work correctly, at least on all the machines that
-    I use from day to day.</p>
+engineering ideals and methods: I would really like this code to
+compile cleanly and work correctly, at least on all the machines that
+I use from day to day.</p>
 
 <h2>Goals</h2>
 
 <p>By "compile cleanly" I mean no warnings from the compiler. Exceptions
-    may have to be made, but should reflect exceptional circumstances.</p>
+may have to be made, but should reflect exceptional circumstances.</p>
 
 <p>By "work correctly" I mean that the code should pass automated testing
-    that checks all documented features. Test coverage should include all
-    of the intended common usage scenarios.</p>
+that checks all documented features. Test coverage should include all
+of the intended common usage scenarios.</p>
+
+<p>Current level of compiler warnings:</p>
+
+<ul>
+<li><p><code>--std=c++11</code>
+to enable C++11 facilities without compiler extensions.</p></li>
+<li><p><code>-pedantic</code>
+Issue all warnings demanded by Strict ISO C and C++.
+Reject all programs that use forbidden extensions,
+and some programs that do not follow ISO C and C++.</p></li>
+<li><p><code>-Wall</code>
+Turn on nearly every warning in the compiler.</p></li>
+<li><p><code>-Wextra</code> and <code>-W</code>
+Turn on even more warnings.</p></li>
+<li><p><code>-Weffc++</code>
+Warnings from <em>Effective C++</em> by Scott Meyers.</p></li>
+<li><p><code>-Werror</code>
+I am serious about not having warnings.</p></li>
+</ul>
+
+<p>Currently "green carded" exceptions are:</p>
+
+<ul>
+<li>Turn off <code>missing-braces</code> until I am happy with my constructors.</li>
+</ul>
 
 <h2>Contents</h2>
 
 <p>This Toolkit is intended to grow to contain libraries, frameworks,
-    utility programs, and utility scripts. It may also contain data files
-    supporting any of the above. The distinction between kinds of things
-    is strong, but it will not be a top level organizational criterion.</p>
+utility programs, and utility scripts. It may also contain data files
+supporting any of the above. The distinction between kinds of things
+is strong, but it will not be a top level organizational criterion.</p>
 
 <p>Generally, I prefer libraries to frameworks: you can often write a
-    program to make use of facilities from more than one library, but
-    dealing with two frameworks battling for who gets to be the Main Loop
-    is something that I never ever want to have to do again.</p>
+program to make use of facilities from more than one library, but
+dealing with two frameworks battling for who gets to be the Main Loop
+is something that I never ever want to have to do again.</p>
 
 <p>My intention is to provide frameworks for some of the very common
-    kinds of programs that I find myself writing, where the framework is a
-    fairly small scaffolding that makes use of library code. The intention
-    is to assure that a program is not forced to use a specific framework
-    if it wants to gain access to a useful service.</p>
+kinds of programs that I find myself writing, where the framework is a
+fairly small scaffolding that makes use of library code. The intention
+is to assure that a program is not forced to use a specific framework
+if it wants to gain access to a useful service.</p>
 
 <h2>Doxygen Output</h2>
 
 <p>Doxygen can provide a handy set of reference documents. If they are
-    built, <a href="inc/html/index.html">find them here</a>.</p>
+built, <a href="inc/html/index.html">find them here</a>.</p>
 
 <h2>Tools Required</h2>
 
 <p>Less common tools that a complete build of the Toolkit needs:</p>
 
 <ul>
-    <li>markdown</li>
-    <li>doxyen</li>
-    <li>dot</li>
+<li>markdown</li>
+<li>doxyen</li>
+<li>graphviz</li>
 </ul>

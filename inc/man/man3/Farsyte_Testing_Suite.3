@@ -1,4 +1,4 @@
-.TH "Farsyte::Testing::Suite" 3 "Sat Sep 27 2014" "The Farsyte Toolkit" \" -*- nroff -*-
+.TH "Farsyte::Testing::Suite" 3 "Sun Oct 19 2014" "The Farsyte Toolkit" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -22,6 +22,14 @@ The \fBSuite\fP Object\&.
 .RI "\fB~Suite\fP ()"
 .br
 .RI "\fI\fBSuite\fP Destructor\&. \fP"
+.ti -1c
+.RI "template<typename T > \fBSuite\fP & \fBoperator<<\fP (T const &t)"
+.br
+.RI "\fIAppend output text\&. \fP"
+.ti -1c
+.RI "\fBSuite\fP & \fBoperator<<\fP (std::ostream &(*man)(std::ostream &stream))"
+.br
+.RI "\fIApply I/O manipulator\&. \fP"
 .in -1c
 .SS "Public Attributes"
 
@@ -93,6 +101,59 @@ Construct a new \fBSuite\fP object\&.
 
 .PP
 \fBSuite\fP Destructor\&. Generates an appropriate trailer to the XML text output stream to close the \fBSuite\fP\&. May throw an exception if it appears that this is not the current \fBSuite\fP associated with the \fBLog\fP\&. 
+.SH "Member Function Documentation"
+.PP 
+.SS "template<typename T > \fBSuite\fP& Farsyte::Testing::Suite::operator<< (T const &t)\fC [inline]\fP"
+
+.PP
+Append output text\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIt\fP data to print to the log\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+this \fBSuite\fP object for further operations\&. 
+.RE
+.PP
+
+.PP
+Definition at line 69 of file testing_suite\&.hh\&.
+.PP
+.nf
+69                                           {
+70                 ref << t;
+71                 return *this;
+72             }
+.fi
+.SS "\fBSuite\fP& Farsyte::Testing::Suite::operator<< (std::ostream &(*)(std::ostream &stream)man)\fC [inline]\fP"
+
+.PP
+Apply I/O manipulator\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIman\fP manipulator to apply to the log stream\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+this \fBSuite\fP object for further operations\&. 
+.RE
+.PP
+
+.PP
+Definition at line 78 of file testing_suite\&.hh\&.
+.PP
+.nf
+78                                                                       {
+79                 ref << man;
+80                 return *this;
+81             }
+.fi
+
 
 .SH "Author"
 .PP 

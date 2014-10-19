@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['quat',['Quat',['../classFarsyte_1_1Matrix_1_1Quat.html#ad061f4f472e81835ee8e952a33918b99',1,'Farsyte::Matrix::Quat::Quat()'],['../classFarsyte_1_1Matrix_1_1Quat.html#ad63f7e9417083d7a5b8440bd69f8ee25',1,'Farsyte::Matrix::Quat::Quat(double iw, TriVec const &amp;iv)']]]
+  ['row',['Row',['../structFarsyte_1_1Simple_1_1Row.html#ae2459c6d8ebc9aed5f6a1de30b92e90f',1,'Farsyte::Simple::Row']]],
+  ['rows',['rows',['../classFarsyte_1_1Matrix_1_1Matrix.html#aa5f4f8b9fae57920f3e9be18a822bf89',1,'Farsyte::Matrix::Matrix']]]
 ];

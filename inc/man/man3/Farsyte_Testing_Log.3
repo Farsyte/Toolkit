@@ -1,4 +1,4 @@
-.TH "Farsyte::Testing::Log" 3 "Sat Sep 27 2014" "The Farsyte Toolkit" \" -*- nroff -*-
+.TH "Farsyte::Testing::Log" 3 "Sun Oct 19 2014" "The Farsyte Toolkit" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -15,21 +15,25 @@ The \fBLog\fP Object\&.
 
 .in +1c
 .ti -1c
-.RI "\fBLog\fP (std::ostream &\fBout\fP, std::string const &\fBname\fP)"
+.RI "\fBLog\fP (std::ostream &out, std::string const &\fBname\fP)"
 .br
 .RI "\fI\fBLog\fP Constructor\&. \fP"
 .ti -1c
 .RI "\fB~Log\fP ()"
 .br
 .RI "\fI\fBLog\fP Destructor\&. \fP"
+.ti -1c
+.RI "template<typename T > \fBLog\fP & \fBoperator<<\fP (T const &t)"
+.br
+.RI "\fIAppend output text\&. \fP"
+.ti -1c
+.RI "\fBLog\fP & \fBoperator<<\fP (std::ostream &(*man)(std::ostream &stream))"
+.br
+.RI "\fIApply I/O manipulator\&. \fP"
 .in -1c
 .SS "Public Attributes"
 
 .in +1c
-.ti -1c
-.RI "std::ostream & \fBout\fP"
-.br
-.RI "\fICurrent output stream\&. \fP"
 .ti -1c
 .RI "std::string const \fBname\fP"
 .br
@@ -97,6 +101,59 @@ Definition at line 24 of file testing_log\&.hh\&.
 
 .PP
 \fBLog\fP Destructor\&. Writes XML trailer text to the output stream\&. 
+.SH "Member Function Documentation"
+.PP 
+.SS "template<typename T > \fBLog\fP& Farsyte::Testing::Log::operator<< (T const &t)\fC [inline]\fP"
+
+.PP
+Append output text\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIt\fP data to print to the log\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+this \fBLog\fP object (for further operations)\&. 
+.RE
+.PP
+
+.PP
+Definition at line 61 of file testing_log\&.hh\&.
+.PP
+.nf
+61                                         {
+62                 out << t;
+63                 return *this;
+64             }
+.fi
+.SS "\fBLog\fP& Farsyte::Testing::Log::operator<< (std::ostream &(*)(std::ostream &stream)man)\fC [inline]\fP"
+
+.PP
+Apply I/O manipulator\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIman\fP manipulator to apply to the log stream\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+this \fBLog\fP object (for further operations)\&. 
+.RE
+.PP
+
+.PP
+Definition at line 70 of file testing_log\&.hh\&.
+.PP
+.nf
+70                                                                     {
+71                 out << man;
+72                 return *this;
+73             }
+.fi
+
 
 .SH "Author"
 .PP 

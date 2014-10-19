@@ -1,4 +1,4 @@
-.TH "Farsyte::Testing::Test" 3 "Sat Sep 27 2014" "The Farsyte Toolkit" \" -*- nroff -*-
+.TH "Farsyte::Testing::Test" 3 "Sun Oct 19 2014" "The Farsyte Toolkit" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -11,11 +11,21 @@ The \fBTest\fP object\&.
 .PP
 .PP
 \fC#include <testing_test\&.hh>\fP
-.PP
-Inherits ostringstream\&.
 .SS "Public Member Functions"
 
 .in +1c
+.ti -1c
+.RI "std::string \fBdrain\fP ()"
+.br
+.RI "\fIGet (and clear) accumulated output\&. \fP"
+.ti -1c
+.RI "template<typename T > \fBTest\fP & \fBoperator<<\fP (T const &t)"
+.br
+.RI "\fIAppend output text\&. \fP"
+.ti -1c
+.RI "\fBTest\fP & \fBoperator<<\fP (std::ostream &(*man)(std::ostream &stream))"
+.br
+.RI "\fIApply I/O manipulator\&. \fP"
 .ti -1c
 .RI "\fBTest\fP (\fBSuite\fP &\fBref\fP, std::string const &\fBname\fP)"
 .br
@@ -41,21 +51,29 @@ Inherits ostringstream\&.
 .br
 .RI "\fI\fBSuite\fP Destructor\&. \fP"
 .ti -1c
-.RI "int \fBis_T\fP (int cond, std::string const &msg)"
+.RI "int \fBcheck\fP (bool ok, std::string const &msg) __attribute__((unused))"
 .br
-.RI "\fICommon \fBTest\fP Case: Condition True\&. \fP"
+.RI "\fISupport code for logging a condition check result\&. \fP"
 .ti -1c
-.RI "int \fBis_F\fP (int cond, std::string const &msg)"
+.RI "template<typename T , typename U > int \fBcheck_op\fP (T const &ov, U const &ev, bool ok, std::string const &op, std::string const &msg) __attribute__((unused))"
 .br
-.RI "\fICommon \fBTest\fP Case: Condition True\&. \fP"
+.RI "\fISupport Template for performing a condition test\&. \fP"
 .ti -1c
-.RI "template<typename T , typename U > int \fBeq\fP (T obs, U exp, std::string const &msg)"
+.RI "template<typename T > int \fBcheck_op\fP (T const &ov, T const &ev, bool ok, std::string const &op, std::string const &msg) __attribute__((unused))"
 .br
-.RI "\fICommon \fBTest\fP Case: (obs == exp)\&. \fP"
+.RI "\fISupport Template for performing a condition test\&. \fP"
 .ti -1c
-.RI "template<typename T , typename U > int \fBge\fP (T obs, U exp, std::string const &msg)"
+.RI "\fBDECL_CHECK_OP\fP (eq,==)"
 .br
-.RI "\fICommon \fBTest\fP Case: (obs >= exp)\&. \fP"
+.RI "\fIStandard Equality Check method\&. \fP"
+.ti -1c
+.RI "\fBDECL_CHECK_OP\fP (ne,!=)"
+.br
+.RI "\fIStandard Inequality Check method\&. \fP"
+.ti -1c
+.RI "\fBDECL_CHECK_OP\fP (ge, >=)"
+.br
+.RI "\fIStandard Threshold Check method\&. \fP"
 .in -1c
 .SS "Public Attributes"
 
@@ -80,6 +98,10 @@ Inherits ostringstream\&.
 .RI "int \fBerrors\fP"
 .br
 .RI "\fInumber of ERROR reports for this test\&. \fP"
+.ti -1c
+.RI "std::ostringstream \fBoss\fP"
+.br
+.RI "\fIWhere to accumulate the output text\&. \fP"
 .in -1c
 .SH "Detailed Description"
 .PP 
@@ -91,7 +113,7 @@ The \fBTest\fP object constructor writes appropriate opening text to the XML fil
 .PP
 Data sent to this object using the \fC<<\fP operator will be formatted appropriately and displayed by Bamboo as supporting text in appropriate reporting conditions\&. 
 .PP
-Definition at line 34 of file testing_test\&.hh\&.
+Definition at line 38 of file testing_test\&.hh\&.
 .SH "Constructor & Destructor Documentation"
 .PP 
 .SS "Farsyte::Testing::Test::Test (\fBSuite\fP &ref, std::string const &name)"
@@ -115,6 +137,154 @@ Construct a new \fBTest\fP object\&.
 Any text sent to the \fBTest\fP object using the C++ \fC<<\fP operator that was not used in a FAIL, SKIP, or ERROR report will be attached to the test as supporting text\&. 
 .SH "Member Function Documentation"
 .PP 
+.SS "int Farsyte::Testing::Test::check (boolok, std::string const &msg)\fC [inline]\fP"
+
+.PP
+Support code for logging a condition check result\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIok\fP true if the condition passed, false if it failed\&. 
+.br
+\fImsg\fP message string to associate with the condition 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+zero if the condition passed, nonzero if it failed\&. 
+.RE
+.PP
+
+.PP
+Definition at line 159 of file testing_test\&.hh\&.
+.PP
+References fail(), and pass()\&.
+.PP
+Referenced by check_op()\&.
+.PP
+.nf
+159                                                                               {
+160                 if (ok)
+161                     return pass(msg), 0;
+162                 else
+163                     return fail(msg), 1;
+164             }
+.fi
+.SS "template<typename T , typename U > int Farsyte::Testing::Test::check_op (T const &ov, U const &ev, boolok, std::string const &op, std::string const &msg)\fC [inline]\fP"
+
+.PP
+Support Template for performing a condition test\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIov\fP observed value 
+.br
+\fIev\fP expected value 
+.br
+\fIok\fP result of comparison 
+.br
+\fIop\fP string describing the compare operation 
+.br
+\fImsg\fP string to associate with the condition 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+zero if the condition passed, nonzero if it failed\&. This template is used if the observed and expected value expressions have different types\&. 
+.RE
+.PP
+
+.PP
+Definition at line 177 of file testing_test\&.hh\&.
+.PP
+References check()\&.
+.PP
+.nf
+182                                                                {
+183 
+184                 auto w = oss\&.width();
+185 
+186                 oss << std::setw(1);
+187 
+188                 oss << "observed: "
+189                     << std::setw(7) << " " << " "
+190                     << std::setw((int) w) << ov << std::endl;
+191 
+192                 oss << "expected: "
+193                     << std::setw(7) << op << " "
+194                     << std::setw((int) w) << ev << std::endl;
+195 
+196                 return check(ok, msg);
+197             }
+.fi
+.SS "template<typename T > int Farsyte::Testing::Test::check_op (T const &ov, T const &ev, boolok, std::string const &op, std::string const &msg)\fC [inline]\fP"
+
+.PP
+Support Template for performing a condition test\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIov\fP observed value 
+.br
+\fIev\fP expected value 
+.br
+\fIok\fP result of comparison 
+.br
+\fIop\fP string describing the compare operation 
+.br
+\fImsg\fP string to associate with the condition 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+zero if the condition passed, nonzero if it failed\&. This template is used if the observed and expected value expressions have the same type\&. 
+.RE
+.PP
+
+.PP
+Definition at line 210 of file testing_test\&.hh\&.
+.PP
+References check()\&.
+.PP
+.nf
+215                                                                {
+216 
+217                 auto w = oss\&.width();
+218 
+219                 oss << std::setw(1);
+220 
+221                 oss << "observed: "
+222                     << std::setw(7) << " " << " "
+223                     << std::setw((int) w) << ov << std::endl;
+224 
+225                 oss << "expected: "
+226                     << std::setw(7) << op << " "
+227                     << std::setw((int) w) << ev << std::endl;
+228 
+229                 return check(ok, msg);
+230             }
+.fi
+.SS "std::string Farsyte::Testing::Test::drain ()\fC [inline]\fP"
+
+.PP
+Get (and clear) accumulated output\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+a string containing the test output\&. 
+.RE
+.PP
+
+.PP
+Definition at line 61 of file testing_test\&.hh\&.
+.PP
+.nf
+61                               {
+62                 std::string s = oss\&.str();
+63                 oss\&.str("");
+64                 return s;
+65             }
+.fi
 .SS "void Farsyte::Testing::Test::error (std::string const &cond)"
 
 .PP
@@ -138,7 +308,57 @@ Register a \fBTest\fP FAIL\&.
 .PP
 Sends text to the XML log indicating that a test condition has failed, as described in the parameter string\&. Any accumulated text sent to the \fBTest\fP object with the C++ \fC<<\fP operator will be included in the FAIL object as supporting text\&. 
 .PP
-Referenced by is_F(), and is_T()\&.
+Referenced by check()\&.
+.SS "template<typename T > \fBTest\fP& Farsyte::Testing::Test::operator<< (T const &t)\fC [inline]\fP"
+
+.PP
+Append output text\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIt\fP value to print to the test log\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+this test object for further operations\&. 
+.RE
+.PP
+
+.PP
+Definition at line 72 of file testing_test\&.hh\&.
+.PP
+.nf
+72                                          {
+73                 oss << t;
+74                 return *this;
+75             }
+.fi
+.SS "\fBTest\fP& Farsyte::Testing::Test::operator<< (std::ostream &(*)(std::ostream &stream)man)\fC [inline]\fP"
+
+.PP
+Apply I/O manipulator\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIman\fP manipulator to apply to the log stream\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+this test object for further operations\&. 
+.RE
+.PP
+
+.PP
+Definition at line 81 of file testing_test\&.hh\&.
+.PP
+.nf
+81                                                                      {
+82                 oss << man;
+83                 return *this;
+84             }
+.fi
 .SS "void Farsyte::Testing::Test::pass (std::string const &cond)"
 
 .PP
@@ -151,7 +371,7 @@ Register a \fBTest\fP PASS\&.
 .PP
 Mark that a test condition has PASSED\&. There is no XML output for Bamboo in this case\&. The purpose of this call is to correctly assocaite any supporting text sent to the \fBTest\fP object with this PASSING condition rather than including it in a subsequent fail, skip, or error\&. 
 .PP
-Referenced by is_F(), and is_T()\&.
+Referenced by check()\&.
 .SS "void Farsyte::Testing::Test::skip (std::string const &cond)"
 
 .PP
@@ -170,25 +390,31 @@ Sends text to the XML log indicating that a test condition has been skipped, as 
 .PP
 number of ERROR reports for this test\&. 
 .PP
-Definition at line 50 of file testing_test\&.hh\&.
+Definition at line 53 of file testing_test\&.hh\&.
 .SS "int Farsyte::Testing::Test::fails"
 
 .PP
 number of FAIL reports for this test\&. 
 .PP
-Definition at line 44 of file testing_test\&.hh\&.
+Definition at line 47 of file testing_test\&.hh\&.
+.SS "std::ostringstream Farsyte::Testing::Test::oss"
+
+.PP
+Where to accumulate the output text\&. 
+.PP
+Definition at line 56 of file testing_test\&.hh\&.
 .SS "\fBSuite\fP& Farsyte::Testing::Test::ref"
 
 .PP
 \fBTest\fP \fBSuite\fP associated with this \fBTest\fP\&. 
 .PP
-Definition at line 38 of file testing_test\&.hh\&.
+Definition at line 41 of file testing_test\&.hh\&.
 .SS "int Farsyte::Testing::Test::skips"
 
 .PP
 number of SKIP reports for this test\&. 
 .PP
-Definition at line 47 of file testing_test\&.hh\&.
+Definition at line 50 of file testing_test\&.hh\&.
 
 .SH "Author"
 .PP 

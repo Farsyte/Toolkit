@@ -1,6 +1,4 @@
 <map id="Farsyte::Testing::Test::pass" name="Farsyte::Testing::Test::pass">
-<area shape="rect" id="node2" href="$classFarsyte_1_1Testing_1_1Test.html#acf40eae0a0fa7096fea53abc1a923fbb" title="Common Test Case: Condition True. " alt="" coords="204,5,355,47"/>
-<area shape="rect" id="node3" href="$classFarsyte_1_1Testing_1_1Test.html#aafdbe41df44fe44355f79d182b3ef7bd" title="Common Test Case: Condition True. " alt="" coords="204,71,355,112"/>
-<area shape="rect" id="node4" href="$classFarsyte_1_1Testing_1_1Test.html#a4590908d710accee3b4309535af6d4a0" title="Common Test Case: (obs == exp). " alt="" coords="403,53,576,79"/>
-<area shape="rect" id="node5" href="$classFarsyte_1_1Testing_1_1Test.html#a9a1a4d36cffb119e37e6c90667053284" title="Common Test Case: (obs &gt;= exp). " alt="" coords="403,103,576,130"/>
+<area shape="rect" id="node2" href="$classFarsyte_1_1Testing_1_1Test.html#abdcb2ab397104d8ed5b5d53f9d5f06b3" title="Support code for logging a condition check result. " alt="" coords="201,5,348,44"/>
+<area shape="rect" id="node3" href="$classFarsyte_1_1Testing_1_1Test.html#a4db1141755f936d5303906005a4c41e8" title="Support Template for performing a condition test. " alt="" coords="396,5,543,44"/>
 </map>

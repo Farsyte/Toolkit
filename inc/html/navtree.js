@@ -16,7 +16,6 @@ var NAVTREE =
       [ "File List", "files.html", "files" ],
       [ "File Members", "globals.html", [
         [ "All", "globals.html", null ],
-        [ "Functions", "globals_func.html", null ],
         [ "Macros", "globals_defs.html", null ]
       ] ]
     ] ]
@@ -25,7 +24,8 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-".html"
+".html",
+"structFarsyte_1_1Simple_1_1Mat.html#a328f932672f0761a2c0a3a8671b6a21f"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

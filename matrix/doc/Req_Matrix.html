@@ -3,66 +3,56 @@
 <p>The Matrix Template shall provide:</p>
 
 <ul>
-    <li>template parameters:
-        <ul>
-            <li><code>T</code> that determines the data type used for the elements</li>
-            <li><code>Nr</code> that determines the number of rows in the matrix</li>
-            <li><code>Nc</code> that determines the number of columns in the matrix</li>
-        </ul>
-    </li>
-    <li>public class types:
-        <ul>
-            <li><code>value_type</code> indicating the type of the elements
-                <ul>
-                    <li>reference, const<em>reference, pointer, and const</em>pointer
-                        as customary in the C++ standard library.
-                    </li>
-                </ul>
-            </li>
-        </ul>
-    </li>
-    <li>public class methods:
-        <ul>
-            <li><code>rows()</code> returning the number of rows in the matrix</li>
-            <li><code>cols()</code> returning the number of columns in the matrix</li>
-            <li><code>size()</code> returning the total number of elements in the matrix</li>
-        </ul>
-    </li>
-    <li>constructors:
-        <ul>
-            <li>default constructor initializes each element to T().</li>
-            <li>diagonal constructor that assigns a specified value to diagonal elements.</li>
-            <li>construction of a duplicate matrix</li>
-            <li>For subclasses: array constructor for value construction.</li>
-        </ul>
-    </li>
-    <li>array subscript conventions:
-        <ul>
-            <li>First subscript is Row, second subscript is Column.</li>
-            <li>Subscripts start at 1.</li>
-            <li>Row subscript runs up to Nr inclusive.</li>
-            <li>Column subscript runs up to Nc inclusive.</li>
-            <li>Data stored in Column-Major order</li>
-        </ul>
-    </li>
-    <li>accessors:
-        <ul>
-            <li>read-only reference access by row and column index</li>
-            <li>modifiable reference access by row and column index</li>
-            <li>operation is UNDEFINED if the index is out of range</li>
-        </ul>
-    </li>
-    <li>comparison:
-        <ul>
-            <li>equality comparison that returns true if corresponding elements compare equal.</li>
-        </ul>
-    </li>
-    <li>Operators:
-        <ul>
-            <li>Sum of two matrices of the same shape.</li>
-            <li>Difference between two matrices of the same shape.</li>
-            <li>Negative of a matrix.</li>
-            <li>Transpose of a matrix.</li>
-        </ul>
-    </li>
+<li>template parameters:
+<ul>
+<li><code>T</code> that determines the data type used for the elements</li>
+<li><code>Nr</code> that determines the number of rows in the matrix</li>
+<li><code>Nc</code> that determines the number of columns in the matrix</li>
+</ul></li>
+<li>public class types:
+<ul>
+<li><code>value_type</code> indicating the type of the elements
+<ul>
+<li>reference, const<em>reference, pointer, and const</em>pointer
+as customary in the C++ standard library.</li>
+</ul></li>
+</ul></li>
+<li>public class methods:
+<ul>
+<li><code>rows()</code> returning the number of rows in the matrix</li>
+<li><code>cols()</code> returning the number of columns in the matrix</li>
+<li><code>size()</code> returning the total number of elements in the matrix</li>
+</ul></li>
+<li>constructors:
+<ul>
+<li>default constructor initializes each element to T().</li>
+<li>diagonal constructor that assigns a specified value to diagonal elements.</li>
+<li>construction of a duplicate matrix</li>
+<li>For subclasses: array constructor for value construction.</li>
+</ul></li>
+<li>array subscript conventions:
+<ul>
+<li>First subscript is Row, second subscript is Column.</li>
+<li>Subscripts start at 1.</li>
+<li>Row subscript runs up to Nr inclusive.</li>
+<li>Column subscript runs up to Nc inclusive.</li>
+<li>Data stored in Column-Major order</li>
+</ul></li>
+<li>accessors:
+<ul>
+<li>read-only reference access by row and column index</li>
+<li>modifiable reference access by row and column index</li>
+<li>operation is UNDEFINED if the index is out of range</li>
+</ul></li>
+<li>comparison:
+<ul>
+<li>equality comparison that returns true if corresponding elements compare equal.</li>
+</ul></li>
+<li>Operators:
+<ul>
+<li>Sum of two matrices of the same shape.</li>
+<li>Difference between two matrices of the same shape.</li>
+<li>Negative of a matrix.</li>
+<li>Transpose of a matrix.</li>
+</ul></li>
 </ul>
