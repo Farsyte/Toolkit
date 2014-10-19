@@ -69,11 +69,68 @@ The `Testing` Library implements four classes:
 	allowing a test program to persue multiple test series in parallel
 	if this is appropriate and useful.
 
+  * The [Fixture](classFarsyte_1_1Testing_1_1Fixture.html) class
+	provides a simple light testing framework that encapsulates
+	the use of the various Testing classes above within macros
+	intended to make the tests themselves easier to read. Code
+	using this facility should use it via the varios `UT_` macros
+	provided in the header files.
 
+Farsyte::Simple "simple.hh"
+---------------
+
+The `simple.hh` header provides declarations for the API
+for the library that implements non-template versions of
+Matrix, Vector, and Quaternion math. The simplification
+is that the components are all `double` and the dimensions
+are all `THREE` (except of course Quaternion, which is
+a scalar plus a three-vector).
+
+  * The [Col](classFarsyte_1_1Simple_1_1Col.html) class
+	encapsulates a column three-vector. Operations
+	supported include (C Struct style) construction,
+	comparison, subscripting, Add/Subtract, Scale
+	up and down by a scalar value, dot product, cross
+	product, square of the two-norm and the two-norm,
+	as well as a simple "print to stream" method.
+	This class is the preferred representation for
+	use when manipulating three-vectors.
+
+  * The [Row](classFarsyte_1_1Simple_1_1Row.html) class
+	encapsulates a row three-vector. Operations
+	supported include (C Struct style) construction,
+	comparison, subscripting, Add/Subtract, Scale
+	up and down by a scalar value, dot product, cross
+	product, square of the two-norm and the two-norm,
+	as well as a simple "print to stream" method.
+
+  * The [Mat](classFarsyte_1_1Simple_1_1Mat.html) class
+	encapsulates a three-by-thee matrix. Operations
+	supported include a number of constructors,
+	comparison, subscripting, Add/Subtract, Scale
+	up and down by a scalar value, matrix multiply,
+	multiply matrix by column vector, and a simple
+    "print-to-stream" method.
+
+  * The [Quat](classFarsyte_1_1Simple_1_1Quat.html) class
+	encapsulates a Quaternion (four coefficient
+	hypercomplex variable). Operations
+	supported include a number of constructors,
+	comparison, component access, Add/Subtract, Scale
+	up and down by a scalar value, square of the
+	two-norm, two-norm, quaternion multiply,
+	inversion, quaternion divide, extraction of a
+	corresponding scale-and-rotate matrix, operating
+	directly on a vector, and a simple
+    "print-to-stream" method.
+	
 Farsyte::Matrix "matrix.hh"
 ---------------
 
-Matrix math is provided as a genearlized template for dense
+The template-based Matrix / Vector / Quaternion code is
+currently on hold pending updates to development tools.
+
+Matrix math is provided as a generalized template for dense
 rectangular matrices, a derived template for working with column
 vectors, and a class representing a position in a three dimensional
 state space (such as distance north, east, and above the flagpole).
