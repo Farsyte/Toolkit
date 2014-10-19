@@ -47,6 +47,9 @@ namespace Farsyte {
         extern Quat     operator-(
             Quat const &a);
 
+        extern Quat     operator~(
+            Quat const &a);
+
         extern Quat     operator+(
             Quat a,
             Quat const &b);

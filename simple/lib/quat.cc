@@ -58,6 +58,11 @@ namespace Farsyte {
             return z;
         }
 
+        Quat operator~(Quat const &a) {
+            Quat z(a.scalar(), -a.vector());
+            return z;
+        }
+
         Quat operator+(Quat a, Quat const &b) {
             a += b;
             return a;
