@@ -1,30 +1,36 @@
 #include "simple_mat.hh"
+#include "simple_row.hh"
 #include "testing.hh"
 
-#include <iostream>
-
-using std::cerr;
-using std::endl;
-using std::setw;
-
 using Farsyte::Simple::Mat;
-using Farsyte::Simple::Nr;
-using Farsyte::Simple::Nc;
 
 UT_CASE(Mat, InitCompare) {
 
     Mat const Zero;
     Mat const Unit{1};
+    Mat const Diag{1, 2, 3};
+
+    EXPECT_EQ(Zero, (Mat{{0, 0, 0}, {0, 0, 0}, {0, 0, 0}}));
+    EXPECT_EQ(Unit, (Mat{{1, 0, 0}, {0, 1, 0}, {0, 0, 1}}));
+    EXPECT_EQ(Diag, (Mat{{1, 0, 0}, {0, 2, 0}, {0, 0, 3}}));
+
+    EXPECT_NE(Diag, Zero);
+    EXPECT_NE(Diag, Unit);
+    EXPECT_EQ(Diag, Diag);
+
+    EXPECT_NE(Unit, Zero);
+    EXPECT_EQ(Unit, Unit);
+    EXPECT_NE(Unit, Diag);
 
     EXPECT_EQ(Zero, Zero);
-    EXPECT_EQ(Unit, Unit);
-    EXPECT_NE(Unit, Zero);
     EXPECT_NE(Zero, Unit);
+    EXPECT_NE(Zero, Diag);
 };
 
 UT_CASE(Mat, Access) {
     Mat const C{{9, 8, 7}, {6, 5, 4}, {3, 2, 1}};
     Mat M{{9, 6, 3}, {8, 5, 2}, {7, 4, 1}};
+
     EXPECT_EQ(M(0, 0), 9);
     EXPECT_EQ(M(1, 2), 2);
     M(2, 2) = 0;
