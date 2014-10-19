@@ -115,3 +115,9 @@ UT_CASE(Quat, Norm) {
     EXPECT_EQ(norm(C), 100);
 
 };
+
+UT_CASE(Quat, ConjNeg) {
+    Quat	Q { 2, { 4, 5, 6 }};
+    EXPECT_EQ(-Q, (Quat{-2,{-4,-5,-6}}));
+    EXPECT_EQ(~Q, (Quat{ 2,{-4,-5,-6}}));
+};
