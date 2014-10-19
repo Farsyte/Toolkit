@@ -1,5 +1,5 @@
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../inc)
 include_directories(${CMAKE_SOURCE_DIR}/inc)
 add_definitions(--std=c++11)
-add_library(testing fixture.cc log.cc main.cc oops.cc suite.cc test.cc vers.cc)
-install (TARGETS testing DESTINATION lib)
+add_library(simple col.cc mat.cc row.cc quat.cc vers.cc)
+install (TARGETS simple DESTINATION lib)

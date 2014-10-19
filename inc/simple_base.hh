@@ -13,6 +13,14 @@ namespace Farsyte {
         static const int Nr = 3;
         static const int Nc = 3;
 
+        typedef struct Row R;
+
+        typedef struct Col V;
+
+        typedef struct Mat M;
+
+        typedef struct Quat Q;
+
     }
 }
 

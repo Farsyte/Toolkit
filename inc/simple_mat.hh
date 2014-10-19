@@ -15,8 +15,7 @@
 namespace Farsyte {
   namespace Simple {
 
-    class Mat {
-    public:
+    struct Mat {
 
       Mat();
 
@@ -52,7 +51,6 @@ namespace Farsyte {
 
       Mat &operator/=(T by);
 
-    private:
       Row a[Nr];
 
     };
@@ -87,6 +85,8 @@ namespace Farsyte {
     extern std::ostream &operator<<(std::ostream &str,
                                     Mat const &m);
 
+
+    V operator*(M const &m, V const &v);
 
   }
 }
