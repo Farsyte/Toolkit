@@ -30,12 +30,12 @@ namespace Farsyte {
         {
         }
 
-        bool Quat::operator==(Quat const &that) const {
-            return (w == that.w) && (v == that.v);
+        bool operator==(Quat const &a, Quat const &b) {
+            return (a.w == b.w) && (a.v == b.v);
         }
 
-        bool Quat::operator!=(Quat const &that) const {
-            return (w != that.w) || (v != that.v);
+        bool operator!=(Quat const &a, Quat const &b) {
+            return (a.w != b.w) || (a.v != b.v);
         }
 
         Quat &Quat::operator+=(Quat const &that) {
