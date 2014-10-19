@@ -21,7 +21,7 @@ namespace Farsyte {
             a[2] = c2;
         }
 
-        T Row::operator[](int i) const {
+        T const &Row::operator[](int i) const {
             if ((i < 0) || (i >= Nc))
                 throw out_of_range("Row Index");
             return a[i];

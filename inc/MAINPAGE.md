@@ -20,7 +20,7 @@ across multiple packages (without an obvious owner), or it
 could be entire packages that are simply too small to
 warrant tracking as their own library.
 
-Farsyte::Testing "testing.h"
+Farsyte::Testing "testing.hh"
 ----------------
 
 The `testing.hh` header provides declarations for the API

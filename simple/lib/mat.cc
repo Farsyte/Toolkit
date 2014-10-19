@@ -58,7 +58,7 @@ namespace Farsyte {
             return a[r];
         }
 
-        T Mat::operator()(int r, int c) const {
+        T const &Mat::operator()(int r, int c) const {
             return a[r][c];
         }
 

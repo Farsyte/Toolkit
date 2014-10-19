@@ -21,7 +21,7 @@ namespace Farsyte {
             a[2] = c2;
         }
 
-        T Col::operator[](int i) const {
+        T const & Col::operator[](int i) const {
             if ((i < 0) || (i >= Nr))
                 throw out_of_range("Col Index");
             return a[i];

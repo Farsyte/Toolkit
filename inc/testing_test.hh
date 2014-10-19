@@ -55,21 +55,29 @@ namespace Farsyte {
             /** Where to accumulate the output text. */
             std::ostringstream oss;
 
-            /** Get (and clear) accumulated output. */
+            /** Get (and clear) accumulated output. 
+             * \returns a string containing the test output.
+             */
             std::string drain() {
                 std::string s = oss.str();
                 oss.str("");
                 return s;
             }
 
-            /** Append output text. */
+            /** Append output text.
+             * \param t value to print to the test log.
+             * \returns this test object for further operations.
+             */
             template<typename T>
             Test &operator<<(T const &t) {
                 oss << t;
                 return *this;
             }
 
-            /** Apply I/O manipulator. */
+            /** Apply I/O manipulator.
+             * \param man manipulator to apply to the log stream.
+             * \returns this test object for further operations.
+             */
             Test &operator<<(std::ostream &(*man)(std::ostream &stream)) {
                 oss << man;
                 return *this;
@@ -143,6 +151,11 @@ namespace Farsyte {
 
             /* -- ================================================================ -- */
 
+            /** Support code for logging a condition check result.
+             * \param ok true if the condition passed, false if it failed.
+             * \param msg message string to associate with the condition
+             * \returns zero if the condition passed, nonzero if it failed.
+             */
             int check(bool ok, std::string const &msg) __attribute__ ((unused)) {
                 if (ok)
                     return pass(msg), 0;
@@ -150,6 +163,16 @@ namespace Farsyte {
                     return fail(msg), 1;
             }
 
+            /** Support Template for performing a condition test.
+             * \param ov observed value
+             * \param ev expected value
+             * \param ok result of comparison
+             * \param op string describing the compare operation
+             * \param msg string to associate with the condition
+             * \returns zero if the condition passed, nonzero if it failed.
+             * This template is used if the observed and expected
+             * value expressions have different types.
+             */
             template<typename T, typename U>
             int check_op(
                 T const &ov,
@@ -173,6 +196,16 @@ namespace Farsyte {
                 return check(ok, msg);
             }
 
+            /** Support Template for performing a condition test.
+             * \param ov observed value
+             * \param ev expected value
+             * \param ok result of comparison
+             * \param op string describing the compare operation
+             * \param msg string to associate with the condition
+             * \returns zero if the condition passed, nonzero if it failed.
+             * This template is used if the observed and expected
+             * value expressions have the same type.
+             */
             template<typename T>
             int check_op(
                 T const &ov,
@@ -196,6 +229,8 @@ namespace Farsyte {
                 return check(ok, msg);
             }
 
+/** Support macro: create a a standard condition test method.
+ */
 #define DECL_CHECK_OP(ID, OP)                   \
             template<typename T, typename U>    \
             int check_ ## ID (                  \
@@ -210,25 +245,56 @@ namespace Farsyte {
                         op, msg);               \
                 }
 
+/** Standard Equality Check method.
+ */
             DECL_CHECK_OP(eq, ==);
 
+/** Declare a failure if the expressions do not compare equal.
+ */
 #define EXPECT_EQ(obs, exp)        UT_EXPECT(check_eq,obs,exp,"==",#obs " == " #exp)
+
+/** Declare a failure and return if the expressions do not compare equal.
+ */
 #define ASSERT_EQ(obs, exp)        UT_ASSERT(check_eq,obs,exp,"==",#obs " == " #exp)
 
+/** Declare a failure if the expression is not a null pointer.
+ */
 #define EXPECT_Null(obs)           UT_EXPECT(check_eq,obs,(void*)0,"==",#obs " == nullptr")
+
+/** Declare a failure and return if the expression is not a null pointer.
+ */
 #define ASSERT_Null(obs)           UT_ASSERT(check_eq,obs,(void*)0,"==",#obs " == nullptr")
 
+/** Standard Inequality Check method.
+ */
             DECL_CHECK_OP(ne, !=);
 
+/** Declare a failure if the expressions do not compare not equal.
+ */
 #define EXPECT_NE(obs, exp)        UT_EXPECT(check_ne,obs,exp,"!=",#obs " != " #exp)
+
+/** Declare a failure and return if the expressions do not compare not equal.
+ */
 #define ASSERT_NE(obs, exp)        UT_ASSERT(check_ne,obs,exp,"!=",#obs " != " #exp)
 
+/** Declare a failure if the expressions do not compare not equal.
+ */
 #define EXPECT_NotNull(obs)        UT_EXPECT(check_ne,obs,(void*)0,"!=",#obs " != nullptr")
+
+/** Declare a failure and return if the expressions do not compare not equal.
+ */
 #define ASSERT_NotNull(obs)        UT_ASSERT(check_ne,obs,(void*)0,"!=",#obs " != nullptr")
 
+/** Standard Threshold Check method.
+ */
             DECL_CHECK_OP(ge, >=);
 
+/** Declare a failure if the first expression does not compare greater than or equal to the second.
+ */
 #define EXPECT_GE(obs, exp)        UT_EXPECT(check_ge,obs,exp,">=",#obs " >= " #exp)
+
+/** Declare a failure and return if the first expression does not compare greater than or equal to the second.
+ */
 #define ASSERT_GE(obs, exp)        UT_ASSERT(check_ge,obs,exp,">=",#obs " >= " #exp)
 
         };
