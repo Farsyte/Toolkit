@@ -3,8 +3,8 @@
 #define _simple_col_h "simple_col v0.1"
 
 /** \file
-* * \brief Simple Col Vector
-*/
+ * * \brief Simple Col Vector
+ */
 
 #include "simple_base.hh"
 
@@ -38,48 +38,48 @@ namespace Farsyte {
       T a[Nc];
     };
 
+    extern Col     operator-(
+      Col const &a);
+
+    extern Col     operator+(
+      Col a,
+      Col const &b);
+
+    extern Col     operator-(
+      Col a,
+      Col const &b);
+
+    extern Col     operator*(
+      Col a,
+      T const &b);
+
+    extern Col     operator*(
+      T const &b,
+      Col a);
+
+    extern Col     operator/(
+      Col a,
+      T const &b);
+
+    extern Col cross(
+      Col const &a,
+      Col const &b);
+
+    extern T dot(
+      Col const &a,
+      Col const &b);
+
+    extern T normsq(
+      Col const &a);
+
+    extern T norm(
+      Col const &a);
+
+    extern std::ostream &operator<<(
+      std::ostream &str,
+      Col const &r);
+
   }
 }
-
-extern Farsyte::Simple::Col     operator-(
-    Farsyte::Simple::Col const &a);
-
-extern Farsyte::Simple::Col     operator+(
-    Farsyte::Simple::Col a,
-    Farsyte::Simple::Col const &b);
-
-extern Farsyte::Simple::Col     operator-(
-    Farsyte::Simple::Col a,
-    Farsyte::Simple::Col const &b);
-
-extern Farsyte::Simple::Col     operator*(
-    Farsyte::Simple::Col a,
-    Farsyte::Simple::T const &b);
-
-extern Farsyte::Simple::Col     operator*(
-    Farsyte::Simple::T const &b,
-    Farsyte::Simple::Col a);
-
-extern Farsyte::Simple::Col     operator/(
-    Farsyte::Simple::Col a,
-    Farsyte::Simple::T const &b);
-
-extern Farsyte::Simple::Col cross(
-    Farsyte::Simple::Col const &a,
-    Farsyte::Simple::Col const &b);
-
-extern Farsyte::Simple::T dot(
-    Farsyte::Simple::Col const &a,
-    Farsyte::Simple::Col const &b);
-
-extern Farsyte::Simple::T normsq(
-    Farsyte::Simple::Col const &a);
-
-extern Farsyte::Simple::T norm(
-    Farsyte::Simple::Col const &a);
-
-extern std::ostream &operator<<(
-    std::ostream &str,
-    Farsyte::Simple::Col const &r);
 
 #endif//_simple_col_h

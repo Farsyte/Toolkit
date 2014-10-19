@@ -3,8 +3,8 @@
 #define _simple_mat_h "simple_mat v0.1"
 
 /** \file
-* * \brief Simple Matrix
-*/
+ * * \brief Simple Matrix
+ */
 
 #include "simple_base.hh"
 #include "simple_row.hh"
@@ -57,38 +57,38 @@ namespace Farsyte {
 
     };
 
+    extern Mat operator+(
+      Mat a,
+      Mat const &b);
+
+    extern Mat operator-(
+      Mat a,
+      Mat const &b);
+
+    extern Mat operator-(
+      Mat const &b);
+
+    extern Mat operator*(
+      T b,
+      Mat a);
+
+    extern Mat operator*(
+      Mat a,
+      T b);
+
+    extern Mat operator/(
+      Mat a,
+      T b);
+
+    extern Mat operator*(
+      Mat const &a,
+      Mat const &b);
+
+    extern std::ostream &operator<<(std::ostream &str,
+                                    Mat const &m);
+
 
   }
 }
-
-extern Farsyte::Simple::Mat operator+(
-    Farsyte::Simple::Mat a,
-    Farsyte::Simple::Mat const &b);
-
-extern Farsyte::Simple::Mat operator-(
-    Farsyte::Simple::Mat a,
-    Farsyte::Simple::Mat const &b);
-
-extern Farsyte::Simple::Mat operator-(
-    Farsyte::Simple::Mat const &b);
-
-extern Farsyte::Simple::Mat operator*(
-    Farsyte::Simple::T b,
-    Farsyte::Simple::Mat a);
-
-extern Farsyte::Simple::Mat operator*(
-    Farsyte::Simple::Mat a,
-    Farsyte::Simple::T b);
-
-extern Farsyte::Simple::Mat operator/(
-    Farsyte::Simple::Mat a,
-    Farsyte::Simple::T b);
-
-extern Farsyte::Simple::Mat operator*(
-    Farsyte::Simple::Mat const &a,
-    Farsyte::Simple::Mat const &b);
-
-extern std::ostream &operator<<(std::ostream &str,
-    Farsyte::Simple::Mat const &m);
 
 #endif//_simple_mat_h
