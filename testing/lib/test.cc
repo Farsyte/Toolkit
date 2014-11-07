@@ -63,7 +63,7 @@ void Test::fail(string const &c) {
         ref.ref.failed_tests++;
     ref.ref.total_fails++;
 
-    ref << "      <failure message=" << quoted(c) << ">" << endl;
+    ref << "      <failure message=" << quoted(htmlify(c)) << ">" << endl;
 
     string const s = drain();
     if (s.length() > 0) {
@@ -107,7 +107,7 @@ void Test::error(string const &c) {
         ref.ref.errored_tests++;
     ref.ref.total_errors++;
 
-    ref << "      <error message=" << quoted(c) << ">" << endl;
+    ref << "      <error message=" << quoted(htmlify(c)) << ">" << endl;
 
     /*
     ** Include the supporting text whether Bamboo is willing
@@ -162,7 +162,7 @@ void Test::skip(string const &c) {
         ref.ref.skipped_tests++;
     ref.ref.total_skips++;
 
-    ref << "      <skipped message=" << quoted(c) << ">" << endl;
+    ref << "      <skipped message=" << quoted(htmlify(c)) << ">" << endl;
 
     string const s = drain();
     if (s.length() > 0) {
@@ -207,7 +207,7 @@ void Test::pass(string const &c) {
 #ifndef MORE_THAN_BAMBOO
     (void) drain();
 #else //MORE_THAN_BAMBOO
-    ref << "      <passing message=" << quoted(c) << ">" << endl;
+    ref << "      <passing message=" << quoted(htmlify(c)) << ">" << endl;
 
     string const s = drain();
     if (s.length() > 0) {
