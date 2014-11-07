@@ -1,6 +1,9 @@
 #include "orbit.hh"
 #include "testing.hh"
+#include "orbit_eqns.hh"
 
+#include <sstream>
+#include <iomanip>
 #include <cmath>
 
 using std::string;
@@ -15,6 +18,24 @@ static T r4(T const &t) {
     static const double rf = 10000.0;
     return ((int)(t * rf + 0.5)) / rf;
 }
+
+UT_CASE(Orbit, Esum_est) {
+
+    // sqrt_alpha = sqrt(alpha) or sqrt(-alpha)
+    // X2 = X * X
+    // tf = alpha * X2
+
+    EXPECT_EQ(Esum_sel(1, 1, 0), 0);
+    EXPECT_EQ(Esum_est(1, 1, 1), 0.5);
+
+// for small pos X, Esum_est approximates Esum_pos
+// for small neg X, Esum_est approximates Esum_neg
+// more terms is better, until it converges.
+
+};
+
+// repeat for Osum
+
 
 UT_CASE(Orbit, UnitCircle) {
 
