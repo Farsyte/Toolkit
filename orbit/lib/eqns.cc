@@ -1,4 +1,5 @@
 #include "orbit.hh"
+#include "orbit_eqns.hh"
 
 #include <cmath>
 
@@ -8,56 +9,26 @@ namespace Farsyte {
         T Orbit::Esum(
             T const & X) const
         {
-            T const X2 = X * X;
-            T const tf = alpha * X2;
-
-            if (tf > +0.0001) {
-                T const theta = X * sqrt_alpha;
-                return (1 - cos (theta)) / alpha;
-            }
-
-            if (tf < -0.001) {
-                T const itheta = X * sqrt_alpha;
-                return (1 - cosh (itheta)) / alpha;
-            }
-
-            return (X2 / (1 * 2)) * (1 - (tf / (3 * 4)) * (1 - (tf / (5 * 6))));
+            return Esum_sel(alpha, sqrt_alpha, X);
         }
 
         T Orbit::Osum(
             T const & X) const
         {
-            T const X2 = X * X;
-            T const tf = alpha * X2;
-
-            if (tf > +0.0001) {
-                T const theta = X * sqrt_alpha;
-                return (theta - sin (theta)) / (alpha * sqrt_alpha);
-            }
-
-            if (tf < -0.001) {
-                T const itheta = X * sqrt_alpha;
-                return (itheta - sinh (itheta)) / (alpha * sqrt_alpha);
-            }
-
-            T const X3 = X2 * X;
-
-            return (X3 / (2 * 3)) * (1 - (tf / (4 * 5)) * (1 - (tf / (6 * 7))));
+            return Osum_sel(alpha, sqrt_alpha, X);
         }
 
         T Orbit::XtoM(T const &X) const {
-            T const sigma0 = 0;
-            return sigma0 * Esum(X) +
-                (1-r0*alpha) * Osum(X) +
-                r0 * X;
+            return
+                Esum(X) * sigma0 +
+                Osum(X) * (1-r0*alpha) +
+                X * r0;
         }
 
         T Orbit::MtoX(T const &M) const {
             T X = T();
-
-            // XXX: adjust X until M == XtoM(X).
-            (void)M;
-
+            
+            (void)M;       // \todo solve for X such that M = XtoM(X).
 
             return X;
         }
