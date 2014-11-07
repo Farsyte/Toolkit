@@ -11,7 +11,7 @@ using namespace Farsyte::Testing;
 using namespace Farsyte::Utility;
 
 #define MORE_THAN_BAMBOO
-#define TEST_RESULTS_ALSO_TO std::cerr
+// #define TEST_RESULTS_ALSO_TO std::cerr
 
 /** Create a new Test within a Suite.
 *
