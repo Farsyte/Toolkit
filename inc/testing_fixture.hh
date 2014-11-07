@@ -138,6 +138,39 @@ namespace Farsyte {
  */
 #define ASSERT_EX(exp)        UT_EXCEPT(exp, #exp, return)
 
+/** Commom code for checking a Test Condition.
+ */
+#define UT_COND3(mf, ov, ev1, ev2, ms, onfail)                  \
+      do {                                                      \
+        bool evaluating = false;                                \
+        try {                                                   \
+          evaluating = true;                                    \
+          auto ovv = (ov);                                      \
+          evaluating = false;                                   \
+          if (t.mf(ovv, ev1, ev2, ms))                          \
+            onfail;                                             \
+        }                                                       \
+        catch (Farsyte::Testing::Oops &e) {                     \
+          t << "exception from ";                               \
+          if (evaluating)                                       \
+            t << "calling " #mf "()";                           \
+          else                                                  \
+            t << "condition check code";                        \
+          t << ":\n" << e << std::endl;                         \
+          t.fail("exception thrown");                           \
+          onfail;                                               \
+        }                                                       \
+      } while (0)
+
+/** Check condition; indicate failure if condition check t.mf() fails
+ */
+#define UT_EXPECT3(mf, ov, ev1, ev2, ms)   UT_COND3(mf, ov, ev1, ev2, ms, break)
+
+/** Check condition: fail and return from test if condition check t.mf() fails
+ */
+#define UT_ASSERT3(mf, ov, ev1, ev2, ms)   UT_COND3(mf, ov, ev1, ev2, ms, return)
+
+
   }
 }
 
