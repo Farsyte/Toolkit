@@ -285,7 +285,7 @@ namespace Farsyte {
  */
 #define ASSERT_NotNull(obs)        UT_ASSERT(check_ne,obs,(void*)0,"!=",#obs " != nullptr")
 
-/** Standard Threshold Check method.
+/** Standard Lower Threshold Check method.
  */
             DECL_CHECK_OP(ge, >=);
 
@@ -296,6 +296,18 @@ namespace Farsyte {
 /** Declare a failure and return if the first expression does not compare greater than or equal to the second.
  */
 #define ASSERT_GE(obs, exp)        UT_ASSERT(check_ge,obs,exp,">=",#obs " >= " #exp)
+
+/** Standard Upper Threshold Check method.
+ */
+            DECL_CHECK_OP(le, <=);
+
+/** Declare a failure if the first expression does not compare less than or equal to the second.
+ */
+#define EXPECT_LE(obs, exp)        UT_EXPECT(check_le,obs,exp,"<=",#obs " <= " #exp)
+
+/** Declare a failure and return if the first expression does not compare less than or equal to the second.
+ */
+#define ASSERT_LE(obs, exp)        UT_ASSERT(check_le,obs,exp,"<=",#obs " <= " #exp)
 
         };
     }
