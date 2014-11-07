@@ -10,6 +10,9 @@ using std::string;
 using namespace Farsyte::Testing;
 using namespace Farsyte::Utility;
 
+#define MORE_THAN_BAMBOO
+#define TEST_RESULTS_ALSO_TO std::cerr
+
 /** Create a new Test within a Suite.
 *
 * Can immediately enter the `testcase` entity.
@@ -201,7 +204,21 @@ void Test::pass(string const &c) {
     (void) c;                      // not used
 #endif/*TEST_RESULTS_ALSO_TO*/
 
+#ifndef MORE_THAN_BAMBOO
     (void) drain();
+#else //MORE_THAN_BAMBOO
+    ref << "      <passing message=" << quoted(c) << ">" << endl;
+
+    string const s = drain();
+    if (s.length() > 0) {
+        string const &q(htmlify(s));
+        ref << q;
+        if (q[q.length() - 1] != '\n')
+            ref << endl;
+    }
+
+    ref << "      </passing>" << endl;
+#endif//MORE_THAN_BAMBOO
 }
 
 /** Finish a Test.
@@ -214,7 +231,7 @@ Test::~Test() {
     CHECK_OOPS(this == ref.curr, "Test dtor: I am not the current Test.");
     ref.curr = 0;
 
-#if 0
+#ifdef MORE_THAN_BAMBOO
   /*
   ** If Bamboo provided us with a way to view supporting
   ** text for a test not associated with a fail or skip
