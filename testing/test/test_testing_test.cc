@@ -326,3 +326,139 @@ UT_CASE(Test, Error) {
     EXPECT_EQ(tl.total_errors, 2);                              // Log count of Cond ERRORs
 
 };
+
+UT_CASE(Test, EXPECT_IN) {
+
+    ostringstream oss;
+    Log tl(oss, "EXPECT_IN Tester Log");
+    Suite ts(tl, "EXPECT_IN Tester Suite Name");
+
+
+    // -- obs < lo: should fail.
+    {
+        Test tc(ts, "EXPECT_IN Tester Test Name");
+        {
+            Test &t(tc);
+            EXPECT_IN(0,1,3);
+        }
+        EXPECT_EQ(tc.fails, 1);
+        EXPECT_EQ(tc.skips, 0);
+        EXPECT_EQ(tc.errors, 0);
+    }
+
+    // -- obs == lo: should pass.
+    {
+        Test tc(ts, "EXPECT_IN Tester Test Name");
+        {
+            Test &t(tc);
+            EXPECT_IN(1,1,3);
+        }
+        EXPECT_EQ(tc.fails, 0);
+        EXPECT_EQ(tc.skips, 0);
+        EXPECT_EQ(tc.errors, 0);
+    }
+
+    // -- lo < obs < hi: should pass.
+    {
+        Test tc(ts, "EXPECT_IN Tester Test Name");
+        {
+            Test &t(tc);
+            EXPECT_IN(2,1,3);
+        }
+        EXPECT_EQ(tc.fails, 0);
+        EXPECT_EQ(tc.skips, 0);
+        EXPECT_EQ(tc.errors, 0);
+    }
+
+    // -- obs == hi: should pass.
+    {
+        Test tc(ts, "EXPECT_IN Tester Test Name");
+        {
+            Test &t(tc);
+            EXPECT_IN(3,1,3);
+        }
+        EXPECT_EQ(tc.fails, 0);
+        EXPECT_EQ(tc.skips, 0);
+        EXPECT_EQ(tc.errors, 0);
+    }
+
+    // -- obs > hi: should fail.
+    {
+        Test tc(ts, "EXPECT_IN Tester Test Name");
+        {
+            Test &t(tc);
+            EXPECT_IN(4,1,3);
+        }
+        EXPECT_EQ(tc.fails, 1);
+        EXPECT_EQ(tc.skips, 0);
+        EXPECT_EQ(tc.errors, 0);
+    }
+};
+
+UT_CASE(Test, EXPECT_PM) {
+
+    ostringstream oss;
+    Log tl(oss, "EXPECT_PM Tester Log");
+    Suite ts(tl, "EXPECT_PM Tester Suite Name");
+
+
+    // -- obs < lo: should fail.
+    {
+        Test tc(ts, "EXPECT_PM Tester Test Name");
+        {
+            Test &t(tc);
+            EXPECT_PM(0,2,1);
+        }
+        EXPECT_EQ(tc.fails, 1);
+        EXPECT_EQ(tc.skips, 0);
+        EXPECT_EQ(tc.errors, 0);
+    }
+
+    // -- obs == lo: should pass.
+    {
+        Test tc(ts, "EXPECT_PM Tester Test Name");
+        {
+            Test &t(tc);
+            EXPECT_PM(1,2,1);
+        }
+        EXPECT_EQ(tc.fails, 0);
+        EXPECT_EQ(tc.skips, 0);
+        EXPECT_EQ(tc.errors, 0);
+    }
+
+    // -- lo < obs < hi: should pass.
+    {
+        Test tc(ts, "EXPECT_PM Tester Test Name");
+        {
+            Test &t(tc);
+            EXPECT_PM(2,2,1);
+        }
+        EXPECT_EQ(tc.fails, 0);
+        EXPECT_EQ(tc.skips, 0);
+        EXPECT_EQ(tc.errors, 0);
+    }
+
+    // -- obs == hi: should pass.
+    {
+        Test tc(ts, "EXPECT_PM Tester Test Name");
+        {
+            Test &t(tc);
+            EXPECT_PM(3,2,1);
+        }
+        EXPECT_EQ(tc.fails, 0);
+        EXPECT_EQ(tc.skips, 0);
+        EXPECT_EQ(tc.errors, 0);
+    }
+
+    // -- obs > hi: should fail.
+    {
+        Test tc(ts, "EXPECT_PM Tester Test Name");
+        {
+            Test &t(tc);
+            EXPECT_PM(4,2,1);
+        }
+        EXPECT_EQ(tc.fails, 1);
+        EXPECT_EQ(tc.skips, 0);
+        EXPECT_EQ(tc.errors, 0);
+    }
+};

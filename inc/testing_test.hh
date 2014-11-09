@@ -285,7 +285,7 @@ namespace Farsyte {
  */
 #define ASSERT_NotNull(obs)        UT_ASSERT(check_ne,obs,(void*)0,"!=",#obs " != nullptr")
 
-/** Standard Threshold Check method.
+/** Standard Lower Threshold Check method.
  */
             DECL_CHECK_OP(ge, >=);
 
@@ -296,6 +296,92 @@ namespace Farsyte {
 /** Declare a failure and return if the first expression does not compare greater than or equal to the second.
  */
 #define ASSERT_GE(obs, exp)        UT_ASSERT(check_ge,obs,exp,">=",#obs " >= " #exp)
+
+/** Standard Upper Threshold Check method.
+ */
+            DECL_CHECK_OP(le, <=);
+
+/** Declare a failure if the first expression does not compare less than or equal to the second.
+ */
+#define EXPECT_LE(obs, exp)        UT_EXPECT(check_le,obs,exp,"<=",#obs " <= " #exp)
+
+/** Declare a failure and return if the first expression does not compare less than or equal to the second.
+ */
+#define ASSERT_LE(obs, exp)        UT_ASSERT(check_le,obs,exp,"<=",#obs " <= " #exp)
+
+            /* -- Get a good message for range checks -- */
+
+            template<typename T>
+            int check_in(
+                T const &ov,
+                T const &lo,
+                T const &hi,
+                std::string const &msg) __attribute__ ((unused)) {
+
+                bool ok = ((ov >= lo) && (ov <= hi));
+
+                auto w = oss.width();
+
+                oss << std::setw(1);
+
+                oss << "observed: "
+                    << std::setw(7) << " " << " "
+                    << std::setw((int) w) << ov << std::endl;
+
+                oss << "expected: "
+                    << std::setw(7) << "in" << " "
+                    << std::setw((int) w) << lo
+                    << " ... "
+                    << std::setw((int) w) << hi
+                    << std::endl;
+
+                return check(ok, msg);
+            }
+
+/** Declare a failure if the observed value is not in the inclusive range.
+ */
+#define EXPECT_IN(obs,lo,hi) UT_EXPECT3(check_in,obs,lo,hi,#lo " ... " #hi)
+
+/** Declare a failure and return if the observed value is not in the inclusive range.
+ */
+#define ASSERT_IN(obs,lo,hi) UT_ASSERT3(check_in,obs,lo,hi,#lo " ... " #hi)
+
+            /* -- Get a good message for "close" checks -- */
+
+            template<typename T>
+            int check_pm(
+                T const &ov,
+                T const &ev,
+                T const &pm,
+                std::string const &msg) __attribute__ ((unused)) {
+
+                bool ok = ((ev-ov) <= pm) && ((ov-ev) <= pm);
+
+                auto w = oss.width();
+
+                oss << std::setw(1);
+
+                oss << "observed: "
+                    << std::setw(7) << " " << " "
+                    << std::setw((int) w) << ov << std::endl;
+
+                oss << "expected: "
+                    << std::setw(7) << "==" << " "
+                    << std::setw((int) w) << ev
+                    << " +/- "
+                    << std::setw((int) w) << pm
+                    << std::endl;
+
+                return check(ok, msg);
+            }
+
+/** Declare a failure if the observed value is not near the expected value.
+ */
+#define EXPECT_PM(obs,exp,pm) UT_EXPECT3(check_pm,obs,exp,pm,#exp " +/- " #pm)
+
+/** Declare a failure and return if the observed value is not near the expected value.
+ */
+#define ASSERT_PM(obs,exp,pm) UT_ASSERT3(check_pm,obs,exp,pm,#exp " +/- " #pm)
 
         };
     }
