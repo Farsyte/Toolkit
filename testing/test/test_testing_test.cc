@@ -394,3 +394,71 @@ UT_CASE(Test, EXPECT_IN) {
         EXPECT_EQ(tc.errors, 0);
     }
 };
+
+UT_CASE(Test, EXPECT_PM) {
+
+    ostringstream oss;
+    Log tl(oss, "EXPECT_PM Tester Log");
+    Suite ts(tl, "EXPECT_PM Tester Suite Name");
+
+
+    // -- obs < lo: should fail.
+    {
+        Test tc(ts, "EXPECT_PM Tester Test Name");
+        {
+            Test &t(tc);
+            EXPECT_PM(0,2,1);
+        }
+        EXPECT_EQ(tc.fails, 1);
+        EXPECT_EQ(tc.skips, 0);
+        EXPECT_EQ(tc.errors, 0);
+    }
+
+    // -- obs == lo: should pass.
+    {
+        Test tc(ts, "EXPECT_PM Tester Test Name");
+        {
+            Test &t(tc);
+            EXPECT_PM(1,2,1);
+        }
+        EXPECT_EQ(tc.fails, 0);
+        EXPECT_EQ(tc.skips, 0);
+        EXPECT_EQ(tc.errors, 0);
+    }
+
+    // -- lo < obs < hi: should pass.
+    {
+        Test tc(ts, "EXPECT_PM Tester Test Name");
+        {
+            Test &t(tc);
+            EXPECT_PM(2,2,1);
+        }
+        EXPECT_EQ(tc.fails, 0);
+        EXPECT_EQ(tc.skips, 0);
+        EXPECT_EQ(tc.errors, 0);
+    }
+
+    // -- obs == hi: should pass.
+    {
+        Test tc(ts, "EXPECT_PM Tester Test Name");
+        {
+            Test &t(tc);
+            EXPECT_PM(3,2,1);
+        }
+        EXPECT_EQ(tc.fails, 0);
+        EXPECT_EQ(tc.skips, 0);
+        EXPECT_EQ(tc.errors, 0);
+    }
+
+    // -- obs > hi: should fail.
+    {
+        Test tc(ts, "EXPECT_PM Tester Test Name");
+        {
+            Test &t(tc);
+            EXPECT_PM(4,2,1);
+        }
+        EXPECT_EQ(tc.fails, 1);
+        EXPECT_EQ(tc.skips, 0);
+        EXPECT_EQ(tc.errors, 0);
+    }
+};
