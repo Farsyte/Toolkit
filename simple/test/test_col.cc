@@ -10,9 +10,9 @@ using std::setw;
 UT_CASE(Col, Compare) {
 
     Col const Zero;
-    Col const DirX{1, 0, 0};
-    Col const DirY{0, 1, 0};
-    Col const DirZ{0, 0, 1};
+    Col const DirX(1, 0, 0);
+    Col const DirY(0, 1, 0);
+    Col const DirZ(0, 0, 1);
 
     EXPECT_EQ(Zero, Zero);
     EXPECT_EQ(DirX, DirX);
@@ -34,12 +34,12 @@ UT_CASE(Col, Compare) {
     EXPECT_NE(DirZ, Zero);
     EXPECT_NE(DirZ, DirX);
     EXPECT_NE(DirZ, DirY);
-};
+}
 
 UT_CASE(Col, Access) {
 
     Col const Zero;
-    Col V975{9, 7, 5};
+    Col V975(9, 7, 5);
 
     EXPECT_EQ(0, Zero[0]);
     EXPECT_EQ(0, Zero[1]);
@@ -55,34 +55,34 @@ UT_CASE(Col, Access) {
     EXPECT_EQ(9, V975[0]);
     EXPECT_EQ(3, V975[1]);
     EXPECT_EQ(9, V975[2]);
-};
+}
 
 UT_CASE(Col, Add) {
-    Col A{7, 4, 1};
-    Col const I{1, 2, 3};
+    Col A(7, 4, 1);
+    Col const I(1, 2, 3);
 
     EXPECT_EQ(I, Col(1, 2, 3));
     EXPECT_EQ(A += I, Col(8, 6, 4));
     EXPECT_EQ(A, Col(8, 6, 4));
     EXPECT_EQ(A + I, Col(9, 8, 7));
     EXPECT_EQ(A + (-I), Col(7, 4, 1));
-};
+}
 
 UT_CASE(Col, Sub) {
 
-    Col A{9, 8, 7};
-    Col I{1, 2, 3};
+    Col A(9, 8, 7);
+    Col I(1, 2, 3);
 
     EXPECT_EQ(I, Col(1, 2, 3));
     EXPECT_EQ(A -= I, Col(8, 6, 4));
     EXPECT_EQ(A, Col(8, 6, 4));
     EXPECT_EQ(A - I, Col(7, 4, 1));
     EXPECT_EQ(A - (-I), Col(9, 8, 7));
-};
+}
 
 UT_CASE(Col, Scale) {
-    Col A{12, 15, 18};
-    Col const C{22, 26, 34};
+    Col A(12, 15, 18);
+    Col const C(22, 26, 34);
 
     EXPECT_EQ(A *= 2, Col(24, 30, 36));
     EXPECT_EQ(C * 2, Col(44, 52, 68));
@@ -90,16 +90,16 @@ UT_CASE(Col, Scale) {
     EXPECT_EQ(C / 2, Col(11, 13, 17));
     EXPECT_EQ(A /= 3, Col(8, 10, 12));
 
-};
+}
 
 
 UT_CASE(Col, Dot) {
 
-    Col V{3, 4, 7};
+    Col V(3, 4, 7);
 
-    Col X{3, 0, 0};
-    Col Y{0, 2, 0};
-    Col Z{0, 0, 1};
+    Col X(3, 0, 0);
+    Col Y(0, 2, 0);
+    Col Z(0, 0, 1);
 
     EXPECT_EQ(dot(X, X), 9);
     EXPECT_EQ(dot(Y, Y), 4);
@@ -117,13 +117,13 @@ UT_CASE(Col, Dot) {
     EXPECT_EQ(dot(Y, V), 8);
     EXPECT_EQ(dot(Z, V), 7);
 
-};
+}
 
 UT_CASE(Col, Cross) {
 
-    Col X{1, 0, 0};
-    Col Y{0, 2, 0};
-    Col Z{0, 0, 3};
+    Col X(1, 0, 0);
+    Col Y(0, 2, 0);
+    Col Z(0, 0, 3);
 
     EXPECT_EQ(cross(X, X), Col(0, 0, 0));
     EXPECT_EQ(cross(Y, Y), Col(0, 0, 0));
@@ -137,13 +137,13 @@ UT_CASE(Col, Cross) {
     EXPECT_EQ(cross(Y, X), Col(0, 0, -2));
     EXPECT_EQ(cross(Z, Y), Col(-6, 0, 0));
 
-};
+}
 
 UT_CASE(Col, Norm) {
     // 2^2 + 3^2 + 6^2 = 7^2
 
-    Col const N{2, 3, 6};
+    Col const N(2, 3, 6);
     EXPECT_EQ(normsq(N), 49);
     EXPECT_EQ(norm(N), 7);
 
-};
+}

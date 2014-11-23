@@ -20,12 +20,13 @@ using std::vector;
 
 UT_CASE(Utility, Version) {
 
-    vector<string> const & vers(Farsyte::Utility::utility_versions());
+    const char ** vers = Farsyte::Utility::utility_versions();
 
-    ASSERT_GE(vers.size(), 1u);
+    ASSERT_NotNull(vers);
+    ASSERT_NotNull(vers[0]);
     EXPECT_EQ(vers[0], string(_utility_h));
 
-};
+}
 
 UT_CASE(Literal, Char) {
 
@@ -41,7 +42,7 @@ UT_CASE(Literal, Char) {
     EXPECT_EQ(literal(sq), "\\'");      // Encoding a single quote char for a literal
     EXPECT_EQ(literal(dq), "\\\"");     // Encoding a double quote char for a literal
 
-};
+}
 
 UT_CASE(Literal, String) {
 
@@ -54,6 +55,6 @@ UT_CASE(Literal, String) {
         literal("\t'.', \".\", and \\ ...\n"),
         "\\t\\'.\\', \\\".\\\", and \\\\ ...\\n");
 
-};
+}
 
 

@@ -25,7 +25,7 @@ namespace Farsyte {
          * the version strings from the headers used to compile
          * the simple library.
          */
-        extern std::vector<std::string> const &simple_versions();
+        extern const char ** simple_versions();
 
     }
 }

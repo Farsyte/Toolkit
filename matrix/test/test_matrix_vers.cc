@@ -26,9 +26,10 @@ using std::vector;
 
 UT_CASE(Matrix, Versions) {
     
-    vector<string> const & vers = Farsyte::Matrix::matrix_versions();
+    const char ** vers = Farsyte::Matrix::matrix_versions();
 
-    EXPECT_GE(vers.size(), 1u);
+    ASSERT_NotNull(vers);
+    ASSERT_NotNull(vers[0]);
     EXPECT_EQ(vers[0], string(_matrix_h));
     
-};
+}

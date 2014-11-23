@@ -459,7 +459,7 @@ namespace Farsyte {
          */
         template<int Nc, int Nr, typename T>
         std::ostream &operator<<(std::ostream &s, Matrix<Nc, Nr, T> const &m) {
-            auto w = s.width();     // apply width to each element,
+            int w = s.width();     // apply width to each element,
             s << std::setw(1) << "[[" << std::setw(w) << m(0, 0);
             for (int ci = 1; ci < Nc; ++ci)
                 s << "," << std::setw(w) << m(0, ci);
@@ -485,7 +485,7 @@ namespace Farsyte {
          */
         template<int Nr, typename T>
         std::ostream &operator<<(std::ostream &s, Matrix<1, Nr, T> const &m) {
-            auto w = s.width();     // apply width to each element,
+            int w = s.width();     // apply width to each element,
             s << std::setw(1) << "~[" << std::setw(w) << m(0, 0);
             for (int ri = 1; ri < Nr; ++ri)
                 s << "," << std::setw(w) << m(ri, 0);
@@ -503,7 +503,7 @@ namespace Farsyte {
          */
         template<int Nc, typename T>
         std::ostream &operator<<(std::ostream &s, Matrix<Nc, 1, T> const &m) {
-            auto w = s.width();     // apply width to each element,
+            int w = s.width();     // apply width to each element,
             s << std::setw(1) << "[" << std::setw(w) << m(0, 0);
             for (int ci = 1; ci < Nc; ++ci)
                 s << "," << std::setw(w) << m(0, ci);

@@ -32,21 +32,21 @@ UT_CASE(Orbit, Esum_est) {
 // for small neg X, Esum_est approximates Esum_neg
 // more terms is better, until it converges.
 
-};
+}
 
 // repeat for Osum
 
 
 UT_CASE(Orbit, UnitCircle) {
 
-    Orbit const O(1, 0, {1,0,0}, {0,1,0});
+    Orbit const O(1, 0, V(1,0,0), V(0,1,0));
 
     EXPECT_EQ(O.mu, 1);
     EXPECT_EQ(O.n, 1);
     EXPECT_EQ(O.t0, 0);
-    EXPECT_EQ(O.R0, (V{1,0,0}));
+    EXPECT_EQ(O.R0, V(1,0,0));
     EXPECT_EQ(O.r0, 1);
-    EXPECT_EQ(O.V0, (V{0,1,0}));
+    EXPECT_EQ(O.V0, V(0,1,0));
     EXPECT_EQ(O.vv0, 1);
     EXPECT_EQ(O.alpha, 1);
     EXPECT_EQ(O.sqrt_alpha, 1);
@@ -67,21 +67,21 @@ UT_CASE(Orbit, UnitCircle) {
         EXPECT_EQ(P.t, 0.1);
     }
 
-};
+}
 
 UT_CASE(Orbit, Elliptical) {
 
     T const two(2);
     T const sqrt_2(sqrt(two));
 
-    Orbit const O(2, 0, {2,0,0}, {0,1,0});
+    Orbit const O(2, 0, V(2,0,0), V(0,1,0));
 
     EXPECT_EQ(O.mu, 2);
     EXPECT_EQ(r4(O.n), r4(sqrt_2));
     EXPECT_EQ(O.t0, 0);
-    EXPECT_EQ(O.R0, (V{2,0,0}));
+    EXPECT_EQ(O.R0, V(2,0,0));
     EXPECT_EQ(O.r0, 2);
-    EXPECT_EQ(O.V0, (V{0,1,0}));
+    EXPECT_EQ(O.V0, V(0,1,0));
     EXPECT_EQ(O.vv0, 1);
     EXPECT_EQ(O.alpha, 0.5);
     EXPECT_EQ(r4(O.sqrt_alpha), 0.7071);
@@ -102,18 +102,18 @@ UT_CASE(Orbit, Elliptical) {
         EXPECT_EQ(r4(O.Esum(P.X)), 0.004998);
         EXPECT_EQ(r4(O.Osum(P.X)), 0.000167);
     }
-};
+}
 
 UT_CASE(Orbit, Hyperbolic) {
 
-    Orbit const O(1, 0, {1,0,0}, {0,2,0});
+    Orbit const O(1, 0, V(1,0,0), V(0,2,0));
 
     EXPECT_EQ(O.mu, 1);
     EXPECT_EQ(O.n, 1);
     EXPECT_EQ(O.t0, 0);
-    EXPECT_EQ(O.R0, (V{1,0,0}));
+    EXPECT_EQ(O.R0, V(1,0,0));
     EXPECT_EQ(O.r0, 1);
-    EXPECT_EQ(O.V0, (V{0,2,0}));
+    EXPECT_EQ(O.V0, V(0,2,0));
     EXPECT_EQ(O.vv0, 4);
     EXPECT_EQ(O.alpha, -2);
     EXPECT_EQ(r4(O.sqrt_alpha), 1.4142);
@@ -134,20 +134,20 @@ UT_CASE(Orbit, Hyperbolic) {
         EXPECT_EQ(r4(O.Esum(P.X)), 0.005008);
         EXPECT_EQ(r4(O.Osum(P.X)), 0.000167);
     }
-};
+}
 
 UT_CASE(Orbit, Parabolic) {
     T const two(2);
     T const sqrt_2(sqrt(two));
 
-    Orbit const O(2, 0, {1,0,0}, {0,2,0});
+    Orbit const O(2, 0, V(1,0,0), V(0,2,0));
 
     EXPECT_EQ(O.mu, 2);
     EXPECT_EQ(r4(O.n), r4(sqrt_2));
     EXPECT_EQ(O.t0, 0);
-    EXPECT_EQ(O.R0, (V{1,0,0}));
+    EXPECT_EQ(O.R0, V(1,0,0));
     EXPECT_EQ(O.r0, 1);
-    EXPECT_EQ(O.V0, (V{0,2,0}));
+    EXPECT_EQ(O.V0, V(0,2,0));
     EXPECT_EQ(O.vv0, 4);
     EXPECT_EQ(O.alpha, 0);
     EXPECT_EQ(O.sqrt_alpha, 0);
@@ -168,7 +168,7 @@ UT_CASE(Orbit, Parabolic) {
         EXPECT_EQ(r4(O.Esum(P.X)), 0.005);
         EXPECT_EQ(r4(O.Osum(P.X)), 0.000167);
     }
-};
+}
 
     }
 }

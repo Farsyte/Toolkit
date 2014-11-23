@@ -40,16 +40,6 @@ namespace Farsyte {
             a[2][2] = d[2];
         }
 
-#if 0
-        Mat::Mat(Col const &c0, Col const &c1, Col const &c2) {
-            for (int i = 0; i < Nr; ++i) {
-                a[i][0] = c0[i];
-                a[i][1] = c1[i];
-                a[i][2] = c2[i];
-            }
-        }
-#endif
-
         Row const &Mat::operator[](int r) const {
             return a[r];
         }
@@ -135,7 +125,7 @@ namespace Farsyte {
             Mat m;
             for (int i = 0; i < 3; ++i)
                 for (int j = 0; j < 3; ++j) {
-                    auto s = a(i, 0) * b(0, j);
+                    T s = a(i, 0) * b(0, j);
                     for (int k = 1; k < 3; ++k) {
                         s += a(i, k) * b(k, j);
                     }

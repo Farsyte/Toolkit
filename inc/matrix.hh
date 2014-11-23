@@ -23,7 +23,7 @@ namespace Farsyte {
         * the version strings from the headers used to compile
         * the matrix library.
         */
-        extern std::vector<std::string> const &matrix_versions();
+        extern const char ** matrix_versions();
 
     }
 }

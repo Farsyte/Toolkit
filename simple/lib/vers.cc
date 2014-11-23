@@ -6,13 +6,14 @@ using std::vector;
 namespace Farsyte {
     namespace Simple {
 
-        vector<string> const &simple_versions() {
-            static const vector<string> ret{
+        const char ** simple_versions() {
+            static const char * ret[] = {
                 _simple_h,
-                    _simple_row_h,
-                    _simple_col_h,
-                    _simple_mat_h,
-                    };
+                _simple_row_h,
+                _simple_col_h,
+                _simple_mat_h,
+                0
+            };
             return ret;
         }
 

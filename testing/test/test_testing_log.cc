@@ -37,7 +37,7 @@ UT_CASE(Log, Init) {
     EXPECT_EQ(tl.curr, (void *) 0);                             // initial Suite link
     EXPECT_EQ(tl.suites, 0);                                    // initial Suite count
     EXPECT_EQ(tl.tests, 0);                                     // initial Test count
-};
+}
 
 UT_CASE(Log, MinimumOutput) {
 
@@ -54,5 +54,5 @@ UT_CASE(Log, MinimumOutput) {
     ASSERT_GE(vos.size(), 2u); EXPECT_EQ(vos[1], "<testsuites name=\"Log Tester Log Name\">");
     ASSERT_GE(vos.size(), 3u); EXPECT_EQ(vos[2], "</testsuites>");
     EXPECT_EQ(vos.size(), 3u);
-};
+}
 

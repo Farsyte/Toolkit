@@ -51,14 +51,14 @@ UT_CASE(Trivec, Meta) {
     EXPECT_EQ(TriVec::rows(), 3);                               // TriVec Rows
     EXPECT_EQ(TriVec::cols(), 1);                               // TriVec Cols
     EXPECT_EQ(TriVec::size(), 3);                               // TriVec Size
-};
+}
 
 UT_CASE(TriVec, CtorEqNe) {
 
     TriVec D;
-    TriVec X{1, 0, 0};
-    TriVec Y{0, 1, 0};
-    TriVec Z{0, 0, 1};
+    TriVec X(1, 0, 0);
+    TriVec Y(0, 1, 0);
+    TriVec Z(0, 0, 1);
 
     EXPECT_NE((bool)0, (bool)(D == D));                         // (D == D) is True
     EXPECT_NE((bool)0, (bool)(X == X));                         // (X == X) is True
@@ -95,58 +95,58 @@ UT_CASE(TriVec, CtorEqNe) {
     EXPECT_EQ((bool)0, (bool)(Z == D));                         // (Z == D) is False
     EXPECT_EQ((bool)0, (bool)(Z == X));                         // (Z == X) is False
     EXPECT_EQ((bool)0, (bool)(Z == Y));                         // (Z == Y) is False
-};
+}
 
 UT_CASE(TriVec, AccessUpdate) {
 
-    TriVec V{3, 5, 7};
+    TriVec V(3, 5, 7);
 
     V[1] = 4;
     V[2] = V[0];
 
-    EXPECT_EQ(V, (TriVec{3, 4, 3}));                            // Vector after access and update
-};
+    EXPECT_EQ(V, (TriVec(3, 4, 3)));                            // Vector after access and update
+}
 
 UT_CASE(TriVec, Add) {
 
-    TriVec A{7, 4, 1};
-    TriVec I{1, 2, 3};
+    TriVec A(7, 4, 1);
+    TriVec I(1, 2, 3);
     A += I;
 
-    EXPECT_EQ(I, (TriVec{1, 2, 3}));                            // I unchanged
-    EXPECT_EQ(A, (TriVec{8, 6, 4}));                            // A incremented once
-    EXPECT_EQ(A + I, (TriVec{9, 8, 7}));                        // Second Sum
-    EXPECT_EQ(A + (-I), (TriVec{7, 4, 1}));                     // Add Negative
-};
+    EXPECT_EQ(I, (TriVec(1, 2, 3)));                            // I unchanged
+    EXPECT_EQ(A, (TriVec(8, 6, 4)));                            // A incremented once
+    EXPECT_EQ(A + I, (TriVec(9, 8, 7)));                        // Second Sum
+    EXPECT_EQ(A + (-I), (TriVec(7, 4, 1)));                     // Add Negative
+}
 
 UT_CASE(TriVec, Sub) {
 
     TriVec D;
-    TriVec A{9, 8, 7};
-    TriVec I{1, 2, 3};
+    TriVec A(9, 8, 7);
+    TriVec I(1, 2, 3);
     A -= I;
 
-    EXPECT_EQ(I, (TriVec{1, 2, 3}));                            // I unchanged
-    EXPECT_EQ(A, (TriVec{8, 6, 4}));                            // A decremented once
-    EXPECT_EQ(A - I, (TriVec{7, 4, 1}));                        // second difference
-    EXPECT_EQ(A - (-I), (TriVec{9, 8, 7}));                     // Sub Negative
-};
+    EXPECT_EQ(I, (TriVec(1, 2, 3)));                            // I unchanged
+    EXPECT_EQ(A, (TriVec(8, 6, 4)));                            // A decremented once
+    EXPECT_EQ(A - I, (TriVec(7, 4, 1)));                        // second difference
+    EXPECT_EQ(A - (-I), (TriVec(9, 8, 7)));                     // Sub Negative
+}
 
 UT_CASE(TriVec, Cross) {
 
-    TriVec X{1, 0, 0};
-    TriVec Y{0, 2, 0};
-    TriVec Z{0, 0, 3};
+    TriVec X(1, 0, 0);
+    TriVec Y(0, 2, 0);
+    TriVec Z(0, 0, 3);
 
-    EXPECT_EQ(cross(X, X), (TriVec{0, 0, 0}));                  // cross(X,X)
-    EXPECT_EQ(cross(Y, Y), (TriVec{0, 0, 0}));                  // cross(Y,Y)
-    EXPECT_EQ(cross(Z, Z), (TriVec{0, 0, 0}));                  // cross(Z,Z)
+    EXPECT_EQ(cross(X, X), (TriVec(0, 0, 0)));                  // cross(X,X)
+    EXPECT_EQ(cross(Y, Y), (TriVec(0, 0, 0)));                  // cross(Y,Y)
+    EXPECT_EQ(cross(Z, Z), (TriVec(0, 0, 0)));                  // cross(Z,Z)
 
-    EXPECT_EQ(cross(X, Y), (TriVec{0, 0, 2}));                  // cross(X,Y)
-    EXPECT_EQ(cross(Y, Z), (TriVec{6, 0, 0}));                  // cross(Y,Z)
-    EXPECT_EQ(cross(Z, X), (TriVec{0, 3, 0}));                  // cross(Z,X)
+    EXPECT_EQ(cross(X, Y), (TriVec(0, 0, 2)));                  // cross(X,Y)
+    EXPECT_EQ(cross(Y, Z), (TriVec(6, 0, 0)));                  // cross(Y,Z)
+    EXPECT_EQ(cross(Z, X), (TriVec(0, 3, 0)));                  // cross(Z,X)
 
-    EXPECT_EQ(cross(X, Z), (TriVec{0, -3, 0}));                 // cross(X,Z)
-    EXPECT_EQ(cross(Y, X), (TriVec{0, 0, -2}));                 // cross(Y,X)
-    EXPECT_EQ(cross(Z, Y), (TriVec{-6, 0, 0}));                 // cross(Z,Y)
-};
+    EXPECT_EQ(cross(X, Z), (TriVec(0, -3, 0)));                 // cross(X,Z)
+    EXPECT_EQ(cross(Y, X), (TriVec(0, 0, -2)));                 // cross(Y,X)
+    EXPECT_EQ(cross(Z, Y), (TriVec(-6, 0, 0)));                 // cross(Z,Y)
+}

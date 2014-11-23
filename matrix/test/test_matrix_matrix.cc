@@ -35,6 +35,28 @@ typedef Matrix<3, 2, int> Matrix23i;
 /** Type for transposed test matrix */
 typedef Matrix<2, 3, int> Matrix32i;
 
+/** Need 2x2 also */
+typedef Matrix<2, 2, int> Matrix22i;
+
+/** Need 3x3 also */
+typedef Matrix<3, 3, int> Matrix33i;
+
+
+/** Because Matrix<> initializers are harsh. */
+static Matrix23i IV(
+    int m00, int m01, int m02,
+    int m10, int m11, int m12)
+{
+    Matrix23i M;
+    M[0] = m00;
+    M[1] = m01;
+    M[2] = m02;
+    M[3] = m10;
+    M[4] = m11;
+    M[5] = m12;
+    return M;
+}
+
 /* -- ================================================================ -- */
 
 UT_CASE(Matrix, Meta) {
@@ -43,19 +65,17 @@ UT_CASE(Matrix, Meta) {
     EXPECT_EQ(Matrix23i::cols(), 3);            // Matrix Cols
     EXPECT_EQ(Matrix23i::size(), 6);            // Matrix Size
 
-};
+}
 
 UT_CASE(Matrix, CtorEqNe) {
 
-    typedef Matrix23i::A IV;
-
     Matrix23i I;
-    Matrix23i A = IV {1, 0, 0, 0, 0, 0};
-    Matrix23i B = IV {0, 1, 0, 0, 0, 0};
-    Matrix23i C = IV {0, 0, 1, 0, 0, 0};
-    Matrix23i D = IV {0, 0, 0, 1, 0, 0};
-    Matrix23i E = IV {0, 0, 0, 0, 1, 0};
-    Matrix23i F = IV {0, 0, 0, 0, 0, 1};
+    Matrix23i A = IV (1, 0, 0, 0, 0, 0);
+    Matrix23i B = IV (0, 1, 0, 0, 0, 0);
+    Matrix23i C = IV (0, 0, 1, 0, 0, 0);
+    Matrix23i D = IV (0, 0, 0, 1, 0, 0);
+    Matrix23i E = IV (0, 0, 0, 0, 1, 0);
+    Matrix23i F = IV (0, 0, 0, 0, 0, 1);
 
     EXPECT_EQ((bool)0, (bool)(A != A));         // (A != A) is False
     EXPECT_EQ((bool)0, (bool)(A == B));         // (A == A) is False
@@ -157,13 +177,11 @@ UT_CASE(Matrix, CtorEqNe) {
     EXPECT_NE((bool)0, (bool)(I != F));         // (I != F) is True
     EXPECT_NE((bool)0, (bool)(I == I));         // (I == I) is True
 
-};
+}
 
 UT_CASE(Matrix, Access) {
 
-    typedef Matrix23i::A IV;
-
-    Matrix23i A = IV {1, 3, 5, 2, 4, 6};
+    Matrix23i A = IV (1, 3, 5, 2, 4, 6);
 
     A(1, 1) = 8;
     A(1, 2) = A(0, 0);
@@ -175,19 +193,17 @@ UT_CASE(Matrix, Access) {
     EXPECT_EQ(A[4], 8);
     EXPECT_EQ(A[5], 1);
 
-};
+}
 
 UT_CASE(Matrix, Add) {
 
-    typedef Matrix23i::A IV;
-
     Matrix23i S;
-    Matrix23i A = IV {16, 13, 10, 7, 4, 1};
-    Matrix23i I = IV {1, 2, 3, 4, 5, 6};
+    Matrix23i A = IV (16, 13, 10, 7, 4, 1);
+    Matrix23i I = IV (1, 2, 3, 4, 5, 6);
     A += I;
 
-    auto ApI = A + I;
-    auto ApnI = A + (-I);
+    Matrix23i ApI = A + I;
+    Matrix23i ApnI = A + (-I);
 
 // I unchanged
     EXPECT_EQ(I[0], 1);
@@ -221,19 +237,17 @@ UT_CASE(Matrix, Add) {
     EXPECT_EQ(ApnI[4], 4);
     EXPECT_EQ(ApnI[5], 1);
 
-};
+}
 
 UT_CASE(Matrix, Sub) {
 
-    typedef Matrix23i::A IV;
-
     Matrix23i D;
-    Matrix23i A = IV {18, 17, 16, 15, 14, 13};
-    Matrix23i I = IV {1, 2, 3, 4, 5, 6};
+    Matrix23i A = IV (18, 17, 16, 15, 14, 13);
+    Matrix23i I = IV (1, 2, 3, 4, 5, 6);
     A -= I;
 
-    auto AmI = A - I;
-    auto AmnI = A - (-I);
+    Matrix23i AmI = A - I;
+    Matrix23i AmnI = A - (-I);
 
 // I unchanged
     EXPECT_EQ(I[0], 1);
@@ -267,17 +281,15 @@ UT_CASE(Matrix, Sub) {
     EXPECT_EQ(AmnI[4], 14);
     EXPECT_EQ(AmnI[5], 13);
 
-};
+}
 
 UT_CASE(Matrix, Mul) {
 
-    typedef Matrix23i::A IV;
+    Matrix23i A = IV (13, 69, 32, 82, 21, 20);
+    Matrix23i B = IV (91, 26, 69, 25, 22, 41);
 
-    Matrix23i A = IV {13, 69, 32, 82, 21, 20};
-    Matrix23i B = IV {91, 26, 69, 25, 22, 41};
-
-    auto ABt = A * ~B;
-    auto AtB = ~A * B;
+    Matrix22i ABt = A * ~B;
+    Matrix33i AtB = ~A * B;
 
     EXPECT_EQ(ABt[0], 5185);
     EXPECT_EQ(ABt[1], 3155);
@@ -293,18 +305,16 @@ UT_CASE(Matrix, Mul) {
     EXPECT_EQ(AtB[6], 3412);
     EXPECT_EQ(AtB[7], 1272);
     EXPECT_EQ(AtB[8], 3028);
-};
+}
 
 UT_CASE(Matrix, Scale) {
 
-    typedef Matrix23i::A IV;
-
-    Matrix23i A = IV {     3      ,      5      ,      7      ,      11      ,      13      ,      17     };
-    Matrix23i B = IV {     3*23*3 ,      5*23*3 ,      7*23*3 ,      11*23*3 ,      13*23*3 ,      17*23*3};
-    Matrix23i C = IV {2*27*3*23*3 , 2*27*5*23*3 , 2*27*7*23*3 , 2*27*11*23*3 , 2*27*13*23*3 , 2*27*17*23*3};
-    Matrix23i D = IV {  27*3*23   ,   27*5*23   ,   27*7*23   ,   27*11*23   ,   27*13*23   ,   27*17*23  };
+    Matrix23i A = IV (     3      ,      5      ,      7      ,      11      ,      13      ,      17     );
+    Matrix23i B = IV (     3*23*3 ,      5*23*3 ,      7*23*3 ,      11*23*3 ,      13*23*3 ,      17*23*3);
+    Matrix23i C = IV (2*27*3*23*3 , 2*27*5*23*3 , 2*27*7*23*3 , 2*27*11*23*3 , 2*27*13*23*3 , 2*27*17*23*3);
+    Matrix23i D = IV (  27*3*23   ,   27*5*23   ,   27*7*23   ,   27*11*23   ,   27*13*23   ,   27*17*23  );
 
     EXPECT_EQ(A * (23 * 3), B);         // A * (23*3)
     EXPECT_EQ((2 * 27) * B, C);         // (2*27) * B
     EXPECT_EQ(C / 6, D);                // C / 6
-};
+}

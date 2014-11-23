@@ -112,7 +112,7 @@ namespace Farsyte {
          * the version strings from the headers used to compile
          * the orbit library.
          */
-        extern std::vector<std::string> const &orbit_versions();
+        extern const char ** orbit_versions();
 
     }
 }

@@ -181,7 +181,7 @@ namespace Farsyte {
                 std::string const &op,
                 std::string const &msg) __attribute__ ((unused)) {
 
-                auto w = oss.width();
+                int w = oss.width();
 
                 oss << std::setw(1);
 
@@ -214,7 +214,7 @@ namespace Farsyte {
                 std::string const &op,
                 std::string const &msg) __attribute__ ((unused)) {
 
-                auto w = oss.width();
+                int w = oss.width();
 
                 oss << std::setw(1);
 
@@ -320,7 +320,7 @@ namespace Farsyte {
 
                 bool ok = ((ov >= lo) && (ov <= hi));
 
-                auto w = oss.width();
+                int w = oss.width();
 
                 oss << std::setw(1);
 
@@ -357,7 +357,7 @@ namespace Farsyte {
 
                 bool ok = ((ev-ov) <= pm) && ((ov-ev) <= pm);
 
-                auto w = oss.width();
+                int w = oss.width();
 
                 oss << std::setw(1);
 

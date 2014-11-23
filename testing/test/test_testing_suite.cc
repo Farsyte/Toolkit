@@ -51,7 +51,7 @@ UT_CASE(Suite, Init) {
     EXPECT_EQ(tl.total_fails, 0);                               // log failed condition count
     EXPECT_EQ(tl.total_skips, 0);                               // log skipped condition count
     EXPECT_EQ(tl.total_errors, 0);                              // log total error count
-};
+}
 
 UT_CASE(Suite, Init2) {
     ostringstream oss;
@@ -63,7 +63,7 @@ UT_CASE(Suite, Init2) {
     EXPECT_EQ(tl.curr, &ts);                                    // Log links to Second Suite
     EXPECT_EQ(ts.curr, (void *) 0);                             // Second Suite link to Test is NULL
     EXPECT_EQ(tl.suites, 2);                                    // Log count of Suites
-};
+}
 
 UT_CASE(Suite, Ierr) {
 
@@ -77,7 +77,7 @@ UT_CASE(Suite, Ierr) {
     Suite *sp = 0;
     EXPECT_EX(sp = new Suite(tl, "Suite Tester Suite Name 2"));
     if (sp) delete sp;
-};
+}
 
 UT_CASE(Suite, Output) {
 
@@ -96,4 +96,4 @@ UT_CASE(Suite, Output) {
     ASSERT_GE(vos.size(), 1u); EXPECT_EQ(vos[0], "  <testsuite name=\"Suite Tester Suite Name\">"); // add <testsuite>
     ASSERT_GE(vos.size(), 2u); EXPECT_EQ(vos[1], "  </testsuite>");                        // Add </testsuite>
     EXPECT_EQ(vos.size(), 2u);                                  // no extra text
-};
+}

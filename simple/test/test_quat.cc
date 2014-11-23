@@ -20,14 +20,14 @@ UT_CASE(Quat, Compare) {
 
     // Initialization from a scalar builds a quaternion
     // with a zero imaginary part.
-    Quat const Unit{1};
+    Quat const Unit(1);
 
     // Initialization from a vector builds a quaternion
     // that is "pure" -- the imaginary parts are taken
     // from the vector, and the real part is zero.
-    Quat const DirX{{1, 0, 0}};
-    Quat const DirY{{0, 1, 0}};
-    Quat const DirZ{{0, 0, 1}};
+    Quat const DirX(V(1, 0, 0));
+    Quat const DirY(V(0, 1, 0));
+    Quat const DirZ(V(0, 0, 1));
 
     EXPECT_EQ(Zero, Zero);
     EXPECT_EQ(Unit, Unit);
@@ -70,11 +70,11 @@ UT_CASE(Quat, Compare) {
     EXPECT_NE(0, DirZ); EXPECT_NE(DirZ, 0);
 
     // Compare vs Vector
-    V W{0, 0, 0};
-    V U{0, 0, 0};
-    V X{1, 0, 0};
-    V Y{0, 1, 0};
-    V Z{0, 0, 1};
+    V W(0, 0, 0);
+    V U(0, 0, 0);
+    V X(1, 0, 0);
+    V Y(0, 1, 0);
+    V Z(0, 0, 1);
 
     EXPECT_EQ(Zero, W); EXPECT_EQ(W, Zero);
     EXPECT_NE(Unit, U); EXPECT_NE(U, Unit);
@@ -82,58 +82,58 @@ UT_CASE(Quat, Compare) {
     EXPECT_EQ(DirY, Y); EXPECT_EQ(Y, DirY);
     EXPECT_EQ(DirZ, Z); EXPECT_EQ(Z, DirZ);
 
-};
+}
 
 UT_CASE(Quat, Access) {
 
     Quat const Zero;
-    Quat       Uniq{2, {4, 5, 6}};
+    Quat       Uniq(2, V(4, 5, 6));
 
     EXPECT_EQ(Zero.w, T());
     EXPECT_EQ(Zero.v, V());
     EXPECT_EQ(Uniq.w, 2);
-    EXPECT_EQ(Uniq.v, (V{4, 5, 6}));
+    EXPECT_EQ(Uniq.v, (V(4, 5, 6)));
 
     Uniq.w = 6;
-    Uniq.v = {5, 4, 2};
+    Uniq.v = V(5, 4, 2);
 
     EXPECT_EQ(Uniq.w, 6);
-    EXPECT_EQ(Uniq.v, (V{5, 4, 2}));
-};
+    EXPECT_EQ(Uniq.v, (V(5, 4, 2)));
+}
 
 UT_CASE(Quat, Add) {
-    Quat A{10, {7, 4, 1}};
-    Quat const I{1, {2, 3, 4}};
+    Quat A(10, V(7, 4, 1));
+    Quat const I(1, V(2, 3, 4));
 
-    EXPECT_EQ(I, (Quat{1, {2, 3, 4}}));
-    EXPECT_EQ(A += I, (Quat{11, {9, 7, 5}}));
-    EXPECT_EQ(A, (Quat{11, {9, 7, 5}}));
-    EXPECT_EQ(A + I, (Quat{12, {11, 10, 9}}));
-    EXPECT_EQ(A + (-I), (Quat{10, {7, 4, 1}}));
-};
+    EXPECT_EQ(I, (Quat(1, V(2, 3, 4))));
+    EXPECT_EQ(A += I, (Quat(11, V(9, 7, 5))));
+    EXPECT_EQ(A, (Quat(11, V(9, 7, 5))));
+    EXPECT_EQ(A + I, (Quat(12, V(11, 10, 9))));
+    EXPECT_EQ(A + (-I), (Quat(10, V(7, 4, 1))));
+}
 
 UT_CASE(Quat, Sub) {
-    Quat A{12, {11, 10, 9}};
-    Quat const I{1, {2, 3, 4}};
+    Quat A(12, V(11, 10, 9));
+    Quat const I(1, V(2, 3, 4));
 
-    EXPECT_EQ(I, (Quat{1, {2, 3, 4}}));
-    EXPECT_EQ(A -= I, (Quat{11, {9, 7, 5}}));
-    EXPECT_EQ(A, (Quat{11, {9, 7, 5}}));
-    EXPECT_EQ(A - I, (Quat{10, {7, 4, 1}}));
-    EXPECT_EQ(A - (-I), (Quat{12, {11, 10, 9}}));
-};
+    EXPECT_EQ(I, (Quat(1, V(2, 3, 4))));
+    EXPECT_EQ(A -= I, (Quat(11, V(9, 7, 5))));
+    EXPECT_EQ(A, (Quat(11, V(9, 7, 5))));
+    EXPECT_EQ(A - I, (Quat(10, V(7, 4, 1))));
+    EXPECT_EQ(A - (-I), (Quat(12, V(11, 10, 9))));
+}
 
 UT_CASE(Quat, Scale) {
-    Quat const C = { 14, { 22, 26, 34 }};
-    Quat       A = {  9, { 12, 15, 18 }};
+    Quat const C ( 14, V( 22, 26, 34 ));
+    Quat       A (  9, V( 12, 15, 18 ));
 
-    EXPECT_EQ(A *= 2, (Quat{18, {24, 30, 36}}));
-    EXPECT_EQ(C * 2, (Quat{28, {44, 52, 68}}));
-    EXPECT_EQ(2 * C, (Quat{28, {44, 52, 68}}));
-    EXPECT_EQ(C / 2, (Quat{7, {11, 13, 17}}));
-    EXPECT_EQ(A /= 3, (Quat{6, {8, 10, 12}}));
+    EXPECT_EQ(A *= 2, (Quat(18, V(24, 30, 36))));
+    EXPECT_EQ(C * 2, (Quat(28, V(44, 52, 68))));
+    EXPECT_EQ(2 * C, (Quat(28, V(44, 52, 68))));
+    EXPECT_EQ(C / 2, (Quat(7, V(11, 13, 17))));
+    EXPECT_EQ(A /= 3, (Quat(6, V(8, 10, 12))));
 
-};
+}
 
 
 // An integer quaternion with integer norm:
@@ -144,30 +144,30 @@ UT_CASE(Quat, Scale) {
 
 
 UT_CASE(Quat, Norm) {
-    Quat       A { 2, { 4, 5, 6 }};
-    Quat const C { 34, { 38, 50, 70 }};
+    Quat       A ( 2, V( 4, 5, 6 ));
+    Quat const C ( 34, V( 38, 50, 70 ));
 
     EXPECT_EQ(normsq(A), 81);
     EXPECT_EQ(norm(C), 100);
 
-};
+}
 
 UT_CASE(Quat, ConjNeg) {
-    Quat        Q { 2, { 4, 5, 6 }};
-    EXPECT_EQ(-Q, (Quat{-2, {-4, -5, -6}}));
-    EXPECT_EQ(~Q, (Quat{ 2, {-4, -5, -6}}));
-};
+    Quat        Q ( 2, V( 4, 5, 6 ));
+    EXPECT_EQ(-Q, (Quat(-2, V(-4, -5, -6))));
+    EXPECT_EQ(~Q, (Quat( 2, V(-4, -5, -6))));
+}
 
 UT_CASE(Quat, Mul) {
 
     Quat const Zero;
-    Quat const Unit{1};
-    Quat const DirX{{3, 0, 0}};
-    Quat const DirY{{0, 5, 0}};
-    Quat const DirZ{{0, 0, 7}};
+    Quat const Unit(1);
+    Quat const DirX(V(3, 0, 0));
+    Quat const DirY(V(0, 5, 0));
+    Quat const DirZ(V(0, 0, 7));
 
-    Quat       A { 2, { 4, 5, 6 }};
-    Quat const C { 34, { 38, 50, 70 }};
+    Quat       A ( 2, V( 4, 5, 6 ));
+    Quat const C ( 34, V( 38, 50, 70 ));
 
     // Zero times anything is zero.
     // Anything times zero is zero.
@@ -201,30 +201,30 @@ UT_CASE(Quat, Mul) {
     // axes, the square of the quaternion is a
     // negative real value.
 
-    EXPECT_EQ(DirX * DirX, (Quat{-9}));
-    EXPECT_EQ(DirY * DirY, (Quat{-25}));
-    EXPECT_EQ(DirZ * DirZ, (Quat{-49}));
+    EXPECT_EQ(DirX * DirX, (Quat(-9)));
+    EXPECT_EQ(DirY * DirY, (Quat(-25)));
+    EXPECT_EQ(DirZ * DirZ, (Quat(-49)));
 
     // Quaternion multiplication is not commutative.
 
-    EXPECT_EQ(DirX * DirY, (Quat{{0, 0, 15}}));
-    EXPECT_EQ(DirY * DirX, (Quat{{0, 0, -15}}));
+    EXPECT_EQ(DirX * DirY, (Quat(V(0, 0, 15))));
+    EXPECT_EQ(DirY * DirX, (Quat(V(0, 0, -15))));
 
-    EXPECT_EQ(DirX * DirZ, (Quat{{0, -21, 0}}));
-    EXPECT_EQ(DirZ * DirX, (Quat{{0, 21, 0}}));
+    EXPECT_EQ(DirX * DirZ, (Quat(V(0, -21, 0))));
+    EXPECT_EQ(DirZ * DirX, (Quat(V(0, 21, 0))));
 
-    EXPECT_EQ(DirY * DirZ, (Quat{{35, 0, 0}}));
-    EXPECT_EQ(DirZ * DirY, (Quat{{-35, 0, 0}}));
+    EXPECT_EQ(DirY * DirZ, (Quat(V(35, 0, 0))));
+    EXPECT_EQ(DirZ * DirY, (Quat(V(-35, 0, 0))));
 
     // Multiplication of a quaternion by its conjugate
     // gives the square of the two-norm.
 
-    EXPECT_EQ(A*~A, (Quat{normsq(A)}));
-    EXPECT_EQ(~A*A, (Quat{normsq(A)}));
-    EXPECT_EQ(C*~C, (Quat{normsq(C)}));
-    EXPECT_EQ(~C*C, (Quat{normsq(C)}));
+    EXPECT_EQ(A*~A, (Quat(normsq(A))));
+    EXPECT_EQ(~A*A, (Quat(normsq(A))));
+    EXPECT_EQ(C*~C, (Quat(normsq(C))));
+    EXPECT_EQ(~C*C, (Quat(normsq(C))));
 
-};
+}
 
 // DIVISION TESTING: Here we hit the usual pitfalls with
 // trying to do equality comparisons between the results
@@ -261,136 +261,136 @@ static M r4(M const &m) {
 
 UT_CASE(Quat, Div) {
     
-    Quat       A { 2, { 4, 5, 6 }};
-    Quat const C { 0.17, { 0.19, 0.25, 0.35 }};
+    Quat       A ( 2, V( 4, 5, 6 ));
+    Quat const C ( 0.17, V( 0.19, 0.25, 0.35 ));
 
-    EXPECT_EQ(r4(1/C), (Quat{ 0.68, { -0.76, -1, -1.4 }}));
-    EXPECT_EQ(r4(A/C), (Quat{ 17.8, { 0.2, 2.44, 1.08 }}));
-    EXPECT_EQ(r4(A/=C), (Quat{ 17.8, { 0.2, 2.44, 1.08 }}));
-    EXPECT_EQ(r4(A*C), (Quat{ 2, { 4, 5, 6 }}));
+    EXPECT_EQ(r4(1/C), (Quat( 0.68, V( -0.76, -1, -1.4 ))));
+    EXPECT_EQ(r4(A/C), (Quat( 17.8, V( 0.2, 2.44, 1.08 ))));
+    EXPECT_EQ(r4(A/=C), (Quat( 17.8, V( 0.2, 2.44, 1.08 ))));
+    EXPECT_EQ(r4(A*C), (Quat( 2, V( 4, 5, 6 ))));
 
-};
+}
 
 UT_CASE(Quat, Rot) {
 
     // The unit quaternion represents the null rotation.
-    Quat const Unit{1};
+    Quat const Unit(1);
 
     // Vectors for each axis
-    V const X{1,0,0};
-    V const Y{0,1,0};
-    V const Z{0,0,1};
+    V const X(1,0,0);
+    V const Y(0,1,0);
+    V const Z(0,0,1);
 
     // "a" is half of the rotation angle.
-    T const a{atan2(1,1)};
+    T const a(atan2(1,1));
 
 
     // Quaternions for rotation around each axis.
-    Quat const DirX{cos(a), X*sin(a)};
-    Quat const DirY{cos(a), Y*sin(a)};
-    Quat const DirZ{cos(a), Z*sin(a)};
+    Quat const DirX(cos(a), X*sin(a));
+    Quat const DirY(cos(a), Y*sin(a));
+    Quat const DirZ(cos(a), Z*sin(a));
 
     // Unit does not rotate.
 
-    EXPECT_EQ(r4(Unit(X)), (V{1,0,0}));
-    EXPECT_EQ(r4(Unit(Y)), (V{0,1,0}));
-    EXPECT_EQ(r4(Unit(Z)), (V{0,0,1}));
+    EXPECT_EQ(r4(Unit(X)), (V(1,0,0)));
+    EXPECT_EQ(r4(Unit(Y)), (V(0,1,0)));
+    EXPECT_EQ(r4(Unit(Z)), (V(0,0,1)));
 
     // Rotation of a vector around itself does not change it.
 
-    EXPECT_EQ(r4(DirX(X)), (V{1,0,0}));
-    EXPECT_EQ(r4(DirY(Y)), (V{0,1,0}));
-    EXPECT_EQ(r4(DirZ(Z)), (V{0,0,1}));
+    EXPECT_EQ(r4(DirX(X)), (V(1,0,0)));
+    EXPECT_EQ(r4(DirY(Y)), (V(0,1,0)));
+    EXPECT_EQ(r4(DirZ(Z)), (V(0,0,1)));
 
-    EXPECT_EQ(r4(DirY(Z)), (V{1,0,0}));
-    EXPECT_EQ(r4(DirZ(X)), (V{0,1,0}));
-    EXPECT_EQ(r4(DirX(Y)), (V{0,0,1}));
+    EXPECT_EQ(r4(DirY(Z)), (V(1,0,0)));
+    EXPECT_EQ(r4(DirZ(X)), (V(0,1,0)));
+    EXPECT_EQ(r4(DirX(Y)), (V(0,0,1)));
     
-    EXPECT_EQ(r4(DirZ(Y)), (V{-1,0,0}));
-    EXPECT_EQ(r4(DirX(Z)), (V{0,-1,0}));
-    EXPECT_EQ(r4(DirY(X)), (V{0,0,-1}));
+    EXPECT_EQ(r4(DirZ(Y)), (V(-1,0,0)));
+    EXPECT_EQ(r4(DirX(Z)), (V(0,-1,0)));
+    EXPECT_EQ(r4(DirY(X)), (V(0,0,-1)));
 
-};
+}
 
 UT_CASE(Quat, Mat) {
 
 #define SHO(v) cerr << #v ": " << v << endl
 
     // The unit quaternion represents the null rotation.
-    Quat const Unit{1};
+    Quat const Unit(1);
 
 
     // Vectors for each axis
-    V const X{1,0,0};
-    V const Y{0,1,0};
-    V const Z{0,0,1};
+    V const X(1,0,0);
+    V const Y(0,1,0);
+    V const Z(0,0,1);
 
     // "a" is half of the rotation angle.
-    T const a{atan2(1,1)};
+    T const a(atan2(1,1));
 
     // Quaternions for rotation around each axis.
-    Quat const DirX{cos(a), X*sin(a)};
-    Quat const DirY{cos(a), Y*sin(a)};
-    Quat const DirZ{cos(a), Z*sin(a)};
+    Quat const DirX(cos(a), X*sin(a));
+    Quat const DirY(cos(a), Y*sin(a));
+    Quat const DirZ(cos(a), Z*sin(a));
 
     // Construction of the rotation matrix
     // requires 10 multiplies and 27 add/sub ops.
 
-    EXPECT_EQ(r4((M)Unit), (M{{1,0,0},{0,1,0},{0,0,1}}));
-    EXPECT_EQ(r4((M)DirX), (M{{1,0,0},{0,0,-1},{0,1,0}}));
-    EXPECT_EQ(r4((M)DirY), (M{{0,0,1},{0,1,0},{-1,0,0}}));
-    EXPECT_EQ(r4((M)DirZ), (M{{0,-1,0},{1,0,0},{0,0,1}}));
-};
+    EXPECT_EQ(r4(Unit.mat()), (M(R(1,0,0),R(0,1,0),R(0,0,1))));
+    EXPECT_EQ(r4(DirX.mat()), (M(R(1,0,0),R(0,0,-1),R(0,1,0))));
+    EXPECT_EQ(r4(DirY.mat()), (M(R(0,0,1),R(0,1,0),R(-1,0,0))));
+    EXPECT_EQ(r4(DirZ.mat()), (M(R(0,-1,0),R(1,0,0),R(0,0,1))));
+}
 
 UT_CASE(Quat, MatRot) {
 
     // The unit quaternion represents the null rotation.
-    Quat const Unit{1};
+    Quat const Unit(1);
 
     // Vectors for each axis
-    V const X{1,0,0};
-    V const Y{0,1,0};
-    V const Z{0,0,1};
+    V const X(1,0,0);
+    V const Y(0,1,0);
+    V const Z(0,0,1);
 
     // "a" is half of the rotation angle.
-    T const a{atan2(1,1)};
+    T const a(atan2(1,1));
 
 
     // Quaternions for rotation around each axis.
-    Quat const DirX{cos(a), X*sin(a)};
-    Quat const DirY{cos(a), Y*sin(a)};
-    Quat const DirZ{cos(a), Z*sin(a)};
+    Quat const DirX(cos(a), X*sin(a));
+    Quat const DirY(cos(a), Y*sin(a));
+    Quat const DirZ(cos(a), Z*sin(a));
 
     // Rotation matrices for each quaternion
 
-    M  const MatU = (M) Unit;
-    M  const MatX = (M) DirX;
-    M  const MatY = (M) DirY;
-    M  const MatZ = (M) DirZ;
+    M  const MatU = Unit.mat();
+    M  const MatX = DirX.mat();
+    M  const MatY = DirY.mat();
+    M  const MatZ = DirZ.mat();
 
     // Rotating each vector with this method
     // requires 9 multiplies and 6 adds.
 
-    EXPECT_EQ(r4(MatU * X), (V{1,0,0}));
-    EXPECT_EQ(r4(MatU * Y), (V{0,1,0}));
-    EXPECT_EQ(r4(MatU * Z), (V{0,0,1}));
+    EXPECT_EQ(r4(MatU * X), (V(1,0,0)));
+    EXPECT_EQ(r4(MatU * Y), (V(0,1,0)));
+    EXPECT_EQ(r4(MatU * Z), (V(0,0,1)));
 
     // Rotation of a vector around itself does not change it.
 
-    EXPECT_EQ(r4(MatX * X), (V{1,0,0}));
-    EXPECT_EQ(r4(MatY * Y), (V{0,1,0}));
-    EXPECT_EQ(r4(MatZ * Z), (V{0,0,1}));
+    EXPECT_EQ(r4(MatX * X), (V(1,0,0)));
+    EXPECT_EQ(r4(MatY * Y), (V(0,1,0)));
+    EXPECT_EQ(r4(MatZ * Z), (V(0,0,1)));
 
     // Forward cycle through X, Y, Z axes
 
-    EXPECT_EQ(r4(MatY * Z), (V{1,0,0}));
-    EXPECT_EQ(r4(MatZ * X), (V{0,1,0}));
-    EXPECT_EQ(r4(MatX * Y), (V{0,0,1}));
+    EXPECT_EQ(r4(MatY * Z), (V(1,0,0)));
+    EXPECT_EQ(r4(MatZ * X), (V(0,1,0)));
+    EXPECT_EQ(r4(MatX * Y), (V(0,0,1)));
     
     // Reverse cycle through Z, Y, X axes
 
-    EXPECT_EQ(r4(MatZ * Y), (V{-1,0,0}));
-    EXPECT_EQ(r4(MatX * Z), (V{0,-1,0}));
-    EXPECT_EQ(r4(MatY * X), (V{0,0,-1}));
+    EXPECT_EQ(r4(MatZ * Y), (V(-1,0,0)));
+    EXPECT_EQ(r4(MatX * Z), (V(0,-1,0)));
+    EXPECT_EQ(r4(MatY * X), (V(0,0,-1)));
 
-};
+}

@@ -17,55 +17,57 @@ using std::cerr;
 using std::endl;
 using std::setw;
 
+typedef TriVec V;
+
 UT_CASE(Quat, CtorAccess) {
     {
         const Quat Q;
         EXPECT_EQ(Q.scalar(), 0);       // Scalar part of Quat::Quat()
-        EXPECT_EQ(Q.vector(), (TriVec{0, 0, 0})); // Scalar part of Quat::Quat()
+        EXPECT_EQ(Q.vector(), (V(0, 0, 0))); // Scalar part of Quat::Quat()
     }
     {
-        const Quat Q{0, {0, 0, 0}};
+        const Quat Q(0, V(0, 0, 0));
         EXPECT_EQ(Q.scalar(), 0);       // Scalar part of Quat{0,{0,0,0}}
-        EXPECT_EQ(Q.vector(), (TriVec{0, 0, 0})); // Scalar part of Quat{0,{0,0,0}}
+        EXPECT_EQ(Q.vector(), (V(0, 0, 0))); // Scalar part of Quat{0,{0,0,0}}
     }
     {
-        const Quat Q{1, {0, 0, 0}};
+        const Quat Q(1, V(0, 0, 0));
         EXPECT_EQ(Q.scalar(), 1);       // Scalar part of Quat{1,{0,0,0}}
-        EXPECT_EQ(Q.vector(), (TriVec{0, 0, 0})); // Scalar part of Quat{1,{0,0,0}}
+        EXPECT_EQ(Q.vector(), (V(0, 0, 0))); // Scalar part of Quat{1,{0,0,0}}
     }
     {
-        const Quat Q{0, {1, 0, 0}};
+        const Quat Q(0, V(1, 0, 0));
         EXPECT_EQ(Q.scalar(), 0);       // Scalar part of Quat{0,{1,0,0}}
-        EXPECT_EQ(Q.vector(), (TriVec{1, 0, 0})); // Scalar part of Quat{0,{1,0,0}}
+        EXPECT_EQ(Q.vector(), (V(1, 0, 0))); // Scalar part of Quat{0,{1,0,0}}
     }
     {
-        const Quat Q{0, {0, 1, 0}};
+        const Quat Q(0, V(0, 1, 0));
         EXPECT_EQ(Q.scalar(), 0);       // Scalar part of Quat{0,{0,1,0}}
-        EXPECT_EQ(Q.vector(), (TriVec{0, 1, 0})); // Scalar part of Quat{0,{0,1,0}}
+        EXPECT_EQ(Q.vector(), (V(0, 1, 0))); // Scalar part of Quat{0,{0,1,0}}
     }
     {
-        const Quat Q{0, {0, 0, 1}};
+        const Quat Q(0, V(0, 0, 1));
         EXPECT_EQ(Q.scalar(), 0);       // Scalar part of Quat{0,{0,0,1}}
-        EXPECT_EQ(Q.vector(), (TriVec{0, 0, 1})); // Scalar part of Quat{0,{0,0,1}}
+        EXPECT_EQ(Q.vector(), (V(0, 0, 1))); // Scalar part of Quat{0,{0,0,1}}
     }
     {
-        Quat Q{1, {2, 3, 4}};
-        TriVec V{5, 6, 7};
-        Q.vector() = V;
+        Quat Q(1, V(2, 3, 4));
+        V v(5, 6, 7);
+        Q.vector() = v;
         Q.vector()[1] = Q.scalar();
         Q.scalar() = Q.vector()[2];
         EXPECT_EQ(Q.scalar(), 7);       // Scalar part of modified Quat
-        EXPECT_EQ(Q.vector(), (TriVec{5, 1, 7})); // Scalar part of modified Quat
+        EXPECT_EQ(Q.vector(), (V(5, 1, 7))); // Scalar part of modified Quat
     }
-};
+}
 
 UT_CASE(Quat, Compare) {
 
     Quat D;
-    Quat W{1, {0, 0, 0}};
-    Quat X{0, {1, 0, 0}};
-    Quat Y{0, {0, 1, 0}};
-    Quat Z{0, {0, 0, 1}};
+    Quat W(1, V(0, 0, 0));
+    Quat X(0, V(1, 0, 0));
+    Quat Y(0, V(0, 1, 0));
+    Quat Z(0, V(0, 0, 1));
 
     EXPECT_NE((bool)0, (bool)(D == D));                     // D == D
     EXPECT_EQ((bool)0, (bool)(D == W));                     // D == W
@@ -126,4 +128,4 @@ UT_CASE(Quat, Compare) {
     EXPECT_NE((bool)0, (bool)(Z != X));                     // Z != X
     EXPECT_NE((bool)0, (bool)(Z != Y));                     // Z != Y
     EXPECT_EQ((bool)0, (bool)(Z != Z));                     // Z != Z
-};
+}

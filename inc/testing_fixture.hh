@@ -2,8 +2,8 @@
 #define _testing_fixture_h "testing fixture v0.1" /**< for header vs library matching */
 
 /** \file
-* \brief Testing Fixture Interface
-*/
+ * \brief Testing Fixture Interface
+ */
 
 #include <string>
 
@@ -18,74 +18,42 @@ namespace Farsyte {
      */
     extern int autorun_atexit_rv;
 
-    /** Collector for Unit Test Fixture Names.
-     */
-    class TestNames {
-    public:
-      /** Storage for the name for the test suite. */
-      std::string const sn;
-
-      /** Storage for the name for the test case. */
-      std::string const tn;
-
-      /** Construct a new Test names object.
-       * \param sname name for the test suite
-       * \param tname name for the test case
-       */
-      TestNames(
-          std::string const &sname,
-          std::string const &tname)
-          : sn(sname), tn(tname) {
-      }
-    };
 
     /** Data type expected for test bodies.
      */
-    typedef std::function<void(Test &)> TestFunc;
+    typedef void (*TestFunc)(Farsyte::Testing::Test &t);
 
-    /** Combine test names and a body (register the test case).
+    extern int ut_reg(
+      std::string const &sname,
+      std::string const &tname,
+      TestFunc f);
+
+    /* Test Case Name function
      */
-    extern TestNames *operator+(TestNames *r, TestFunc f);
+#define UT_CN(pre,sn,tn)	UT_CASE__ ## pre ## __ ## sn ## __ ## tn
 
-/** Support Macro: declare storage needed by UT_CASE.
- */
-#define UT_RV(sn, tn)       static auto __ ## sn ## __ ## tn ## __Regcode
+#define UT_CASE(sn,tn)                                          \
+    static void UT_CN(func,sn,tn)(Farsyte::Testing::Test &t);   \
+    static int  UT_CN(regc,sn,tn) =                             \
+      Farsyte::Testing::ut_reg(#sn,#tn,UT_CN(func,sn,tn));      \
+    static void UT_CN(func,sn,tn)(Farsyte::Testing::Test &t)
 
-/** Support Macro: Dynamic Allocation of TestNames for UT_CASE.
+/** Common code for checking a Test Condition.
  */
-#define UT_ID(sn, tn)       = new Farsyte::Testing::TestNames(#sn,#tn)
-
-/** Support Macro: Append TestBody for UT_CASE.
- */
-#define UT_DOES()           + (Farsyte::Testing::TestFunc) [](Farsyte::Testing::Test &t)
-
-/** Introduce a Test Case.
- */
-#define UT_CASE(sn, tn)     UT_RV(sn,tn) UT_ID(sn,tn) UT_DOES()
-
-/** Commom code for checking a Test Condition.
- */
-#define UT_COND(mf, ov, ev, os, ms, onfail)                     \
-      do {                                                      \
-        bool evaluating = false;                                \
-        try {                                                   \
-          evaluating = true;                                    \
-          auto ovv = (ov);                                      \
-          evaluating = false;                                   \
-          if (t.mf(ovv, ev, os, ms))                            \
-            onfail;                                             \
-        }                                                       \
-        catch (Farsyte::Testing::Oops &e) {                     \
-          t << "exception from ";                               \
-          if (evaluating)                                       \
-            t << os;                                            \
-          else                                                  \
-            t << "condition check code";                        \
-          t << ":\n" << e << std::endl;                         \
-          t.fail("exception thrown");                           \
-          onfail;                                               \
-        }                                                       \
-      } while (0)
+#define UT_COND(mf, ov, ev, os, ms, onfail)     \
+    do {                                        \
+      try {                                     \
+        if (t.mf((ov), ev, os, ms))             \
+          onfail;                               \
+      }                                         \
+      catch (Farsyte::Testing::Oops &e) {       \
+        t << "exception from ";                 \
+        t << os;                                \
+        t << ":\n" << e << std::endl;           \
+        t.fail("exception thrown");             \
+        onfail;                                 \
+      }                                         \
+    } while (0)
 
 /** Check condition; indicate failure if not met.
  */
@@ -97,38 +65,26 @@ namespace Farsyte {
 
 /** Common code for testing a Thrown Exception.
  */
-#define UT_EXCEPT(exp, str, onfail)                             \
-      do {                                                      \
-        bool evaluating = false;                                \
-        try {                                                   \
-          evaluating = true;                                    \
-          (void) (exp);                                         \
-          evaluating = false;                                   \
-          t << "Did not observe"                                \
-              << " expected exception from\n"                   \
-              << "  " << str << std::endl;                      \
-          t.fail("Did not see expected exception");             \
-          onfail;                                               \
-        }                                                       \
-        catch (Farsyte::Testing::Oops &e) {                     \
-          if (evaluating) {                                     \
-            t << "Observed"                                     \
-                << " expected exception\n"                      \
-                << "  " << e << "\n"                            \
-                << "from\n"                                     \
-                << "  " << str << std::endl;                    \
-            t.pass("saw expected exception");                   \
-          } else {                                              \
-            t << "Did not observe"                              \
-                << " expected exception from\n"                 \
-                << "  " << str << "\n"                          \
-                << "but DID get an exception after:\n"          \
-                << e << std::endl;                              \
-            t.fail("Did not see expected exception");           \
-            onfail;                                             \
-          }                                                     \
-        }                                                       \
-      } while (0)
+#define UT_EXCEPT(exp, str, onfail)             \
+    do {                                        \
+    try {                                       \
+    (void) (exp);                               \
+    t << "Did not observe"                      \
+    << " expected exception from\n"             \
+    << "  " << str << std::endl;                \
+    t.fail("Did not see expected exception");   \
+    onfail;                                     \
+  }                                             \
+    catch (Farsyte::Testing::Oops &e) {         \
+    t << "Observed"                             \
+    << " expected exception\n"                  \
+    << "  " << e << "\n"                        \
+    << "from\n"                                 \
+    << "  " << str                              \
+    << std::endl;                               \
+    t.pass("saw expected exception");           \
+  }                                             \
+  } while (0)
 
 /** Expect an exception, indicate failure if not observed.
  */
@@ -140,35 +96,28 @@ namespace Farsyte {
 
 /** Commom code for checking a Test Condition.
  */
-#define UT_COND3(mf, ov, ev1, ev2, ms, onfail)                  \
-      do {                                                      \
-        bool evaluating = false;                                \
-        try {                                                   \
-          evaluating = true;                                    \
-          auto ovv = (ov);                                      \
-          evaluating = false;                                   \
-          if (t.mf(ovv, ev1, ev2, ms))                          \
-            onfail;                                             \
-        }                                                       \
-        catch (Farsyte::Testing::Oops &e) {                     \
-          t << "exception from ";                               \
-          if (evaluating)                                       \
-            t << "calling " #mf "()";                           \
-          else                                                  \
-            t << "condition check code";                        \
-          t << ":\n" << e << std::endl;                         \
-          t.fail("exception thrown");                           \
-          onfail;                                               \
-        }                                                       \
-      } while (0)
+#define UT_COND3(mf, ov, ev1, ev2, os, ms, onfail)      \
+    do {                                                \
+      try {                                             \
+        if (t.mf((ov), ev1, ev2, ms))                   \
+          onfail;                                       \
+      }                                                 \
+      catch (Farsyte::Testing::Oops &e) {               \
+        t << "exception from ";                         \
+        t << os;                                        \
+        t << ":\n" << e << std::endl;                   \
+        t.fail("exception thrown");                     \
+        onfail;                                         \
+      }                                                 \
+    } while (0)
 
 /** Check condition; indicate failure if condition check t.mf() fails
  */
-#define UT_EXPECT3(mf, ov, ev1, ev2, ms)   UT_COND3(mf, ov, ev1, ev2, ms, break)
+#define UT_EXPECT3(mf, ov, ev1, ev2, ms)   UT_COND3(mf, ov, ev1, ev2, #ov, ms, break)
 
 /** Check condition: fail and return from test if condition check t.mf() fails
  */
-#define UT_ASSERT3(mf, ov, ev1, ev2, ms)   UT_COND3(mf, ov, ev1, ev2, ms, return)
+#define UT_ASSERT3(mf, ov, ev1, ev2, ms)   UT_COND3(mf, ov, ev1, ev2, #ov, ms, return)
 
 
   }

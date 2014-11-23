@@ -62,9 +62,8 @@ namespace Farsyte {
             V operator()(V const &that) const;
 
             /** Quaternion conversion to Scale-and-Rotate matrix.
-             */
-            explicit
-            operator M() const;
+`             */
+            M mat() const;
 
             /** Quaternion Scalar Part Storage. */
             T w;
@@ -90,7 +89,7 @@ namespace Farsyte {
         extern Quat     operator-(
             Quat const &a);
 
-        /** Quaternion Conjuaget operator.
+        /** Quaternion Conjugate operator.
          */
         extern Quat     operator~(
             Quat const &a);
@@ -125,7 +124,7 @@ namespace Farsyte {
             T const &b,
             Quat a);
 
-        /** Divide Quaternion b Scalar.
+        /** Divide Quaternion by Scalar.
          */
         extern Quat     operator/(
             Quat a,

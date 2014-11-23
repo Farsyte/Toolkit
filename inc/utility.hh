@@ -76,7 +76,7 @@ namespace Farsyte {
         * the version strings from the headers used to compile
         * the utility library.
         */
-        extern std::vector<std::string> const &utility_versions();
+        extern const char ** utility_versions();
     }
 }
 

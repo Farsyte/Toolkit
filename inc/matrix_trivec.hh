@@ -30,7 +30,7 @@ namespace Farsyte {
 
             /** Typedef for array containing the data.
             */
-            typedef typename ColMe::A A;
+            typedef ColMe::A A;
 
         public:
 

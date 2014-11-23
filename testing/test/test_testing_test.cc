@@ -40,7 +40,7 @@ UT_CASE(Test, Ierr) {
     EXPECT_EX(tp = new Test(ts, "Test Tester Test Name 2"));
     if (tp) delete tp;
 
-};
+}
 
 UT_CASE(Test, Init) {
     ostringstream oss;
@@ -55,7 +55,7 @@ UT_CASE(Test, Init) {
     EXPECT_EQ(tc.fails, 0);             // Test count or condition FAILs clear
     EXPECT_EQ(tc.skips, 0);             // Test count of condition SKIPs clear
     EXPECT_EQ(tc.errors, 0);            // Test count of testing ERROSs clear"
-};
+}
 
 UT_CASE(Test, Init2) {
 
@@ -72,7 +72,7 @@ UT_CASE(Test, Init2) {
     EXPECT_EQ(tc.fails, 0);                                     // Test counter of FAILs
     EXPECT_EQ(tc.skips, 0);                                     // Test counter of SKIPs
     EXPECT_EQ(tc.errors, 0);                                    // Test counter of ERRORs
-};
+}
 
 UT_CASE(Test, Init4) {
 
@@ -97,7 +97,7 @@ UT_CASE(Test, Init4) {
     EXPECT_EQ(tc.skips, 0);                                     // Test counter of SKIPs
     EXPECT_EQ(tc.errors, 0);                                    // Test counter of ERRORs
 
-};
+}
 
 UT_CASE(Test, MinimumOutput) {
 
@@ -121,7 +121,7 @@ UT_CASE(Test, MinimumOutput) {
     EXPECT_EQ(vos[1], "    </testcase>");
     EXPECT_EQ(vos.size(), 2u);
 
-};
+}
 
 UT_CASE(Test, Fail) {
 
@@ -163,24 +163,17 @@ UT_CASE(Test, Fail) {
     EXPECT_EQ(tl.total_skips, 0);                               // Log count of Cond SKIPs
     EXPECT_EQ(tl.total_errors, 0);                              // Log count of Cond ERRORs
 
-};
+}
 
 UT_CASE(Test, Text) {
 
-    static const vector<string> exp = {
+    static const string exp[] = {
             quoted("      <failure message=\"Text Tester Condition Name\">"),
             quoted("Text Tester Detail Line #1"),
             quoted("Text Tester Detail Line #2"),
             quoted("Text Tester Detail Line #3"),
             quoted("      </failure>"),
-    };
-
-    static const vector<string> msg = {
-            "open failure entity",
-            "evidence line 1",
-            "evidence line 2",
-            "evidence line 3",
-            "close failure entity"
+            ""
     };
 
     ostringstream oss;
@@ -199,29 +192,23 @@ UT_CASE(Test, Text) {
 
     vector<string> vos(streamlines(oss));
 
-    for (unsigned i = 0; i < exp.size(); ++i) {
+    for (unsigned i = 0; exp[i].length() > 0; ++i) {
         ASSERT_GE(vos.size(), i+1);
         EXPECT_EQ(quoted(vos[i]), exp[i]);
     }
-    EXPECT_EQ(vos.size(), exp.size());
+    EXPECT_EQ(exp[vos.size()], string(""));
 
-};
+}
 
 UT_CASE(Test, Skip) {
 
-    static const vector<string> exp = {
+    static const string exp[] = {
             quoted("      <skipped message=\"Skip Tester Condition Name\">"),
             quoted("Skip Tester Detail Line #1"),
             quoted("Skip Tester Detail Line #2"),
             quoted("Skip Tester Detail Line #3"),
             quoted("      </skipped>"),
-    };
-    static const vector<string> msg = {
-            "open skipped entity",
-            "evidence line 1",
-            "evidence line 2",
-            "evidence line 3",
-            "close skipped entity"
+            ""
     };
 
     ostringstream oss;
@@ -239,11 +226,10 @@ UT_CASE(Test, Skip) {
 
     vector<string> vos(streamlines(oss));
 
-    for (unsigned i = 0; i < exp.size(); ++i) {
+    for (unsigned i = 0; exp[i].length() > 0; ++i) {
         ASSERT_GE(vos.size(), i+1);
         EXPECT_EQ(quoted(vos[i]), exp[i]);
     }
-    EXPECT_GE(vos.size(), 5u);                                  // Enough XML output
 
     EXPECT_EQ(tc.fails, 0);                                     // Test FAILs counter
     EXPECT_EQ(tc.skips, 2);                                     // Test SKIPs counter
@@ -265,23 +251,17 @@ UT_CASE(Test, Skip) {
     EXPECT_EQ(tl.total_skips, 2);                               // Log count of Cond SKIPs
     EXPECT_EQ(tl.total_errors, 0);                              // Log count of Cond ERRORs
 
-};
+}
 
 UT_CASE(Test, Error) {
 
-    static const vector<string> exp = {
+    static const string exp[] = {
             quoted("      <error message=\"Error Tester Condition Name\">"),
             quoted("Error Tester Detail Line #1"),
             quoted("Error Tester Detail Line #2"),
             quoted("Error Tester Detail Line #3"),
             quoted("      </error>"),
-    };
-    static const vector<string> msg = {
-            "open error entity",
-            "evidence line 1",
-            "evidence line 2",
-            "evidence line 3",
-            "close error entity"
+            ""
     };
 
     ostringstream oss;
@@ -299,11 +279,10 @@ UT_CASE(Test, Error) {
 
     vector<string> vos(streamlines(oss));
 
-    for (unsigned i = 0; i < exp.size(); ++i) {
+    for (unsigned i = 0; exp[i].length() > 0; ++i) {
         ASSERT_GE(vos.size(), i);
         EXPECT_EQ(quoted(vos[i]), exp[i]);
     }
-    EXPECT_EQ(vos.size(), 5u);                                  // No extra XML output.
 
     EXPECT_EQ(tc.fails, 0);                                     // Test FAILs counter
     EXPECT_EQ(tc.skips, 0);                                     // Test SKIPs counter
@@ -325,7 +304,7 @@ UT_CASE(Test, Error) {
     EXPECT_EQ(tl.total_skips, 0);                               // Log count of Cond SKIPs
     EXPECT_EQ(tl.total_errors, 2);                              // Log count of Cond ERRORs
 
-};
+}
 
 UT_CASE(Test, EXPECT_IN) {
 
@@ -393,7 +372,7 @@ UT_CASE(Test, EXPECT_IN) {
         EXPECT_EQ(tc.skips, 0);
         EXPECT_EQ(tc.errors, 0);
     }
-};
+}
 
 UT_CASE(Test, EXPECT_PM) {
 
@@ -461,4 +440,4 @@ UT_CASE(Test, EXPECT_PM) {
         EXPECT_EQ(tc.skips, 0);
         EXPECT_EQ(tc.errors, 0);
     }
-};
+}

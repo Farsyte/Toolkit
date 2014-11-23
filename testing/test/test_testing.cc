@@ -28,10 +28,9 @@ using std::vector;
 
 UT_CASE(Testing, Version) {
 
-    vector<string> ver_list = Farsyte::Testing::testing_versions();
-    size_t min_size = 1;
-    size_t ver_size = ver_list.size();
+    const char ** vers = Farsyte::Testing::testing_versions();
 
-    EXPECT_GE(ver_size, min_size);                              // version string list too short
-    EXPECT_EQ(ver_list[0], string(_testing_h));                 // master version string mismatch
-};
+    ASSERT_NotNull(vers);
+    ASSERT_NotNull(vers[0]);
+    EXPECT_EQ(vers[0], string(_testing_h));                 // master version string mismatch
+}

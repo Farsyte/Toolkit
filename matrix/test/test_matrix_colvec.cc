@@ -32,6 +32,19 @@ using std::vector;
 /** Pick a type for a test vector. */
 typedef ColVec<4, int> ColVec4i;
 
+/** Corresponding 4x4 matrix */
+typedef Matrix<4, 4, int> Mat4x4i;
+
+/** Because ColVec<> initializers are harsh. */
+static ColVec4i IV(int w, int x, int y, int z) {
+    ColVec4i R;
+    R[0] = w;
+    R[1] = x;
+    R[2] = y;
+    R[3] = z;
+    return R;
+}
+
 /* -- ================================================================ -- */
 
 UT_CASE(ColVec, Meta) {
@@ -40,17 +53,16 @@ UT_CASE(ColVec, Meta) {
     EXPECT_EQ(ColVec4i::cols(), 1);             // ColVec Cols
     EXPECT_EQ(ColVec4i::size(), 4);             // ColVec Size
 
-};
+}
 
 UT_CASE(ColVec, CtorEqNe) {
 
-    typedef ColVec4i::A IV;
 
     ColVec4i D;
-    ColVec4i W = IV {1, 0, 0, 0};
-    ColVec4i X = IV {0, 1, 0, 0};
-    ColVec4i Y = IV {0, 0, 1, 0};
-    ColVec4i Z = IV {0, 0, 0, 1};
+    ColVec4i W = IV (1, 0, 0, 0);
+    ColVec4i X = IV (0, 1, 0, 0);
+    ColVec4i Y = IV (0, 0, 1, 0);
+    ColVec4i Z = IV (0, 0, 0, 1);
 
     EXPECT_NE((bool)0, (bool)(D == D));         // (D == D) is True
     EXPECT_NE((bool)0, (bool)(W == W));         // (W == W) is True
@@ -114,13 +126,11 @@ UT_CASE(ColVec, CtorEqNe) {
     EXPECT_EQ((bool)0, (bool)(Z == X));         // (Z == X) is False
     EXPECT_EQ((bool)0, (bool)(Z == Y));;        // (Z == Y) is False
 
-};
+}
 
 UT_CASE(ColVec, Access) {
 
-    typedef ColVec4i::A IV;
-
-    ColVec4i V = IV {1, 3, 5, 7};
+    ColVec4i V = IV (1, 3, 5, 7);
 
     V[2] = 4;
     V[3] = V[0];
@@ -130,19 +140,17 @@ UT_CASE(ColVec, Access) {
     EXPECT_EQ(V[2], 4);
     EXPECT_EQ(V[3], 1);
 
-};
+}
 
 UT_CASE(ColVec, Add) {
 
-    typedef ColVec4i::A IV;
-
     ColVec4i S;
-    ColVec4i A = IV {10, 7, 4, 1};
-    ColVec4i I = IV {1, 2, 3, 4};
+    ColVec4i A = IV (10, 7, 4, 1);
+    ColVec4i I = IV (1, 2, 3, 4);
     A += I;
 
-    auto ApI = A + I;
-    auto ApnI = A + (-I);
+    ColVec4i ApI = A + I;
+    ColVec4i ApnI = A + (-I);
 
     // I unchanged
     EXPECT_EQ(I[0], 1); EXPECT_EQ(I[1], 2); EXPECT_EQ(I[2], 3); EXPECT_EQ(I[3], 4);
@@ -156,19 +164,18 @@ UT_CASE(ColVec, Add) {
     // Add Negative
     EXPECT_EQ(ApnI[0], 10); EXPECT_EQ(ApnI[1], 7); EXPECT_EQ(ApnI[2], 4); EXPECT_EQ(ApnI[3], 1);
 
-};
+}
 
 UT_CASE(ColVec, Sub) {
 
-    typedef ColVec4i::A IV;
 
     ColVec4i D;
-    ColVec4i A = IV {9, 8, 7, 6};
-    ColVec4i I = IV {1, 2, 3, 4};
+    ColVec4i A = IV (9, 8, 7, 6);
+    ColVec4i I = IV (1, 2, 3, 4);
     A -= I;
 
-    auto AmI = A - I;
-    auto AmnI = A - (-I);
+    ColVec4i AmI = A - I;
+    ColVec4i AmnI = A - (-I);
 
     // I unchanged
     EXPECT_EQ(I[0], 1); EXPECT_EQ(I[1], 2); EXPECT_EQ(I[2], 3); EXPECT_EQ(I[3], 4);
@@ -182,20 +189,18 @@ UT_CASE(ColVec, Sub) {
     // Sub Negative
     EXPECT_EQ(AmnI[0], 9); EXPECT_EQ(AmnI[1], 8); EXPECT_EQ(AmnI[2], 7); EXPECT_EQ(AmnI[3], 6);
 
-};
+}
 
 UT_CASE(ColVec, Mul) {
 
-    typedef ColVec4i::A IV;
+    ColVec4i A = IV (9, 8, 7, 6);
+    ColVec4i I = IV (1, 2, 3, 4);
 
-    ColVec4i A = IV {9, 8, 7, 6};
-    ColVec4i I = IV {1, 2, 3, 4};
-
-    auto AIt = A * ~I;          // a 4x4 matrix
-    auto AtI = ~A * I;          // an integer!
+    Mat4x4i AIt = A * ~I;          // a 4x4 matrix
+    int AtI = ~A * I;          // an integer!
 
     EXPECT_EQ(AIt.rows(), 4);           // AIt number of rows
     EXPECT_EQ(AIt.cols(), 4);           // AIt number of columns
     EXPECT_EQ(AIt.size(), 16);          // AIt number of elements
     EXPECT_EQ(AtI, 70);                 // dot(A,I) value
-};
+}

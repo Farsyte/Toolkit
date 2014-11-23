@@ -31,7 +31,9 @@ namespace Farsyte {
         {
         }
 
-        Quat::operator M() const {
+        // Quat::operator M() const { ... }
+
+        M Quat::mat() const {
 
             const T &x (v[0]), &y (v[1]), &z (v[2]);
 
@@ -40,11 +42,11 @@ namespace Farsyte {
             const T wx = w * x, wy = w * y, wz = w * z;
             const T xy = x * y, xz = x * z, yz = y * z;
 
-            const R r1 {ww+xx-yy-zz, xy+xy-wz-wz, xz+xz+wy+wy};
-            const R r2 {xy+xy+wz+wz, ww-xx+yy-zz, yz+yz-wx-wx};
-            const R r3 {xz+xz-wy-wy, yz+yz+wx+wx, ww-xx-yy+zz};
+            const R r1 (ww+xx-yy-zz, xy+xy-wz-wz, xz+xz+wy+wy);
+            const R r2 (xy+xy+wz+wz, ww-xx+yy-zz, yz+yz-wx-wx);
+            const R r3 (xz+xz-wy-wy, yz+yz+wx+wx, ww-xx-yy+zz);
 
-            return M{r1,r2,r3};
+            return M(r1,r2,r3);
         }
 
         V Quat::operator()(V const &that) const {

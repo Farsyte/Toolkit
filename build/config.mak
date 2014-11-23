@@ -23,11 +23,10 @@ ifneq ($(COVERAGE),)
 PROF            += -fprofile-arcs -ftest-coverage
 endif
 
-CSTD            = --std=c11
-XSTD            = --std=c++11
+CSTD            = --std=c99
+XSTD            = --std=c++98
 ERR             = -W -Wall -Wextra -pedantic -Werror \
-		  -Weffc++ \
-		  -Wno-missing-braces
+		  -ferror-limit=1000
 
 IPATH           = $(IDIRS:%=-I%)
 LPATH           = $(LDIRS:%=-L%)

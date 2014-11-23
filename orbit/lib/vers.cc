@@ -6,10 +6,11 @@ using std::vector;
 namespace Farsyte {
     namespace Orbit {
 
-        vector<string> const &orbit_versions() {
-            static const vector<string> ret{
+        const char ** orbit_versions() {
+            static const char * ret[] = {
                 _orbit_h,
-                    };
+                0
+            };
             return ret;
         }
 

@@ -16,7 +16,10 @@ namespace Farsyte {
         }
 
         TriVec::TriVec(double x, double y, double z)
-                : ColMe(A{{x, y, z}}) {
+                : ColMe() {
+            (*this)[0] = x;
+            (*this)[1] = y;
+            (*this)[2] = z;
         }
 
         TriVec::TriVec(MatMe const &p)

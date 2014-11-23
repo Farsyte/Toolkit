@@ -6,9 +6,10 @@ using std::vector;
 
 UT_CASE(Orbit, Versions) {
     
-    vector<string> const & vers = Farsyte::Orbit::orbit_versions();
+    const char ** vers = Farsyte::Orbit::orbit_versions();
 
-    EXPECT_GE(vers.size(), 1u);
+    ASSERT_NotNull(vers);
+    ASSERT_NotNull(vers[0]);
     EXPECT_EQ(vers[0], string(_orbit_h));
     
-};
+}

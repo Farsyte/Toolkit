@@ -27,7 +27,7 @@ namespace Farsyte {
         * the version strings from the headers used to compile
         * the testing library.
         */
-        extern std::vector<std::string> const &testing_versions();
+        extern const char ** testing_versions();
     }
 }
 
