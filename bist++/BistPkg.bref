@@ -1,0 +1,8 @@
+{{ BIST START PKG BistPkg }}
+{{ BIST START FUN text }}
+  "{{ BIST START PKG empty }}"
+  "  a procedure was followed"
+  "{{ BIST FINAL PKG }}"
+  end of input
+{{ BIST FINAL FUN }}
+{{ BIST FINAL PKG }}

@@ -1,0 +1,10 @@
+*~
+*.o
+*.log
+*.gcno
+*.gcda
+*.gcov
+*.bist
+[#]*[#]
+.*
+!.gitignore
