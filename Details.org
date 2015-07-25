@@ -1,0 +1,240 @@
+* Toolkit
+
+This is a re-collection of tools I use from time to time.
+
+Bits of useful and not-so-useful code will tend to appear
+here over time; this is where I tinker with ideas on how
+to do software engineering, not where I do my tinkering
+with the code itself.
+
+* Build Plans
+
+While my focus here is on writing tested code methodically,
+this works better if I have some longer term use cases in mind,
+even if they are just larger library-like abstractions.
+
+The project breaks down into layers.
+
+** Programming Toys
+
+*** Interplanetary Spaceflight Simulation
+
+Note that this requires tracking position, momentum,
+orientation and angular momentum of a rigid body with
+slowly changing mass and moment of inertia, as it moves
+through a space containing gravitational fields, under
+control of a collection of actuators fixed to the body.
+
+Yes, this has been done before. Yes, I could probably fork
+an existing repository with working code. And yes, that
+would completely and utterly miss the point of this project.
+
+**** Environment contains multiple gravitational sources in motion
+**** Spacecraft has slowly changing mass and moment of inertia
+**** Spacecraft state vector represents orientation and rotation
+
+- Scalar Mass
+- 3x3 symmetric matrix Moment of Inertia
+- 3-vector Position
+- 3-vector Momentum
+- Quaternion Orientation
+- 3-vector Angular Momentum
+
+** High Level Libraries
+
+*** Kalman Filter Toolkit
+
+*** Neural Network Toolkit
+
+*** PID Controller Toolkit
+
+** Low Level Libraries
+
+*** Vector Math Library
+
+**** special case for 2-vector
+**** special case for 3-vector
+**** special case for 4-vector
+**** template for N-vector (compile-time constant N)
+**** may skip generalized N-vector (runtime variable N)
+
+*** Matrix Math Library
+
+**** special case for 2x2-matrix
+**** special case for 3x3-matrix
+**** special case for 4x4-matrix
+**** template for MxN-matrix (compile-time constant M, N)
+**** may skip generalized MxN-matrix (runtime variable M, N)
+
+*** Quaternion Math Library
+
+**** Variant with automatic normalization
+**** Variant without automatic normalization
+
+* Language Plans
+
+My intention is to use mutliple languages, and to document exactly
+which variant of the language is in use in any given set of files.
+
+The languages I have in mind at the moment are:
+
+** C++
+
+*** C++1y
+
+The latest publicly available draft standard
+as I write this (on 2015-07-18)
+is "2013-10-13 14882 2014 Draft N3797.pdf"
+
+N3797 is publicly available
+[here](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2011/n3797.pdf).
+
+*** C++11
+
+I use "2011-02-28 14882 2011 Draft N3242.pdf" as my source for the
+definition of this very recent version of the C++ programming language.
+
+N3242 is publicly available
+[here](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2011/n3242.pdf).
+
+*** C++03
+
+I purchased "INCITS ISO IEC C++ 14882 2003.pdf" in order to have a
+correct and true copy of the language standard as signed.
+
+*** C++98
+
+I refer to a copy of "Committee Draft 2" from 1996, but to be honest,
+when I write that code is C++98, what I really mean is that GCC, when
+set to `--std=c++98` with all warnings enabled, compiles the code
+cleanly and the result runs correctly.
+
+** C
+
+*** C11
+
+I use "2011-04-12 9899 201x Draft N1570.pdf" as my source for the
+definition of this most recent update of the C programing language.
+
+N1570 is publicly available
+[here](http://www.open-std.org/jtc1/sc22/WG14/www/docs/n1570.pdf).
+
+*** C99
+
+I use "2007-09-07 9899 TC3 Draft N1256.pdf" as my source for the
+definition of the C99 language in practice.
+
+N1256 is publicly available
+[here](http://www.open-std.org/jtc1/sc22/WG14/www/docs/n1256.pdf).
+
+I also purchased "INCITS ISO IEC C99  9899 1999.pdf" in order to have a
+correct and true copy of the language standard as signed.
+
+*** C90
+
+I have a copy of _The Annotated ANSI C Standard_ by Herbert Schildt
+which has this standard, interwoven with commentary. General advice
+seems to be to ignore the commentary, and that this is possibly the
+only reasonable source for the text.
+
+I consider "Strict C90" to be of only historical interest.
+
+*** K&R
+
+The C Programming Language as defined by the book of that name
+by Brian Kernighan and Dennis Ritchie. This is "Traditional C."
+
+While I do not currently plan on writing any new pre-ANSI C,
+this dialect of the language forms the foundation of my learning
+and forever colors my code.
+
+** Lua
+
+Just including this as an indication of what I am thinking for
+scripting that might be embedded within simulated agents.
+
+*** Probably 5.2
+
+*** Probably 5.2 with local hacks
+
+* Static Analysis
+
+This presumes GCC or Clang is in use.
+Fortunately, Clang uses the compiler options
+made popular by GCC.
+
+** --std={pick}
+
+Pick a specific verision from the list above,
+then tell the compiler to use it specifically.
+Note that this also tells GCC/Clang to exclude any
+of its extensions.
+
+** -Wall
+
+Enable all of the popular warnings.
+
+** -Wextra
+
+Enable many less popular warnings.
+
+** -pedantic
+
+Enable all warnings required by the languagre specification,
+no matter how unpopular they are.
+
+** Enable Additional Warnings
+
+Wandering through a recent GCC manual, I see the following
+warnings that I want to have turned on ... note that I may
+have to skip some of these, if they are not understood by
+the version of GCC or Clang where I am doing my builds.
+
+- shadow
+- bad-function-cast
+- c++-compat
+- cast-qual
+- cast-align
+- write-strings
+- conditionally-supported
+- conversion
+- zero-as-null-pointer-constant
+- useless-cast
+- logical-op
+- strict-prototypes
+- old-style-definition
+- missing-prototypes
+- missing-declarations
+- redundant-decls
+- nested-externs
+
+** -O3
+
+While performance is not (yet) an issue, it has been observed
+in the past that there are some kinds of static analysis that
+are only done at higher optimization levels.
+
+** -g
+
+Enable debugging. There may also be some kinds of static analysis
+that are improved (or are only available) when debugging is enabled.
+
+** not using -Werror
+
+This option would cause all warnings to be treated as errors,
+preventing me from compiling and testing code until all warnings
+were eliminated. Given the strict level of warning checks that
+are applied, it can be counterproductive to insist that all
+warnings are polished away before testing that the code involved
+is actually useful.
+
+Rather than enforcing the "no errors" rule by preventing the build
+from linking code containing errors, I enforce this by watching
+my build logs for warnings. It is not hard to configure an automatic
+build system to extract warning messages and treat them as if they
+were testing failures.
+
+It is my view that a warning message *is* a testing failure; it is a
+failure of an automatically applied static analysis test, which has
+been helpfully built into the compiler.
+

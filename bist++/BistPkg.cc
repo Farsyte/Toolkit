@@ -54,8 +54,8 @@ namespace Bist {
 
         ostringstream ts;
         {
-            Bist::Pkg p(ts,"empty");
-            p.log << "  a procedure was followed" << endl;
+            Bist::Pkg tp(ts,"empty");
+            tp.log << "  a procedure was followed" << endl;
         }
 
         istringstream si(ts.str());

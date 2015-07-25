@@ -5,6 +5,7 @@
 *.gcda
 *.gcov
 *.bist
+*.html
 [#]*[#]
 .*
 !.gitignore

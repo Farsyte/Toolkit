@@ -1,52 +1,43 @@
-Q		:= @
-I		:= -
-C		:= $Q $I
-P		:= $C printf
-R		:= /bin/rm -f
+LIB		:= bist
 
-OFLAGS          := -O3
-DFLAGS          := -g
-PFLAGS          := -pg --coverage
-SFLAGS          := --std=c++11
-WFLAGS          := -W -Wall -Wextra -pedantic -Werror
+-include GNUmakefile.std
 
-CXXFLAGS        := ${OFLAGS} ${DFLAGS} ${PFLAGS} ${SFLAGS} ${WFLAGS}
+LDLIBS		+= ${LIB:%=-l%}
+LDFLAGS		+= -L.
 
 SRCS            := ${wildcard *.cc}
+HDRS            := ${wildcard *.hh}
 OBJS		:= ${SRCS:%.cc=%.o}
 PGMS		:= BistBist
 SUBS		:= ${filter-out ${PGMS:%=%.o},${OBJS}}
 LOGS		:= ${PGMS:%=%.log}
 
 # -- ================================================================ --
-#    meta-targets
-
-default:		build
-
-world::
-	$Q $(MAKE) clean
-	$Q $(MAKE) build
-	$Q $(MAKE) execs
-	$Q $(MAKE) check
-	$Q $(MAKE) cover 
-
-# -- ================================================================ --
 #    Compile C++ to Objects
 
 build::			objs
 objs::			${OBJS}
-${OBJS}:        %.o:            %.cc
-	$P '[cc] %s\n' '$*'
-	$Q $(COMPILE.cc) $(OUTPUT_OPTION) $<
-clean::		; $C $R ${OBJS} *.gcno
+clean::		; $C $R ${OBJS} *.gcno *.d
+
+# -- ================================================================ --
+#    Creation of the Static Library
+
+LIBO            := ${SUBS}
+LIBA		:= ${LIB:%=lib%.a}
+
+${LIBA}:	${LIBO:%=${LIBA}(%)}
+liba::			${LIBA}
+build::			liba
+clean::		; $C $R ${LIBA}
 
 # -- ================================================================ --
 #    Link Objects into Programs
 
 build::			pgms
 pgms::			${PGMS}
-${PGMS}:        %:              %.o ${SUBS}
-	$P '[ld] %s\n' '$*'
+${PGMS}:		${LIBA}
+${PGMS}:        %:              %.o
+	$P '[ld] %s\n' '$(REL)$*'
 	$Q $(LINK.cc) $*.o ${SUBS} $(LOADLIBES) $(LDLIBS) -o $@
 clean::		; $C $R ${PGMS}
 
@@ -56,7 +47,7 @@ clean::		; $C $R ${PGMS}
 execs::			logs
 logs::			${LOGS}
 ${LOGS}:        %.log:           %
-	$P '[go] %s\n' '$*'
+	$P '[go] %s\n' '$(REL)$*'
 	$Q './$*' 2>&1 | tee '$@'
 clean::		; $C $R *.bist *.gcda
 
@@ -90,10 +81,19 @@ trimcov:
 
 cover::			covs
 covs::			${LOGS}
-	$P '[gcov everything]\n'
+	$P '[gcov %s]\n' '$(REL)*'
 	$Q gcov *.gcno | awk -f gcov.awk
 	$Q $(MAKE) trimcov
 clean::		; $C $R *.gcov
+
+# -- ================================================================ --
+#    Export of Library and Headers
+
+install::	${LIBA}
+	@ test -d ../lib || mkdir -p ../lib
+	cp ${LIBA} ../lib
+	@ test -d ../inc || mkdir -p ../inc
+	cp ${HDRS} ../inc
 
 # -- ================================================================ --
 #    etc

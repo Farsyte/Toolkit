@@ -1,0 +1,111 @@
+# -*- makefile-gmake -*-
+
+# ================
+# convenience variables
+
+Q               = @                             # normally execute without printing
+I               = -                             # normally ignore error returns
+C               = $Q $I                         # execute quietly *and* ignore errors
+R               = /bin/rm -f                    # normal way to delete things
+P               = $C printf                     # Normal "print to log" command
+N               = $Q true                       # Normal "print to log -- NOT!" command
+
+# ================
+# standard meta-targets
+
+default::
+
+world::
+	$Q $(MAKE) clean
+	$Q $(MAKE) build
+	$Q $(MAKE) execs
+	$Q $(MAKE) check
+	$Q $(MAKE) cover
+	$Q $(MAKE) install
+
+# ================
+# recursive build support
+
+RECURSIVE       = clean build execs check cover install
+$(RECURSIVE)::  %:                              ; $N '[%s] %s...\n' '$@' '$(REL)'
+
+SUBMAK          = GNUmakefile
+SUBMAKS         = $(wildcard */$(SUBMAK))
+SUBDIRS         = $(SUBMAKS:%/$(SUBMAK)=%)
+
+ifneq ($(SUBDIRS),)
+RECSUBS         = $(foreach R,$(RECURSIVE),$(foreach S,$(SUBDIRS),$(S)/$(R).recurse))
+RECSUB_CMD      = $(MAKE) REL='$(REL)$(dir $@)' -f $(SUBMAK) -C '$(dir $@)' '$(basename $(notdir $@))'
+RECSUB_PAT      = $(foreach S,$(SUBDIRS),$(S)/%.recurse)
+
+$(RECSUBS)::    %.recurse:      .FORCE          ; $Q $(RECSUB_CMD)
+$(RECURSIVE)::  %:              $(RECSUB_PAT)   ; $N '[%s] %s... subs done\n' '$@' '$(REL)'
+endif
+
+
+# ================
+# standard compiler flag options
+
+OFLAGS          = -O3                           # standard optimizer level
+DFLAGS          = -g                            # standard debugger level
+PFLAGS          = -pg --coverage                # Profiling facilities
+WFLAGS          = -Wall -Wextra -pedantic       # base warning flags
+STD_C           = c11                           # default to standard C of 2011
+STD_X           = c++14                         # default to standard C++ of 2014
+
+# Additional Warnings
+#   some of these may be C++ specific.
+WADD           += shadow
+WADD           += bad-function-cast
+WADD           += c++-compat
+WADD           += cast-qual
+WADD           += cast-align
+WADD           += write-strings
+WADD           += conversion
+WADD           += strict-prototypes
+WADD           += old-style-definition
+WADD           += missing-prototypes
+WADD           += missing-declarations
+WADD           += redundant-decls
+WADD           += nested-externs
+
+# warnings rejected by Clang C++ ...
+#   Apple LLVM version 6.1.0 (clang-602.0.53) (based on LLVM 3.6.0svn)
+#
+#     WADD           += conditionally-supported
+#     WADD           += zero-as-null-pointer-constant
+#     WADD           += useless-cast
+#     WADD           += logical-op
+
+
+# ================
+# construct the full compiler options lists
+
+WFLAGS_         = ${WFLAGS} ${WADD:%=-W%} ${WNOT:%=-Wno-%}
+WFLAGS_C        = ${WFLAGS_}  ${WADD_C:%=-W%} ${WNOT_C:%=-Wno-%}
+WFLAGS_X        = ${WFLAGS_}  ${WADD_X:%=-W%} ${WNOT_X:%=-Wno-%}
+
+CFLAGS          = ${OFLAGS} ${DFLAGS} ${PFLAGS} ${WFLAGS_C} ${STD_C:%=--std=%}
+CXXFLAGS        = ${OFLAGS} ${DFLAGS} ${PFLAGS} ${WFLAGS_X} ${STD_X:%=--std=%}
+
+# ================
+# Replacement default build lines
+
+# Compiling C++
+# -- print a brief status line saying what we are doing
+# -- do not print the very long command line
+# -- generate a dependency file
+
+%.o:            %.cc
+	$P '[cc] %s\n' '$(REL)$*'
+	$Q $(COMPILE.cc) \
+		-MMD \
+		$(OUTPUT_OPTION) $<
+
+-include ${wildcard *.d}
+
+# ================
+# meta-targets
+
+.FORCE:
+.PHONY:         $(TARGETS) .FORCE

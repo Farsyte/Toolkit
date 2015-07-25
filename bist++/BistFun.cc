@@ -81,9 +81,9 @@ namespace Bist {
 
         ostringstream ts;
         {
-            Bist::Pkg p(ts,"dummy");
-            Bist::Fun f(p,"noop");
-            f.log << "  a procedure was followed" << endl;
+            Bist::Pkg tp(ts,"dummy");
+            Bist::Fun tf(tp,"noop");
+            tf.log << "  a procedure was followed" << endl;
         }
 
         istringstream si(ts.str());
@@ -106,11 +106,11 @@ namespace Bist {
 
         ostringstream ts;
         {
-            Bist::Pkg p(ts,"dummy");
-            Bist::Fun f(p,"pass");
-            f.log << "  expected: foo" << endl;
-            f.log << "  observed: foo" << endl;
-            f.pass();
+            Bist::Pkg tp(ts,"dummy");
+            Bist::Fun tf(tp,"pass");
+            tf.log << "  expected: foo" << endl;
+            tf.log << "  observed: foo" << endl;
+            tf.pass();
         }
 
         istringstream si(ts.str());
@@ -136,10 +136,10 @@ namespace Bist {
 
         ostringstream ts;
         {
-            Bist::Pkg p(ts,"dummy");
-            Bist::Fun f(p,"skip");
-            f.log << "  test does not apply" << endl;
-            f.skip();
+            Bist::Pkg tp(ts,"dummy");
+            Bist::Fun tf(tp,"skip");
+            tf.log << "  test does not apply" << endl;
+            tf.skip();
         }
 
         istringstream si(ts.str());
@@ -163,11 +163,11 @@ namespace Bist {
         Bist::Fun f(p,"fail");
         ostringstream ts;
         {
-            Bist::Pkg p(ts,"dummy");
-            Bist::Fun f(p,"fail");
-            f.log << "  expected: foo" << endl;
-            f.log << "  observed: bar" << endl;
-            f.fail();
+            Bist::Pkg tp(ts,"dummy");
+            Bist::Fun tf(tp,"fail");
+            tf.log << "  expected: foo" << endl;
+            tf.log << "  observed: bar" << endl;
+            tf.fail();
         }
 
         istringstream si(ts.str());
@@ -192,10 +192,10 @@ namespace Bist {
         Bist::Fun f(p,"error");
         ostringstream ts;
         {
-            Bist::Pkg p(ts,"dummy");
-            Bist::Fun f(p,"error");
-            f.log << "  test setup failure" << endl;
-            f.error();
+            Bist::Pkg tp(ts,"dummy");
+            Bist::Fun tf(tp,"error");
+            tf.log << "  test setup failure" << endl;
+            tf.error();
         }
 
         istringstream si(ts.str());
