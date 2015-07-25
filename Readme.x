@@ -8,6 +8,54 @@ here over time; this is where I tinker with ideas on how
 to do software engineering, not where I do my tinkering
 with the code itself.
 
+Long Term Targets
+-----------------
+
+While my focus here is on writing tested code methodically,
+this works better if I have some longer term use cases in mind,
+even if they are just larger library-like abstractions.
+
+Currently, I am aiming for these programming toys:
+
+ - Controlled Rigid Body Motion in a gravitational field
+
+Note that this requires tracking position, momentum,
+orientation and angular momentum of a rigid body with
+slowly changing mass and moment of inertia, as it moves
+through a space containing gravitational fields, under
+control of a collection of actuators fixed to the body.
+
+Yes, this has been done before. Yes, I could probably fork
+an existing repository with working code. And yes, that
+would completely and utterly miss the point of this project.
+
+I have in mind the following higher level support tools:
+
+ - Kalman Filter Toolkit
+ - Neural Network Toolkit
+ - P-I-D Controller Toolit
+
+Below this, I am aiming at a collection of smaller support
+facilities; curently thinking:
+
+ - Matrix Math Library
+   - with run-time MxN dimensions (maybe not)
+   - with compile-time MxN dimensions
+   - specific code for 4x4 matrices
+   - specific code for 3x3 matrices
+   - specific code for 2x2 matrices
+
+ - Quaternion Math Library
+
+ - Vector Math Library
+   - with run-time N dimensions (maybe not)
+   - with compile-time N dimensions
+   - specific code for 4-vectors
+   - specific code for 3-vectors
+   - specific code for 2-vectors
+
+
+
 Languages
 ---------
 
