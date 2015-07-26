@@ -1,15 +1,14 @@
-LIB		:= bist
-
 -include GNUmakefile.std
 
-LDLIBS		+= ${LIB:%=-l%}
-LDFLAGS		+= -L.
+IMPORTLIBS      = bist
+SEARCHLIBD      = ../lib
+SEARCHINCD      = ../inc
 
 SRCS            := ${wildcard *.cc}
 HDRS            := ${wildcard *.hh}
 OBJS		:= ${SRCS:%.cc=%.o}
 PGMS		:= BistBist
-SUBS		:= ${filter-out ${PGMS:%=%.o},${OBJS}}
+INST		:= ${PGMS:%=${TOPBIN}%}
 LOGS		:= ${PGMS:%=%.log}
 
 # -- ================================================================ --
@@ -20,17 +19,6 @@ objs::			${OBJS}
 clean::		; $C $R ${OBJS} *.gcno *.d
 
 # -- ================================================================ --
-#    Creation of the Static Library
-
-LIBO            := ${SUBS}
-LIBA		:= ${LIB:%=lib%.a}
-
-${LIBA}:	${LIBO:%=${LIBA}(%)}
-liba::			${LIBA}
-build::			liba
-clean::		; $C $R ${LIBA}
-
-# -- ================================================================ --
 #    Link Objects into Programs
 
 build::			pgms
@@ -38,33 +26,38 @@ pgms::			${PGMS}
 ${PGMS}:		${LIBA}
 ${PGMS}:        %:              %.o
 	$P '[ld] %s\n' '$(REL)$*'
-	$Q $(LINK.cc) $*.o ${SUBS} $(LOADLIBES) $(LDLIBS) -o $@
+	$Q $(LINK.cc) $*.o $(LOADLIBES) $(LDLIBS) -o $@
 clean::		; $C $R ${PGMS}
+
+build::			install
+${TOPBIN}%:		%
+	@ test -d ${TOPBIN} || mkdir -p ${TOPBIN}
+	$P '[*bin*] %s\n' '$*'
+	$Q cp '$*' ${TOPBIN}'$*'
+install::		${INST}
+uninstall::	; $C $R ${INST}
+clean::			uninstall
 
 # -- ================================================================ --
 #    Collect outputs of programs
 
 execs::			logs
 logs::			${LOGS}
-${LOGS}:        %.log:           %
+${LOGS}:        %.log:           ${TOPBIN}%
 	$P '[go] %s\n' '$(REL)$*'
-	$Q './$*' 2>&1 | tee '$@'
-clean::		; $C $R *.bist *.gcda
+	$Q '${TOPBIN}$*' 2>&1 | tee '$@'
+clean::		; $C $R *.bist *.gcda ${LOGS}
 
 # -- ================================================================ --
 #    Verify BIST log outputs
 
 BIST		:= ${wildcard *.bist}
-BREF		:= ${wildcard *.bref}
-MODS		:= ${sort ${BIST:%.bist=%} ${BREF:%.bref=%}}
-ERRS		:= ${MODS:%=%.berr}
+ERRS		:= ${BIST:%.bist=%.berr}
 
 check::			errs
 errs::			${ERRS}
 ${ERRS}::	%.berr:         .FORCE
-	@ if [ ! -f '$*.bref' ]; then printf 'result file "%s.bist" exists, and should not.\n' '$*'; exit 1; fi
-	@ if [ ! -f '$*.bist' ]; then printf 'result file "%s.bist" should exist, but does not.\n' '$*'; exit 1; fi
-	@ diff '$*.bist' '$*.bref' > '$*.berr' 
+	@ diff '${TOPREF}$*.bist' '$*.bist' > '$*.berr' 
 clean::		; $C $R *.berr
 
 # -- ================================================================ --
@@ -82,20 +75,6 @@ trimcov:
 cover::			covs
 covs::			${LOGS}
 	$P '[gcov %s]\n' '$(REL)*'
-	$Q gcov *.gcno | awk -f gcov.awk
+	$Q gcov *.gcno | awk -f ../bin/gcov.awk
 	$Q $(MAKE) trimcov
 clean::		; $C $R *.gcov
-
-# -- ================================================================ --
-#    Export of Library and Headers
-
-install::	${LIBA}
-	@ test -d ../lib || mkdir -p ../lib
-	cp ${LIBA} ../lib
-	@ test -d ../inc || mkdir -p ../inc
-	cp ${HDRS} ../inc
-
-# -- ================================================================ --
-#    etc
-
-.FORCE:

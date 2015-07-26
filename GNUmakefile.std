@@ -1,5 +1,15 @@
 # -*- makefile-gmake -*-
 
+THIS            := ${abspath ${lastword ${MAKEFILE_LIST}}}
+THISDIR         := ${dir ${THIS}}
+THISFILE        := ${notdir ${THIS}}
+
+THAT            := ${abspath ${lastword ${MAKEFILE_LIST}}}
+THATDIR         := ${dir ${THAT}}
+THATFILE        := ${notdir ${THAT}}
+
+TOP		:= ${THISDIR}
+
 # ================
 # convenience variables
 
@@ -9,6 +19,14 @@ C               = $Q $I                         # execute quietly *and* ignore e
 R               = /bin/rm -f                    # normal way to delete things
 P               = $C printf                     # Normal "print to log" command
 N               = $Q true                       # Normal "print to log -- NOT!" command
+
+# ================
+# top level directories
+
+TOPINC          := ${TOP}inc/
+TOPLIB          := ${TOP}lib/
+TOPBIN          := ${TOP}bin/
+TOPREF          := ${TOP}ref/
 
 # ================
 # standard meta-targets
@@ -21,12 +39,11 @@ world::
 	$Q $(MAKE) execs
 	$Q $(MAKE) check
 	$Q $(MAKE) cover
-	$Q $(MAKE) install
 
 # ================
 # recursive build support
 
-RECURSIVE       = clean build execs check cover install
+RECURSIVE       = clean build execs check cover
 $(RECURSIVE)::  %:                              ; $N '[%s] %s...\n' '$@' '$(REL)'
 
 SUBMAK          = GNUmakefile
@@ -37,11 +54,15 @@ ifneq ($(SUBDIRS),)
 RECSUBS         = $(foreach R,$(RECURSIVE),$(foreach S,$(SUBDIRS),$(S)/$(R).recurse))
 RECSUB_CMD      = $(MAKE) REL='$(REL)$(dir $@)' -f $(SUBMAK) -C '$(dir $@)' '$(basename $(notdir $@))'
 RECSUB_PAT      = $(foreach S,$(SUBDIRS),$(S)/%.recurse)
+RECPREREQ       = ${RECSUBS:%.recurse=%.before}
 
-$(RECSUBS)::    %.recurse:      .FORCE          ; $Q $(RECSUB_CMD)
+$(RECSUBS)::    %.recurse:      %.before        ; $Q $(RECSUB_CMD)
+$(RECPREREQ)::  %:                              ; $N
 $(RECURSIVE)::  %:              $(RECSUB_PAT)   ; $N '[%s] %s... subs done\n' '$@' '$(REL)'
 endif
 
+debug:
+	$P 'RECSUBS is "%s"\n' '${RECSUBS}'
 
 # ================
 # standard compiler flag options
@@ -50,6 +71,9 @@ OFLAGS          = -O3                           # standard optimizer level
 DFLAGS          = -g                            # standard debugger level
 PFLAGS          = -pg --coverage                # Profiling facilities
 WFLAGS          = -Wall -Wextra -pedantic       # base warning flags
+IFLAGS		= ${SEARCHINCD:%=-I%} -I${TOPINC} # header search path flags
+LDFLAGS		= ${SEARCHLIBD:%=-L%} -I${TOPLIB} # library search path flags
+LDLIBS		= ${IMPORTLIBS:%=-l%}		# libraries to link
 STD_C           = c11                           # default to standard C of 2011
 STD_X           = c++14                         # default to standard C++ of 2014
 
@@ -85,8 +109,8 @@ WFLAGS_         = ${WFLAGS} ${WADD:%=-W%} ${WNOT:%=-Wno-%}
 WFLAGS_C        = ${WFLAGS_}  ${WADD_C:%=-W%} ${WNOT_C:%=-Wno-%}
 WFLAGS_X        = ${WFLAGS_}  ${WADD_X:%=-W%} ${WNOT_X:%=-Wno-%}
 
-CFLAGS          = ${OFLAGS} ${DFLAGS} ${PFLAGS} ${WFLAGS_C} ${STD_C:%=--std=%}
-CXXFLAGS        = ${OFLAGS} ${DFLAGS} ${PFLAGS} ${WFLAGS_X} ${STD_X:%=--std=%}
+CFLAGS          = ${OFLAGS} ${DFLAGS} ${PFLAGS} ${IFLAGS} ${WFLAGS_C} ${STD_C:%=--std=%}
+CXXFLAGS        = ${OFLAGS} ${DFLAGS} ${PFLAGS} ${IFLAGS} ${WFLAGS_X} ${STD_X:%=--std=%}
 
 # ================
 # Replacement default build lines
@@ -98,9 +122,7 @@ CXXFLAGS        = ${OFLAGS} ${DFLAGS} ${PFLAGS} ${WFLAGS_X} ${STD_X:%=--std=%}
 
 %.o:            %.cc
 	$P '[cc] %s\n' '$(REL)$*'
-	$Q $(COMPILE.cc) \
-		-MMD \
-		$(OUTPUT_OPTION) $<
+	$Q $(COMPILE.cc) -MMD $(OUTPUT_OPTION) $<
 
 -include ${wildcard *.d}
 
@@ -109,3 +131,12 @@ CXXFLAGS        = ${OFLAGS} ${DFLAGS} ${PFLAGS} ${WFLAGS_X} ${STD_X:%=--std=%}
 
 .FORCE:
 .PHONY:         $(TARGETS) .FORCE
+
+# ================
+# quick hack to print lots of variables
+
+.PHONY:         .printvars
+.printvars:
+	@$(foreach V,$(sort $(.VARIABLES)),                     \
+	  $(if $(filter-out environment% default automatic,     \
+	  $(origin $V)),$(warning $V=$($V) ($(value $V)))))

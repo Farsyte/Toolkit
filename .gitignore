@@ -1,11 +1,14 @@
 *~
+[#]*[#]
+.*
 *.o
+*.d
+*.a
 *.log
 *.gcno
 *.gcda
 *.gcov
 *.bist
 *.html
-[#]*[#]
-.*
+*.berr
 !.gitignore
