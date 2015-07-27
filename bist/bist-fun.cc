@@ -1,5 +1,5 @@
-#include "BistFun.hh"
-#include "BistPkg.hh"
+#include "bist-fun.hh"
+#include "bist-pkg.hh"
 
 #include <string>
 using std::string;
@@ -60,8 +60,8 @@ namespace Bist {
         if (!bist_pend) return true;
         bist_pend = false;
 
-        ofstream bs("BistFun.bist");
-        Bist::Pkg p(bs,"BistFun");
+        ofstream bs("bist-fun.bist");
+        Bist::Pkg p(bs,"bist-fun");
 
         // uses "test && ec" so all are executed
         // could use "ec && test" to test only if passing.

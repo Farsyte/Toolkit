@@ -1,5 +1,5 @@
-#include "BistPkg.hh"
-#include "BistFun.hh"
+#include "bist-pkg.hh"
+#include "bist-fun.hh"
 
 #include <string>
 using std::string;
@@ -39,8 +39,8 @@ namespace Bist {
         if (!bist_pend) return true;
         bist_pend = false;
         
-        ofstream bs("BistPkg.bist");
-        Bist::Pkg p(bs,"BistPkg");
+        ofstream bs("bist-pkg.bist");
+        Bist::Pkg p(bs,"bist-pkg");
 
         bool ec =
             // bist_more_tests(p) &&

@@ -2,7 +2,6 @@
 
 LIB		= bist
 
-IMPORTLIBS      = bist
 SEARCHLIBD      = .
 
 SRCS            := ${wildcard *.cc}

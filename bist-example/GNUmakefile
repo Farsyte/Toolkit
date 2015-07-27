@@ -1,13 +1,12 @@
 -include GNUmakefile.std
 
+PGMS		:= bist-example
+
 IMPORTLIBS      = bist
-SEARCHLIBD      = ../lib
-SEARCHINCD      = ../inc
 
 SRCS            := ${wildcard *.cc}
 HDRS            := ${wildcard *.hh}
 OBJS		:= ${SRCS:%.cc=%.o}
-PGMS		:= BistBist
 INST		:= ${PGMS:%=${TOPBIN}%}
 LOGS		:= ${PGMS:%=%.log}
 

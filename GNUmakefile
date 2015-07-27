@@ -1,6 +1,5 @@
 include GNUmakefile.std
 
-# Need to install in bist before
-# trying to build in bist-test.
+# Some subtrees have to be built before others.
 
-bistbist/build.before:: bist/build.recurse
+bist-example/build.before::             bist/build.recurse
