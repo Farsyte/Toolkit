@@ -16,10 +16,9 @@ namespace Bist {
             std::string const &n);
         ~Pkg();
 
-    private:
+        static bool bist(std::ostream &so);
 
-        static bool bist_pend;
-        static bool bist();
+    private:
 
         static bool bist_text(Pkg &p);
     };

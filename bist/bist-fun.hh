@@ -23,10 +23,9 @@ namespace Bist {
         bool fail();
         bool error();
 
-    private:
+        static bool bist(std::ostream &so);
 
-        static bool bist_pend;
-        static bool bist();
+    private:
 
         static bool bist_noop(Pkg &p);
         static bool bist_pass(Pkg &p);

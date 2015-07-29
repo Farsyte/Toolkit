@@ -4,3 +4,4 @@ include GNUmakefile.std
 
 bist-example/build.before::             bist/build.recurse
 matrix-example/build.before::           bist/build.recurse
+matrix-example/build.before::           matrix/build.recurse

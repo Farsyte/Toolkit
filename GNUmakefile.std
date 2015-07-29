@@ -48,12 +48,14 @@ RECURSIVE       = clean build execs check cover
 $(RECURSIVE)::  %:                              ; $N '[%s] %s...\n' '$@' '$(REL)'
 
 SUBMAK          = GNUmakefile
+ifeq ($(SUBDIRS),)
 SUBMAKS         = $(wildcard */$(SUBMAK))
 SUBDIRS         = $(SUBMAKS:%/$(SUBMAK)=%)
+endif
 
 ifneq ($(SUBDIRS),)
 RECSUBS         = $(foreach R,$(RECURSIVE),$(foreach S,$(SUBDIRS),$(S)/$(R).recurse))
-RECSUB_CMD      = $(MAKE) REL='$(REL)$(dir $@)' -f $(SUBMAK) -C '$(dir $@)' '$(basename $(notdir $@))'
+RECSUB_CMD      = $(MAKE) REL='$(REL)$(dir $@)' SUBDIRS='' -f $(SUBMAK) -C '$(dir $@)' '$(basename $(notdir $@))'
 RECSUB_PAT      = $(foreach S,$(SUBDIRS),$(S)/%.recurse)
 RECPREREQ       = ${RECSUBS:%.recurse=%.before}
 
@@ -61,6 +63,12 @@ $(RECSUBS)::    %.recurse:      %.before        ; $Q $(RECSUB_CMD)
 $(RECPREREQ)::  %:                              ; $N
 $(RECURSIVE)::  %:              $(RECSUB_PAT)   ; $N '[%s] %s... subs done\n' '$@' '$(REL)'
 endif
+
+# failsafe build for anything.recurse
+# to satisfy dependencies on build phases
+# for subdirectories not in SUBDIRS list
+
+%.recurse::					; $N
 
 debug:
 	$P 'RECSUBS is "%s"\n' '${RECSUBS}'
@@ -120,9 +128,11 @@ CXXFLAGS        = ${OFLAGS} ${DFLAGS} ${PFLAGS} ${IFLAGS} ${WFLAGS_X} ${STD_X:%=
 # -- print a brief status line saying what we are doing
 # -- do not print the very long command line
 # -- generate a dependency file
+# -- zap gcov output first (stale gcov files cause problems)
 
 %.o:            %.cc
 	$P '[cc] %s\n' '$(REL)$*'
+	$C $R '$*.o' '$*.gcda' '$*.gcno' '$*.cc.gcov'
 	$Q $(COMPILE.cc) -MMD $(OUTPUT_OPTION) $<
 
 -include ${wildcard *.d}

@@ -10,9 +10,6 @@ using std::ostream;
 using std::unitbuf;
 using std::endl;
 
-#include <fstream>
-using std::ofstream;
-
 #include <sstream>
 using std::ostringstream;
 using std::istringstream;
@@ -25,7 +22,6 @@ namespace Bist {
         : pkg(p)
         , log(pkg.log)
     {
-        if (bist_pend) bist();
         log << MARKER("START FUN " + n);
     }
 
@@ -54,13 +50,8 @@ namespace Bist {
         return false;
     }
 
-    bool Fun::bist_pend = true;
+    bool Fun::bist(ostream &bs) {
 
-    bool Fun::bist() {
-        if (!bist_pend) return true;
-        bist_pend = false;
-
-        ofstream bs("bist-fun.bist");
         Bist::Pkg p(bs,"bist-fun");
 
         // uses "test && ec" so all are executed

@@ -13,9 +13,6 @@ using std::endl;
 using std::istringstream;
 using std::ostringstream;
 
-#include <fstream>
-using std::ofstream;
-
 namespace Bist {
 
 #define MARKER(str)     "{{ BIST " << str << " }}\n"
@@ -23,7 +20,6 @@ namespace Bist {
     Pkg::Pkg(ostream &s, string const &n)
         : log(s)
     {
-        if (bist_pend) bist();
         log << unitbuf;
         log << MARKER("START PKG " + n);
     }
@@ -33,13 +29,8 @@ namespace Bist {
         log << MARKER("FINAL PKG");
     }
 
-    bool Pkg::bist_pend = true;
+    bool Pkg::bist(ostream &bs) {
 
-    bool Pkg::bist() {
-        if (!bist_pend) return true;
-        bist_pend = false;
-        
-        ofstream bs("bist-pkg.bist");
         Bist::Pkg p(bs,"bist-pkg");
 
         bool ec =

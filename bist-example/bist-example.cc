@@ -21,12 +21,16 @@ static bool example_skip_pass(Bist::Pkg &p);
 static bool example_pass_skip(Bist::Pkg &p);
 
 /* -- ================================================================ --
- *    run several packages
+ *    run several test packages including Bist itself.
  */
 
 int main() {
     bool ok = true;
+
     ofstream bs("bist-example.bist");
+
+    ok = Bist::Pkg::bist(bs) && ok;
+    ok = Bist::Fun::bist(bs) && ok;
 
     ok = example_pkg_one(bs) && ok;
     ok = example_pkg_two(bs) && ok;

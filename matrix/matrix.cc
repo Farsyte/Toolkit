@@ -1,3 +1,7 @@
-namespace Mat {
-    int Mat__bist_pending = true;
+#include "matrix.hh"
+
+namespace Matrix {
+
+    int R__dummy = 0;
+
 }
