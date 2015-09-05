@@ -1,0 +1,81 @@
+{{ BIST START PKG bist-pkg }}
+{{ BIST START FUN text }}
+  "{{ BIST START PKG empty }}"
+  "  a procedure was followed"
+  "{{ BIST FINAL PKG }}"
+  end of input
+{{ BIST FINAL FUN }}
+{{ BIST FINAL PKG }}
+{{ BIST START PKG bist-fun }}
+{{ BIST START FUN noop }}
+  "{{ BIST START PKG dummy }}"
+  "{{ BIST START FUN noop }}"
+  "  a procedure was followed"
+  "{{ BIST FINAL FUN }}"
+  "{{ BIST FINAL PKG }}"
+  end of input
+{{ BIST FINAL FUN }}
+{{ BIST START FUN pass }}
+  "{{ BIST START PKG dummy }}"
+  "{{ BIST START FUN pass }}"
+  "  expected: foo"
+  "  observed: foo"
+  "{{ BIST PASS }}"
+  "{{ BIST FINAL FUN }}"
+  "{{ BIST FINAL PKG }}"
+  end of input
+{{ BIST FINAL FUN }}
+{{ BIST START FUN skip }}
+  "{{ BIST START PKG dummy }}"
+  "{{ BIST START FUN skip }}"
+  "  test does not apply"
+  "{{ BIST SKIP }}"
+  "{{ BIST FINAL FUN }}"
+  "{{ BIST FINAL PKG }}"
+  end of input
+{{ BIST FINAL FUN }}
+{{ BIST START FUN fail }}
+  "{{ BIST START PKG dummy }}"
+  "{{ BIST START FUN fail }}"
+  "  expected: foo"
+  "  observed: bar"
+  "{{ BIST FAIL }}"
+  "{{ BIST FINAL FUN }}"
+  "{{ BIST FINAL PKG }}"
+  end of input
+{{ BIST FINAL FUN }}
+{{ BIST START FUN error }}
+  "{{ BIST START PKG dummy }}"
+  "{{ BIST START FUN error }}"
+  "  test setup failure"
+  "{{ BIST ERROR }}"
+  "{{ BIST FINAL FUN }}"
+  "{{ BIST FINAL PKG }}"
+  end of input
+{{ BIST FINAL FUN }}
+{{ BIST FINAL PKG }}
+{{ BIST START PKG bist-example-one }}
+{{ BIST START FUN none }}
+no logged result is PASS.
+{{ BIST FINAL FUN }}
+{{ BIST START FUN pass }}
+explicit pass marker is PASS.
+{{ BIST PASS }}
+{{ BIST FINAL FUN }}
+{{ BIST START FUN skip }}
+explicit skip marker is SKIP.
+{{ BIST SKIP }}
+{{ BIST FINAL FUN }}
+{{ BIST FINAL PKG }}
+{{ BIST START PKG bist-example-two }}
+{{ BIST START FUN skip-pass }}
+both skip and pass is SKIP.
+{{ BIST PASS }}
+{{ BIST SKIP }}
+{{ BIST FINAL FUN }}
+{{ BIST START FUN pass-skip }}
+both pass and skip is SKIP.
+{{ BIST SKIP }}
+{{ BIST PASS }}
+{{ BIST FINAL FUN }}
+{{ BIST FINAL PKG }}
